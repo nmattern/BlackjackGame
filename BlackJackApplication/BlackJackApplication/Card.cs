@@ -8,10 +8,15 @@ namespace BlackJackApplication
 {
     class Card
     {
-        private int cardValue;
+        private string cardValue;
         private string cardSuit;
 
-        public int Value
+        public Card(string suit, string value)
+        {
+            cardValue = value;
+            cardSuit = suit;
+        }
+        public string Value
         {
             get { return cardValue;  }
             set { cardValue = value;  }
