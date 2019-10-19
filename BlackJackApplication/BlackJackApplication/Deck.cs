@@ -28,6 +28,7 @@ namespace BlackJackApplication
             possibleValues.Add("7");
             possibleValues.Add("8");
             possibleValues.Add("9");
+            possibleValues.Add("10");
             possibleValues.Add("J");
             possibleValues.Add("Q");
             possibleValues.Add("K");
@@ -61,7 +62,7 @@ namespace BlackJackApplication
                 Card temp = cardsInDeck[x];
                 cardsInDeck[x] = cardsInDeck[i];
                 cardsInDeck[i] = temp;
-            }
+            }   
         }
     }
 }
