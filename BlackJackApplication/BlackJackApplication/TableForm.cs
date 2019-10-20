@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BlackJackApplication
 {
-    public partial class Form1 : Form
+    public partial class tableForm : Form
     {
-        public Form1()
+        public tableForm()
         {
             InitializeComponent();
         }
@@ -20,7 +20,7 @@ namespace BlackJackApplication
         
 
         private void Form1_Load(object sender, EventArgs e)
-        {
+        { 
             Deck myDeck = new Deck();
         }
     }
