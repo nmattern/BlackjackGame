@@ -1,6 +1,6 @@
 ﻿namespace BlackJackApplication
 {
-    partial class Form1
+    partial class tableForm
     {
         /// <summary>
         /// Required designer variable.
@@ -261,7 +261,7 @@
             this.playerTotalLabel.TabIndex = 18;
             this.playerTotalLabel.Text = "0";
             // 
-            // Form1
+            // tableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -286,8 +286,8 @@
             this.Controls.Add(this.currentMoneyLabel);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "tableForm";
+            this.Text = "Blackjack";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

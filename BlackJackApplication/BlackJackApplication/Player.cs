@@ -10,6 +10,8 @@ namespace BlackJackApplication
     {
         private int currentValueOfHand;
         private int currentAmountofMoney;
+        private List<Card> playerHand = new List<Card>();
+
         enum playerChoiceValues
         {
             Stand = 1,
