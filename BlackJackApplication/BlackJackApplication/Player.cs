@@ -39,15 +39,15 @@ namespace BlackJackApplication
         {
             currentAmountofMoney = newValue;
         }
-        public void addCardToHand(Card c)
+        public void addCardToHand(Card card)
         {
             long cardNumericalValue;
-            playerHand.Add(c);
-            if (c.Value == "K" || c.Value == "Q" || c.Value == "J")
+            playerHand.Add(card);
+            if (card.Value == "K" || card.Value == "Q" || card.Value == "J")
             {
                 currentValueOfHand += 10;
             }
-            else if (Int64.TryParse(c.Value, out cardNumericalValue))
+            else if (Int64.TryParse(card.Value, out cardNumericalValue))
             {
                 currentValueOfHand += (int)cardNumericalValue;
             }

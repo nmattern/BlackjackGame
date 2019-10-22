@@ -8,13 +8,13 @@ namespace BlackJackApplication
 {
     class Dealer : Player
     {
-        public void dealCard(Player p, Deck d, int numOfCards = 1)
+        public void dealCard(Player player, Deck deck, int numOfCards = 1)
         {
             while (numOfCards > 0)
             {
-                Card temp = d.Cards[0];
-                d.Cards.RemoveAt(0);
-                p.addCardToHand(temp);
+                Card temp = deck.Cards[0];
+                deck.Cards.RemoveAt(0);
+                player.addCardToHand(temp);
                 numOfCards--;
             }
         }
