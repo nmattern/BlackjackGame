@@ -37,7 +37,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 69.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(89, 81);
+            this.label1.Location = new System.Drawing.Point(275, 205);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(423, 124);
             this.label1.TabIndex = 0;
@@ -46,7 +46,7 @@
             // startButton
             // 
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startButton.Location = new System.Drawing.Point(234, 241);
+            this.startButton.Location = new System.Drawing.Point(416, 395);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(133, 38);
             this.startButton.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.label1);
             this.Name = "startScreenForm";

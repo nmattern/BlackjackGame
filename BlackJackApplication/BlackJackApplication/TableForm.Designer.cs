@@ -30,8 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.currentMoneyLabel = new System.Windows.Forms.Label();
-            this.dealerCardTable = new System.Windows.Forms.TableLayoutPanel();
-            this.playerCardTable = new System.Windows.Forms.TableLayoutPanel();
             this.hitButton = new System.Windows.Forms.Button();
             this.standButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,12 +45,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dealerTotalLabel = new System.Windows.Forms.Label();
             this.playerTotalLabel = new System.Windows.Forms.Label();
+            this.playerHandFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.dealerHandFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(464, 7);
+            this.label1.Location = new System.Drawing.Point(827, 200);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
@@ -62,58 +62,16 @@
             // currentMoneyLabel
             // 
             this.currentMoneyLabel.AutoSize = true;
-            this.currentMoneyLabel.Location = new System.Drawing.Point(547, 7);
+            this.currentMoneyLabel.Location = new System.Drawing.Point(910, 200);
             this.currentMoneyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.currentMoneyLabel.Name = "currentMoneyLabel";
             this.currentMoneyLabel.Size = new System.Drawing.Size(25, 13);
             this.currentMoneyLabel.TabIndex = 1;
             this.currentMoneyLabel.Text = "100";
             // 
-            // dealerCardTable
-            // 
-            this.dealerCardTable.ColumnCount = 9;
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.dealerCardTable.Location = new System.Drawing.Point(101, 10);
-            this.dealerCardTable.Margin = new System.Windows.Forms.Padding(2);
-            this.dealerCardTable.Name = "dealerCardTable";
-            this.dealerCardTable.RowCount = 1;
-            this.dealerCardTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.dealerCardTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
-            this.dealerCardTable.Size = new System.Drawing.Size(358, 78);
-            this.dealerCardTable.TabIndex = 2;
-            // 
-            // playerCardTable
-            // 
-            this.playerCardTable.ColumnCount = 9;
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.playerCardTable.Location = new System.Drawing.Point(101, 278);
-            this.playerCardTable.Margin = new System.Windows.Forms.Padding(2);
-            this.playerCardTable.Name = "playerCardTable";
-            this.playerCardTable.RowCount = 1;
-            this.playerCardTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.playerCardTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
-            this.playerCardTable.Size = new System.Drawing.Size(358, 78);
-            this.playerCardTable.TabIndex = 3;
-            // 
             // hitButton
             // 
-            this.hitButton.Location = new System.Drawing.Point(488, 132);
+            this.hitButton.Location = new System.Drawing.Point(851, 325);
             this.hitButton.Margin = new System.Windows.Forms.Padding(2);
             this.hitButton.Name = "hitButton";
             this.hitButton.Size = new System.Drawing.Size(75, 39);
@@ -123,7 +81,7 @@
             // 
             // standButton
             // 
-            this.standButton.Location = new System.Drawing.Point(488, 195);
+            this.standButton.Location = new System.Drawing.Point(851, 388);
             this.standButton.Margin = new System.Windows.Forms.Padding(2);
             this.standButton.Name = "standButton";
             this.standButton.Size = new System.Drawing.Size(75, 39);
@@ -204,7 +162,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(464, 29);
+            this.label3.Location = new System.Drawing.Point(827, 222);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
@@ -214,7 +172,7 @@
             // betLabel
             // 
             this.betLabel.AutoSize = true;
-            this.betLabel.Location = new System.Drawing.Point(547, 29);
+            this.betLabel.Location = new System.Drawing.Point(910, 222);
             this.betLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.betLabel.Name = "betLabel";
             this.betLabel.Size = new System.Drawing.Size(19, 13);
@@ -224,7 +182,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(209, 98);
+            this.label4.Location = new System.Drawing.Point(418, 215);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 13);
@@ -234,7 +192,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(209, 254);
+            this.label5.Location = new System.Drawing.Point(418, 437);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
@@ -244,7 +202,7 @@
             // dealerTotalLabel
             // 
             this.dealerTotalLabel.AutoSize = true;
-            this.dealerTotalLabel.Location = new System.Drawing.Point(326, 98);
+            this.dealerTotalLabel.Location = new System.Drawing.Point(535, 215);
             this.dealerTotalLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dealerTotalLabel.Name = "dealerTotalLabel";
             this.dealerTotalLabel.Size = new System.Drawing.Size(13, 13);
@@ -254,18 +212,36 @@
             // playerTotalLabel
             // 
             this.playerTotalLabel.AutoSize = true;
-            this.playerTotalLabel.Location = new System.Drawing.Point(326, 254);
+            this.playerTotalLabel.Location = new System.Drawing.Point(535, 437);
             this.playerTotalLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.playerTotalLabel.Name = "playerTotalLabel";
             this.playerTotalLabel.Size = new System.Drawing.Size(13, 13);
             this.playerTotalLabel.TabIndex = 18;
             this.playerTotalLabel.Text = "0";
             // 
+            // playerHandFlowLayoutPanel
+            // 
+            this.playerHandFlowLayoutPanel.AutoSize = true;
+            this.playerHandFlowLayoutPanel.Location = new System.Drawing.Point(144, 453);
+            this.playerHandFlowLayoutPanel.Name = "playerHandFlowLayoutPanel";
+            this.playerHandFlowLayoutPanel.Size = new System.Drawing.Size(681, 196);
+            this.playerHandFlowLayoutPanel.TabIndex = 20;
+            // 
+            // dealerHandFlowLayoutPanel
+            // 
+            this.dealerHandFlowLayoutPanel.AutoSize = true;
+            this.dealerHandFlowLayoutPanel.Location = new System.Drawing.Point(131, 12);
+            this.dealerHandFlowLayoutPanel.Name = "dealerHandFlowLayoutPanel";
+            this.dealerHandFlowLayoutPanel.Size = new System.Drawing.Size(681, 196);
+            this.dealerHandFlowLayoutPanel.TabIndex = 21;
+            // 
             // tableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.dealerHandFlowLayoutPanel);
+            this.Controls.Add(this.playerHandFlowLayoutPanel);
             this.Controls.Add(this.playerTotalLabel);
             this.Controls.Add(this.dealerTotalLabel);
             this.Controls.Add(this.label5);
@@ -281,8 +257,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.standButton);
             this.Controls.Add(this.hitButton);
-            this.Controls.Add(this.playerCardTable);
-            this.Controls.Add(this.dealerCardTable);
             this.Controls.Add(this.currentMoneyLabel);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -298,8 +272,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label currentMoneyLabel;
-        private System.Windows.Forms.TableLayoutPanel dealerCardTable;
-        private System.Windows.Forms.TableLayoutPanel playerCardTable;
         private System.Windows.Forms.Button hitButton;
         private System.Windows.Forms.Button standButton;
         private System.Windows.Forms.Label label2;
@@ -315,6 +287,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label dealerTotalLabel;
         private System.Windows.Forms.Label playerTotalLabel;
+        private System.Windows.Forms.FlowLayoutPanel playerHandFlowLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel dealerHandFlowLayoutPanel;
     }
 }
 
