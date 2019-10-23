@@ -29,6 +29,17 @@ namespace BlackJackApplication
 
             dealer.dealCard(dealer, myDeck, 2);
             dealer.dealCard(player1, myDeck, 2);
+            foreach (Card card in dealer.currentPlayerHand)
+            {
+                dealerCardTable.Controls.Add(new PictureBox() { Image = card.CardImage }, 0, 0);
+            }
+            foreach ( Card card in player1.currentPlayerHand)
+            {
+                playerCardTable.Controls.Add(new PictureBox() { Image = card.CardImage }, 0, 0);
+            }
+            dealerTotalLabel.Text = dealer.ValueOfHand.ToString();
+            playerTotalLabel.Text = player1.ValueOfHand.ToString();
+
         }
     }
 }

@@ -30,6 +30,12 @@ namespace BlackJackApplication
             set { currentAmountofMoney = value; }
         }
 
+        public List<Card> currentPlayerHand
+        {
+            get { return playerHand; }
+            set { playerHand = value; }
+        }
+
         public int playerChoice()
         {
             // return a value (possible enum) for player action
@@ -43,7 +49,7 @@ namespace BlackJackApplication
         {
             long cardNumericalValue;
             playerHand.Add(card);
-            if (card.Value == "K" || card.Value == "Q" || card.Value == "J")
+            if (card.Value == "king" || card.Value == "queen" || card.Value == "jack")
             {
                 currentValueOfHand += 10;
             }
