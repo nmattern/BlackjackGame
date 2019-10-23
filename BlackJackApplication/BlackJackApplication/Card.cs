@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace BlackJackApplication
 {
@@ -10,11 +11,13 @@ namespace BlackJackApplication
     {
         private string cardValue;
         private string cardSuit;
+        private Image cardImage;
 
-        public Card(string suit, string value)
+        public Card(string suit, string value, Image image)
         {
             cardValue = value;
             cardSuit = suit;
+            cardImage = image;
         }
         public string Value
         {
@@ -25,6 +28,12 @@ namespace BlackJackApplication
         {
             get { return cardSuit; }
             set { cardSuit = value; }
+        }
+
+        public Image CardImage
+        {
+            get { return cardImage; }
+            set { cardImage = value; }
         }
     }
 }

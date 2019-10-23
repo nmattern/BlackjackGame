@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace BlackJackApplication
 {
@@ -15,13 +16,13 @@ namespace BlackJackApplication
         public Deck()
         {
             // List of possible suits of cards in string format
-            possibleSuits.Add("Diamond");
-            possibleSuits.Add("Hearts");
-            possibleSuits.Add("Spades");
-            possibleSuits.Add("Clubs");
+            possibleSuits.Add("diamonds");
+            possibleSuits.Add("hearts");
+            possibleSuits.Add("spades");
+            possibleSuits.Add("clubs");
 
             // List of possible values of cards in string format
-            possibleValues.Add("A");
+            possibleValues.Add("ace");
             possibleValues.Add("2");
             possibleValues.Add("3");
             possibleValues.Add("4");
@@ -31,17 +32,32 @@ namespace BlackJackApplication
             possibleValues.Add("8");
             possibleValues.Add("9");
             possibleValues.Add("10");
-            possibleValues.Add("J");
-            possibleValues.Add("Q");
-            possibleValues.Add("K");
+            possibleValues.Add("jack");
+            possibleValues.Add("queen");
+            possibleValues.Add("king");
 
             // Iterate through the values and suits of the cards so all 
             // variations of cards are added
-            foreach( string s in possibleSuits)
+            foreach( string suit in possibleSuits)
             {
-                foreach( string v in possibleValues)
+                foreach( string value in possibleValues)
                 {
-                    addCardToDeck(new Card(s, v));
+                    // create a string to store location of image
+                    string imgLocation = "";
+                    // verify is value is an integer (integers have extra underscore in front)
+                    if (value.All(char.IsDigit) )
+                    {
+                        imgLocation = "_" + value + "_of_" + suit;
+                    } else
+                    {
+                        imgLocation = value + "_of_" + suit;
+                    }
+                    // Set an object to the value from resource manager for the image
+                    object imgResource = Properties.Resources.ResourceManager.GetObject(imgLocation);
+                    // Set the image by grabbing the image type from the object
+                    Image image = imgResource as Image;
+
+                    addCardToDeck(new Card(suit, value, image));
                 }
             }
             shuffleCards();
