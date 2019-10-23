@@ -14,8 +14,6 @@ namespace BlackJackApplication
         private Player turnPlayer;
         private Dealer turnDealer;
         private Deck turnDeck;
-        private string turnMoney;
-        private string turnBet;
         private bool gameEnd = false;
         tableForm turnForm = new tableForm();
         
@@ -55,11 +53,10 @@ namespace BlackJackApplication
         // Handles initilization of the table state
         public void beginTurn()
         {
-            string turnBet = turnForm.betLabel.Text;
-            string turnMoney = turnForm.currentMoneyLabel.Text;
-            Console.WriteLine((Convert.ToInt64(turnMoney) - Convert.ToInt64(turnBet)).ToString());
-            turnForm.currentMoneyLabel.Text = (Convert.ToInt64(turnMoney) - Convert.ToInt64(turnBet)).ToString();
-            turnMoney = turnForm.currentMoneyLabel.Text;
+            turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betLabel.Text);
+            turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
+            turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney - turnPlayer.PlayerBet).ToString();
+            turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
 
             turnDealer.dealCard(turnPlayer, turnDeck, 2);
             turnDealer.dealCard(turnDealer, turnDeck, 2);
@@ -129,7 +126,7 @@ namespace BlackJackApplication
             turnDealer.currentPlayerHand.Clear();
             turnForm.dealerHandFlowLayoutPanel.Controls.Clear();
             turnForm.playerHandFlowLayoutPanel.Controls.Clear();
-            turnBet = turnForm.betLabel.Text;
+            turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betLabel.Text);
             turnPlayer.ValueOfHand = 0;
             turnDealer.ValueOfHand = 0;
             turnDeck = new Deck();
@@ -142,12 +139,12 @@ namespace BlackJackApplication
             {
                 turnForm.hitButton.Enabled = false;
                 turnForm.standButton.Enabled = false;
-                turnForm.endLabel.Text = "You Bust!"; 
+                turnForm.endLabel.Text = "You Bust!";
             }
             else if (turnPlayer.ValueOfHand > turnDealer.ValueOfHand && turnPlayer.ValueOfHand < 22)
             {
                 //player wins
-                turnMoney = Convert.ToString(Convert.ToInt64(turnMoney) + (Convert.ToInt64(turnBet) * 2));
+                turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + (turnPlayer.PlayerBet * 2));
             }
             else if (turnDealer.ValueOfHand > turnPlayer.ValueOfHand)
             {
@@ -157,10 +154,10 @@ namespace BlackJackApplication
             else
             {
                 //tie condition return player's bet
-                turnMoney = Convert.ToString(Convert.ToInt64(turnMoney) + (Convert.ToInt64(turnBet)));
+                turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + turnPlayer.PlayerBet);
                 turnForm.endLabel.Text = "It's a tie";
             }
-            turnForm.currentMoneyLabel.Text = turnMoney;
+            turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney).ToString();
         }
     }
 }

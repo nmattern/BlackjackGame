@@ -73,24 +73,34 @@
             // 
             // hitButton
             // 
+            this.hitButton.BackColor = System.Drawing.Color.ForestGreen;
+            this.hitButton.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hitButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.InfoText;
+            this.hitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.hitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hitButton.ForeColor = System.Drawing.SystemColors.Control;
             this.hitButton.Location = new System.Drawing.Point(859, 243);
             this.hitButton.Margin = new System.Windows.Forms.Padding(2);
             this.hitButton.Name = "hitButton";
-            this.hitButton.Size = new System.Drawing.Size(75, 39);
+            this.hitButton.Size = new System.Drawing.Size(99, 39);
             this.hitButton.TabIndex = 4;
             this.hitButton.Text = "Hit";
-            this.hitButton.UseVisualStyleBackColor = true;
+            this.hitButton.UseVisualStyleBackColor = false;
             this.hitButton.Click += new System.EventHandler(this.hitButton_Click);
             // 
             // standButton
             // 
+            this.standButton.BackColor = System.Drawing.Color.ForestGreen;
+            this.standButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.standButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.standButton.ForeColor = System.Drawing.SystemColors.Control;
             this.standButton.Location = new System.Drawing.Point(859, 306);
             this.standButton.Margin = new System.Windows.Forms.Padding(2);
             this.standButton.Name = "standButton";
-            this.standButton.Size = new System.Drawing.Size(75, 39);
+            this.standButton.Size = new System.Drawing.Size(99, 39);
             this.standButton.TabIndex = 5;
             this.standButton.Text = "Stand";
-            this.standButton.UseVisualStyleBackColor = true;
+            this.standButton.UseVisualStyleBackColor = false;
             this.standButton.Click += new System.EventHandler(this.standButton_Click);
             // 
             // label2
@@ -250,19 +260,24 @@
             // 
             // continueButton
             // 
-            this.continueButton.Location = new System.Drawing.Point(859, 371);
+            this.continueButton.BackColor = System.Drawing.Color.ForestGreen;
+            this.continueButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.continueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.continueButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.continueButton.Location = new System.Drawing.Point(859, 370);
             this.continueButton.Margin = new System.Windows.Forms.Padding(2);
             this.continueButton.Name = "continueButton";
-            this.continueButton.Size = new System.Drawing.Size(75, 39);
+            this.continueButton.Size = new System.Drawing.Size(99, 39);
             this.continueButton.TabIndex = 23;
             this.continueButton.Text = "Continue";
-            this.continueButton.UseVisualStyleBackColor = true;
+            this.continueButton.UseVisualStyleBackColor = false;
             this.continueButton.Click += new System.EventHandler(this.continueButton_Click);
             // 
             // tableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.endLabel);
