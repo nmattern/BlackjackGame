@@ -62,6 +62,7 @@ namespace BlackJackApplication
             }
             shuffleCards();
         }
+
         public List<Card> Cards
         {
             get { return cardsInDeck; }
