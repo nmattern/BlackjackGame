@@ -24,6 +24,8 @@ namespace BlackJackApplication
             Deck myDeck = new Deck();
             Dealer dealer = new Dealer();
             Player player1 = new Player();
+            Table table = new Table();
+            Turn turn = new Turn(this, myDeck, table, player1, dealer, 5, 5);
 
             player1.changeMoneyValue(1000);
 
@@ -36,7 +38,7 @@ namespace BlackJackApplication
                 {
                     Image = card.CardImage,
                     SizeMode = PictureBoxSizeMode.StretchImage,
-                    Size = new Size(150, 120)
+                    Size = new Size(120, 150)
                 }) ;
             }
             foreach ( Card card in player1.currentPlayerHand)
@@ -45,12 +47,13 @@ namespace BlackJackApplication
                 {
                     Image = card.CardImage,
                     SizeMode = PictureBoxSizeMode.StretchImage,
-                    Size = new Size(150, 120)
+                    Size = new Size(120, 150)
                 });
             }
 
             dealerTotalLabel.Text = dealer.ValueOfHand.ToString();
             playerTotalLabel.Text = player1.ValueOfHand.ToString();
+
 
         }
     }
