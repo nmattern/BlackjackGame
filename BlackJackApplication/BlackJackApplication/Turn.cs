@@ -75,42 +75,60 @@ namespace BlackJackApplication
             turnForm.dealerTotalLabel.Text = turnDealer.ValueOfHand.ToString();
             turnForm.playerTotalLabel.Text = turnPlayer.ValueOfHand.ToString();
 
-            // Handle cases where the dealer immeditately needs to stand or wins the game
-            if (turnDealer.ValueOfHand >= 17)
-            {
-                if (turnDealer.ValueOfHand == 21 && turnPlayer.ValueOfHand != 21)
-                {
-                    //dealer blackjack end turn
-                }
-                // Dealer waits
-            }
-            else
-            {
-                //dealer hits
-            }
+            // Handle cases where the player or dealer immeditately wins the game
             if (turnPlayer.ValueOfHand == 21)
             {
-                // player wins
+                if (turnDealer.ValueOfHand != 21)
+                {
+                    playerBlackjack();
+                }
+            } else if (turnDealer.ValueOfHand == 21)
+            {
+                if (turnPlayer.ValueOfHand != 21)
+                {
+                    dealerWins();
+                }
             }
         }
 
         public void hitButtonClick()
         {
-            // Deal player a new card then update the card images and playerTotalLabel
-            turnDealer.dealCard(turnPlayer, turnDeck);
-            addImage(turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].CardImage, "player");
-            turnForm.playerTotalLabel.Text = turnPlayer.ValueOfHand.ToString();
 
-            // Check if player has busted or has 21 after hitting
-            if (turnPlayer.ValueOfHand >= 21)
+            turnDealer.dealCard(turnPlayer, turnDeck);
+            Image image = turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].CardImage;
+            addImage(image, "player");
+            turnForm.playerTotalLabel.Text = (turnPlayer.ValueOfHand).ToString();
+            turnForm.dealerTotalLabel.Text = (turnDealer.ValueOfHand).ToString();
+            if (turnPlayer.ValueOfHand > 21)
             {
-                endTurn();
+                playerBusts();
             }
-        }
+
+        } 
 
         // If user stands then the only thing that needs to be handle is the endTurn method
         public void standButtonClick()
         {
+            while (turnDealer.ValueOfHand < 17 )
+            {
+                turnDealer.dealCard(turnDealer, turnDeck);
+                Image image = turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].CardImage;
+                addImage(image, "dealer");
+                turnForm.dealerTotalLabel.Text = (turnDealer.ValueOfHand).ToString();
+            }
+            if (turnDealer.ValueOfHand > 21)
+            {
+                playerWins();
+            } else if (turnPlayer.ValueOfHand > turnDealer.ValueOfHand)
+            {
+                playerWins();
+            } else if (turnDealer.ValueOfHand > turnPlayer.ValueOfHand)
+            {
+                dealerWins();
+            } else if (turnPlayer.ValueOfHand == turnDealer.ValueOfHand)
+            {
+                playerTies();
+            }
             endTurn();
         }
 
@@ -129,34 +147,49 @@ namespace BlackJackApplication
             turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betLabel.Text);
             turnPlayer.ValueOfHand = 0;
             turnDealer.ValueOfHand = 0;
+            turnForm.endLabel.Text = "";
             turnDeck = new Deck();
         }
 
+        public void playerBusts()
+        { 
+            turnForm.endLabel.Text = "You Bust!";
+            endTurn();
+        }
+
+        public void playerWins()
+        {
+            turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + (turnPlayer.PlayerBet * 2));
+            turnForm.endLabel.Text = "You win!";
+            endTurn();
+        }
+
+        public void playerBlackjack()
+        {
+            turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + (turnPlayer.PlayerBet * 2));
+            turnForm.endLabel.Text = "Blackjack! You Win";
+            endTurn();
+        }
+
+        public void dealerWins()
+        {
+            turnForm.endLabel.Text = "Dealer wins!";
+            endTurn();
+        }
+
+        public void playerTies()
+        {
+            turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + turnPlayer.PlayerBet);
+            turnForm.endLabel.Text = "It's a tie";
+            endTurn();
+        }
+
+
         public void endTurn()
         {
+            turnForm.hitButton.Enabled = false;
+            turnForm.standButton.Enabled = false;
             turnForm.continueButton.Enabled = true;
-            if (turnPlayer.ValueOfHand > 21)
-            {
-                turnForm.hitButton.Enabled = false;
-                turnForm.standButton.Enabled = false;
-                turnForm.endLabel.Text = "You Bust!";
-            }
-            else if (turnPlayer.ValueOfHand > turnDealer.ValueOfHand && turnPlayer.ValueOfHand < 22)
-            {
-                //player wins
-                turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + (turnPlayer.PlayerBet * 2));
-            }
-            else if (turnDealer.ValueOfHand > turnPlayer.ValueOfHand)
-            {
-                //dealer wins
-                turnForm.endLabel.Text = "Dealer wins!";
-            }
-            else
-            {
-                //tie condition return player's bet
-                turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + turnPlayer.PlayerBet);
-                turnForm.endLabel.Text = "It's a tie";
-            }
             turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney).ToString();
         }
     }

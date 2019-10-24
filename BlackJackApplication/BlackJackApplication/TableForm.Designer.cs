@@ -49,12 +49,13 @@
             this.dealerHandFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.endLabel = new System.Windows.Forms.Label();
             this.continueButton = new System.Windows.Forms.Button();
+            this.lockBetButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(856, 453);
+            this.label1.Location = new System.Drawing.Point(856, 470);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
@@ -64,7 +65,7 @@
             // currentMoneyLabel
             // 
             this.currentMoneyLabel.AutoSize = true;
-            this.currentMoneyLabel.Location = new System.Drawing.Point(939, 453);
+            this.currentMoneyLabel.Location = new System.Drawing.Point(939, 470);
             this.currentMoneyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.currentMoneyLabel.Name = "currentMoneyLabel";
             this.currentMoneyLabel.Size = new System.Drawing.Size(25, 13);
@@ -79,7 +80,7 @@
             this.hitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.hitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hitButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.hitButton.Location = new System.Drawing.Point(859, 243);
+            this.hitButton.Location = new System.Drawing.Point(859, 215);
             this.hitButton.Margin = new System.Windows.Forms.Padding(2);
             this.hitButton.Name = "hitButton";
             this.hitButton.Size = new System.Drawing.Size(99, 39);
@@ -94,7 +95,7 @@
             this.standButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.standButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.standButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.standButton.Location = new System.Drawing.Point(859, 306);
+            this.standButton.Location = new System.Drawing.Point(859, 276);
             this.standButton.Margin = new System.Windows.Forms.Padding(2);
             this.standButton.Name = "standButton";
             this.standButton.Size = new System.Drawing.Size(99, 39);
@@ -176,7 +177,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(856, 475);
+            this.label3.Location = new System.Drawing.Point(856, 492);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
@@ -186,7 +187,7 @@
             // betLabel
             // 
             this.betLabel.AutoSize = true;
-            this.betLabel.Location = new System.Drawing.Point(939, 475);
+            this.betLabel.Location = new System.Drawing.Point(939, 492);
             this.betLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.betLabel.Name = "betLabel";
             this.betLabel.Size = new System.Drawing.Size(19, 13);
@@ -253,10 +254,11 @@
             // 
             this.endLabel.AutoSize = true;
             this.endLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endLabel.Location = new System.Drawing.Point(365, 287);
+            this.endLabel.Location = new System.Drawing.Point(131, 300);
             this.endLabel.Name = "endLabel";
             this.endLabel.Size = new System.Drawing.Size(0, 76);
             this.endLabel.TabIndex = 22;
+            this.endLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // continueButton
             // 
@@ -264,7 +266,7 @@
             this.continueButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.continueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.continueButton.Location = new System.Drawing.Point(859, 370);
+            this.continueButton.Location = new System.Drawing.Point(859, 337);
             this.continueButton.Margin = new System.Windows.Forms.Padding(2);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(99, 39);
@@ -273,12 +275,27 @@
             this.continueButton.UseVisualStyleBackColor = false;
             this.continueButton.Click += new System.EventHandler(this.continueButton_Click);
             // 
+            // lockBetButton
+            // 
+            this.lockBetButton.BackColor = System.Drawing.Color.ForestGreen;
+            this.lockBetButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lockBetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lockBetButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.lockBetButton.Location = new System.Drawing.Point(859, 398);
+            this.lockBetButton.Margin = new System.Windows.Forms.Padding(2);
+            this.lockBetButton.Name = "lockBetButton";
+            this.lockBetButton.Size = new System.Drawing.Size(99, 39);
+            this.lockBetButton.TabIndex = 24;
+            this.lockBetButton.Text = "Lock Bet";
+            this.lockBetButton.UseVisualStyleBackColor = false;
+            // 
             // tableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.lockBetButton);
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.endLabel);
             this.Controls.Add(this.dealerHandFlowLayoutPanel);
@@ -332,6 +349,7 @@
         internal System.Windows.Forms.FlowLayoutPanel dealerHandFlowLayoutPanel;
         internal System.Windows.Forms.Label endLabel;
         internal System.Windows.Forms.Button continueButton;
+        internal System.Windows.Forms.Button lockBetButton;
     }
 }
 
