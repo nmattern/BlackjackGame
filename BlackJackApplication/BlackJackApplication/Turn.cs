@@ -112,7 +112,7 @@ namespace BlackJackApplication
             while (turnDealer.ValueOfHand < 17 )
             {
                 turnDealer.dealCard(turnDealer, turnDeck);
-                Image image = turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].CardImage;
+                Image image = turnDealer.currentPlayerHand[turnDealer.currentPlayerHand.Count - 1].CardImage;
                 addImage(image, "dealer");
                 turnForm.dealerTotalLabel.Text = (turnDealer.ValueOfHand).ToString();
             }
