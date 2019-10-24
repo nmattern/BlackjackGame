@@ -10,6 +10,7 @@ namespace BlackJackApplication
     {
         private int currentValueOfHand;
         private int currentAmountofMoney;
+        private int currentPlayerBet;
         private List<Card> playerHand = new List<Card>();
 
         enum playerChoiceValues
@@ -28,6 +29,12 @@ namespace BlackJackApplication
         {
             get { return currentAmountofMoney; }
             set { currentAmountofMoney = value; }
+        }
+
+        public int PlayerBet
+        {
+            get { return currentPlayerBet; }
+            set { currentPlayerBet = value; }
         }
 
         public List<Card> currentPlayerHand

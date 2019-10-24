@@ -12,6 +12,8 @@ namespace BlackJackApplication
 {
     public partial class tableForm : Form
     {
+        private Turn turn;
+
         public tableForm()
         {
             InitializeComponent();
@@ -19,27 +21,35 @@ namespace BlackJackApplication
 
         
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         { 
             Deck myDeck = new Deck();
             Dealer dealer = new Dealer();
             Player player1 = new Player();
+            Table table = new Table();
+            turn = new Turn(this, myDeck, table, player1, dealer);
 
+            continueButton.Enabled = false;
             player1.changeMoneyValue(1000);
+            turn.beginTurn();
+        }
 
-            dealer.dealCard(dealer, myDeck, 2);
-            dealer.dealCard(player1, myDeck, 2);
-            foreach (Card card in dealer.currentPlayerHand)
-            {
-                dealerCardTable.Controls.Add(new PictureBox() { Image = card.CardImage }, 0, 0);
-            }
-            foreach ( Card card in player1.currentPlayerHand)
-            {
-                playerCardTable.Controls.Add(new PictureBox() { Image = card.CardImage }, 0, 0);
-            }
-            dealerTotalLabel.Text = dealer.ValueOfHand.ToString();
-            playerTotalLabel.Text = player1.ValueOfHand.ToString();
+        private void hitButton_Click(object sender, EventArgs e)
+        { 
+            turn.hitButtonClick();
+        }
 
+        private void standButton_Click(object sender, EventArgs e)
+        {
+            turn.standButtonClick();
+        }
+
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+            turn.continueButtonClick();
+            this.continueButton.Enabled = false;
+            this.standButton.Enabled = true;
+            this.hitButton.Enabled = true;
         }
     }
 }
