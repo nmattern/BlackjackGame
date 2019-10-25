@@ -51,5 +51,15 @@ namespace BlackJackApplication
             this.standButton.Enabled = true;
             this.hitButton.Enabled = true;
         }
+
+        private void betTextBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            int number;
+            bool betContainsText = Int32.TryParse(this.betTextBox.Text, out number);
+            if (!betContainsText)
+            {
+                this.betTextBox.Text = "";
+            }
+        }
     }
 }

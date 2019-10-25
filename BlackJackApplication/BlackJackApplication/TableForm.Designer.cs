@@ -32,13 +32,6 @@
             this.currentMoneyLabel = new System.Windows.Forms.Label();
             this.hitButton = new System.Windows.Forms.Button();
             this.standButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.minus10Button = new System.Windows.Forms.Button();
-            this.add10Button = new System.Windows.Forms.Button();
-            this.minus20Button = new System.Windows.Forms.Button();
-            this.add20Button = new System.Windows.Forms.Button();
-            this.minus50Button = new System.Windows.Forms.Button();
-            this.add50Button = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.betLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,12 +43,13 @@
             this.endLabel = new System.Windows.Forms.Label();
             this.continueButton = new System.Windows.Forms.Button();
             this.lockBetButton = new System.Windows.Forms.Button();
+            this.betTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(856, 470);
+            this.label1.Location = new System.Drawing.Point(856, 486);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
@@ -65,12 +59,12 @@
             // currentMoneyLabel
             // 
             this.currentMoneyLabel.AutoSize = true;
-            this.currentMoneyLabel.Location = new System.Drawing.Point(939, 470);
+            this.currentMoneyLabel.Location = new System.Drawing.Point(931, 486);
             this.currentMoneyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.currentMoneyLabel.Name = "currentMoneyLabel";
-            this.currentMoneyLabel.Size = new System.Drawing.Size(25, 13);
+            this.currentMoneyLabel.Size = new System.Drawing.Size(31, 13);
             this.currentMoneyLabel.TabIndex = 1;
-            this.currentMoneyLabel.Text = "100";
+            this.currentMoneyLabel.Text = "1000";
             // 
             // hitButton
             // 
@@ -80,7 +74,7 @@
             this.hitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.hitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hitButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.hitButton.Location = new System.Drawing.Point(859, 215);
+            this.hitButton.Location = new System.Drawing.Point(859, 211);
             this.hitButton.Margin = new System.Windows.Forms.Padding(2);
             this.hitButton.Name = "hitButton";
             this.hitButton.Size = new System.Drawing.Size(99, 39);
@@ -95,7 +89,7 @@
             this.standButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.standButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.standButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.standButton.Location = new System.Drawing.Point(859, 276);
+            this.standButton.Location = new System.Drawing.Point(859, 272);
             this.standButton.Margin = new System.Windows.Forms.Padding(2);
             this.standButton.Name = "standButton";
             this.standButton.Size = new System.Drawing.Size(99, 39);
@@ -104,80 +98,10 @@
             this.standButton.UseVisualStyleBackColor = false;
             this.standButton.Click += new System.EventHandler(this.standButton_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 106);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Change Bet:";
-            // 
-            // minus10Button
-            // 
-            this.minus10Button.Location = new System.Drawing.Point(14, 132);
-            this.minus10Button.Margin = new System.Windows.Forms.Padding(2);
-            this.minus10Button.Name = "minus10Button";
-            this.minus10Button.Size = new System.Drawing.Size(35, 28);
-            this.minus10Button.TabIndex = 7;
-            this.minus10Button.Text = "-10";
-            this.minus10Button.UseVisualStyleBackColor = true;
-            // 
-            // add10Button
-            // 
-            this.add10Button.Location = new System.Drawing.Point(54, 132);
-            this.add10Button.Margin = new System.Windows.Forms.Padding(2);
-            this.add10Button.Name = "add10Button";
-            this.add10Button.Size = new System.Drawing.Size(35, 28);
-            this.add10Button.TabIndex = 8;
-            this.add10Button.Text = "+10";
-            this.add10Button.UseVisualStyleBackColor = true;
-            // 
-            // minus20Button
-            // 
-            this.minus20Button.Location = new System.Drawing.Point(14, 165);
-            this.minus20Button.Margin = new System.Windows.Forms.Padding(2);
-            this.minus20Button.Name = "minus20Button";
-            this.minus20Button.Size = new System.Drawing.Size(35, 28);
-            this.minus20Button.TabIndex = 9;
-            this.minus20Button.Text = "-20";
-            this.minus20Button.UseVisualStyleBackColor = true;
-            // 
-            // add20Button
-            // 
-            this.add20Button.Location = new System.Drawing.Point(54, 165);
-            this.add20Button.Margin = new System.Windows.Forms.Padding(2);
-            this.add20Button.Name = "add20Button";
-            this.add20Button.Size = new System.Drawing.Size(35, 28);
-            this.add20Button.TabIndex = 10;
-            this.add20Button.Text = "+20";
-            this.add20Button.UseVisualStyleBackColor = true;
-            // 
-            // minus50Button
-            // 
-            this.minus50Button.Location = new System.Drawing.Point(14, 197);
-            this.minus50Button.Margin = new System.Windows.Forms.Padding(2);
-            this.minus50Button.Name = "minus50Button";
-            this.minus50Button.Size = new System.Drawing.Size(35, 28);
-            this.minus50Button.TabIndex = 11;
-            this.minus50Button.Text = "-50";
-            this.minus50Button.UseVisualStyleBackColor = true;
-            // 
-            // add50Button
-            // 
-            this.add50Button.Location = new System.Drawing.Point(53, 197);
-            this.add50Button.Margin = new System.Windows.Forms.Padding(2);
-            this.add50Button.Name = "add50Button";
-            this.add50Button.Size = new System.Drawing.Size(35, 28);
-            this.add50Button.TabIndex = 12;
-            this.add50Button.Text = "+50";
-            this.add50Button.UseVisualStyleBackColor = true;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(856, 492);
+            this.label3.Location = new System.Drawing.Point(856, 508);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
@@ -187,7 +111,7 @@
             // betLabel
             // 
             this.betLabel.AutoSize = true;
-            this.betLabel.Location = new System.Drawing.Point(939, 492);
+            this.betLabel.Location = new System.Drawing.Point(931, 508);
             this.betLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.betLabel.Name = "betLabel";
             this.betLabel.Size = new System.Drawing.Size(19, 13);
@@ -266,7 +190,7 @@
             this.continueButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.continueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.continueButton.Location = new System.Drawing.Point(859, 337);
+            this.continueButton.Location = new System.Drawing.Point(859, 333);
             this.continueButton.Margin = new System.Windows.Forms.Padding(2);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(99, 39);
@@ -281,13 +205,22 @@
             this.lockBetButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lockBetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lockBetButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.lockBetButton.Location = new System.Drawing.Point(859, 398);
+            this.lockBetButton.Location = new System.Drawing.Point(859, 394);
             this.lockBetButton.Margin = new System.Windows.Forms.Padding(2);
             this.lockBetButton.Name = "lockBetButton";
             this.lockBetButton.Size = new System.Drawing.Size(99, 39);
             this.lockBetButton.TabIndex = 24;
-            this.lockBetButton.Text = "Lock Bet";
+            this.lockBetButton.Text = "Bet";
             this.lockBetButton.UseVisualStyleBackColor = false;
+            // 
+            // betTextBox
+            // 
+            this.betTextBox.Location = new System.Drawing.Point(859, 453);
+            this.betTextBox.Name = "betTextBox";
+            this.betTextBox.Size = new System.Drawing.Size(99, 20);
+            this.betTextBox.TabIndex = 25;
+            this.betTextBox.Text = "Enter Bet: ";
+            this.betTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.betTextBox_MouseClick);
             // 
             // tableForm
             // 
@@ -295,6 +228,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.betTextBox);
             this.Controls.Add(this.lockBetButton);
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.endLabel);
@@ -306,13 +240,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.betLabel);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.add50Button);
-            this.Controls.Add(this.minus50Button);
-            this.Controls.Add(this.add20Button);
-            this.Controls.Add(this.minus20Button);
-            this.Controls.Add(this.add10Button);
-            this.Controls.Add(this.minus10Button);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.standButton);
             this.Controls.Add(this.hitButton);
             this.Controls.Add(this.currentMoneyLabel);
@@ -329,7 +256,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -338,18 +264,13 @@
         internal System.Windows.Forms.Button hitButton;
         internal System.Windows.Forms.Button standButton;
         internal System.Windows.Forms.FlowLayoutPanel playerHandFlowLayoutPanel;
-        internal System.Windows.Forms.Button minus10Button;
-        internal System.Windows.Forms.Button add10Button;
-        internal System.Windows.Forms.Button minus20Button;
-        internal System.Windows.Forms.Button add20Button;
-        internal System.Windows.Forms.Button minus50Button;
-        internal System.Windows.Forms.Button add50Button;
         internal System.Windows.Forms.Label dealerTotalLabel;
         internal System.Windows.Forms.Label playerTotalLabel;
         internal System.Windows.Forms.FlowLayoutPanel dealerHandFlowLayoutPanel;
         internal System.Windows.Forms.Label endLabel;
         internal System.Windows.Forms.Button continueButton;
         internal System.Windows.Forms.Button lockBetButton;
+        internal System.Windows.Forms.TextBox betTextBox;
     }
 }
 
