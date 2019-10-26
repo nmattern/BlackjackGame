@@ -48,10 +48,7 @@ namespace BlackJackApplication
             // return a value (possible enum) for player action
             return ((int)playerChoiceValues.Stand);
         }
-        public void changeMoneyValue(int newValue)
-        {
-            currentAmountofMoney = newValue;
-        }
+
         public void addCardToHand(Card card)
         {
             long cardNumericalValue;

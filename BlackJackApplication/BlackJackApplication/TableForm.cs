@@ -30,7 +30,7 @@ namespace BlackJackApplication
             turn = new Turn(this, myDeck, table, player1, dealer);
 
             continueButton.Enabled = false;
-            player1.changeMoneyValue(1000);
+            player1.AmountOfMoney = 1000;
             turn.beginTurn();
         }
 
@@ -46,10 +46,10 @@ namespace BlackJackApplication
 
         private void continueButton_Click(object sender, EventArgs e)
         {
-            turn.continueButtonClick();
             this.continueButton.Enabled = false;
             this.standButton.Enabled = true;
             this.hitButton.Enabled = true;
+            turn.continueButtonClick();
         }
 
         private void betTextBox_MouseClick(object sender, MouseEventArgs e)
