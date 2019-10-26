@@ -34,7 +34,7 @@
             this.standButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.betLabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.dealerBetDescriptionLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dealerTotalLabel = new System.Windows.Forms.Label();
             this.playerTotalLabel = new System.Windows.Forms.Label();
@@ -118,15 +118,15 @@
             this.betLabel.TabIndex = 14;
             this.betLabel.Text = "10";
             // 
-            // label4
+            // dealerBetDescriptionLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(418, 215);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Current Total:";
+            this.dealerBetDescriptionLabel.AutoSize = true;
+            this.dealerBetDescriptionLabel.Location = new System.Drawing.Point(418, 215);
+            this.dealerBetDescriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.dealerBetDescriptionLabel.Name = "dealerBetDescriptionLabel";
+            this.dealerBetDescriptionLabel.Size = new System.Drawing.Size(104, 13);
+            this.dealerBetDescriptionLabel.TabIndex = 15;
+            this.dealerBetDescriptionLabel.Text = "Current Visible Total:";
             // 
             // label5
             // 
@@ -239,7 +239,7 @@
             this.Controls.Add(this.playerTotalLabel);
             this.Controls.Add(this.dealerTotalLabel);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dealerBetDescriptionLabel);
             this.Controls.Add(this.betLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.standButton);
@@ -259,7 +259,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         internal System.Windows.Forms.Label betLabel;
         internal System.Windows.Forms.Label currentMoneyLabel;
@@ -273,6 +272,7 @@
         internal System.Windows.Forms.Button continueButton;
         internal System.Windows.Forms.Button lockBetButton;
         internal System.Windows.Forms.TextBox betTextBox;
+        internal System.Windows.Forms.Label dealerBetDescriptionLabel;
     }
 }
 

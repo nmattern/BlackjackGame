@@ -8,6 +8,13 @@ namespace BlackJackApplication
 {
     class Dealer : Player
     {
+        private int currentVisibleValueOfHand;
+
+        public int VisibleValueOfHand
+        {
+            get { return currentVisibleValueOfHand; }
+            set { currentVisibleValueOfHand = value; }
+        }
         public void dealCard(Player player, Deck deck, int numOfCards = 1)
         {
             while (numOfCards > 0)

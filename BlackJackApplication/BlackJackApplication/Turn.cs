@@ -54,6 +54,7 @@ namespace BlackJackApplication
         {
             int number;
             bool betContainsOnlyDigits = Int32.TryParse(turnForm.betTextBox.Text, out number);
+            // Validate if the user bet an integer, if not loop until they enter one
             if (betContainsOnlyDigits)
             {
                 turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betTextBox.Text);
@@ -82,13 +83,26 @@ namespace BlackJackApplication
             {
                 addImage(card.CardImage, "player");
             }
-            foreach (Card card in turnDealer.currentPlayerHand)
-            {
-                addImage(card.CardImage, "dealer");
-            }
 
-            // Set the intial values of the player and dealer totallabels
-            turnForm.dealerTotalLabel.Text = turnDealer.ValueOfHand.ToString();
+            // First card of dealers hand will be the back of the card
+            addImage(Properties.Resources.back, "dealer");
+            addImage(turnDealer.currentPlayerHand[turnDealer.currentPlayerHand.Count - 1].CardImage, "dealer");
+
+            // Set the intial values of the player and dealer total labels
+            // First we have to validate the value of the hidden card in case it is a string
+            int valueOfFirstCard = 0;
+            int number;
+            string firstCardValue = (turnDealer.currentPlayerHand[0].Value);
+            if (firstCardValue == "king" || firstCardValue == "queen" || firstCardValue == "jack")
+            {
+                valueOfFirstCard = 10;
+            }
+            else if (Int32.TryParse(firstCardValue, out number))
+            {
+                valueOfFirstCard = (int)number;
+            }
+            // Once the card is evaluated we can continue like normal
+            turnForm.dealerTotalLabel.Text = (turnDealer.ValueOfHand - valueOfFirstCard).ToString();
             turnForm.playerTotalLabel.Text = turnPlayer.ValueOfHand.ToString();
 
             // Handle cases where the player or dealer immeditately wins the game
@@ -153,6 +167,7 @@ namespace BlackJackApplication
 
         public void resetTableTurn()
         {
+            // Reset all values on the form, player, and dealer for a new turn
             turnPlayer.currentPlayerHand.Clear();
             turnDealer.currentPlayerHand.Clear();
             turnForm.dealerHandFlowLayoutPanel.Controls.Clear();
@@ -160,6 +175,7 @@ namespace BlackJackApplication
             turnPlayer.ValueOfHand = 0;
             turnDealer.ValueOfHand = 0;
             turnForm.endLabel.Text = "";
+            turnForm.dealerBetDescriptionLabel.Text = "Current Visible Total";
             turnForm.dealerTotalLabel.Text = "";
             turnForm.playerTotalLabel.Text = "";
             turnDeck = new Deck();
@@ -205,6 +221,14 @@ namespace BlackJackApplication
 
         public void endTurn()
         {
+            // Show all of the cards the dealers hand actually contains at end of turn
+            turnForm.dealerHandFlowLayoutPanel.Controls.Clear();
+            foreach (Card card in turnDealer.currentPlayerHand)
+            {
+                addImage(card.CardImage, "dealer");
+            }
+            turnForm.dealerBetDescriptionLabel.Text = "Current Total";
+            turnForm.dealerTotalLabel.Text = turnDealer.ValueOfHand.ToString();
             turnForm.hitButton.Enabled = false;
             turnForm.standButton.Enabled = false;
             turnForm.continueButton.Enabled = true;
