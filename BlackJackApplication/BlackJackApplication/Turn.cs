@@ -50,14 +50,30 @@ namespace BlackJackApplication
             }
         }
 
+        public void betButtonClick()
+        {
+            int number;
+            bool betContainsOnlyDigits = Int32.TryParse(turnForm.betTextBox.Text, out number);
+            if (betContainsOnlyDigits)
+            {
+                turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betTextBox.Text);
+                turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
+                turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney - turnPlayer.PlayerBet).ToString();
+                turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
+                turnForm.lockBetButton.Enabled = false;
+                turnForm.betTextBox.ReadOnly = true;
+                turnForm.hitButton.Enabled = true;
+                turnForm.standButton.Enabled = true;
+                beginTurn();
+            } else
+            {
+                turnForm.betLabel.Text = "Enter a Value";
+            }
+        }
+
         // Handles initilization of the table state
         public void beginTurn()
         {
-            turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betLabel.Text);
-            turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
-            turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney - turnPlayer.PlayerBet).ToString();
-            turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
-
             turnDealer.dealCard(turnPlayer, turnDeck, 2);
             turnDealer.dealCard(turnDealer, turnDeck, 2);
 
@@ -93,7 +109,6 @@ namespace BlackJackApplication
 
         public void hitButtonClick()
         {
-
             turnDealer.dealCard(turnPlayer, turnDeck);
             Image image = turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].CardImage;
             addImage(image, "player");
@@ -103,7 +118,6 @@ namespace BlackJackApplication
             {
                 playerBusts();
             }
-
         } 
 
         // If user stands then the only thing that needs to be handle is the endTurn method
@@ -135,7 +149,6 @@ namespace BlackJackApplication
         public void continueButtonClick()
         {
             resetTableTurn();
-            beginTurn();
         }
 
         public void resetTableTurn()
@@ -144,11 +157,16 @@ namespace BlackJackApplication
             turnDealer.currentPlayerHand.Clear();
             turnForm.dealerHandFlowLayoutPanel.Controls.Clear();
             turnForm.playerHandFlowLayoutPanel.Controls.Clear();
-            turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betLabel.Text);
             turnPlayer.ValueOfHand = 0;
             turnDealer.ValueOfHand = 0;
             turnForm.endLabel.Text = "";
+            turnForm.dealerTotalLabel.Text = "";
+            turnForm.playerTotalLabel.Text = "";
             turnDeck = new Deck();
+            turnForm.hitButton.Enabled = false;
+            turnForm.standButton.Enabled = false;
+            turnForm.lockBetButton.Enabled = true;
+            turnForm.betTextBox.ReadOnly = false;
         }
 
         public void playerBusts()

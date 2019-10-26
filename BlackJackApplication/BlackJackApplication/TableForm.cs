@@ -29,9 +29,11 @@ namespace BlackJackApplication
             Table table = new Table();
             turn = new Turn(this, myDeck, table, player1, dealer);
 
+            hitButton.Enabled = false;
+            standButton.Enabled = false;
             continueButton.Enabled = false;
             player1.AmountOfMoney = 1000;
-            turn.beginTurn();
+            
         }
 
         private void hitButton_Click(object sender, EventArgs e)
@@ -55,10 +57,28 @@ namespace BlackJackApplication
         private void betTextBox_MouseClick(object sender, MouseEventArgs e)
         {
             int number;
-            bool betContainsText = Int32.TryParse(this.betTextBox.Text, out number);
-            if (!betContainsText)
+            bool betContainsOnlyDigits = Int32.TryParse(this.betTextBox.Text, out number);
+            if (!betContainsOnlyDigits)
             {
                 this.betTextBox.Text = "";
+            }
+        }
+
+        private void lockBetButton_Click(object sender, EventArgs e)
+        {
+            turn.betButtonClick();
+        }
+
+        private void betTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int number;
+            bool betContainsOnlyDigits = Int32.TryParse(this.betTextBox.Text, out number);
+            if (betContainsOnlyDigits)
+            {
+                betLabel.Text = betTextBox.Text;
+            } else
+            {
+                betLabel.Text = "Not Valid";
             }
         }
     }

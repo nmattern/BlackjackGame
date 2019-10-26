@@ -212,6 +212,7 @@
             this.lockBetButton.TabIndex = 24;
             this.lockBetButton.Text = "Bet";
             this.lockBetButton.UseVisualStyleBackColor = false;
+            this.lockBetButton.Click += new System.EventHandler(this.lockBetButton_Click);
             // 
             // betTextBox
             // 
@@ -221,6 +222,7 @@
             this.betTextBox.TabIndex = 25;
             this.betTextBox.Text = "Enter Bet: ";
             this.betTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.betTextBox_MouseClick);
+            this.betTextBox.TextChanged += new System.EventHandler(this.betTextBox_TextChanged);
             // 
             // tableForm
             // 
