@@ -127,7 +127,6 @@ namespace BlackJackApplication
             Image image = turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].CardImage;
             addImage(image, "player");
             turnForm.playerTotalLabel.Text = (turnPlayer.ValueOfHand).ToString();
-            turnForm.dealerTotalLabel.Text = (turnDealer.ValueOfHand).ToString();
             if (turnPlayer.ValueOfHand > 21)
             {
                 playerBusts();
