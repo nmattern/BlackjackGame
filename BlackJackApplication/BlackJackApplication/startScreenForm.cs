@@ -20,6 +20,7 @@ namespace BlackJackApplication
         private void button1_Click(object sender, EventArgs e)
         {
             var tableFormInstance = new tableForm();
+            tableFormInstance.currentMoneyLabel.Text = initialAmountTxtBx.Text;
             tableFormInstance.Show();
             tableFormInstance.Location = this.Location;
             this.Hide();
@@ -29,5 +30,9 @@ namespace BlackJackApplication
             tableFormInstance.FormClosed += (s, args) => this.Close();
         }
 
+        private void startScreenForm_Load(object sender, EventArgs e)
+        {
+            CenterToScreen();
+        }
     }
 }

@@ -32,8 +32,7 @@ namespace BlackJackApplication
             hitButton.Enabled = false;
             standButton.Enabled = false;
             continueButton.Enabled = false;
-            player1.AmountOfMoney = 1000;
-            
+            player1.AmountOfMoney = Int32.Parse(currentMoneyLabel.Text);
         }
 
         private void hitButton_Click(object sender, EventArgs e)
