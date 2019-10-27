@@ -107,7 +107,7 @@
             // betLabel
             // 
             this.betLabel.AutoSize = true;
-            this.betLabel.Location = new System.Drawing.Point(1241, 625);
+            this.betLabel.Location = new System.Drawing.Point(1231, 625);
             this.betLabel.Name = "betLabel";
             this.betLabel.Size = new System.Drawing.Size(24, 17);
             this.betLabel.TabIndex = 14;
@@ -153,7 +153,7 @@
             // 
             this.playerHandFlowLayoutPanel.AutoSize = true;
             this.playerHandFlowLayoutPanel.Location = new System.Drawing.Point(192, 558);
-            this.playerHandFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.playerHandFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.playerHandFlowLayoutPanel.Name = "playerHandFlowLayoutPanel";
             this.playerHandFlowLayoutPanel.Size = new System.Drawing.Size(908, 241);
             this.playerHandFlowLayoutPanel.TabIndex = 20;
@@ -162,7 +162,7 @@
             // 
             this.dealerHandFlowLayoutPanel.AutoSize = true;
             this.dealerHandFlowLayoutPanel.Location = new System.Drawing.Point(175, 15);
-            this.dealerHandFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dealerHandFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.dealerHandFlowLayoutPanel.Name = "dealerHandFlowLayoutPanel";
             this.dealerHandFlowLayoutPanel.Size = new System.Drawing.Size(908, 241);
             this.dealerHandFlowLayoutPanel.TabIndex = 21;
@@ -211,7 +211,7 @@
             // betTextBox
             // 
             this.betTextBox.Location = new System.Drawing.Point(1145, 558);
-            this.betTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.betTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.betTextBox.Name = "betTextBox";
             this.betTextBox.Size = new System.Drawing.Size(131, 22);
             this.betTextBox.TabIndex = 25;
@@ -224,7 +224,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1312, 814);
+            this.ClientSize = new System.Drawing.Size(1332, 814);
             this.Controls.Add(this.betTextBox);
             this.Controls.Add(this.lockBetButton);
             this.Controls.Add(this.continueButton);

@@ -59,13 +59,19 @@ namespace BlackJackApplication
             {
                 turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betTextBox.Text);
                 turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
-                turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney - turnPlayer.PlayerBet).ToString();
-                turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
-                turnForm.lockBetButton.Enabled = false;
-                turnForm.betTextBox.ReadOnly = true;
-                turnForm.hitButton.Enabled = true;
-                turnForm.standButton.Enabled = true;
-                beginTurn();
+                if (turnPlayer.AmountOfMoney - turnPlayer.PlayerBet >= 0)
+                {
+                    turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney - turnPlayer.PlayerBet).ToString();
+                    turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
+                    turnForm.lockBetButton.Enabled = false;
+                    turnForm.betTextBox.ReadOnly = true;
+                    turnForm.hitButton.Enabled = true;
+                    turnForm.standButton.Enabled = true;
+                    beginTurn();
+                } else
+                {
+                    turnForm.betLabel.Text = "Bet too large";
+                }
             } else
             {
                 turnForm.betLabel.Text = "Enter a Value";
