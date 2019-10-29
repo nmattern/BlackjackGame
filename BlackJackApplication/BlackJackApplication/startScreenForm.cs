@@ -33,6 +33,7 @@ namespace BlackJackApplication
         private void startScreenForm_Load(object sender, EventArgs e)
         {
             CenterToScreen();
+            this.initialAmountTxtBx.Select();
         }
     }
 }

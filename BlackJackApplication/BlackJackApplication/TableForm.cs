@@ -80,5 +80,39 @@ namespace BlackJackApplication
                 betLabel.Text = "Not Valid";
             }
         }
+
+        private void adjustMoneyButton_Click(object sender, EventArgs e)
+        {
+            int number;
+            bool adjustMoneyContainsOnlyDigits = Int32.TryParse(this.adjustMoneyTextBox.Text, out number);
+            if (adjustMoneyContainsOnlyDigits)
+            {
+                turn.adjustMoneyButtonClick();
+            }
+        }
+
+        private void adjustMoneyTextBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            int number;
+            bool adjustMoneyContainsOnlyDigits = Int32.TryParse(this.adjustMoneyTextBox.Text, out number);
+            if (!adjustMoneyContainsOnlyDigits)
+            {
+                this.adjustMoneyTextBox.Text = "";
+            }
+        }
+
+        private void adjustMoneyTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int number;
+            bool adjustMoneyContainsOnlyDigits = Int32.TryParse(this.adjustMoneyTextBox.Text, out number);
+            if (!adjustMoneyContainsOnlyDigits)
+            {
+                adjustMoneyStatusLabel.Text = "Not Valid";
+            }
+            else
+            {
+                adjustMoneyStatusLabel.Text = "Valid";
+            }
+        }
     }
 }

@@ -14,7 +14,6 @@ namespace BlackJackApplication
         private Player turnPlayer;
         private Dealer turnDealer;
         private Deck turnDeck;
-        private bool gameEnd = false;
         tableForm turnForm = new tableForm();
         
 
@@ -76,6 +75,12 @@ namespace BlackJackApplication
             {
                 turnForm.betLabel.Text = "Enter a Value";
             }
+        }
+
+        public void adjustMoneyButtonClick()
+        {
+            turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.adjustMoneyTextBox.Text);
+            turnForm.currentMoneyLabel.Text = turnForm.adjustMoneyTextBox.Text;
         }
 
         // Handles initilization of the table state
@@ -152,17 +157,22 @@ namespace BlackJackApplication
             if (turnDealer.ValueOfHand > 21)
             {
                 playerWins();
-            } else if (turnPlayer.ValueOfHand > turnDealer.ValueOfHand)
+            }
+            else if (turnPlayer.ValueOfHand > turnDealer.ValueOfHand)
             {
                 playerWins();
-            } else if (turnDealer.ValueOfHand > turnPlayer.ValueOfHand)
+            }
+            else if (turnDealer.ValueOfHand > turnPlayer.ValueOfHand)
             {
                 dealerWins();
-            } else if (turnPlayer.ValueOfHand == turnDealer.ValueOfHand)
+            }
+            else if (turnPlayer.ValueOfHand == turnDealer.ValueOfHand)
             {
                 playerTies();
+            } else
+            {
+                endTurn();
             }
-            endTurn();
         }
 
         public void continueButtonClick()
@@ -246,7 +256,7 @@ namespace BlackJackApplication
 
         public void endGame()
         {
-
+            Console.WriteLine("Player lost");
         }
     }
 }
