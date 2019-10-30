@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BlackJackApplication
 {
@@ -12,6 +13,7 @@ namespace BlackJackApplication
         private int currentAmountofMoney;
         private int currentPlayerBet;
         private List<Card> playerHand = new List<Card>();
+        private List<PictureBox> pictureBoxes = new List<PictureBox>();
 
         enum playerChoiceValues
         {
@@ -41,6 +43,11 @@ namespace BlackJackApplication
         {
             get { return playerHand; }
             set { playerHand = value; }
+        }
+        public List<PictureBox> PictureBoxes
+        {
+            get { return pictureBoxes; }
+            set { pictureBoxes = value; }
         }
 
         public int playerChoice()
