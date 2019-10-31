@@ -273,5 +273,13 @@
   <ItemGroup>
     <None Include="Resources\transparentBackground.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ComponentFactory.Krypton.Design.dll" />
+    <Content Include="Resources\ComponentFactory.Krypton.Docking.dll" />
+    <Content Include="Resources\ComponentFactory.Krypton.Navigator.dll" />
+    <Content Include="Resources\ComponentFactory.Krypton.Ribbon.dll" />
+    <Content Include="Resources\ComponentFactory.Krypton.Toolkit.dll" />
+    <Content Include="Resources\ComponentFactory.Krypton.Workspace.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
