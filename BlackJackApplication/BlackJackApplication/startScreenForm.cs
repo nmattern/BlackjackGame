@@ -17,7 +17,7 @@ namespace BlackJackApplication
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void startButton_Click(object sender, EventArgs e)
         {
             var tableFormInstance = new tableForm();
             tableFormInstance.currentMoneyLabel.Text = initialAmountTxtBx.Text;

@@ -10,17 +10,20 @@ namespace BlackJackApplication
 {
     class Turn
     {
-        private Table turnTable;
         private Player turnPlayer;
         private Dealer turnDealer;
         private Deck turnDeck;
+        private bool gameEnd = false;
+        const int IMAGE_STARTING_LOCATION_X = 192;
+        const int IMAGE_DISTANCE_X = 30;
+        const int PLAYER_IMAGE_Y = 500;
+        const int DEALER_IMAGE_Y = 15;
         tableForm turnForm = new tableForm();
-        
 
-        public Turn(tableForm currentForm = null, Deck deck = null, Table table = null, Player player = null, Dealer dealer = null)
+
+        public Turn(tableForm currentForm = null, Deck deck = null, Player player = null, Dealer dealer = null)
         {
             turnForm = currentForm;
-            turnTable = table;
             turnPlayer = player;
             turnDealer = dealer;
             turnDeck = deck;
@@ -28,24 +31,47 @@ namespace BlackJackApplication
 
         // Handle adding images to the flowlayoutpanel depending on the user passed in
         public void addImage(Image image, string player)
-        { 
+        {
             if (player == "player")
             {
                 // Adds a picture box with the parameters specified
-                turnForm.playerHandFlowLayoutPanel.Controls.Add(new PictureBox()
+                for (int cardNum = 0; cardNum < turnPlayer.currentPlayerHand.Count; cardNum++)
                 {
-                    Image = image,
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Size = new Size(120, 150)
-                });
-            } else if (player == "dealer")
+                    if (turnPlayer.currentPlayerHand[cardNum].CardImage == image)
+                    {
+                        PictureBox pictureBox = new PictureBox()
+                        {
+                            Image = image,
+                            BackColor = Color.White,
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Size = new Size(120, 150),
+                            Location = new Point(IMAGE_STARTING_LOCATION_X + IMAGE_DISTANCE_X * cardNum, PLAYER_IMAGE_Y)
+                        };
+                        turnForm.Controls.Add(pictureBox);
+                        turnPlayer.PictureBoxes.Add(pictureBox);
+                        pictureBox.BringToFront();
+                    }
+                }
+            }
+            else if (player == "dealer")
             {
-                turnForm.dealerHandFlowLayoutPanel.Controls.Add(new PictureBox()
+                for (int cardNum = 0; cardNum < turnDealer.currentPlayerHand.Count; cardNum++)
                 {
-                    Image = image,
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Size = new Size(120, 150)
-                });
+                    if (turnDealer.currentPlayerHand[cardNum].CardImage == image)
+                    {
+                        PictureBox pictureBox = new PictureBox()
+                        {
+                            Image = image,
+                            BackColor = Color.White,
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Size = new Size(120, 150),
+                            Location = new Point(IMAGE_STARTING_LOCATION_X + IMAGE_DISTANCE_X * cardNum, DEALER_IMAGE_Y)
+                        };
+                        turnForm.Controls.Add(pictureBox);
+                        turnDealer.PictureBoxes.Add(pictureBox);
+                        pictureBox.BringToFront();
+                    }
+                }
             }
         }
 
@@ -123,7 +149,8 @@ namespace BlackJackApplication
                 {
                     playerBlackjack();
                 }
-            } else if (turnDealer.ValueOfHand == 21)
+            }
+            else if (turnDealer.ValueOfHand == 21)
             {
                 if (turnPlayer.ValueOfHand != 21)
                 {
@@ -147,7 +174,7 @@ namespace BlackJackApplication
         // If user stands then the only thing that needs to be handle is the endTurn method
         public void standButtonClick()
         {
-            while (turnDealer.ValueOfHand < 17 )
+            while (turnDealer.ValueOfHand < 17)
             {
                 turnDealer.dealCard(turnDealer, turnDeck);
                 Image image = turnDealer.currentPlayerHand[turnDealer.currentPlayerHand.Count - 1].CardImage;
@@ -185,8 +212,7 @@ namespace BlackJackApplication
             // Reset all values on the form, player, and dealer for a new turn
             turnPlayer.currentPlayerHand.Clear();
             turnDealer.currentPlayerHand.Clear();
-            turnForm.dealerHandFlowLayoutPanel.Controls.Clear();
-            turnForm.playerHandFlowLayoutPanel.Controls.Clear();
+            turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betLabel.Text);
             turnPlayer.ValueOfHand = 0;
             turnDealer.ValueOfHand = 0;
             turnForm.endLabel.Text = "";
@@ -194,6 +220,14 @@ namespace BlackJackApplication
             turnForm.dealerTotalLabel.Text = "";
             turnForm.playerTotalLabel.Text = "";
             turnDeck = new Deck();
+            foreach(PictureBox pictureBox in turnPlayer.PictureBoxes)
+            {
+                turnForm.Controls.Remove(pictureBox);
+            }
+            foreach (PictureBox pictureBox in turnDealer.PictureBoxes)
+            {
+                turnForm.Controls.Remove(pictureBox);
+            }
             turnForm.hitButton.Enabled = false;
             turnForm.standButton.Enabled = false;
             turnForm.lockBetButton.Enabled = true;
@@ -201,7 +235,7 @@ namespace BlackJackApplication
         }
 
         public void playerBusts()
-        { 
+        {
             turnForm.endLabel.Text = "You Bust!";
             endTurn();
         }
