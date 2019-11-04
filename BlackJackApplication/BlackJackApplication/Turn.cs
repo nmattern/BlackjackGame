@@ -15,7 +15,11 @@ namespace BlackJackApplication
         private Dealer turnDealer;
         private Deck turnDeck;
         tableForm turnForm = new tableForm();
-        
+        const int IMAGE_STARTING_LOCATION_X = 192;
+        const int IMAGE_DISTANCE_X = 30;
+        const int PLAYER_IMAGE_Y = 500;
+        const int DEALER_IMAGE_Y = 15;
+
 
         public Turn(tableForm currentForm = null, Deck deck = null, Table table = null, Player player = null, Dealer dealer = null)
         {
@@ -28,24 +32,47 @@ namespace BlackJackApplication
 
         // Handle adding images to the flowlayoutpanel depending on the user passed in
         public void addImage(Image image, string player)
-        { 
+        {
             if (player == "player")
             {
                 // Adds a picture box with the parameters specified
-                turnForm.playerHandFlowLayoutPanel.Controls.Add(new PictureBox()
+                for (int cardNum = 0; cardNum < turnPlayer.currentPlayerHand.Count; cardNum++)
                 {
-                    Image = image,
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Size = new Size(120, 150)
-                });
-            } else if (player == "dealer")
+                    if (turnPlayer.currentPlayerHand[cardNum].CardImage == image)
+                    {
+                        PictureBox pictureBox = new PictureBox()
+                        {
+                            Image = image,
+                            BackColor = Color.White,
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Size = new Size(120, 150),
+                            Location = new Point(IMAGE_STARTING_LOCATION_X + IMAGE_DISTANCE_X * cardNum, PLAYER_IMAGE_Y)
+                        };
+                        turnForm.Controls.Add(pictureBox);
+                        turnPlayer.PictureBoxes.Add(pictureBox);
+                        pictureBox.BringToFront();
+                    }
+                }
+            }
+            else if (player == "dealer")
             {
-                turnForm.dealerHandFlowLayoutPanel.Controls.Add(new PictureBox()
+                for (int cardNum = 0; cardNum < turnDealer.currentPlayerHand.Count; cardNum++)
                 {
-                    Image = image,
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Size = new Size(120, 150)
-                });
+                    if (turnDealer.currentPlayerHand[cardNum].CardImage == image)
+                    {
+                        PictureBox pictureBox = new PictureBox()
+                        {
+                            Image = image,
+                            BackColor = Color.White,
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Size = new Size(120, 150),
+                            Location = new Point(IMAGE_STARTING_LOCATION_X + IMAGE_DISTANCE_X * cardNum, DEALER_IMAGE_Y)
+                        };
+                        turnForm.Controls.Add(pictureBox);
+                        turnDealer.PictureBoxes.Add(pictureBox);
+                        pictureBox.BringToFront();
+                    }
+                }
             }
         }
 
