@@ -212,8 +212,6 @@ namespace BlackJackApplication
             // Reset all values on the form, player, and dealer for a new turn
             turnPlayer.currentPlayerHand.Clear();
             turnDealer.currentPlayerHand.Clear();
-            turnForm.dealerHandFlowLayoutPanel.Controls.Clear();
-            turnForm.playerHandFlowLayoutPanel.Controls.Clear();
             turnPlayer.ValueOfHand = 0;
             turnDealer.ValueOfHand = 0;
             turnForm.endLabel.Text = "";
@@ -225,6 +223,14 @@ namespace BlackJackApplication
             turnForm.standButton.Enabled = false;
             turnForm.lockBetButton.Enabled = true;
             turnForm.betTextBox.ReadOnly = false;
+            foreach (PictureBox pictureBox in turnPlayer.PictureBoxes)
+            {
+                turnForm.Controls.Remove(pictureBox);
+            }
+            foreach (PictureBox pictureBox in turnDealer.PictureBoxes)
+            {
+                turnForm.Controls.Remove(pictureBox);
+            }
         }
 
         public void playerBusts()
@@ -264,7 +270,6 @@ namespace BlackJackApplication
         public void endTurn()
         {
             // Show all of the cards the dealers hand actually contains at end of turn
-            turnForm.dealerHandFlowLayoutPanel.Controls.Clear();
             foreach (Card card in turnDealer.currentPlayerHand)
             {
                 addImage(card.CardImage, "dealer");
