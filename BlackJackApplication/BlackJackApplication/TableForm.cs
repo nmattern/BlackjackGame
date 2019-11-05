@@ -78,6 +78,10 @@ namespace BlackJackApplication
         }
         private void continueButton_Click(object sender, EventArgs e)
         {
+            if ( currentMoneyLabel.Text == "0" )
+            {
+                endGame();
+            }
             this.continueButton.Enabled = false;
             this.standButton.Enabled = true;
             this.hitButton.Enabled = true;

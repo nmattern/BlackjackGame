@@ -280,16 +280,6 @@ namespace BlackJackApplication
             turnForm.standButton.Enabled = false;
             turnForm.continueButton.Enabled = true;
             turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney).ToString();
-            if (turnPlayer.AmountOfMoney <= 0)
-            {
-                endGame();
-            }
-        }
-
-        public void endGame()
-        {
-            System.Threading.Thread.Sleep(1000);
-            turnForm.endGame();
         }
     }
 }

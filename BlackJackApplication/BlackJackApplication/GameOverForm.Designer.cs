@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.restartButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -82,12 +83,25 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Stencil", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(192, 736);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(985, 40);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "NATIONAL PROBLEM GAMBLING HOTLINE: 1-800-522-4700";
+            // 
             // GameOverForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(1332, 814);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.restartButton);
             this.Controls.Add(this.label2);
@@ -106,5 +120,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button restartButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Label label3;
     }
 }
