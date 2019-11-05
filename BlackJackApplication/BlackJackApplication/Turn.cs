@@ -288,7 +288,8 @@ namespace BlackJackApplication
 
         public void endGame()
         {
-            Console.WriteLine("Player lost");
+            System.Threading.Thread.Sleep(1000);
+            turnForm.endGame();
         }
     }
 }

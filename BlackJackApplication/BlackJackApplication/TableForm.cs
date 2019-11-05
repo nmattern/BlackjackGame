@@ -19,8 +19,6 @@ namespace BlackJackApplication
             InitializeComponent();
         }
 
-        
-
         public void Form1_Load(object sender, EventArgs e)
         { 
             Deck myDeck = new Deck();
@@ -156,6 +154,18 @@ namespace BlackJackApplication
             {
                 adjustMoneyStatusLabel.Text = "Valid";
             }
+        }
+
+        public void endGame()
+        {
+            var gameOverFormInstance = new GameOverForm();
+            gameOverFormInstance.Show();
+            gameOverFormInstance.Location = this.Location;
+            this.Hide();
+            // This is an event handler for the closing of a child form
+            // Passes the subject (child form) and arguments to close 
+            // Parent form as well
+            gameOverFormInstance.FormClosed += (s, args) => this.Close();
         }
     }
 }
