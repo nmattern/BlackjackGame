@@ -15,10 +15,12 @@ namespace BlackJackApplication
         private Dealer turnDealer;
         private Deck turnDeck;
         tableForm turnForm = new tableForm();
-        const int IMAGE_STARTING_LOCATION_X = 192;
-        const int IMAGE_DISTANCE_X = 30;
-        const int PLAYER_IMAGE_Y = 500;
-        const int DEALER_IMAGE_Y = 15;
+        const int IMAGE_DISTANCE_Y = 20;
+        const int IMAGE_DISTANCE_X = 20;
+        const int PLAYER_IMAGE_Y = 75;
+        const int PLAYER_IMAGE_X = 470;
+        const int DEALER_IMAGE_Y = 75;
+        const int DEALER_IMAGE_X = 40;
 
 
         public Turn(tableForm currentForm = null, Deck deck = null, Table table = null, Player player = null, Dealer dealer = null)
@@ -30,7 +32,7 @@ namespace BlackJackApplication
             turnDeck = deck;
         }
 
-        // Handle adding images to the flowlayoutpanel depending on the user passed in
+        // Handle adding images to the table depending on the user passed in
         public void addImage(Image image, string player)
         {
             if (player == "player")
@@ -46,7 +48,7 @@ namespace BlackJackApplication
                             BackColor = Color.White,
                             SizeMode = PictureBoxSizeMode.StretchImage,
                             Size = new Size(120, 150),
-                            Location = new Point(IMAGE_STARTING_LOCATION_X + IMAGE_DISTANCE_X * cardNum, PLAYER_IMAGE_Y)
+                            Location = new Point(PLAYER_IMAGE_X + IMAGE_DISTANCE_X * cardNum, PLAYER_IMAGE_Y + IMAGE_DISTANCE_Y * cardNum)
                         };
                         turnForm.Controls.Add(pictureBox);
                         turnPlayer.PictureBoxes.Add(pictureBox);
@@ -60,13 +62,14 @@ namespace BlackJackApplication
                 {
                     if (turnDealer.currentPlayerHand[cardNum].CardImage == image)
                     {
+                        if (turnDealer.currentPlayerHand[cardNum].Hidden) { image = Properties.Resources.back; }
                         PictureBox pictureBox = new PictureBox()
                         {
                             Image = image,
                             BackColor = Color.White,
                             SizeMode = PictureBoxSizeMode.StretchImage,
                             Size = new Size(120, 150),
-                            Location = new Point(IMAGE_STARTING_LOCATION_X + IMAGE_DISTANCE_X * cardNum, DEALER_IMAGE_Y)
+                            Location = new Point(DEALER_IMAGE_X + IMAGE_DISTANCE_X * cardNum, DEALER_IMAGE_Y + IMAGE_DISTANCE_Y * cardNum)
                         };
                         turnForm.Controls.Add(pictureBox);
                         turnDealer.PictureBoxes.Add(pictureBox);
@@ -91,8 +94,8 @@ namespace BlackJackApplication
                     turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
                     turnForm.lockBetButton.Enabled = false;
                     turnForm.betTextBox.ReadOnly = true;
-                    turnForm.hitButton.Enabled = true;
-                    turnForm.standButton.Enabled = true;
+                    turnForm.hitButton.Visible = true;
+                    turnForm.standButton.Visible = true;
                     beginTurn();
                 } else
                 {
@@ -115,6 +118,7 @@ namespace BlackJackApplication
         {
             turnDealer.dealCard(turnPlayer, turnDeck, 2);
             turnDealer.dealCard(turnDealer, turnDeck, 2);
+            turnDealer.currentPlayerHand[0].Hidden = true;
 
             // Generate the hand for the player and dealer
             foreach (Card card in turnPlayer.currentPlayerHand)
@@ -122,9 +126,10 @@ namespace BlackJackApplication
                 addImage(card.CardImage, "player");
             }
 
-            // First card of dealers hand will be the back of the card
-            addImage(Properties.Resources.back, "dealer");
-            addImage(turnDealer.currentPlayerHand[turnDealer.currentPlayerHand.Count - 1].CardImage, "dealer");
+            foreach (Card card in turnDealer.currentPlayerHand)
+            {
+                addImage(card.CardImage, "dealer");
+            }
 
             // Set the intial values of the player and dealer total labels
             // First we have to validate the value of the hidden card in case it is a string
@@ -168,6 +173,10 @@ namespace BlackJackApplication
             if (turnPlayer.ValueOfHand > 21)
             {
                 playerBusts();
+            }
+            else if (turnPlayer.ValueOfHand == 21)
+            {
+                standButtonClick();
             }
         } 
 
@@ -219,8 +228,8 @@ namespace BlackJackApplication
             turnForm.dealerTotalLabel.Text = "";
             turnForm.playerTotalLabel.Text = "";
             turnDeck = new Deck();
-            turnForm.hitButton.Enabled = false;
-            turnForm.standButton.Enabled = false;
+            turnForm.hitButton.Visible = false;
+            turnForm.standButton.Visible = false;
             turnForm.lockBetButton.Enabled = true;
             turnForm.betTextBox.ReadOnly = false;
             foreach (PictureBox pictureBox in turnPlayer.PictureBoxes)
@@ -270,15 +279,16 @@ namespace BlackJackApplication
         public void endTurn()
         {
             // Show all of the cards the dealers hand actually contains at end of turn
+            turnDealer.currentPlayerHand[0].Hidden = false;
             foreach (Card card in turnDealer.currentPlayerHand)
             {
                 addImage(card.CardImage, "dealer");
             }
             turnForm.dealerBetDescriptionLabel.Text = "Current Total";
             turnForm.dealerTotalLabel.Text = turnDealer.ValueOfHand.ToString();
-            turnForm.hitButton.Enabled = false;
-            turnForm.standButton.Enabled = false;
-            turnForm.continueButton.Enabled = true;
+            turnForm.hitButton.Visible = false;
+            turnForm.standButton.Visible = false;
+            turnForm.continueButton.Visible = true;
             turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney).ToString();
         }
     }

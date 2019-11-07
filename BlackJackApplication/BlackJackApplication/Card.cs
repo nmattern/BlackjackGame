@@ -12,6 +12,7 @@ namespace BlackJackApplication
         private string cardValue;
         private string cardSuit;
         private Image cardImage;
+        private bool hidden;
 
         public Card(string suit, string value, Image image)
         {
@@ -34,6 +35,12 @@ namespace BlackJackApplication
         {
             get { return cardImage; }
             set { cardImage = value; }
+        }
+        
+        public bool Hidden
+        {
+            get { return hidden;}
+            set { hidden = value; }
         }
     }
 }

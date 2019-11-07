@@ -27,54 +27,19 @@ namespace BlackJackApplication
             Table table = new Table();
             turn = new Turn(this, myDeck, table, player1, dealer);
 
-            hitButton.Enabled = false;
-            standButton.Enabled = false;
-            continueButton.Enabled = false;
+            hitButton.Visible = false;
+            standButton.Visible = false;
+            continueButton.Visible = false;
             player1.AmountOfMoney = Int32.Parse(currentMoneyLabel.Text);
-        }
-
-        private void hitButton_EnabledChanged(object sender, EventArgs e)
-        {
-            if (hitButton.BackColor == Color.Gray)
-            {
-                hitButton.BackColor = Color.Crimson;
-            }
-            else
-            {
-                hitButton.BackColor = Color.Gray;
-            }
         }
         private void hitButton_Click(object sender, EventArgs e)
         { 
             turn.hitButtonClick();
         }
 
-        private void standButton_EnabledChanged(object sender, EventArgs e)
-        {
-            if (standButton.BackColor == Color.Gray)
-            {
-                standButton.BackColor = Color.FromArgb(6,67,157); //blue color
-            }
-            else
-            {
-                standButton.BackColor = Color.Gray;
-            }
-        }
         private void standButton_Click(object sender, EventArgs e)
         {
             turn.standButtonClick();
-        }
-
-        private void continueButton_EnabledChanged(object sender, EventArgs e)
-        {
-            if (continueButton.BackColor == Color.Gray)
-            {
-                continueButton.BackColor = Color.FromArgb(6, 67, 157); //blue color
-            }
-            else
-            {
-                continueButton.BackColor = Color.Gray;
-            }
         }
         private void continueButton_Click(object sender, EventArgs e)
         {
@@ -82,9 +47,9 @@ namespace BlackJackApplication
             {
                 endGame();
             }
-            this.continueButton.Enabled = false;
-            this.standButton.Enabled = true;
-            this.hitButton.Enabled = true;
+            this.continueButton.Visible = false;
+            this.standButton.Visible = true;
+            this.hitButton.Visible = true;
             turn.continueButtonClick();
         }
 
@@ -117,7 +82,7 @@ namespace BlackJackApplication
         {
             int number;
             bool betContainsOnlyDigits = Int32.TryParse(this.betTextBox.Text, out number);
-            if (betContainsOnlyDigits)
+            if (betContainsOnlyDigits || this.betTextBox.Text == "")
             {
                 betLabel.Text = betTextBox.Text;
             } else
@@ -134,6 +99,7 @@ namespace BlackJackApplication
             {
                 turn.adjustMoneyButtonClick();
             }
+            this.adjustMoneyTextBox.Text = "";
         }
 
         private void adjustMoneyTextBox_MouseClick(object sender, MouseEventArgs e)
@@ -150,13 +116,17 @@ namespace BlackJackApplication
         {
             int number;
             bool adjustMoneyContainsOnlyDigits = Int32.TryParse(this.adjustMoneyTextBox.Text, out number);
-            if (!adjustMoneyContainsOnlyDigits)
+            if (adjustMoneyContainsOnlyDigits)
             {
-                adjustMoneyStatusLabel.Text = "Not Valid";
+                adjustMoneyStatusLabel.Text = "Valid";
+            }
+            else if(this.adjustMoneyTextBox.Text == "")
+            {
+                adjustMoneyStatusLabel.Text = "";
             }
             else
             {
-                adjustMoneyStatusLabel.Text = "Valid";
+                adjustMoneyStatusLabel.Text = "Not Valid";
             }
         }
 
