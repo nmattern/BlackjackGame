@@ -79,8 +79,8 @@ namespace BlackJackApplication
             Random rnd = new Random();
             for(int i = 0; i < cardsInDeck.Count; i++)
             {
-                // x will be a value from 0-51 (Number of cards in deck)
-                int x = rnd.Next(0, 51);
+                // x will be a value from 0-52 (Number of cards in deck)
+                int x = rnd.Next(0, 52);
                 Card temp = cardsInDeck[x];
                 cardsInDeck[x] = cardsInDeck[i];
                 cardsInDeck[i] = temp;
