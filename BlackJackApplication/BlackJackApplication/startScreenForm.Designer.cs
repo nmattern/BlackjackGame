@@ -32,6 +32,7 @@
             this.startButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.initialAmountTxtBx = new System.Windows.Forms.TextBox();
+            this.manageProfile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -42,7 +43,7 @@
             this.label1.Location = new System.Drawing.Point(284, 261);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(732, 140);
+            this.label1.Size = new System.Drawing.Size(722, 138);
             this.label1.TabIndex = 0;
             this.label1.Text = "Blackjack";
             // 
@@ -76,12 +77,23 @@
             this.initialAmountTxtBx.Size = new System.Drawing.Size(260, 36);
             this.initialAmountTxtBx.TabIndex = 3;
             // 
+            // manageProfile
+            // 
+            this.manageProfile.Location = new System.Drawing.Point(51, 212);
+            this.manageProfile.Name = "manageProfile";
+            this.manageProfile.Size = new System.Drawing.Size(121, 23);
+            this.manageProfile.TabIndex = 4;
+            this.manageProfile.Text = "Manage Profile";
+            this.manageProfile.UseVisualStyleBackColor = true;
+            this.manageProfile.Click += new System.EventHandler(this.ManageProfile_Click);
+            // 
             // startScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(1332, 814);
+            this.Controls.Add(this.manageProfile);
             this.Controls.Add(this.initialAmountTxtBx);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.startButton);
@@ -101,5 +113,6 @@
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox initialAmountTxtBx;
+        private System.Windows.Forms.Button manageProfile;
     }
 }

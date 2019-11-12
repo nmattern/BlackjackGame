@@ -35,5 +35,11 @@ namespace BlackJackApplication
             CenterToScreen();
             this.initialAmountTxtBx.Select();
         }
+
+        private void ManageProfile_Click(object sender, EventArgs e)
+        {
+            var profileForm = new ProfileForm();
+            profileForm.Show();
+        }
     }
 }
