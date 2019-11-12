@@ -169,6 +169,13 @@ namespace BlackJackApplication
             turnDealer.dealCard(turnPlayer, turnDeck);
             Image image = turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].CardImage;
             addImage(image, "player");
+            if (turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].Value == "ace")
+            {
+                if (turnPlayer.ValueOfHand > 21)
+                {
+                    turnPlayer.ValueOfHand -= 10;
+                }
+            }
             turnForm.playerTotalLabel.Text = (turnPlayer.ValueOfHand).ToString();
             if (turnPlayer.ValueOfHand > 21)
             {
