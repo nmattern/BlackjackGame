@@ -12,6 +12,7 @@ namespace BlackJackApplication
 {
     public partial class CreateProfileForm : Form
     {
+        DatabaseAccess database = new DatabaseAccess();
         public CreateProfileForm()
         {
             InitializeComponent();
@@ -51,10 +52,12 @@ namespace BlackJackApplication
 
             if (verified == true) 
             {
+                Console.WriteLine("made it");
                 Player newplayer = new Player(
-                Convert.ToInt32(this.phoneTextBox.Text), this.addressTextBox.Text, this.nameTextBox.Text,
-                Convert.ToInt32(creditCardTextBox.Text), this.recovQTextBox.Text, this.recovATextBox.Text,
+                Convert.ToInt64(phoneTextBox.Text), this.addressTextBox.Text, this.nameTextBox.Text,
+                Convert.ToInt64(creditCardTextBox.Text), this.recovQTextBox.Text, this.recovATextBox.Text,
                 this.passwordTextBox.Text, this.usernameTextBox.Text, 34);
+                database.createPlayer(newplayer);
             }
             
 
