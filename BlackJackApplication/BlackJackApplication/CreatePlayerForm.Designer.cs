@@ -89,6 +89,7 @@
             // creditCardTextBox
             // 
             this.creditCardTextBox.Location = new System.Drawing.Point(381, 302);
+            this.creditCardTextBox.MaxLength = 16;
             this.creditCardTextBox.Name = "creditCardTextBox";
             this.creditCardTextBox.Size = new System.Drawing.Size(100, 20);
             this.creditCardTextBox.TabIndex = 7;
@@ -175,6 +176,7 @@
             // addressTextBox
             // 
             this.addressTextBox.Location = new System.Drawing.Point(381, 328);
+            this.addressTextBox.MaxLength = 50;
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(100, 20);
             this.addressTextBox.TabIndex = 14;
@@ -191,6 +193,7 @@
             // phoneTextBox
             // 
             this.phoneTextBox.Location = new System.Drawing.Point(381, 354);
+            this.phoneTextBox.MaxLength = 11;
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(100, 20);
             this.phoneTextBox.TabIndex = 16;
