@@ -155,12 +155,18 @@ namespace BlackJackApplication
                 {
                     playerBlackjack();
                 }
-            } else if (turnDealer.ValueOfHand == 21)
+            } else if (turnDealer.ValueOfHand == 21 && turnForm.dealerTotalLabel.Text != "11")
             {
                 if (turnPlayer.ValueOfHand != 21)
                 {
                     dealerWins();
                 }
+            } else if (turnForm.dealerTotalLabel.Text == "11")
+            {
+                turnForm.insuranceBetButton.Visible = true;
+                turnForm.insuranceBetTxtBox.Visible = true;
+                turnForm.insuranceBetValueLabel.Visible = true;
+                turnForm.insuranceBetLabel.Visible = true;
             }
         }
 
@@ -216,6 +222,25 @@ namespace BlackJackApplication
             resetTableTurn();
         }
 
+        public void insuranceButtonClick(int bet)
+        {
+            if (bet <= turnPlayer.PlayerBet / 2)
+            {
+                turnPlayer.InsuranceBet = bet;
+                turnForm.insuranceBetButton.Enabled = false;
+                if (turnDealer.ValueOfHand == 21)
+                {
+                    insuranceWin();
+                } else
+                {
+                    insuranceLoss();
+                }
+            } else
+            {
+                turnForm.insuranceBetValueLabel.Text = "Invalid";
+            }
+        }
+
         public void resetTableTurn()
         {
             // Reset all values on the form, player, and dealer for a new turn
@@ -232,6 +257,10 @@ namespace BlackJackApplication
             turnForm.standButton.Visible = false;
             turnForm.lockBetButton.Enabled = true;
             turnForm.betTextBox.ReadOnly = false;
+            turnForm.insuranceBetValueLabel.Visible = false;
+            turnForm.insuranceBetTxtBox.Visible = false;
+            turnForm.insuranceBetLabel.Visible = false;
+            turnForm.insuranceBetButton.Visible = false;
             foreach (PictureBox pictureBox in turnPlayer.PictureBoxes)
             {
                 turnForm.Controls.Remove(pictureBox);
@@ -243,20 +272,44 @@ namespace BlackJackApplication
         }
 
         public void playerBusts()
-        { 
+        {
+            turnPlayer.playerLosses++;
+            turnForm.lossesValueLabel.Text = turnPlayer.playerLosses.ToString();
             turnForm.endLabel.Text = "You Bust!";
             endTurn();
         }
 
         public void playerWins()
         {
+            turnPlayer.playerWins++;
+            turnForm.winsValueLabel.Text = turnPlayer.playerWins.ToString();
             turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + (turnPlayer.PlayerBet * 2));
             turnForm.endLabel.Text = "You win!";
             endTurn();
         }
 
+        public void insuranceWin()
+        {
+            turnPlayer.playerWins++;
+            turnForm.winsValueLabel.Text = turnPlayer.playerWins.ToString();
+            turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + (turnPlayer.InsuranceBet * 2));
+            turnForm.endLabel.Text = "You win! (Insurance)";
+            endTurn();
+        }
+
+        public void insuranceLoss()
+        {
+            turnPlayer.playerLosses++;
+            turnForm.lossesValueLabel.Text = turnPlayer.playerLosses.ToString();
+            turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney - (turnPlayer.InsuranceBet * 2));
+            turnForm.endLabel.Text = "You lose!";
+            endTurn();
+        }
+
         public void playerBlackjack()
         {
+            turnPlayer.playerWins++;
+            turnForm.winsValueLabel.Text = turnPlayer.playerWins.ToString();
             turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + (turnPlayer.PlayerBet * 2));
             turnForm.endLabel.Text = "Blackjack! You Win";
             endTurn();
@@ -264,6 +317,8 @@ namespace BlackJackApplication
 
         public void dealerWins()
         {
+            turnPlayer.playerLosses++;
+            turnForm.lossesValueLabel.Text = turnPlayer.playerLosses.ToString();
             turnForm.endLabel.Text = "Dealer wins!";
             endTurn();
         }

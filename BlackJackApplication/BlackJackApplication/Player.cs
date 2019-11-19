@@ -12,6 +12,9 @@ namespace BlackJackApplication
         private int currentValueOfHand;
         private int currentAmountofMoney;
         private int currentPlayerBet;
+        private int currentInsuranceBet;
+        public int playerWins { get; set; }
+        public int playerLosses { get; set; }
         private List<Card> playerHand = new List<Card>();
         private List<PictureBox> pictureBoxes = new List<PictureBox>();
 
@@ -37,6 +40,12 @@ namespace BlackJackApplication
         {
             get { return currentPlayerBet; }
             set { currentPlayerBet = value; }
+        }
+
+        public int InsuranceBet
+        {
+            get { return currentInsuranceBet; }
+            set { currentInsuranceBet = value; }
         }
 
         public List<Card> currentPlayerHand

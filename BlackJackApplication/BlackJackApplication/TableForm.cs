@@ -141,5 +141,20 @@ namespace BlackJackApplication
             // Parent form as well
             gameOverFormInstance.FormClosed += (s, args) => this.Close();
         }
+
+        private void insuranceBetTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            insuranceBetValueLabel.Text = insuranceBetTxtBox.Text;
+        }
+
+        private void insuranceBetTxtBox_Click(object sender, EventArgs e)
+        {
+            insuranceBetTxtBox.Text = "";
+        }
+
+        private void insuranceBetButton_Click(object sender, EventArgs e)
+        {
+            turn.insuranceButtonClick(Int32.Parse(insuranceBetTxtBox.Text));
+        }
     }
 }
