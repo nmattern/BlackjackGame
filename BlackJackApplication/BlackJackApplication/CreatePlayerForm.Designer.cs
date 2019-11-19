@@ -179,7 +179,7 @@
             this.addressTextBox.MaxLength = 50;
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(100, 20);
-            this.addressTextBox.TabIndex = 14;
+            this.addressTextBox.TabIndex = 8;
             // 
             // phoneLabel
             // 
@@ -196,7 +196,7 @@
             this.phoneTextBox.MaxLength = 11;
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(100, 20);
-            this.phoneTextBox.TabIndex = 16;
+            this.phoneTextBox.TabIndex = 9;
             // 
             // label2
             // 
@@ -213,14 +213,14 @@
             this.nameTextBox.MaxLength = 30;
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.nameTextBox.TabIndex = 18;
+            this.nameTextBox.TabIndex = 1;
             // 
             // submitButton
             // 
             this.submitButton.Location = new System.Drawing.Point(381, 380);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(100, 23);
-            this.submitButton.TabIndex = 20;
+            this.submitButton.TabIndex = 10;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = true;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
