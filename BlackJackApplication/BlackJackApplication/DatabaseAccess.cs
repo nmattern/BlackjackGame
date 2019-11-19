@@ -46,11 +46,12 @@ namespace BlackJackApplication
                 "address",
                 "name",
                 111111111,
-                "Dog",
                 "What is your first pets name?",
+                "Dog",
                 "password",
                 "testuser",
-                1);
+                1
+           );
 
             SetResponse response = await client.SetAsync<Player>("Players/"+player.Username, player);
             Player result = response.ResultAs<Player>();
