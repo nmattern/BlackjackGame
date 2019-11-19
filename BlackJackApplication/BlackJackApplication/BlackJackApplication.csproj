@@ -72,6 +72,12 @@
     <Compile Include="Card.cs" />
     <Compile Include="Credentials.cs" />
     <Compile Include="DatabaseAccess.cs" />
+    <Compile Include="SignInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignInForm.Designer.cs">
+      <DependentUpon>SignInForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameOverForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignInForm.resx">
+      <DependentUpon>SignInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableForm.resx">
       <DependentUpon>TableForm.cs</DependentUpon>
