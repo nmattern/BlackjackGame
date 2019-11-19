@@ -261,6 +261,7 @@ namespace BlackJackApplication
             turnForm.insuranceBetTxtBox.Visible = false;
             turnForm.insuranceBetLabel.Visible = false;
             turnForm.insuranceBetButton.Visible = false;
+            turnForm.insuranceBetButton.Enabled = true;
             foreach (PictureBox pictureBox in turnPlayer.PictureBoxes)
             {
                 turnForm.Controls.Remove(pictureBox);
@@ -299,11 +300,9 @@ namespace BlackJackApplication
 
         public void insuranceLoss()
         {
-            turnPlayer.playerLosses++;
-            turnForm.lossesValueLabel.Text = turnPlayer.playerLosses.ToString();
             turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney - (turnPlayer.InsuranceBet * 2));
-            turnForm.endLabel.Text = "You lose!";
-            endTurn();
+            turnForm.currentMoneyLabel.Text = turnPlayer.AmountOfMoney.ToString();
+            turnForm.insuranceBetValueLabel.Text = "Lost";
         }
 
         public void playerBlackjack()
