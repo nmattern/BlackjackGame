@@ -33,8 +33,8 @@ namespace BlackJackApplication
         private void startScreenForm_Load(object sender, EventArgs e)
         {
             DatabaseAccess databaseAccess = new DatabaseAccess();
-            databaseAccess.testConnection();
-            databaseAccess.testCreatePlayer();
+            //databaseAccess.testConnection();
+            //databaseAccess.testCreatePlayer();
             CenterToScreen();
             this.initialAmountTxtBx.Select();
             checkPlayerLabelState();
@@ -118,7 +118,8 @@ namespace BlackJackApplication
 
         private void createProfileButton_Click(object sender, EventArgs e)
         {
-
+            CreateProfileForm profileForm = new CreateProfileForm();
+            profileForm.Show();
         }
     }
 }
