@@ -38,9 +38,9 @@ namespace BlackJackApplication
             if (player == "player")
             {
                 // Adds a picture box with the parameters specified
-                for (int cardNum = 0; cardNum < turnPlayer.currentPlayerHand.Count; cardNum++)
+                for (int cardNum = 0; cardNum < turnPlayer.CurrentPlayerHand.Count; cardNum++)
                 {
-                    if (turnPlayer.currentPlayerHand[cardNum].CardImage == image)
+                    if (turnPlayer.CurrentPlayerHand[cardNum].CardImage == image)
                     {
                         PictureBox pictureBox = new PictureBox()
                         {
@@ -58,11 +58,11 @@ namespace BlackJackApplication
             }
             else if (player == "dealer")
             {
-                for (int cardNum = 0; cardNum < turnDealer.currentPlayerHand.Count; cardNum++)
+                for (int cardNum = 0; cardNum < turnDealer.CurrentPlayerHand.Count; cardNum++)
                 {
-                    if (turnDealer.currentPlayerHand[cardNum].CardImage == image)
+                    if (turnDealer.CurrentPlayerHand[cardNum].CardImage == image)
                     {
-                        if (turnDealer.currentPlayerHand[cardNum].Hidden) { image = Properties.Resources.back; }
+                        if (turnDealer.CurrentPlayerHand[cardNum].Hidden) { image = Properties.Resources.back; }
                         PictureBox pictureBox = new PictureBox()
                         {
                             Image = image,
@@ -86,12 +86,12 @@ namespace BlackJackApplication
             // Validate if the user bet an integer, if not loop until they enter one
             if (betContainsOnlyDigits)
             {
-                turnPlayer.PlayerBet = Convert.ToInt32(turnForm.betTextBox.Text);
-                turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
-                if (turnPlayer.AmountOfMoney - turnPlayer.PlayerBet >= 0)
+                turnPlayer.CurrentPlayerBet = Convert.ToInt32(turnForm.betTextBox.Text);
+                turnPlayer.CurrentAmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
+                if (turnPlayer.CurrentAmountOfMoney - turnPlayer.CurrentPlayerBet >= 0)
                 {
-                    turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney - turnPlayer.PlayerBet).ToString();
-                    turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
+                    turnForm.currentMoneyLabel.Text = (turnPlayer.CurrentAmountOfMoney - turnPlayer.CurrentPlayerBet).ToString();
+                    turnPlayer.CurrentAmountOfMoney = Convert.ToInt32(turnForm.currentMoneyLabel.Text);
                     turnForm.lockBetButton.Enabled = false;
                     turnForm.betTextBox.ReadOnly = true;
                     turnForm.hitButton.Visible = true;
@@ -109,7 +109,7 @@ namespace BlackJackApplication
 
         public void adjustMoneyButtonClick()
         {
-            turnPlayer.AmountOfMoney = Convert.ToInt32(turnForm.adjustMoneyTextBox.Text);
+            turnPlayer.CurrentAmountOfMoney = Convert.ToInt32(turnForm.adjustMoneyTextBox.Text);
             turnForm.currentMoneyLabel.Text = turnForm.adjustMoneyTextBox.Text;
         }
 
@@ -118,15 +118,15 @@ namespace BlackJackApplication
         {
             turnDealer.dealCard(turnPlayer, turnDeck, 2);
             turnDealer.dealCard(turnDealer, turnDeck, 2);
-            turnDealer.currentPlayerHand[0].Hidden = true;
+            turnDealer.CurrentPlayerHand[0].Hidden = true;
 
             // Generate the hand for the player and dealer
-            foreach (Card card in turnPlayer.currentPlayerHand)
+            foreach (Card card in turnPlayer.CurrentPlayerHand)
             {
                 addImage(card.CardImage, "player");
             }
 
-            foreach (Card card in turnDealer.currentPlayerHand)
+            foreach (Card card in turnDealer.CurrentPlayerHand)
             {
                 addImage(card.CardImage, "dealer");
             }
@@ -135,7 +135,8 @@ namespace BlackJackApplication
             // First we have to validate the value of the hidden card in case it is a string
             int valueOfFirstCard = 0;
             int number;
-            string firstCardValue = (turnDealer.currentPlayerHand[0].Value);
+
+            string firstCardValue = (turnDealer.CurrentPlayerHand[0].Value);
             if (firstCardValue == "king" || firstCardValue == "queen" || firstCardValue == "jack")
             {
                 valueOfFirstCard = 10;
@@ -144,20 +145,21 @@ namespace BlackJackApplication
             {
                 valueOfFirstCard = (int)number;
             }
+
             // Once the card is evaluated we can continue like normal
-            turnForm.dealerTotalLabel.Text = (turnDealer.ValueOfHand - valueOfFirstCard).ToString();
-            turnForm.playerTotalLabel.Text = turnPlayer.ValueOfHand.ToString();
+            turnForm.dealerTotalLabel.Text = (turnDealer.CurrentValueOfHand - valueOfFirstCard).ToString();
+            turnForm.playerTotalLabel.Text = turnPlayer.CurrentValueOfHand.ToString();
 
             // Handle cases where the player or dealer immeditately wins the game
-            if (turnPlayer.ValueOfHand == 21)
+            if (turnPlayer.CurrentValueOfHand == 21)
             {
-                if (turnDealer.ValueOfHand != 21)
+                if (turnDealer.CurrentValueOfHand != 21)
                 {
                     playerBlackjack();
                 }
             } else if (turnDealer.ValueOfHand == 21 && turnForm.dealerTotalLabel.Text != "11")
             {
-                if (turnPlayer.ValueOfHand != 21)
+                if (turnPlayer.CurrentValueOfHand != 21)
                 {
                     dealerWins();
                 }
@@ -173,14 +175,21 @@ namespace BlackJackApplication
         public void hitButtonClick()
         {
             turnDealer.dealCard(turnPlayer, turnDeck);
-            Image image = turnPlayer.currentPlayerHand[turnPlayer.currentPlayerHand.Count - 1].CardImage;
+            Image image = turnPlayer.CurrentPlayerHand[turnPlayer.CurrentPlayerHand.Count - 1].CardImage;
             addImage(image, "player");
-            turnForm.playerTotalLabel.Text = (turnPlayer.ValueOfHand).ToString();
-            if (turnPlayer.ValueOfHand > 21)
+            if (turnPlayer.CurrentPlayerHand[turnPlayer.CurrentPlayerHand.Count - 1].Value == "ace")
+            {
+                if (turnPlayer.CurrentValueOfHand > 21)
+                {
+                    turnPlayer.CurrentValueOfHand -= 10;
+                }
+            }
+            turnForm.playerTotalLabel.Text = (turnPlayer.CurrentValueOfHand).ToString();
+            if (turnPlayer.CurrentValueOfHand > 21)
             {
                 playerBusts();
             }
-            else if (turnPlayer.ValueOfHand == 21)
+            else if (turnPlayer.CurrentValueOfHand == 21)
             {
                 standButtonClick();
             }
@@ -189,26 +198,26 @@ namespace BlackJackApplication
         // If user stands then the only thing that needs to be handle is the endTurn method
         public void standButtonClick()
         {
-            while (turnDealer.ValueOfHand < 17 )
+            while (turnDealer.CurrentValueOfHand < 17 )
             {
                 turnDealer.dealCard(turnDealer, turnDeck);
-                Image image = turnDealer.currentPlayerHand[turnDealer.currentPlayerHand.Count - 1].CardImage;
+                Image image = turnDealer.CurrentPlayerHand[turnDealer.CurrentPlayerHand.Count - 1].CardImage;
                 addImage(image, "dealer");
-                turnForm.dealerTotalLabel.Text = (turnDealer.ValueOfHand).ToString();
+                turnForm.dealerTotalLabel.Text = (turnDealer.CurrentValueOfHand).ToString();
             }
-            if (turnDealer.ValueOfHand > 21)
+            if (turnDealer.CurrentValueOfHand > 21)
             {
                 playerWins();
             }
-            else if (turnPlayer.ValueOfHand > turnDealer.ValueOfHand)
+            else if (turnPlayer.CurrentValueOfHand > turnDealer.CurrentValueOfHand)
             {
                 playerWins();
             }
-            else if (turnDealer.ValueOfHand > turnPlayer.ValueOfHand)
+            else if (turnDealer.CurrentValueOfHand > turnPlayer.CurrentValueOfHand)
             {
                 dealerWins();
             }
-            else if (turnPlayer.ValueOfHand == turnDealer.ValueOfHand)
+            else if (turnPlayer.CurrentValueOfHand == turnDealer.CurrentValueOfHand)
             {
                 playerTies();
             } else
@@ -244,10 +253,10 @@ namespace BlackJackApplication
         public void resetTableTurn()
         {
             // Reset all values on the form, player, and dealer for a new turn
-            turnPlayer.currentPlayerHand.Clear();
-            turnDealer.currentPlayerHand.Clear();
-            turnPlayer.ValueOfHand = 0;
-            turnDealer.ValueOfHand = 0;
+            turnPlayer.CurrentPlayerHand.Clear();
+            turnDealer.CurrentPlayerHand.Clear();
+            turnPlayer.CurrentValueOfHand = 0;
+            turnDealer.CurrentValueOfHand = 0;
             turnForm.endLabel.Text = "";
             turnForm.dealerBetDescriptionLabel.Text = "Current Visible Total";
             turnForm.dealerTotalLabel.Text = "";
@@ -324,7 +333,7 @@ namespace BlackJackApplication
 
         public void playerTies()
         {
-            turnPlayer.AmountOfMoney = (turnPlayer.AmountOfMoney + turnPlayer.PlayerBet);
+            turnPlayer.CurrentAmountOfMoney = (turnPlayer.CurrentAmountOfMoney + turnPlayer.CurrentPlayerBet);
             turnForm.endLabel.Text = "It's a tie";
             endTurn();
         }
@@ -333,17 +342,17 @@ namespace BlackJackApplication
         public void endTurn()
         {
             // Show all of the cards the dealers hand actually contains at end of turn
-            turnDealer.currentPlayerHand[0].Hidden = false;
-            foreach (Card card in turnDealer.currentPlayerHand)
+            turnDealer.CurrentPlayerHand[0].Hidden = false;
+            foreach (Card card in turnDealer.CurrentPlayerHand)
             {
                 addImage(card.CardImage, "dealer");
             }
             turnForm.dealerBetDescriptionLabel.Text = "Current Total";
-            turnForm.dealerTotalLabel.Text = turnDealer.ValueOfHand.ToString();
+            turnForm.dealerTotalLabel.Text = turnDealer.CurrentValueOfHand.ToString();
             turnForm.hitButton.Visible = false;
             turnForm.standButton.Visible = false;
             turnForm.continueButton.Visible = true;
-            turnForm.currentMoneyLabel.Text = (turnPlayer.AmountOfMoney).ToString();
+            turnForm.currentMoneyLabel.Text = (turnPlayer.CurrentAmountOfMoney).ToString();
         }
     }
 }
