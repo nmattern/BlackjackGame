@@ -32,6 +32,8 @@ namespace BlackJackApplication
 
         private void startScreenForm_Load(object sender, EventArgs e)
         {
+            DatabaseAccess databaseAccess = new DatabaseAccess();
+            databaseAccess.testConnection();
             CenterToScreen();
             this.initialAmountTxtBx.Select();
         }
