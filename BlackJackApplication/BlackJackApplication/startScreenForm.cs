@@ -117,7 +117,8 @@ namespace BlackJackApplication
 
         private void createProfileButton_Click(object sender, EventArgs e)
         {
-
+            CreateProfileForm profileForm = new CreateProfileForm();
+            profileForm.Show();
         }
     }
 }
