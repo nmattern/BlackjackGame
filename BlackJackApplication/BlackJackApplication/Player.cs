@@ -9,7 +9,7 @@ namespace BlackJackApplication
 {
     class Player
     {
-        private int FBID;
+        private int playerFBID;
         private string username;
         private string password;
         private string recovQ;
@@ -24,6 +24,19 @@ namespace BlackJackApplication
         private List<Card> currentPlayerHand = new List<Card>();
         private List<PictureBox> pictureBoxes = new List<PictureBox>();
 
+        public Player(int phone, string address, string name, int creditC, string recovA, string recovQ, string password, string username, int playerFBID)
+        {
+            Phone = phone;
+            Address = address;
+            Name = name;
+            CreditC = creditC;
+            RecovA = recovA;
+            RecovQ = recovQ;
+            Password = password;
+            Username = username;
+            PlayerFBID = playerFBID;
+        }
+
         public int Phone { get => phone; set => phone = value; }
         public string Address { get => address; set => address = value; }
         public string Name { get => name; set => name = value; }
@@ -32,7 +45,7 @@ namespace BlackJackApplication
         public string RecovQ { get => recovQ; set => recovQ = value; }
         public string Password { get => password; set => password = value; }
         public string Username { get => username; set => username = value; }
-        public int FBID1 { get => FBID; set => FBID = value; }
+        public int PlayerFBID { get => playerFBID; set => playerFBID = value; }
         public List<PictureBox> PictureBoxes { get => pictureBoxes; set => pictureBoxes = value; }
         public int CurrentValueOfHand { get => currentValueOfHand; set => currentValueOfHand = value; }
         public int CurrentAmountOfMoney { get => currentAmountofMoney; set => currentAmountofMoney = value; }

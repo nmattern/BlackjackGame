@@ -135,6 +135,7 @@ namespace BlackJackApplication
             // First we have to validate the value of the hidden card in case it is a string
             int valueOfFirstCard = 0;
             int number;
+
             string firstCardValue = (turnDealer.CurrentPlayerHand[0].Value);
             if (firstCardValue == "king" || firstCardValue == "queen" || firstCardValue == "jack")
             {
@@ -144,6 +145,7 @@ namespace BlackJackApplication
             {
                 valueOfFirstCard = (int)number;
             }
+
             // Once the card is evaluated we can continue like normal
             turnForm.dealerTotalLabel.Text = (turnDealer.CurrentValueOfHand - valueOfFirstCard).ToString();
             turnForm.playerTotalLabel.Text = turnPlayer.CurrentValueOfHand.ToString();

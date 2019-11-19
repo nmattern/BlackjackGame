@@ -38,9 +38,10 @@
             this.plusButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.p1SigninButton = new System.Windows.Forms.Button();
-            this.p2SigninButton = new System.Windows.Forms.Button();
             this.p3SigninButton = new System.Windows.Forms.Button();
+            this.p2SigninButton = new System.Windows.Forms.Button();
+            this.p1SigninButton = new System.Windows.Forms.Button();
+            this.createProfileButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +82,7 @@
             // 
             this.initialAmountTxtBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.initialAmountTxtBx.Location = new System.Drawing.Point(487, 383);
-            this.initialAmountTxtBx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.initialAmountTxtBx.Margin = new System.Windows.Forms.Padding(2);
             this.initialAmountTxtBx.Name = "initialAmountTxtBx";
             this.initialAmountTxtBx.Size = new System.Drawing.Size(196, 30);
             this.initialAmountTxtBx.TabIndex = 3;
@@ -89,7 +90,7 @@
             // manageProfile
             // 
             this.manageProfile.Location = new System.Drawing.Point(38, 172);
-            this.manageProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.manageProfile.Margin = new System.Windows.Forms.Padding(2);
             this.manageProfile.Name = "manageProfile";
             this.manageProfile.Size = new System.Drawing.Size(91, 19);
             this.manageProfile.TabIndex = 4;
@@ -153,15 +154,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sign In";
             // 
-            // p1SigninButton
+            // p3SigninButton
             // 
-            this.p1SigninButton.Location = new System.Drawing.Point(6, 15);
-            this.p1SigninButton.Name = "p1SigninButton";
-            this.p1SigninButton.Size = new System.Drawing.Size(75, 23);
-            this.p1SigninButton.TabIndex = 9;
-            this.p1SigninButton.Text = "Player 1";
-            this.p1SigninButton.UseVisualStyleBackColor = true;
-            this.p1SigninButton.Click += new System.EventHandler(this.p1SigninButton_Click);
+            this.p3SigninButton.Location = new System.Drawing.Point(7, 71);
+            this.p3SigninButton.Name = "p3SigninButton";
+            this.p3SigninButton.Size = new System.Drawing.Size(75, 23);
+            this.p3SigninButton.TabIndex = 11;
+            this.p3SigninButton.Text = "Player 3";
+            this.p3SigninButton.UseVisualStyleBackColor = true;
+            this.p3SigninButton.Click += new System.EventHandler(this.p3SigninButton_Click);
             // 
             // p2SigninButton
             // 
@@ -173,15 +174,26 @@
             this.p2SigninButton.UseVisualStyleBackColor = true;
             this.p2SigninButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // p3SigninButton
+            // p1SigninButton
             // 
-            this.p3SigninButton.Location = new System.Drawing.Point(7, 71);
-            this.p3SigninButton.Name = "p3SigninButton";
-            this.p3SigninButton.Size = new System.Drawing.Size(75, 23);
-            this.p3SigninButton.TabIndex = 11;
-            this.p3SigninButton.Text = "Player 3";
-            this.p3SigninButton.UseVisualStyleBackColor = true;
-            this.p3SigninButton.Click += new System.EventHandler(this.p3SigninButton_Click);
+            this.p1SigninButton.Location = new System.Drawing.Point(6, 15);
+            this.p1SigninButton.Name = "p1SigninButton";
+            this.p1SigninButton.Size = new System.Drawing.Size(75, 23);
+            this.p1SigninButton.TabIndex = 9;
+            this.p1SigninButton.Text = "Player 1";
+            this.p1SigninButton.UseVisualStyleBackColor = true;
+            this.p1SigninButton.Click += new System.EventHandler(this.p1SigninButton_Click);
+            // 
+            // createProfileButton
+            // 
+            this.createProfileButton.Location = new System.Drawing.Point(38, 149);
+            this.createProfileButton.Margin = new System.Windows.Forms.Padding(2);
+            this.createProfileButton.Name = "createProfileButton";
+            this.createProfileButton.Size = new System.Drawing.Size(91, 19);
+            this.createProfileButton.TabIndex = 10;
+            this.createProfileButton.Text = "Create Profile";
+            this.createProfileButton.UseVisualStyleBackColor = true;
+            this.createProfileButton.Click += new System.EventHandler(this.createProfileButton_Click);
             // 
             // startScreenForm
             // 
@@ -189,6 +201,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(999, 609);
+            this.Controls.Add(this.createProfileButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.manageProfile);
             this.Controls.Add(this.initialAmountTxtBx);
@@ -220,5 +233,6 @@
         private System.Windows.Forms.Button p3SigninButton;
         private System.Windows.Forms.Button p2SigninButton;
         private System.Windows.Forms.Button p1SigninButton;
+        private System.Windows.Forms.Button createProfileButton;
     }
 }

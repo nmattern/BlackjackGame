@@ -114,5 +114,10 @@ namespace BlackJackApplication
             SignInForm signin = new SignInForm(3);
             signin.Show();
         }
+
+        private void createProfileButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

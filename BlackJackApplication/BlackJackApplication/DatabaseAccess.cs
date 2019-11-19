@@ -30,13 +30,12 @@ namespace BlackJackApplication
             }
         }
 
-        public async void createPlayer()
+        public async void createPlayer(Player player)
         {
-            Player player = new Player();
             SetResponse response = await client.SetAsync<Player>("Players", player);
             Player result = response.ResultAs<Player>();
 
-            Console.WriteLine("Player Created" + player.FBID1);
+            Console.WriteLine("Player Created" + player.PlayerFBID);
         }
     }
 }
