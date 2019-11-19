@@ -33,7 +33,7 @@ namespace BlackJackApplication
         public async void createPlayer(Player player)
         {
             client = new FireSharp.FirebaseClient(config);
-            SetResponse response = await client.SetAsync<Player>("Players", player);
+            SetResponse response = await client.SetAsync<Player>("Players/" + player.PlayerFBID, player);
             Player result = response.ResultAs<Player>();
 
             Console.WriteLine("Player Created" + player.PlayerFBID);
@@ -47,11 +47,12 @@ namespace BlackJackApplication
                 "address",
                 "name",
                 111111111,
-                "Dog",
                 "What is your first pets name?",
+                "Dog",
                 "password",
                 "testuser",
-                1);
+                1
+           );
 
             SetResponse response = await client.SetAsync<Player>("Players/"+player.Username, player);
             Player result = response.ResultAs<Player>();

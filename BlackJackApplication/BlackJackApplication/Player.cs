@@ -25,15 +25,15 @@ namespace BlackJackApplication
         private List<PictureBox> pictureBoxes = new List<PictureBox>();
 
         public Player(int phone = 0000000000, string address = "", string name = "test",
-            int creditC = 0000000000000000, string recovA = "", string recovQ = "",
+            int creditC = 0000000000000000, string recovQ = "", string recovA = "" ,
             string password = "", string username = "", int playerFBID = 0)
         {
             Phone = phone;
             Address = address;
             Name = name;
             CreditC = creditC;
-            RecovA = recovA;
             RecovQ = recovQ;
+            RecovA = recovA;
             Password = password;
             Username = username;
             PlayerFBID = playerFBID;
