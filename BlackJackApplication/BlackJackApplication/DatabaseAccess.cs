@@ -24,7 +24,7 @@ namespace BlackJackApplication
         {
             client = new FireSharp.FirebaseClient(config);
 
-            if(client != null)
+            if (client != null)
             {
                 Console.WriteLine("Connection Established");
             }
@@ -32,6 +32,26 @@ namespace BlackJackApplication
 
         public async void createPlayer(Player player)
         {
+            SetResponse response = await client.SetAsync<Player>("Players", player);
+            Player result = response.ResultAs<Player>();
+
+            Console.WriteLine("Player Created" + player.PlayerFBID);
+        }
+
+        public async void testCreatePlayer()
+        {
+            Player player = new Player
+                (
+                1234567890,
+                "address",
+                "name",
+                111111111,
+                "Dog",
+                "What is your first pets name?",
+                "password",
+                "testuser",
+                1);
+
             SetResponse response = await client.SetAsync<Player>("Players", player);
             Player result = response.ResultAs<Player>();
 
