@@ -24,7 +24,9 @@ namespace BlackJackApplication
         private List<Card> currentPlayerHand = new List<Card>();
         private List<PictureBox> pictureBoxes = new List<PictureBox>();
 
-        public Player(int phone, string address, string name, int creditC, string recovA, string recovQ, string password, string username, int playerFBID)
+        public Player(int phone = 0000000000, string address = "", string name = "test",
+            int creditC = 0000000000000000, string recovA = "", string recovQ = "",
+            string password = "", string username = "", int playerFBID = 0)
         {
             Phone = phone;
             Address = address;
