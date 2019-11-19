@@ -34,6 +34,7 @@ namespace BlackJackApplication
         {
             DatabaseAccess databaseAccess = new DatabaseAccess();
             databaseAccess.testConnection();
+            databaseAccess.testCreatePlayer();
             CenterToScreen();
             this.initialAmountTxtBx.Select();
             checkPlayerLabelState();
