@@ -18,9 +18,25 @@ namespace BlackJackApplication
             BasePath = "https://blackjack-game-37aea.firebaseio.com/"
         };
 
+        IFirebaseClient client;
+
         public void testConnection()
         {
-            Console.WriteLine("Connection Established");
+            client = new FireSharp.FirebaseClient(config);
+
+            if(client != null)
+            {
+                Console.WriteLine("Connection Established");
+            }
+        }
+
+        public async void createPlayer()
+        {
+            Player player = new Player();
+            SetResponse response = await client.SetAsync<Player>("Players", player);
+            Player result = response.ResultAs<Player>();
+
+            Console.WriteLine("Player Created" + player.FBID1);
         }
     }
 }
