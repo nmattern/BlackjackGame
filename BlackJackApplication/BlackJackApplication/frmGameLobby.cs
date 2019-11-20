@@ -16,5 +16,15 @@ namespace BlackJackApplication
         {
             InitializeComponent();
         }
+
+        private void startGameButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void joinGameButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
