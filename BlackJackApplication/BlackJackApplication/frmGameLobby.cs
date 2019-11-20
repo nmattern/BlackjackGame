@@ -17,7 +17,7 @@ namespace BlackJackApplication
         internal frmGameLobby(Player p, DatabaseAccess db)
         {
             InitializeComponent();
-            players[0] = p;
+            players.Add(p);
             database = db;
         }
 
