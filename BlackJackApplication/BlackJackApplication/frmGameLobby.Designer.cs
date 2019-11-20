@@ -47,6 +47,7 @@
             this.setAmountLabel = new System.Windows.Forms.Label();
             this.setAmountTextBox = new System.Windows.Forms.TextBox();
             this.AdjustMoneyErrorMessageLabel = new System.Windows.Forms.Label();
+            this.adjustMoneyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lobbyLabel
@@ -208,7 +209,7 @@
             // 
             // setAmountTextBox
             // 
-            this.setAmountTextBox.Location = new System.Drawing.Point(124, 6);
+            this.setAmountTextBox.Location = new System.Drawing.Point(11, 29);
             this.setAmountTextBox.Name = "setAmountTextBox";
             this.setAmountTextBox.Size = new System.Drawing.Size(102, 20);
             this.setAmountTextBox.TabIndex = 17;
@@ -223,12 +224,23 @@
             this.AdjustMoneyErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
             this.AdjustMoneyErrorMessageLabel.TabIndex = 20;
             // 
+            // adjustMoneyButton
+            // 
+            this.adjustMoneyButton.Location = new System.Drawing.Point(11, 55);
+            this.adjustMoneyButton.Name = "adjustMoneyButton";
+            this.adjustMoneyButton.Size = new System.Drawing.Size(107, 23);
+            this.adjustMoneyButton.TabIndex = 21;
+            this.adjustMoneyButton.Text = "Adjust Money";
+            this.adjustMoneyButton.UseVisualStyleBackColor = true;
+            this.adjustMoneyButton.Click += new System.EventHandler(this.adjustMoneyButton_Click);
+            // 
             // frmGameLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.adjustMoneyButton);
             this.Controls.Add(this.AdjustMoneyErrorMessageLabel);
             this.Controls.Add(this.startingAmountValidLabel);
             this.Controls.Add(this.setAmountLabel);
@@ -277,5 +289,6 @@
         private System.Windows.Forms.Label setAmountLabel;
         private System.Windows.Forms.TextBox setAmountTextBox;
         private System.Windows.Forms.Label AdjustMoneyErrorMessageLabel;
+        private System.Windows.Forms.Button adjustMoneyButton;
     }
 }

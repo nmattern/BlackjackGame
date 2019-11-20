@@ -78,11 +78,6 @@ namespace BlackJackApplication
             gameLobbyInstance.FormClosed += (s, args) => this.Close();
         }
 
-        public async void updatePlayerMoney(int playerMoney)
-        {
-            await database.modifyEntirePlayer(player);
-        }
-
 
 
         private void frmMainMenu_Load(object sender, EventArgs e)
