@@ -43,8 +43,8 @@ namespace BlackJackApplication
 
         private void ManageProfile_Click(object sender, EventArgs e)
         {
-            var profileForm = new ProfileForm();
-            profileForm.Show();
+            //var profileForm = new ProfileForm();
+            //profileForm.Show();
         }
 
         private void numPlayersLabel_Click(object sender, EventArgs e)

@@ -12,63 +12,45 @@ namespace BlackJackApplication
 {
     public partial class ProfileForm : Form
     {
-        public ProfileForm()
+        Player player;
+        bool Valid = false;
+        DatabaseAccess database;
+        internal ProfileForm(Player p, DatabaseAccess db)
         {
             InitializeComponent();
+            player = p;
+            database = db;
         }
 
-        private void profileNameLabel_Click(object sender, EventArgs e)
+        private async void confirmButton_Click(object sender, EventArgs e)
         {
-            profileNameTextBox.Visible = true;
-        }
-
-        private void nameFocusLost(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
+            if (this.profileNameTextBox.Text.All(char.IsLetter) == true)
             {
-                profileNameTextBox.Visible = false;
-                profileNameLabel.Text = profileNameTextBox.Text;
+                if (this.profilePhoneNumberTextBox.Text.Length <= 11 && this.profilePhoneNumberTextBox.Text.Length > 9)
+                {
+                    if (this.profileCreditCardTextBox.Text.Length == 16)
+                    {
+                        Valid = true;
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            if (Valid == true)
+            {
+                player.Name = this.profileNameTextBox.Text;
+                player.Address = this.profileAddressTextBox.Text;
+                player.Phone = Convert.ToInt64(this.profilePhoneNumberTextBox.Text);
+                player.CreditC = Convert.ToInt64(this.profileCreditCardTextBox.Text);
+                await database.modifyPlayer(player);
+                this.Close();
             }
         }
 
-        private void profileAddressLabel_Click(object sender, EventArgs e)
+        private void ProfileForm_Load(object sender, EventArgs e)
         {
-            profileAddressTextBox.Visible = true;
-        }
-
-        private void addressFocusLost(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                profileAddressTextBox.Visible = false;
-                profileAddressLabel.Text = profileAddressTextBox.Text;
-            }
-        }
-
-        private void ProfilePhoneNumberLabel_Click(object sender, EventArgs e)
-        {
-            profilePhoneNumberTextBox.Visible = true;
-        }
-        private void phoneNumberFocusLost(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                profilePhoneNumberTextBox.Visible = false;
-                profilePhoneNumberLabel.Text = profilePhoneNumberTextBox.Text;
-            }
-        }
-        private void ProfileCreditCardLabel_Click(object sender, EventArgs e)
-        {
-            profileCreditCardTextBox.Visible = true;
-        }
-
-        private void creditCardFocusLost(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                profileCreditCardTextBox.Visible = false;
-                profileCreditCardLabel.Text = profileCreditCardTextBox.Text;
-            }
         }
     }
 }

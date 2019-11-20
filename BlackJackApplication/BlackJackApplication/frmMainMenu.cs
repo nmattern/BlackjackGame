@@ -19,10 +19,25 @@ namespace BlackJackApplication
             InitializeComponent();
         }
 
+        internal Player givePlayer()
+        {
+            return player;
+        }
+        internal DatabaseAccess giveDB()
+        {
+            return database;
+        }
+
         private void manageProfileButton_Click(object sender, EventArgs e)
         {
-            ProfileForm profile = new ProfileForm();
-            profile.Show();
+            var profileInstance = new ProfileForm(player, database);
+            profileInstance.Location = this.Location;
+            this.Hide();
+            // This is an event handler for the closing of a child form
+            // Passes the subject (child form) and arguments to close 
+            // Parent form as well
+            profileInstance.Show();
+            profileInstance.FormClosed += (s, args) => this.Show();
         }
 
         private void signOutButton_Click(object sender, EventArgs e)
@@ -53,8 +68,7 @@ namespace BlackJackApplication
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            updatePlayerMoney(Convert.ToInt32(setAmountTextBox.Text));
-            var gameLobbyInstance = new frmGameLobby();
+            var gameLobbyInstance = new frmGameLobby(player, database);
             gameLobbyInstance.Location = this.Location;
             this.Hide();
             // This is an event handler for the closing of a child form
@@ -69,23 +83,11 @@ namespace BlackJackApplication
             await database.modifyPlayer(player);
         }
 
-        private void setAmountTextBox_TextChanged(object sender, EventArgs e)
+
+
+        private void frmMainMenu_Load(object sender, EventArgs e)
         {
-            int number;
-            bool betContainsOnlyDigits = Int32.TryParse(this.setAmountTextBox.Text, out number);
-            if (betContainsOnlyDigits && this.setAmountTextBox.Text != "")
-            {
-                // TODO update player money value in database
-                player.CurrentAmountOfMoney = Convert.ToInt32(setAmountTextBox.Text);
-            }
-            else if (this.setAmountTextBox.Text == "")
-            {
-                startingAmountValidLabel.Text = "Enter a number";
-            }
-            else
-            {
-                startingAmountValidLabel.Text = "Not Valid";
-            }
+
         }
     }
 }
