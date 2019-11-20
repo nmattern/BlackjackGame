@@ -12,6 +12,8 @@ namespace BlackJackApplication
 {
     public partial class frmLogin : Form
     {
+        DatabaseAccess database = new DatabaseAccess();
+
         public frmLogin()
         {
             InitializeComponent();
@@ -23,13 +25,12 @@ namespace BlackJackApplication
 
         }
 
-        private void signInButton_Click(object sender, EventArgs e)
+        private async void signInButton_Click(object sender, EventArgs e)
         {
-            DatabaseAccess database = new DatabaseAccess();
-            database.isLoginValid(usernameTextBox.Text, passwordTextBox.Text);
+            await database.returnPlayer(usernameTextBox.Text);
+            await database.isLoginValid(usernameTextBox.Text, passwordTextBox.Text);
             if (database.LoginValid)
             {
-                database.returnPlayer(usernameTextBox.Text);
                 var mainMenuInstance = new frmMainMenu();
                 mainMenuInstance.Show();
                 mainMenuInstance.Location = this.Location;
