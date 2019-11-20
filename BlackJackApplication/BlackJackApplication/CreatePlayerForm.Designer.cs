@@ -48,6 +48,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.submitButton = new System.Windows.Forms.Button();
+            this.nameErrorLabel = new System.Windows.Forms.Label();
+            this.usernameErrorLabel = new System.Windows.Forms.Label();
+            this.confPasswordErrorLabel = new System.Windows.Forms.Label();
+            this.passwordErrorLabel = new System.Windows.Forms.Label();
+            this.recovAErrorLabel = new System.Windows.Forms.Label();
+            this.recovQErrorLabel = new System.Windows.Forms.Label();
+            this.addressErrorLabel = new System.Windows.Forms.Label();
+            this.creditCardErrorLabel = new System.Windows.Forms.Label();
+            this.phoneErrorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -225,12 +234,93 @@
             this.submitButton.UseVisualStyleBackColor = true;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
+            // nameErrorLabel
+            // 
+            this.nameErrorLabel.AutoSize = true;
+            this.nameErrorLabel.Location = new System.Drawing.Point(487, 145);
+            this.nameErrorLabel.Name = "nameErrorLabel";
+            this.nameErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.nameErrorLabel.TabIndex = 20;
+            // 
+            // usernameErrorLabel
+            // 
+            this.usernameErrorLabel.AutoSize = true;
+            this.usernameErrorLabel.Location = new System.Drawing.Point(487, 171);
+            this.usernameErrorLabel.Name = "usernameErrorLabel";
+            this.usernameErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.usernameErrorLabel.TabIndex = 21;
+            // 
+            // confPasswordErrorLabel
+            // 
+            this.confPasswordErrorLabel.AutoSize = true;
+            this.confPasswordErrorLabel.Location = new System.Drawing.Point(487, 224);
+            this.confPasswordErrorLabel.Name = "confPasswordErrorLabel";
+            this.confPasswordErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.confPasswordErrorLabel.TabIndex = 23;
+            // 
+            // passwordErrorLabel
+            // 
+            this.passwordErrorLabel.AutoSize = true;
+            this.passwordErrorLabel.Location = new System.Drawing.Point(487, 198);
+            this.passwordErrorLabel.Name = "passwordErrorLabel";
+            this.passwordErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.passwordErrorLabel.TabIndex = 22;
+            // 
+            // recovAErrorLabel
+            // 
+            this.recovAErrorLabel.AutoSize = true;
+            this.recovAErrorLabel.Location = new System.Drawing.Point(487, 277);
+            this.recovAErrorLabel.Name = "recovAErrorLabel";
+            this.recovAErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.recovAErrorLabel.TabIndex = 25;
+            // 
+            // recovQErrorLabel
+            // 
+            this.recovQErrorLabel.AutoSize = true;
+            this.recovQErrorLabel.Location = new System.Drawing.Point(487, 251);
+            this.recovQErrorLabel.Name = "recovQErrorLabel";
+            this.recovQErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.recovQErrorLabel.TabIndex = 24;
+            // 
+            // addressErrorLabel
+            // 
+            this.addressErrorLabel.AutoSize = true;
+            this.addressErrorLabel.Location = new System.Drawing.Point(487, 331);
+            this.addressErrorLabel.Name = "addressErrorLabel";
+            this.addressErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.addressErrorLabel.TabIndex = 27;
+            // 
+            // creditCardErrorLabel
+            // 
+            this.creditCardErrorLabel.AutoSize = true;
+            this.creditCardErrorLabel.Location = new System.Drawing.Point(487, 305);
+            this.creditCardErrorLabel.Name = "creditCardErrorLabel";
+            this.creditCardErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.creditCardErrorLabel.TabIndex = 26;
+            // 
+            // phoneErrorLabel
+            // 
+            this.phoneErrorLabel.AutoSize = true;
+            this.phoneErrorLabel.Location = new System.Drawing.Point(487, 357);
+            this.phoneErrorLabel.Name = "phoneErrorLabel";
+            this.phoneErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.phoneErrorLabel.TabIndex = 28;
+            // 
             // CreateProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.phoneErrorLabel);
+            this.Controls.Add(this.addressErrorLabel);
+            this.Controls.Add(this.creditCardErrorLabel);
+            this.Controls.Add(this.recovAErrorLabel);
+            this.Controls.Add(this.recovQErrorLabel);
+            this.Controls.Add(this.confPasswordErrorLabel);
+            this.Controls.Add(this.passwordErrorLabel);
+            this.Controls.Add(this.usernameErrorLabel);
+            this.Controls.Add(this.nameErrorLabel);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nameTextBox);
@@ -280,5 +370,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Button submitButton;
+        private System.Windows.Forms.Label nameErrorLabel;
+        private System.Windows.Forms.Label usernameErrorLabel;
+        private System.Windows.Forms.Label confPasswordErrorLabel;
+        private System.Windows.Forms.Label passwordErrorLabel;
+        private System.Windows.Forms.Label recovAErrorLabel;
+        private System.Windows.Forms.Label recovQErrorLabel;
+        private System.Windows.Forms.Label addressErrorLabel;
+        private System.Windows.Forms.Label creditCardErrorLabel;
+        private System.Windows.Forms.Label phoneErrorLabel;
     }
 }

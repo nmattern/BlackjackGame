@@ -12,6 +12,8 @@ namespace BlackJackApplication
 {
     class DatabaseAccess
     {
+        private bool playerExists;
+
         IFirebaseConfig config = new FirebaseConfig
         {
             AuthSecret = Credentials.ApiKey,
@@ -19,6 +21,8 @@ namespace BlackJackApplication
         };
 
         IFirebaseClient client;
+
+        public bool PlayerExists { get => this.playerExists; set => this.playerExists = value; }
 
         public void testConnection()
         {
@@ -34,38 +38,30 @@ namespace BlackJackApplication
         public async void createPlayer(Player player)
         {
             client = new FireSharp.FirebaseClient(config);
-            SetResponse response = await client.SetAsync<Player>("Players/" + player.PlayerFBID, player);
+            SetResponse response = await client.SetAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
 
-            Console.WriteLine("Player Created" + player.PlayerFBID);
+            Console.WriteLine("Player Created" + player.Username);
         }
 
         //  Verify if the user exists and return a boolean
         public async void doesPlayerExist(string username)
         {
+            client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = await client.GetAsync("Players/" + username);
             Player player = response.ResultAs<Player>();
             if (player != null)
             {
+                playerExists = true;
                 Console.WriteLine("Player Exists");
             }
             else
             {
+                playerExists = false;
                 Console.WriteLine("Player does not exist");
             }
-            playerExists(player);
         }
 
-        public bool playerExists(Player player)
-        {
-            if (player != null)
-            {
-                return true;
-            }
-            else 
-            {
-                return false;
-            }
-        }
+        
     }
 }
