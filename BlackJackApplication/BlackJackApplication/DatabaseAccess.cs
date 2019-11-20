@@ -12,7 +12,7 @@ namespace BlackJackApplication
 {
     class DatabaseAccess
     {
-        private bool playerExists;
+        private bool playerExists = true;
         private bool loginValid;
 
         public static IFirebaseConfig config = new FirebaseConfig
