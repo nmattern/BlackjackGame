@@ -58,5 +58,10 @@ namespace BlackJackApplication
         {
 
         }
+
+        private async void adjustMoneyButton_Click(object sender, EventArgs e)
+        {
+            await database.modifyEntirePlayer(playerList[0]);
+        }
     }
 }
