@@ -13,6 +13,7 @@ namespace BlackJackApplication
     class DatabaseAccess
     {
         private bool playerExists;
+        private bool loginValid;
 
         public static IFirebaseConfig config = new FirebaseConfig
         {
@@ -23,6 +24,7 @@ namespace BlackJackApplication
         IFirebaseClient client = new FireSharp.FirebaseClient(config);
 
         public bool PlayerExists { get => this.playerExists; set => this.playerExists = value; }
+        public bool LoginValid { get => this.loginValid; set => this.loginValid = value; }
 
         public void testConnection()
         {
@@ -56,6 +58,21 @@ namespace BlackJackApplication
             {
                 playerExists = false;
                 Console.WriteLine("Player does not exist");
+            }
+        }
+
+        // Validate if a login is valid
+        public async void isLoginValid(string username, string password)
+        {
+            FirebaseResponse response = await client.GetAsync("Players/" + username);
+            Player player = response.ResultAs<Player>();
+            if (player.Password == password)
+            {
+                LoginValid = true;
+            }
+            else
+            {
+                LoginValid = false;
             }
         }
 
