@@ -132,6 +132,9 @@
     <EmbeddedResource Include="CreatePlayerForm.resx">
       <DependentUpon>CreatePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGameLobby.resx">
+      <DependentUpon>frmGameLobby.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
     </EmbeddedResource>
