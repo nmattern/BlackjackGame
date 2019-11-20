@@ -61,7 +61,7 @@ namespace BlackJackApplication
                     player.Phone = Convert.ToInt64(this.profilePhoneNumberTextBox.Text);
                 }
 
-                await database.modifyPlayer(player);
+                await database.modifyEntirePlayer(player);
                 this.Close();
             }
         }
