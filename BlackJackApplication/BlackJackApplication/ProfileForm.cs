@@ -26,14 +26,18 @@ namespace BlackJackApplication
         {
             if (this.profileNameTextBox.Text.All(char.IsLetter) == true || this.profileNameTextBox.Text == "")
             {
+                this.nameErrorLabel.Text = "";
                 if (this.profilePhoneNumberTextBox.Text.Length <= 11 
                     && this.profilePhoneNumberTextBox.Text.Length > 9
+                    && this.profilePhoneNumberTextBox.Text.All(char.IsDigit)
                     || this.profilePhoneNumberTextBox.Text == "")
                 {
+                    this.phoneErrorLabel.Text = "";
                     if (this.profileCreditCardTextBox.Text.Length == 16
                         && this.profileNameTextBox.Text.All(char.IsDigit)
                         || this.profileCreditCardTextBox.Text == "")
                     {
+                        this.creditCardErrorLabel.Text = "";
                         Valid = true;
                     }
                     else
@@ -41,6 +45,14 @@ namespace BlackJackApplication
                         this.creditCardErrorLabel.Text = "Credit card must be 16 digit number";
                     }
                 }
+                else 
+                {
+                    this.phoneErrorLabel.Text = "Phone number must be 10-11 digit number";
+                }
+            }
+            else
+            {
+                this.nameErrorLabel.Text = "Name must be only letters";
             }
             if (Valid == true)
             {
@@ -61,7 +73,8 @@ namespace BlackJackApplication
                     player.Phone = Convert.ToInt64(this.profilePhoneNumberTextBox.Text);
                 }
 
-                await database.modifyPlayer(player);
+
+                await database.modifyEntirePlayer(player);
                 this.Close();
             }
         }
