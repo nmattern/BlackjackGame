@@ -43,6 +43,9 @@
             this.PlayerListTitleLabel = new System.Windows.Forms.Label();
             this.addLocalGuestButton = new System.Windows.Forms.Button();
             this.localUserPlayerListLabel = new System.Windows.Forms.Label();
+            this.startingAmountValidLabel = new System.Windows.Forms.Label();
+            this.setAmountLabel = new System.Windows.Forms.Label();
+            this.setAmountTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lobbyLabel
@@ -184,12 +187,41 @@
             this.localUserPlayerListLabel.TabIndex = 16;
             this.localUserPlayerListLabel.Text = "LocalUser";
             // 
+            // startingAmountValidLabel
+            // 
+            this.startingAmountValidLabel.AutoSize = true;
+            this.startingAmountValidLabel.ForeColor = System.Drawing.Color.Red;
+            this.startingAmountValidLabel.Location = new System.Drawing.Point(234, 9);
+            this.startingAmountValidLabel.Name = "startingAmountValidLabel";
+            this.startingAmountValidLabel.Size = new System.Drawing.Size(0, 13);
+            this.startingAmountValidLabel.TabIndex = 19;
+            // 
+            // setAmountLabel
+            // 
+            this.setAmountLabel.AutoSize = true;
+            this.setAmountLabel.Location = new System.Drawing.Point(8, 9);
+            this.setAmountLabel.Name = "setAmountLabel";
+            this.setAmountLabel.Size = new System.Drawing.Size(110, 13);
+            this.setAmountLabel.TabIndex = 18;
+            this.setAmountLabel.Text = "Adjust Money Amount";
+            // 
+            // setAmountTextBox
+            // 
+            this.setAmountTextBox.Location = new System.Drawing.Point(124, 6);
+            this.setAmountTextBox.Name = "setAmountTextBox";
+            this.setAmountTextBox.Size = new System.Drawing.Size(102, 20);
+            this.setAmountTextBox.TabIndex = 17;
+            this.setAmountTextBox.TextChanged += new System.EventHandler(this.setAmountTextBox_TextChanged);
+            // 
             // frmGameLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.startingAmountValidLabel);
+            this.Controls.Add(this.setAmountLabel);
+            this.Controls.Add(this.setAmountTextBox);
             this.Controls.Add(this.localUserPlayerListLabel);
             this.Controls.Add(this.addLocalGuestButton);
             this.Controls.Add(this.PlayerListTitleLabel);
@@ -207,6 +239,7 @@
             this.Controls.Add(this.lobbyLabel);
             this.Name = "frmGameLobby";
             this.Text = "frmGameLobby";
+            this.Load += new System.EventHandler(this.frmGameLobby_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,5 +262,8 @@
         private System.Windows.Forms.Label PlayerListTitleLabel;
         private System.Windows.Forms.Button addLocalGuestButton;
         private System.Windows.Forms.Label localUserPlayerListLabel;
+        private System.Windows.Forms.Label startingAmountValidLabel;
+        private System.Windows.Forms.Label setAmountLabel;
+        private System.Windows.Forms.TextBox setAmountTextBox;
     }
 }

@@ -30,12 +30,9 @@
         {
             this.signInLabel = new System.Windows.Forms.Label();
             this.manageProfileButton = new System.Windows.Forms.Button();
-            this.setAmountTextBox = new System.Windows.Forms.TextBox();
-            this.setAmountLabel = new System.Windows.Forms.Label();
             this.playButton = new System.Windows.Forms.Button();
             this.signOutButton = new System.Windows.Forms.Button();
             this.identityLabel = new System.Windows.Forms.Label();
-            this.startingAmountValidLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // signInLabel
@@ -58,23 +55,6 @@
             this.manageProfileButton.Text = "Manage Profile";
             this.manageProfileButton.UseVisualStyleBackColor = true;
             this.manageProfileButton.Click += new System.EventHandler(this.manageProfileButton_Click);
-            // 
-            // setAmountTextBox
-            // 
-            this.setAmountTextBox.Location = new System.Drawing.Point(352, 252);
-            this.setAmountTextBox.Name = "setAmountTextBox";
-            this.setAmountTextBox.Size = new System.Drawing.Size(102, 20);
-            this.setAmountTextBox.TabIndex = 4;
-            this.setAmountTextBox.TextChanged += new System.EventHandler(this.setAmountTextBox_TextChanged);
-            // 
-            // setAmountLabel
-            // 
-            this.setAmountLabel.AutoSize = true;
-            this.setAmountLabel.Location = new System.Drawing.Point(245, 255);
-            this.setAmountLabel.Name = "setAmountLabel";
-            this.setAmountLabel.Size = new System.Drawing.Size(101, 13);
-            this.setAmountLabel.TabIndex = 5;
-            this.setAmountLabel.Text = "Set Starting Amount";
             // 
             // playButton
             // 
@@ -105,32 +85,22 @@
             this.identityLabel.TabIndex = 8;
             this.identityLabel.Text = "Signed in as: ";
             // 
-            // startingAmountValidLabel
-            // 
-            this.startingAmountValidLabel.AutoSize = true;
-            this.startingAmountValidLabel.ForeColor = System.Drawing.Color.Red;
-            this.startingAmountValidLabel.Location = new System.Drawing.Point(471, 255);
-            this.startingAmountValidLabel.Name = "startingAmountValidLabel";
-            this.startingAmountValidLabel.Size = new System.Drawing.Size(0, 13);
-            this.startingAmountValidLabel.TabIndex = 9;
-            // 
             // frmMainMenu
             // 
+            this.AcceptButton = this.playButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.startingAmountValidLabel);
             this.Controls.Add(this.identityLabel);
             this.Controls.Add(this.signOutButton);
             this.Controls.Add(this.playButton);
-            this.Controls.Add(this.setAmountLabel);
-            this.Controls.Add(this.setAmountTextBox);
             this.Controls.Add(this.manageProfileButton);
             this.Controls.Add(this.signInLabel);
             this.Name = "frmMainMenu";
             this.Text = "frmMainMenu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainMenu_FormClosing);
+            this.Load += new System.EventHandler(this.frmMainMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,11 +110,8 @@
 
         private System.Windows.Forms.Label signInLabel;
         private System.Windows.Forms.Button manageProfileButton;
-        private System.Windows.Forms.TextBox setAmountTextBox;
-        private System.Windows.Forms.Label setAmountLabel;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button signOutButton;
         private System.Windows.Forms.Label identityLabel;
-        private System.Windows.Forms.Label startingAmountValidLabel;
     }
 }

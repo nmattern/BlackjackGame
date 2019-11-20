@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BlackJackApplication
 {
-    class Player
+    public class Player
     {
         private int playerFBID;
         private string username;
