@@ -26,7 +26,7 @@ namespace BlackJackApplication
 
         public bool PlayerExists { get => this.playerExists; set => this.playerExists = value; }
         public bool LoginValid { get => this.loginValid; set => this.loginValid = value; }
-        internal Player Player { get => player; set => player = value; }
+        internal Player CurrentPlayer { get => this.player; set => this.player = value; }
 
         public void testConnection()
         {
@@ -38,7 +38,7 @@ namespace BlackJackApplication
         }
 
         // Create a player entry in the database
-        public async void createPlayer(Player player)
+        public async Task createPlayer(Player player)
         {
             SetResponse response = await client.SetAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
@@ -46,7 +46,7 @@ namespace BlackJackApplication
             Console.WriteLine("Player Created " + player.Username);
         }
 
-        public async void modifyPlayer(Player player)
+        public async Task modifyPlayer(Player player)
         {
             FirebaseResponse response = await client.UpdateAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
@@ -55,15 +55,15 @@ namespace BlackJackApplication
         }
 
         // Grabs the player class from the databased assigned to that username
-        public async void returnPlayer(string username)
+        public async Task returnPlayer(string username)
         {
             FirebaseResponse response = await client.GetAsync("Players/" + username);
             Player databasePlayer = response.ResultAs<Player>();
-            Player = databasePlayer;
+            CurrentPlayer = databasePlayer;
         }
 
         //  Verify if the user exists and return a boolean
-        public async void doesPlayerExist(string username)
+        public async Task doesPlayerExist(string username)
         {
             FirebaseResponse response = await client.GetAsync("Players/" + username);
             Player player = response.ResultAs<Player>();
@@ -80,11 +80,11 @@ namespace BlackJackApplication
         }
 
         // Validate if a login is valid
-        public async void isLoginValid(string username, string password)
+        public async Task isLoginValid(string username, string password)
         {
             FirebaseResponse response = await client.GetAsync("Players/" + username);
             Player player = response.ResultAs<Player>();
-            if (player.Password == password)
+            if (player.Password.Trim() == password.Trim())
             {
                 LoginValid = true;
             }
