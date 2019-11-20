@@ -18,6 +18,18 @@ namespace BlackJackApplication
             InitializeComponent();
         }
 
+        private void clearErrorLabels()
+        {
+            nameErrorLabel.Text = "";
+            creditCardErrorLabel.Text = "";
+            phoneErrorLabel.Text = "";
+        }
+
+        private void clearTextBoxes()
+        {
+            this.nameTextBox.Text = "";
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -28,31 +40,31 @@ namespace BlackJackApplication
             bool verified = true;
             if (!this.nameTextBox.Text.All(char.IsLetter))
             {
-                // error message
+                nameErrorLabel.Text = "Name must only contain letters";
                 verified = false;
             }
             if (!this.creditCardTextBox.Text.All(char.IsDigit))
             {
-                // error not all nums
+                creditCardErrorLabel.Text = "Credit card number must only contain numbers";
                 if(this.creditCardTextBox.Text.Length != 16)
                 {
-                    // wrong length error / not valid credit card
+                    creditCardErrorLabel.Text = "Credit card number must be in format '1234123412341234'";
                 }
                 verified = false;
             }
             if(!this.phoneTextBox.Text.All(char.IsDigit))
             {
-                //error not all nums
-                if (this.phoneTextBox.Text.Length > 8 || this.phoneTextBox.Text.Length < 7)
+                phoneErrorLabel.Text = "Phone number must only contain numbers";
+                if (this.phoneTextBox.Text.Length > 11 || this.phoneTextBox.Text.Length < 10)
                 {
-                    //not valid phone # error
+                    phoneErrorLabel.Text = "Phone number must be 10-11 characters long";
                 }
                 verified = false;
             }
 
-            if (verified == true) 
+            database.doesPlayerExist(this.usernameTextBox.Text);
+            if (verified == true && database.PlayerExists == false) // so long as all fields are verified and the player is not in the db
             {
-                Console.WriteLine("made it");
                 Player newplayer = new Player(
                 Convert.ToInt64(phoneTextBox.Text), this.addressTextBox.Text, this.nameTextBox.Text,
                 Convert.ToInt64(creditCardTextBox.Text), this.recovQTextBox.Text, this.recovATextBox.Text,
