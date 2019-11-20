@@ -10,14 +10,12 @@ using System.Windows.Forms;
 
 namespace BlackJackApplication
 {
-    public partial class SignInForm : Form
+    public partial class frmLogin : Form
     {
-        int playerNum = 0;
-        public SignInForm(int playerNumber)
+        public frmLogin()
         {
             InitializeComponent();
-            playerNum = playerNumber;
-            signInLabel.Text = "Player " + Convert.ToString(playerNumber) + " Sign In";
+            signInLabel.Text = "Player Sign In";
         }
 
         private void usernameTextBox_TextChanged(object sender, EventArgs e)
