@@ -44,6 +44,14 @@ namespace BlackJackApplication
             Console.WriteLine("Player Created" + player.Username);
         }
 
+        public async void modifyPlayer(Player player)
+        {
+            SetResponse response = await client.SetAsync<Player>("Players/" + player.Username, player);
+            Player result = response.ResultAs<Player>();
+
+            Console.WriteLine("Player Modified" + player.Username);
+        }
+
         //  Verify if the user exists and return a boolean
         public async void doesPlayerExist(string username)
         {
