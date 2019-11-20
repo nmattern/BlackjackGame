@@ -13,6 +13,7 @@ namespace BlackJackApplication
     class DatabaseAccess
     {
         private bool playerExists;
+        private bool loginValid;
 
         IFirebaseConfig config = new FirebaseConfig
         {
@@ -21,8 +22,10 @@ namespace BlackJackApplication
         };
 
         IFirebaseClient client;
+        client = new FireSharp.FirebaseClient(config);
 
         public bool PlayerExists { get => this.playerExists; set => this.playerExists = value; }
+        public bool LoginValid { get => this.loginValid; set => this.loginValid = value; }
 
         public void testConnection()
         {
@@ -37,7 +40,6 @@ namespace BlackJackApplication
         // Create a player entry in the database
         public async void createPlayer(Player player)
         {
-            client = new FireSharp.FirebaseClient(config);
             SetResponse response = await client.SetAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
 
@@ -47,7 +49,6 @@ namespace BlackJackApplication
         //  Verify if the user exists and return a boolean
         public async void doesPlayerExist(string username)
         {
-            client = new FireSharp.FirebaseClient(config);
             FirebaseResponse response = await client.GetAsync("Players/" + username);
             Player player = response.ResultAs<Player>();
             if (player != null)
@@ -59,6 +60,21 @@ namespace BlackJackApplication
             {
                 playerExists = false;
                 Console.WriteLine("Player does not exist");
+            }
+        }
+
+        // Validate if a login is valid
+        public async void isLoginValid(string username, string password)
+        {
+            FirebaseResponse response = await client.GetAsync("Players/" + username);
+            Player player = response.ResultAs<Player>();
+            if (player.Password == password)
+            {
+                LoginValid = true;
+            }
+            else
+            {
+                LoginValid = false;
             }
         }
 
