@@ -15,7 +15,6 @@ namespace BlackJackApplication
         public frmLogin()
         {
             InitializeComponent();
-            signInLabel.Text = "Player Sign In";
         }
 
         private void usernameTextBox_TextChanged(object sender, EventArgs e)
