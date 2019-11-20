@@ -216,6 +216,7 @@ namespace BlackJackApplication
 
         public void hitButtonClick()
         {
+            turnForm.splitButton.Enabled = false;
             turnDealer.dealCard(turnPlayer, turnDeck);
             Image image = turnPlayer.CurrentPlayerHand[turnPlayer.CurrentPlayerHand.Count - 1].CardImage;
             if (hand == 1)
@@ -246,7 +247,7 @@ namespace BlackJackApplication
             } else
             {
                 turnForm.endLabel.Text = "";
-                if (turnPlayer.CurrentValueOfHand > 21 || turnPlayer.CurrentValueOfHand == 21)
+                if (turnPlayer.CurrentValueOfHand > 21 || turnPlayer.CurrentValueOfHand == 21 || secondHand.Value == "ace")
                 {
                     standButtonClick();
                 }
@@ -256,6 +257,7 @@ namespace BlackJackApplication
         // If user stands then the only thing that needs to be handle is the endTurn method
         public void standButtonClick()
         {
+            turnForm.splitButton.Enabled = false;
             if (!turnPlayer.hasSplit)
             {
                 while (turnDealer.CurrentValueOfHand < 17)
@@ -300,6 +302,10 @@ namespace BlackJackApplication
                 turnPlayer.addCardToHand(secondHand);
                 turnForm.playerTotalLabel.Text = turnPlayer.CurrentValueOfHand.ToString();
                 hand = 2;
+                if (secondHand.Value == "ace")
+                {
+                    hitButtonClick();
+                }
             }
             else
             {
@@ -340,12 +346,15 @@ namespace BlackJackApplication
                     } else if (valueOfFirstHand > 21 && valueOfSecondHand <= 21 && valueOfSecondHand > turnDealer.CurrentValueOfHand)
                     {
                         secondHandWins();
-                    } else if (valueOfFirstHand <= 21 &&valueOfSecondHand > 21 && valueOfFirstHand > turnDealer.CurrentValueOfHand)
+                    } else if (valueOfFirstHand <= 21 && valueOfSecondHand > 21 && valueOfFirstHand > turnDealer.CurrentValueOfHand)
                     {
                         firstHandWins();
                     } else if (valueOfFirstHand > 21 && valueOfSecondHand > 21)
                     {
                         bothHandsLose();
+                    } else if (valueOfFirstHand > 21 && valueOfSecondHand <= 21 && turnDealer.CurrentValueOfHand > 21)
+                    {
+                        secondHandWins();
                     } else if ((valueOfFirstHand > 21 && valueOfSecondHand <= 21) || (valueOfFirstHand <= 21 && valueOfSecondHand > 21))
                     {
                         bothHandsLose();
@@ -402,6 +411,10 @@ namespace BlackJackApplication
             secondHand = turnPlayer.CurrentPlayerHand[1];
             turnPlayer.CurrentPlayerHand.RemoveAt(1);
             hand = 1;
+            if (secondHand.Value == "ace")
+            {
+                hitButtonClick();
+            }
         }
 
         public void resetTableTurn()
@@ -428,6 +441,7 @@ namespace BlackJackApplication
             turnForm.splitButton.Visible = false;
             turnPlayer.hasSplit = false;
             turnForm.splitButton.Enabled = true;
+            hand = 1;
             foreach (PictureBox pictureBox in turnPlayer.PictureBoxes)
             {
                 turnForm.Controls.Remove(pictureBox);
