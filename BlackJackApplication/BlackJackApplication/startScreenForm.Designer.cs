@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(startScreenForm));
             this.label1 = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -208,6 +209,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "startScreenForm";
             this.Text = "startScreenForm";
             this.Load += new System.EventHandler(this.startScreenForm_Load);
