@@ -12,12 +12,16 @@ namespace BlackJackApplication
 {
     public partial class frmGameLobby : Form
     {
-        List<Player> players = new List<Player>();
+        List<Player> playerList = new List<Player>();
         DatabaseAccess database;
         internal frmGameLobby(Player p, DatabaseAccess db)
         {
             InitializeComponent();
-            players[0] = p;
+            playerList.Add(p);
+            foreach(Player user in playerList)
+            {
+                Console.WriteLine("User: " + user.Username);
+            }
             database = db;
         }
 
@@ -38,15 +42,15 @@ namespace BlackJackApplication
             if (betContainsOnlyDigits && this.setAmountTextBox.Text != "")
             {
                 // TODO update player money value in database
-                players[0].CurrentAmountOfMoney = Convert.ToInt32(setAmountTextBox.Text);
+                playerList[0].CurrentAmountOfMoney = Convert.ToInt32(setAmountTextBox.Text);
             }
             else if (this.setAmountTextBox.Text == "")
             {
-                startingAmountValidLabel.Text = "Enter a number";
+                AdjustMoneyErrorMessageLabel.Text = "Enter a number";
             }
             else
             {
-                startingAmountValidLabel.Text = "Not Valid";
+                AdjustMoneyErrorMessageLabel.Text = "Not Valid";
             }
         }
 
