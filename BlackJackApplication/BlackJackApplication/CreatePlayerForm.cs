@@ -23,11 +23,19 @@ namespace BlackJackApplication
             nameErrorLabel.Text = "";
             creditCardErrorLabel.Text = "";
             phoneErrorLabel.Text = "";
+            usernameNotValidLabel.Text = "";
         }
 
         private void clearTextBoxes()
         {
             this.nameTextBox.Text = "";
+            this.usernameTextBox.Text = "";
+            this.passwordTextBox.Text = "";
+            this.confirmPasswordTextBox.Text = "";
+            this.phoneTextBox.Text = "";
+            this.creditCardTextBox.Text = "";
+            this.recovQTextBox.Text = "";
+            this.recovATextBox.Text = "";
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -65,11 +73,18 @@ namespace BlackJackApplication
             database.doesPlayerExist(this.usernameTextBox.Text);
             if (verified == true && database.PlayerExists == false) // so long as all fields are verified and the player is not in the db
             {
+                
                 Player newplayer = new Player(
                 Convert.ToInt64(phoneTextBox.Text), this.addressTextBox.Text, this.nameTextBox.Text,
                 Convert.ToInt64(creditCardTextBox.Text), this.recovQTextBox.Text, this.recovATextBox.Text,
                 this.passwordTextBox.Text, this.usernameTextBox.Text, 34);
                 database.createPlayer(newplayer);
+                clearTextBoxes();
+                clearErrorLabels();
+            }
+            else if (database.PlayerExists == true)
+            {
+                this.usernameNotValidLabel.Text = "Username already exists";
             }
             
 
