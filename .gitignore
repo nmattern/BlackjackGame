@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /BlackJackApplication/BlackJackApplication/Resources
+/BlackJackApplication/BlackJackApplication/Credentials.cs
