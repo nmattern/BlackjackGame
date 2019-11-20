@@ -53,6 +53,7 @@ namespace BlackJackApplication
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            updatePlayerMoney(Convert.ToInt32(setAmountTextBox.Text));
             var gameLobbyInstance = new frmGameLobby();
             gameLobbyInstance.Location = this.Location;
             this.Hide();
@@ -61,6 +62,11 @@ namespace BlackJackApplication
             // Parent form as well
             gameLobbyInstance.Show();
             gameLobbyInstance.FormClosed += (s, args) => this.Close();
+        }
+
+        public async void updatePlayerMoney(int playerMoney)
+        {
+            await database.modifyPlayer(player);
         }
 
         private void setAmountTextBox_TextChanged(object sender, EventArgs e)
