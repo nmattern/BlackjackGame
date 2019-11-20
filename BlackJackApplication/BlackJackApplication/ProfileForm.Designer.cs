@@ -38,6 +38,10 @@
             this.profilePhoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.profileCreditCardTextBox = new System.Windows.Forms.TextBox();
             this.confirmButton = new System.Windows.Forms.Button();
+            this.nameErrorLabel = new System.Windows.Forms.Label();
+            this.addressErrorLabel = new System.Windows.Forms.Label();
+            this.phoneErrorLabel = new System.Windows.Forms.Label();
+            this.creditCardErrorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -141,12 +145,48 @@
             this.confirmButton.UseVisualStyleBackColor = true;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
+            // nameErrorLabel
+            // 
+            this.nameErrorLabel.AutoSize = true;
+            this.nameErrorLabel.Location = new System.Drawing.Point(321, 151);
+            this.nameErrorLabel.Name = "nameErrorLabel";
+            this.nameErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.nameErrorLabel.TabIndex = 14;
+            // 
+            // addressErrorLabel
+            // 
+            this.addressErrorLabel.AutoSize = true;
+            this.addressErrorLabel.Location = new System.Drawing.Point(321, 208);
+            this.addressErrorLabel.Name = "addressErrorLabel";
+            this.addressErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.addressErrorLabel.TabIndex = 15;
+            // 
+            // phoneErrorLabel
+            // 
+            this.phoneErrorLabel.AutoSize = true;
+            this.phoneErrorLabel.Location = new System.Drawing.Point(321, 265);
+            this.phoneErrorLabel.Name = "phoneErrorLabel";
+            this.phoneErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.phoneErrorLabel.TabIndex = 16;
+            // 
+            // creditCardErrorLabel
+            // 
+            this.creditCardErrorLabel.AutoSize = true;
+            this.creditCardErrorLabel.Location = new System.Drawing.Point(321, 322);
+            this.creditCardErrorLabel.Name = "creditCardErrorLabel";
+            this.creditCardErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.creditCardErrorLabel.TabIndex = 17;
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(161)))), ((int)(((byte)(99)))));
             this.ClientSize = new System.Drawing.Size(454, 442);
+            this.Controls.Add(this.creditCardErrorLabel);
+            this.Controls.Add(this.phoneErrorLabel);
+            this.Controls.Add(this.addressErrorLabel);
+            this.Controls.Add(this.nameErrorLabel);
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.profileCreditCardTextBox);
             this.Controls.Add(this.profilePhoneNumberTextBox);
@@ -178,5 +218,9 @@
         private System.Windows.Forms.TextBox profilePhoneNumberTextBox;
         private System.Windows.Forms.TextBox profileCreditCardTextBox;
         private System.Windows.Forms.Button confirmButton;
+        private System.Windows.Forms.Label nameErrorLabel;
+        private System.Windows.Forms.Label addressErrorLabel;
+        private System.Windows.Forms.Label phoneErrorLabel;
+        private System.Windows.Forms.Label creditCardErrorLabel;
     }
 }
