@@ -45,7 +45,14 @@ namespace BlackJackApplication
         {
             FirebaseResponse response = await client.GetAsync("Players/" + username);
             Player player = response.ResultAs<Player>();
-            Console.WriteLine(player);
+            if (player != null)
+            {
+                Console.WriteLine("Player Exists");
+            }
+            else
+            {
+                Console.WriteLine("Player does not exist");
+            }
             playerExists(player);
         }
 
