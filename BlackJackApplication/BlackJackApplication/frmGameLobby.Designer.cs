@@ -87,7 +87,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(379, 248);
+            this.textBox1.Location = new System.Drawing.Point(320, 319);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(42, 20);
             this.textBox1.TabIndex = 7;
@@ -95,7 +95,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(321, 251);
+            this.label1.Location = new System.Drawing.Point(317, 302);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 8;
@@ -103,20 +103,20 @@
             // 
             // joinGameButton
             // 
-            this.joinGameButton.Location = new System.Drawing.Point(363, 279);
+            this.joinGameButton.Location = new System.Drawing.Point(368, 318);
             this.joinGameButton.Name = "joinGameButton";
-            this.joinGameButton.Size = new System.Drawing.Size(75, 23);
+            this.joinGameButton.Size = new System.Drawing.Size(105, 23);
             this.joinGameButton.TabIndex = 9;
-            this.joinGameButton.Text = "Join Game";
+            this.joinGameButton.Text = "Join Online Game";
             this.joinGameButton.UseVisualStyleBackColor = true;
             // 
             // startGameButton
             // 
-            this.startGameButton.Location = new System.Drawing.Point(363, 313);
+            this.startGameButton.Location = new System.Drawing.Point(341, 252);
             this.startGameButton.Name = "startGameButton";
-            this.startGameButton.Size = new System.Drawing.Size(75, 23);
+            this.startGameButton.Size = new System.Drawing.Size(120, 23);
             this.startGameButton.TabIndex = 10;
-            this.startGameButton.Text = "Start Game";
+            this.startGameButton.Text = "Start Local Game";
             this.startGameButton.UseVisualStyleBackColor = true;
             // 
             // frmGameLobby
