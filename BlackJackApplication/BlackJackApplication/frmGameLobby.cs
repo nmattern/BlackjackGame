@@ -25,12 +25,12 @@ namespace BlackJackApplication
             database = db;
         }
 
-        private void startGameButton_Click(object sender, EventArgs e)
+        private void startLocalGameButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void joinGameButton_Click(object sender, EventArgs e)
+        private void joinOnlineGameButton_Click(object sender, EventArgs e)
         {
 
         }
@@ -56,12 +56,33 @@ namespace BlackJackApplication
 
         private void frmGameLobby_Load(object sender, EventArgs e)
         {
-
+            localUserLabel.Text = playerList[0].Username;
+            localUserPlayerListLabel.Text = playerList[0].Username;
         }
 
         private async void adjustMoneyButton_Click(object sender, EventArgs e)
         {
             await database.modifyEntirePlayer(playerList[0]);
         }
+
+        private void addLocalGuestButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void deleteLocalGuestButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void createOnlineGameButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void joinOnlineGameButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
