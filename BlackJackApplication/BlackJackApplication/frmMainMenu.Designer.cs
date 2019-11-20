@@ -34,6 +34,7 @@
             this.setAmountLabel = new System.Windows.Forms.Label();
             this.playButton = new System.Windows.Forms.Button();
             this.signOutButton = new System.Windows.Forms.Button();
+            this.identityLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // signInLabel
@@ -55,6 +56,7 @@
             this.manageProfileButton.TabIndex = 3;
             this.manageProfileButton.Text = "Manage Profile";
             this.manageProfileButton.UseVisualStyleBackColor = true;
+            this.manageProfileButton.Click += new System.EventHandler(this.manageProfileButton_Click);
             // 
             // setAmountTextBox
             // 
@@ -90,12 +92,22 @@
             this.signOutButton.Text = "Sign Out";
             this.signOutButton.UseVisualStyleBackColor = true;
             // 
+            // identityLabel
+            // 
+            this.identityLabel.AutoSize = true;
+            this.identityLabel.Location = new System.Drawing.Point(13, 13);
+            this.identityLabel.Name = "identityLabel";
+            this.identityLabel.Size = new System.Drawing.Size(71, 13);
+            this.identityLabel.TabIndex = 8;
+            this.identityLabel.Text = "Signed in as: ";
+            // 
             // frmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.identityLabel);
             this.Controls.Add(this.signOutButton);
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.setAmountLabel);
@@ -117,5 +129,6 @@
         private System.Windows.Forms.Label setAmountLabel;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button signOutButton;
+        private System.Windows.Forms.Label identityLabel;
     }
 }

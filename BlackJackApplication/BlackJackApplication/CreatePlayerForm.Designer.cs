@@ -58,6 +58,7 @@
             this.creditCardErrorLabel = new System.Windows.Forms.Label();
             this.phoneErrorLabel = new System.Windows.Forms.Label();
             this.usernameNotValidLabel = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -315,12 +316,22 @@
             this.usernameNotValidLabel.Size = new System.Drawing.Size(0, 13);
             this.usernameNotValidLabel.TabIndex = 29;
             // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(713, 415);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 30;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            // 
             // CreateProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.usernameNotValidLabel);
             this.Controls.Add(this.phoneErrorLabel);
             this.Controls.Add(this.addressErrorLabel);
@@ -390,5 +401,6 @@
         private System.Windows.Forms.Label creditCardErrorLabel;
         private System.Windows.Forms.Label phoneErrorLabel;
         private System.Windows.Forms.Label usernameNotValidLabel;
+        private System.Windows.Forms.Button backButton;
     }
 }

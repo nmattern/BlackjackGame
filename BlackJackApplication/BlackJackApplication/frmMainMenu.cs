@@ -16,5 +16,11 @@ namespace BlackJackApplication
         {
             InitializeComponent();
         }
+
+        private void manageProfileButton_Click(object sender, EventArgs e)
+        {
+            ProfileForm profile = new ProfileForm();
+            profile.Show();
+        }
     }
 }
