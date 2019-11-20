@@ -43,6 +43,8 @@
             this.p2SigninButton = new System.Windows.Forms.Button();
             this.p1SigninButton = new System.Windows.Forms.Button();
             this.createProfileButton = new System.Windows.Forms.Button();
+            this.localRadioButton = new System.Windows.Forms.RadioButton();
+            this.onlineMultiplayerButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,12 +198,38 @@
             this.createProfileButton.UseVisualStyleBackColor = true;
             this.createProfileButton.Click += new System.EventHandler(this.createProfileButton_Click);
             // 
+            // localRadioButton
+            // 
+            this.localRadioButton.AutoSize = true;
+            this.localRadioButton.Location = new System.Drawing.Point(776, 443);
+            this.localRadioButton.Name = "localRadioButton";
+            this.localRadioButton.Size = new System.Drawing.Size(51, 17);
+            this.localRadioButton.TabIndex = 11;
+            this.localRadioButton.TabStop = true;
+            this.localRadioButton.Text = "Local";
+            this.localRadioButton.UseVisualStyleBackColor = true;
+            this.localRadioButton.CheckedChanged += new System.EventHandler(this.localRadioButton_CheckedChanged);
+            // 
+            // onlineMultiplayerButton
+            // 
+            this.onlineMultiplayerButton.AutoSize = true;
+            this.onlineMultiplayerButton.Location = new System.Drawing.Point(776, 467);
+            this.onlineMultiplayerButton.Name = "onlineMultiplayerButton";
+            this.onlineMultiplayerButton.Size = new System.Drawing.Size(55, 17);
+            this.onlineMultiplayerButton.TabIndex = 12;
+            this.onlineMultiplayerButton.TabStop = true;
+            this.onlineMultiplayerButton.Text = "Online";
+            this.onlineMultiplayerButton.UseVisualStyleBackColor = true;
+            this.onlineMultiplayerButton.CheckedChanged += new System.EventHandler(this.onlineMultiplayerButton_CheckedChanged);
+            // 
             // startScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(999, 609);
+            this.Controls.Add(this.onlineMultiplayerButton);
+            this.Controls.Add(this.localRadioButton);
             this.Controls.Add(this.createProfileButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.manageProfile);
@@ -236,5 +264,7 @@
         private System.Windows.Forms.Button p2SigninButton;
         private System.Windows.Forms.Button p1SigninButton;
         private System.Windows.Forms.Button createProfileButton;
+        private System.Windows.Forms.RadioButton localRadioButton;
+        private System.Windows.Forms.RadioButton onlineMultiplayerButton;
     }
 }

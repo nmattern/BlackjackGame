@@ -12,6 +12,7 @@ namespace BlackJackApplication
 {
     public partial class startScreenForm : Form
     {
+        internal bool loggedIn = false;
         public startScreenForm()
         {
             InitializeComponent();
@@ -100,19 +101,19 @@ namespace BlackJackApplication
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SignInForm signin = new SignInForm(2);
+            frmLogin signin = new frmLogin();
             signin.Show();
         }
 
         private void p1SigninButton_Click(object sender, EventArgs e)
         {
-            SignInForm signin = new SignInForm(1);
+            frmLogin signin = new frmLogin();
             signin.Show();
         }
 
         private void p3SigninButton_Click(object sender, EventArgs e)
         {
-            SignInForm signin = new SignInForm(3);
+            frmLogin signin = new frmLogin();
             signin.Show();
         }
 
@@ -120,6 +121,19 @@ namespace BlackJackApplication
         {
             CreateProfileForm profileForm = new CreateProfileForm();
             profileForm.Show();
+        }
+
+        private void onlineMultiplayerButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.p2SigninButton.Hide();
+            this.p3SigninButton.Hide();
+            this.numPlayersLabel.Text = "1";
+            this.plusButton.Enabled = false;
+        }
+
+        private void localRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.plusButton.Enabled = true;
         }
     }
 }
