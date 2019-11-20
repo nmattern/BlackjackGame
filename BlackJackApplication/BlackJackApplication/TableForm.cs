@@ -156,5 +156,11 @@ namespace BlackJackApplication
         {
             turn.insuranceButtonClick(Int32.Parse(insuranceBetTxtBox.Text));
         }
+
+        private void splitButton_Click(object sender, EventArgs e)
+        {
+            splitButton.Enabled = false;
+            turn.splitButtonClick();
+        }
     }
 }

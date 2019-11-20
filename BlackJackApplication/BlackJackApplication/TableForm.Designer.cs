@@ -55,6 +55,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lossesValueLabel = new System.Windows.Forms.Label();
             this.winsValueLabel = new System.Windows.Forms.Label();
+            this.splitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -164,7 +165,7 @@
             // 
             this.endLabel.AutoSize = true;
             this.endLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endLabel.Location = new System.Drawing.Point(299, 385);
+            this.endLabel.Location = new System.Drawing.Point(150, 385);
             this.endLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.endLabel.Name = "endLabel";
             this.endLabel.Size = new System.Drawing.Size(0, 95);
@@ -350,12 +351,29 @@
             this.winsValueLabel.TabIndex = 38;
             this.winsValueLabel.Text = "0";
             // 
+            // splitButton
+            // 
+            this.splitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
+            this.splitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.splitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.splitButton.Location = new System.Drawing.Point(1156, 507);
+            this.splitButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitButton.Name = "splitButton";
+            this.splitButton.Size = new System.Drawing.Size(180, 48);
+            this.splitButton.TabIndex = 39;
+            this.splitButton.Text = "Split";
+            this.splitButton.UseVisualStyleBackColor = false;
+            this.splitButton.Visible = false;
+            this.splitButton.Click += new System.EventHandler(this.splitButton_Click);
+            // 
             // tableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(1353, 591);
+            this.Controls.Add(this.splitButton);
             this.Controls.Add(this.winsValueLabel);
             this.Controls.Add(this.lossesValueLabel);
             this.Controls.Add(this.label7);
@@ -421,6 +439,7 @@
         private System.Windows.Forms.Label label7;
         internal System.Windows.Forms.Label lossesValueLabel;
         internal System.Windows.Forms.Label winsValueLabel;
+        internal System.Windows.Forms.Button splitButton;
     }
 }
 

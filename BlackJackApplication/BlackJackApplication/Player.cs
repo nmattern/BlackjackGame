@@ -21,9 +21,9 @@ namespace BlackJackApplication
         private int currentValueOfHand;
         private int currentAmountofMoney;
         private int currentPlayerBet;
-        private int currentInsuranceBet;
         public int playerWins { get; set; }
         public int playerLosses { get; set; }
+        public bool hasSplit { get; set; }
         private List<Card> currentPlayerHand = new List<Card>();
         private List<PictureBox> pictureBoxes = new List<PictureBox>();
 
@@ -56,6 +56,7 @@ namespace BlackJackApplication
         public int CurrentAmountOfMoney { get => currentAmountofMoney; set => currentAmountofMoney = value; }
         public int CurrentPlayerBet { get => currentPlayerBet; set => currentPlayerBet = value; }
         internal List<Card> CurrentPlayerHand { get => currentPlayerHand; set => currentPlayerHand = value; }
+        public int CurrentInsuranceBet { get; set; }
 
         public void addCardToHand(Card card)
         {
