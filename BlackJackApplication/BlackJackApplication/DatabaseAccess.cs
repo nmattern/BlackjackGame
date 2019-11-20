@@ -30,6 +30,7 @@ namespace BlackJackApplication
             }
         }
 
+        // Create a player entry in the database
         public async void createPlayer(Player player)
         {
             client = new FireSharp.FirebaseClient(config);
@@ -39,25 +40,25 @@ namespace BlackJackApplication
             Console.WriteLine("Player Created" + player.PlayerFBID);
         }
 
-        public async void testCreatePlayer()
+        //  Verify if the user exists and return a boolean
+        public async void doesPlayerExist(string username)
         {
-            client = new FireSharp.FirebaseClient(config);
-            Player player = new Player(
-                1234567890,
-                "address",
-                "name",
-                111111111,
-                "What is your first pets name?",
-                "Dog",
-                "password",
-                "testuser",
-                1
-           );
+            FirebaseResponse response = await client.GetAsync("Players/" + username);
+            Player player = response.ResultAs<Player>();
+            Console.WriteLine(player);
+            playerExists(player);
+        }
 
-            SetResponse response = await client.SetAsync<Player>("Players/"+player.Username, player);
-            Player result = response.ResultAs<Player>();
-
-            Console.WriteLine("Player Created" + player.PlayerFBID);
+        public bool playerExists(Player player)
+        {
+            if (player != null)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
         }
     }
 }

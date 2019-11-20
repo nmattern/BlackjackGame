@@ -24,8 +24,7 @@ namespace BlackJackApplication
             Deck myDeck = new Deck();
             Dealer dealer = new Dealer();
             Player player1 = new Player();
-            Table table = new Table();
-            turn = new Turn(this, myDeck, table, player1, dealer);
+            turn = new Turn(this, myDeck, player1, dealer);
 
             hitButton.Visible = false;
             standButton.Visible = false;

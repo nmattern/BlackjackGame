@@ -10,7 +10,6 @@ namespace BlackJackApplication
 {
     class Turn
     {
-        private Table turnTable;
         private Player turnPlayer;
         private Dealer turnDealer;
         private Deck turnDeck;
@@ -23,10 +22,9 @@ namespace BlackJackApplication
         const int DEALER_IMAGE_X = 40;
 
 
-        public Turn(tableForm currentForm = null, Deck deck = null, Table table = null, Player player = null, Dealer dealer = null)
+        public Turn(tableForm currentForm = null, Deck deck = null, Player player = null, Dealer dealer = null)
         {
             turnForm = currentForm;
-            turnTable = table;
             turnPlayer = player;
             turnDealer = dealer;
             turnDeck = deck;
