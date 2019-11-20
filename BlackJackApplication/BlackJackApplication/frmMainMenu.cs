@@ -80,7 +80,7 @@ namespace BlackJackApplication
 
         public async void updatePlayerMoney(int playerMoney)
         {
-            await database.modifyPlayer(player);
+            await database.modifyEntirePlayer(player);
         }
 
 
