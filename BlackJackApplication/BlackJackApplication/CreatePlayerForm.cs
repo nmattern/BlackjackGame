@@ -81,6 +81,14 @@ namespace BlackJackApplication
                 database.createPlayer(newplayer);
                 clearTextBoxes();
                 clearErrorLabels();
+                var gameLobbyInstance = new frmGameLobby();
+                gameLobbyInstance.Show();
+                gameLobbyInstance.Location = this.Location;
+                this.Hide();
+                // This is an event handler for the closing of a child form
+                // Passes the subject (child form) and arguments to close 
+                // Parent form as well
+                gameLobbyInstance.FormClosed += (s, args) => this.Close();
             }
             else if (database.PlayerExists == true)
             {
