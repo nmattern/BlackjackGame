@@ -14,6 +14,7 @@ namespace BlackJackApplication
     {
         private bool playerExists = true;
         private bool loginValid;
+        private bool gameValid;
         private Player player;
 
         public static IFirebaseConfig config = new FirebaseConfig
@@ -27,6 +28,7 @@ namespace BlackJackApplication
         public bool PlayerExists { get => this.playerExists; set => this.playerExists = value; }
         public bool LoginValid { get => this.loginValid; set => this.loginValid = value; }
         internal Player CurrentPlayer { get => this.player; set => this.player = value; }
+        public bool GameValid { get => this.gameValid; set => this.gameValid = value; }
 
         public void testConnection()
         {
@@ -91,6 +93,20 @@ namespace BlackJackApplication
             else
             {
                 LoginValid = false;
+            }
+        }
+
+        public async Task isGameValid(int gameID)
+        {
+            FirebaseResponse response = await client.GetAsync("Games/" + gameID);
+            int databaseGameId = response.ResultAs<int>();
+            if (databaseGameId == gameID)
+            {
+                GameValid = true;
+            }
+            else
+            {
+                GameValid = false;
             }
         }
 
