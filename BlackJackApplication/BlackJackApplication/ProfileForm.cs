@@ -44,7 +44,7 @@ namespace BlackJackApplication
                 player.Address = this.profileAddressTextBox.Text;
                 player.Phone = Convert.ToInt64(this.profilePhoneNumberTextBox.Text);
                 player.CreditC = Convert.ToInt64(this.profileCreditCardTextBox.Text);
-                await database.modifyPlayer(player);
+                await database.modifyEntirePlayer(player);
                 this.Close();
             }
         }

@@ -48,12 +48,33 @@ namespace BlackJackApplication
             Console.WriteLine("Player Created " + player.Username);
         }
 
-        public async Task modifyPlayer(Player player)
+        public async Task modifyEntirePlayer(Player player)
         {
             FirebaseResponse response = await client.UpdateAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
 
             Console.WriteLine("Player Modified " + player.Username);
+        }
+
+        public async Task modifySpecficPlayerData(string playerUserName, string fieldToModify, string Value)
+        {
+            // Check if the value is an integer and if it needs to be 64 bit
+            if (Value.All(char.IsDigit) == true)
+            {
+                if (Value.Length > 8)
+                {
+                    Convert.ToInt64(Value);
+                }
+                else
+                {
+                    Convert.ToInt32(Value);
+                }
+            }
+
+            // Otherwise modify the value for that player with the passed in value
+            FirebaseResponse response = await client.GetAsync("Players/" + playerUserName + "/" + fieldToModify);
+            Player databasePlayer = response.ResultAs<Player>();
+            CurrentPlayer = databasePlayer;
         }
 
         // Grabs the player class from the databased assigned to that username

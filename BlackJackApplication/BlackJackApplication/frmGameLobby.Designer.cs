@@ -46,6 +46,7 @@
             this.startingAmountValidLabel = new System.Windows.Forms.Label();
             this.setAmountLabel = new System.Windows.Forms.Label();
             this.setAmountTextBox = new System.Windows.Forms.TextBox();
+            this.AdjustMoneyErrorMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lobbyLabel
@@ -213,12 +214,22 @@
             this.setAmountTextBox.TabIndex = 17;
             this.setAmountTextBox.TextChanged += new System.EventHandler(this.setAmountTextBox_TextChanged);
             // 
+            // AdjustMoneyErrorMessageLabel
+            // 
+            this.AdjustMoneyErrorMessageLabel.AutoSize = true;
+            this.AdjustMoneyErrorMessageLabel.ForeColor = System.Drawing.Color.Red;
+            this.AdjustMoneyErrorMessageLabel.Location = new System.Drawing.Point(233, 10);
+            this.AdjustMoneyErrorMessageLabel.Name = "AdjustMoneyErrorMessageLabel";
+            this.AdjustMoneyErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.AdjustMoneyErrorMessageLabel.TabIndex = 20;
+            // 
             // frmGameLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.AdjustMoneyErrorMessageLabel);
             this.Controls.Add(this.startingAmountValidLabel);
             this.Controls.Add(this.setAmountLabel);
             this.Controls.Add(this.setAmountTextBox);
@@ -265,5 +276,6 @@
         private System.Windows.Forms.Label startingAmountValidLabel;
         private System.Windows.Forms.Label setAmountLabel;
         private System.Windows.Forms.TextBox setAmountTextBox;
+        private System.Windows.Forms.Label AdjustMoneyErrorMessageLabel;
     }
 }
