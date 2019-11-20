@@ -30,7 +30,6 @@
         {
             this.lobbyLabel = new System.Windows.Forms.Label();
             this.gameIDLabel = new System.Windows.Forms.Label();
-            this.localUserLabel = new System.Windows.Forms.Label();
             this.Player2PlayerListLabel = new System.Windows.Forms.Label();
             this.Player3PlayerListLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -70,15 +69,6 @@
             this.gameIDLabel.Size = new System.Drawing.Size(0, 13);
             this.gameIDLabel.TabIndex = 3;
             // 
-            // localUserLabel
-            // 
-            this.localUserLabel.AutoSize = true;
-            this.localUserLabel.Location = new System.Drawing.Point(196, 212);
-            this.localUserLabel.Name = "localUserLabel";
-            this.localUserLabel.Size = new System.Drawing.Size(55, 13);
-            this.localUserLabel.TabIndex = 4;
-            this.localUserLabel.Text = "LocalUser";
-            // 
             // Player2PlayerListLabel
             // 
             this.Player2PlayerListLabel.AutoSize = true;
@@ -101,7 +91,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(514, 296);
+            this.textBox1.Location = new System.Drawing.Point(510, 271);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(42, 20);
             this.textBox1.TabIndex = 7;
@@ -109,7 +99,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(511, 279);
+            this.label1.Location = new System.Drawing.Point(507, 254);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 8;
@@ -117,7 +107,7 @@
             // 
             // joinOnlineGameButton
             // 
-            this.joinOnlineGameButton.Location = new System.Drawing.Point(562, 295);
+            this.joinOnlineGameButton.Location = new System.Drawing.Point(558, 270);
             this.joinOnlineGameButton.Name = "joinOnlineGameButton";
             this.joinOnlineGameButton.Size = new System.Drawing.Size(105, 23);
             this.joinOnlineGameButton.TabIndex = 9;
@@ -127,7 +117,7 @@
             // 
             // startLocalGameButton
             // 
-            this.startLocalGameButton.Location = new System.Drawing.Point(158, 351);
+            this.startLocalGameButton.Location = new System.Drawing.Point(158, 270);
             this.startLocalGameButton.Name = "startLocalGameButton";
             this.startLocalGameButton.Size = new System.Drawing.Size(120, 23);
             this.startLocalGameButton.TabIndex = 10;
@@ -157,7 +147,7 @@
             // 
             // createOnlineGameButton
             // 
-            this.createOnlineGameButton.Location = new System.Drawing.Point(526, 237);
+            this.createOnlineGameButton.Location = new System.Drawing.Point(526, 212);
             this.createOnlineGameButton.Name = "createOnlineGameButton";
             this.createOnlineGameButton.Size = new System.Drawing.Size(125, 23);
             this.createOnlineGameButton.TabIndex = 13;
@@ -177,7 +167,7 @@
             // 
             // addLocalGuestButton
             // 
-            this.addLocalGuestButton.Location = new System.Drawing.Point(158, 293);
+            this.addLocalGuestButton.Location = new System.Drawing.Point(158, 212);
             this.addLocalGuestButton.Name = "addLocalGuestButton";
             this.addLocalGuestButton.Size = new System.Drawing.Size(120, 23);
             this.addLocalGuestButton.TabIndex = 15;
@@ -242,7 +232,7 @@
             // 
             // deleteLocalGuestButton
             // 
-            this.deleteLocalGuestButton.Location = new System.Drawing.Point(158, 322);
+            this.deleteLocalGuestButton.Location = new System.Drawing.Point(158, 241);
             this.deleteLocalGuestButton.Name = "deleteLocalGuestButton";
             this.deleteLocalGuestButton.Size = new System.Drawing.Size(120, 23);
             this.deleteLocalGuestButton.TabIndex = 22;
@@ -274,7 +264,6 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Player3PlayerListLabel);
             this.Controls.Add(this.Player2PlayerListLabel);
-            this.Controls.Add(this.localUserLabel);
             this.Controls.Add(this.gameIDLabel);
             this.Controls.Add(this.lobbyLabel);
             this.Name = "frmGameLobby";
@@ -289,7 +278,6 @@
 
         private System.Windows.Forms.Label lobbyLabel;
         private System.Windows.Forms.Label gameIDLabel;
-        private System.Windows.Forms.Label localUserLabel;
         private System.Windows.Forms.Label Player2PlayerListLabel;
         private System.Windows.Forms.Label Player3PlayerListLabel;
         private System.Windows.Forms.TextBox textBox1;
