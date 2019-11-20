@@ -82,9 +82,9 @@ namespace BlackJackApplication
         // Validate if a login is valid
         public async Task isLoginValid(string username, string password)
         {
-            FirebaseResponse response = await client.GetAsync("Players/" + username);
-            Player player = response.ResultAs<Player>();
-            if (player.Password.Trim() == password.Trim())
+            FirebaseResponse response = await client.GetAsync("Players/" + username + "/Password");
+            String passwordResponse = response.ResultAs<String>();
+            if (passwordResponse.Trim() == password.Trim())
             {
                 LoginValid = true;
             }
