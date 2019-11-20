@@ -69,6 +69,7 @@ namespace BlackJackApplication
         private void playButton_Click(object sender, EventArgs e)
         {
             var gameLobbyInstance = new frmGameLobby(player, database);
+            var localGameInstance = new LocalGame();
             gameLobbyInstance.Location = this.Location;
             this.Hide();
             // This is an event handler for the closing of a child form
