@@ -14,6 +14,7 @@ namespace BlackJackApplication
     {
         private bool playerExists = true;
         private bool loginValid;
+        private Player player;
 
         public static IFirebaseConfig config = new FirebaseConfig
         {
@@ -25,6 +26,7 @@ namespace BlackJackApplication
 
         public bool PlayerExists { get => this.playerExists; set => this.playerExists = value; }
         public bool LoginValid { get => this.loginValid; set => this.loginValid = value; }
+        internal Player Player { get => player; set => player = value; }
 
         public void testConnection()
         {
@@ -41,15 +43,23 @@ namespace BlackJackApplication
             SetResponse response = await client.SetAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
 
-            Console.WriteLine("Player Created" + player.Username);
+            Console.WriteLine("Player Created " + player.Username);
         }
 
         public async void modifyPlayer(Player player)
         {
-            SetResponse response = await client.SetAsync<Player>("Players/" + player.Username, player);
+            FirebaseResponse response = await client.UpdateAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
 
-            Console.WriteLine("Player Modified" + player.Username);
+            Console.WriteLine("Player Modified " + player.Username);
+        }
+
+        // Grabs the player class from the databased assigned to that username
+        public async void returnPlayer(string username)
+        {
+            FirebaseResponse response = await client.GetAsync("Players/" + username);
+            Player databasePlayer = response.ResultAs<Player>();
+            Player = databasePlayer;
         }
 
         //  Verify if the user exists and return a boolean
