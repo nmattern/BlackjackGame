@@ -31,13 +31,14 @@ namespace BlackJackApplication
             if (database.LoginValid)
             {
                 var mainMenuInstance = new frmMainMenu();
-                mainMenuInstance.Show();
                 mainMenuInstance.Location = this.Location;
                 this.Hide();
                 // This is an event handler for the closing of a child form
                 // Passes the subject (child form) and arguments to close 
                 // Parent form as well
-                mainMenuInstance.FormClosed += (s, args) => this.Close();
+                mainMenuInstance.Show();
+                mainMenuInstance.retrievePlayer(database.CurrentPlayer.Username);
+                mainMenuInstance.FormClosed += (s, args) => this.Show();
             }
             else
             {
@@ -54,7 +55,12 @@ namespace BlackJackApplication
             // This is an event handler for the closing of a child form
             // Passes the subject (child form) and arguments to close 
             // Parent form as well
-            createPlayerFormInstance.FormClosed += (s, args) => this.Close();
+            createPlayerFormInstance.FormClosed += (s, args) => this.Show();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            usernameTextBox.Select();
         }
     }
 }

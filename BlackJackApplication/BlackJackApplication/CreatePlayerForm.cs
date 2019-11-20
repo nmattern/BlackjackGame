@@ -43,7 +43,7 @@ namespace BlackJackApplication
 
         }
 
-        private void submitButton_Click(object sender, EventArgs e)
+        private async void submitButton_Click(object sender, EventArgs e)
         {
             bool verified = true;
             if (!this.nameTextBox.Text.All(char.IsLetter))
@@ -70,7 +70,7 @@ namespace BlackJackApplication
                 verified = false;
             }
 
-            database.doesPlayerExist(this.usernameTextBox.Text);
+            await database.doesPlayerExist(this.usernameTextBox.Text);
             if (verified == true && database.PlayerExists == false) // so long as all fields are verified and the player is not in the db
             {
                 
@@ -78,17 +78,10 @@ namespace BlackJackApplication
                 Convert.ToInt64(phoneTextBox.Text), this.addressTextBox.Text, this.nameTextBox.Text,
                 Convert.ToInt64(creditCardTextBox.Text), this.recovQTextBox.Text, this.recovATextBox.Text,
                 this.passwordTextBox.Text, this.usernameTextBox.Text, 34);
-                database.createPlayer(newplayer);
+                await database.createPlayer(newplayer);
                 clearTextBoxes();
                 clearErrorLabels();
-                var gameLobbyInstance = new frmGameLobby();
-                gameLobbyInstance.Show();
-                gameLobbyInstance.Location = this.Location;
-                this.Hide();
-                // This is an event handler for the closing of a child form
-                // Passes the subject (child form) and arguments to close 
-                // Parent form as well
-                gameLobbyInstance.FormClosed += (s, args) => this.Close();
+                this.Close();
             }
             else if (database.PlayerExists == true)
             {
@@ -96,6 +89,11 @@ namespace BlackJackApplication
             }
             
 
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
