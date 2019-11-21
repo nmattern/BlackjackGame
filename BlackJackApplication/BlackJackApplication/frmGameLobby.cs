@@ -92,17 +92,19 @@ namespace BlackJackApplication
         private void addLocalGuestButton_Click(object sender, EventArgs e)
         {
             GamePlayer newGuest;
-            if (localGame.PlayerList.Count < 3)
+            if (localGame.PlayerList.Count <= 3)
             {
                 newGuest = generateGuest();
                 localGame.PlayerList.Add(newGuest);
                 if (localGame.PlayerList.Count == 2)
                 {
                     Player2PlayerListLabel.Text = newGuest.Username;
+                    Player2PlayerListLabel.Visible = true;
                 }
                 else if (localGame.PlayerList.Count == 3)
                 {
                     Player3PlayerListLabel.Text = newGuest.Username;
+                    Player3PlayerListLabel.Visible = true;
                 } 
             }
             else
@@ -129,11 +131,13 @@ namespace BlackJackApplication
                 localGame.PlayerList.RemoveAt(localGame.PlayerList.Count - 1);
                 if (localGame.PlayerList.Count == 2)
                 {
-                    Player3PlayerListLabel.Text = "Player 3";
+                    Player3PlayerListLabel.Text = "";
+                    Player3PlayerListLabel.Visible = false;
                 }
                 else if (localGame.PlayerList.Count == 1)
                 {
-                    Player2PlayerListLabel.Text = "Player 2";
+                    Player2PlayerListLabel.Text = "";
+                    Player2PlayerListLabel.Visible = false;
                 }
             }
             else
