@@ -80,6 +80,12 @@
     <Compile Include="CreatePlayerForm.Designer.cs">
       <DependentUpon>CreatePlayerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGameBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGameBoard.Designer.cs">
+      <DependentUpon>frmGameBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGameLobby.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     <Compile Include="Turn.cs" />
     <EmbeddedResource Include="CreatePlayerForm.resx">
       <DependentUpon>CreatePlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGameBoard.resx">
+      <DependentUpon>frmGameBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGameLobby.resx">
       <DependentUpon>frmGameLobby.cs</DependentUpon>
