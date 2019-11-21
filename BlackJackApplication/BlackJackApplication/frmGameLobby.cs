@@ -38,8 +38,8 @@ namespace BlackJackApplication
             bool betContainsOnlyDigits = Int32.TryParse(this.setAmountTextBox.Text, out number);
             if (betContainsOnlyDigits && this.setAmountTextBox.Text != "")
             {
-                // TODO update player money value in database
                 playerList[0].CurrentAmountOfMoney = Convert.ToInt32(setAmountTextBox.Text);
+                AdjustMoneyErrorMessageLabel.Text = "";
             }
             else if (this.setAmountTextBox.Text == "")
             {
@@ -53,17 +53,21 @@ namespace BlackJackApplication
 
         private void frmGameLobby_Load(object sender, EventArgs e)
         {
+            currentAmountOfMoneyLabel.Text = playerList[0].CurrentAmountOfMoney.ToString();
             localUserPlayerListLabel.Text = playerList[0].Username;
             GamePlayer localPlayer = new GamePlayer();
             localPlayer.Username = playerList[0].Username;
-            localPlayer.PlayerAmountOfMoney = playerList[0].CurrentAmountOfMoney;
             localGame.GameID = 123;
             localGame.PlayerList.Add(localPlayer);
         }
 
         private async void adjustMoneyButton_Click(object sender, EventArgs e)
         {
-            await database.modifyEntirePlayer(playerList[0]);
+            if (setAmountTextBox.Text != "")
+            {
+                await database.modifyEntirePlayer(playerList[0]);
+                currentAmountOfMoneyLabel.Text = playerList[0].CurrentAmountOfMoney.ToString();
+            }
         }
 
         private void addLocalGuestButton_Click(object sender, EventArgs e)
