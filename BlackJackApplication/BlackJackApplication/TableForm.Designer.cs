@@ -137,7 +137,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(632, 69);
+            this.label5.Location = new System.Drawing.Point(562, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 17);
             this.label5.TabIndex = 16;
@@ -155,7 +155,7 @@
             // playerTotalLabel
             // 
             this.playerTotalLabel.AutoSize = true;
-            this.playerTotalLabel.Location = new System.Drawing.Point(783, 69);
+            this.playerTotalLabel.Location = new System.Drawing.Point(692, 69);
             this.playerTotalLabel.Name = "playerTotalLabel";
             this.playerTotalLabel.Size = new System.Drawing.Size(16, 17);
             this.playerTotalLabel.TabIndex = 18;
@@ -262,7 +262,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(647, 33);
+            this.label4.Location = new System.Drawing.Point(564, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(144, 25);
             this.label4.TabIndex = 30;

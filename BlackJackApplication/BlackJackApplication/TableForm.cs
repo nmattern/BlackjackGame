@@ -87,7 +87,7 @@ namespace BlackJackApplication
                 betLabel.Text = betTextBox.Text;
             } else
             {
-                betLabel.Text = "Not Valid";
+                betLabel.Text = "Invalid";
             }
         }
 
@@ -144,7 +144,12 @@ namespace BlackJackApplication
 
         private void insuranceBetTxtBox_TextChanged(object sender, EventArgs e)
         {
-            insuranceBetValueLabel.Text = insuranceBetTxtBox.Text;
+            int number;
+            bool playerEntryIsValid = Int32.TryParse(insuranceBetTxtBox.Text, out number);
+            if (playerEntryIsValid)
+            {
+                insuranceBetValueLabel.Text = insuranceBetTxtBox.Text;
+            }
         }
 
         private void insuranceBetTxtBox_Click(object sender, EventArgs e)
@@ -154,7 +159,15 @@ namespace BlackJackApplication
 
         private void insuranceBetButton_Click(object sender, EventArgs e)
         {
-            turn.insuranceButtonClick(Int32.Parse(insuranceBetTxtBox.Text));
+            int number;
+            bool playerEntryIsValid = Int32.TryParse(insuranceBetTxtBox.Text, out number);
+            if (playerEntryIsValid)
+            {
+                turn.insuranceButtonClick(Int32.Parse(insuranceBetTxtBox.Text));
+            } else
+            {
+                insuranceBetValueLabel.Text = "Invalid";
+            }
         }
 
         private void splitButton_Click(object sender, EventArgs e)
@@ -162,5 +175,6 @@ namespace BlackJackApplication
             splitButton.Enabled = false;
             turn.splitButtonClick();
         }
+
     }
 }

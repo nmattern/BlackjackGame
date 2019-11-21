@@ -18,7 +18,7 @@ namespace BlackJackApplication
         const int IMAGE_DISTANCE_Y = 20;
         const int IMAGE_DISTANCE_X = 20;
         const int PLAYER_IMAGE_Y = 75;
-        const int PLAYER_IMAGE_X = 470;
+        const int PLAYER_IMAGE_X = 400;
         const int DEALER_IMAGE_Y = 75;
         const int DEALER_IMAGE_X = 40;
         int hand = 1;
@@ -137,7 +137,7 @@ namespace BlackJackApplication
                 }
             } else
             {
-                turnForm.betLabel.Text = "Enter a Value";
+                turnForm.betLabel.Text = "Invalid";
             }
         }
 
@@ -226,13 +226,14 @@ namespace BlackJackApplication
             {
                 addImage(image, 2, turnPlayer.CurrentPlayerHand.Count - 1);
             }
-            if (turnPlayer.CurrentPlayerHand[turnPlayer.CurrentPlayerHand.Count - 1].Value == "ace")
+            foreach (Card card in turnPlayer.CurrentPlayerHand)
             {
-                if (turnPlayer.CurrentValueOfHand > 21)
+                if (card.Value == "ace" && turnPlayer.CurrentValueOfHand > 21)
                 {
                     turnPlayer.CurrentValueOfHand -= 10;
                 }
             }
+
             turnForm.playerTotalLabel.Text = (turnPlayer.CurrentValueOfHand).ToString();
             if (!turnPlayer.hasSplit)
             {

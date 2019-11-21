@@ -19,15 +19,24 @@ namespace BlackJackApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var tableFormInstance = new tableForm();
-            tableFormInstance.currentMoneyLabel.Text = initialAmountTxtBx.Text;
-            tableFormInstance.Show();
-            tableFormInstance.Location = this.Location;
-            this.Hide();
-            // This is an event handler for the closing of a child form
-            // Passes the subject (child form) and arguments to close 
-            // Parent form as well
-            tableFormInstance.FormClosed += (s, args) => this.Close();
+            int number;
+            bool playerEntryIsValid = Int32.TryParse(initialAmountTxtBx.Text, out number);
+            if (playerEntryIsValid)
+            {
+                var tableFormInstance = new tableForm();
+                tableFormInstance.currentMoneyLabel.Text = initialAmountTxtBx.Text;
+                tableFormInstance.Show();
+                tableFormInstance.Location = this.Location;
+                this.Hide();
+                // This is an event handler for the closing of a child form
+                // Passes the subject (child form) and arguments to close 
+                // Parent form as well
+                tableFormInstance.FormClosed += (s, args) => this.Close();
+            } else
+            {
+                initialAmountTxtBx.Text = "Invalid";
+                initialAmountTxtBx.Select();
+            }
         }
 
         private void startScreenForm_Load(object sender, EventArgs e)
@@ -37,7 +46,7 @@ namespace BlackJackApplication
             //databaseAccess.testCreatePlayer();
             CenterToScreen();
             this.initialAmountTxtBx.Select();
-            checkPlayerLabelState();
+ //           checkPlayerLabelState();
         }
 
         private void ManageProfile_Click(object sender, EventArgs e)
@@ -51,6 +60,7 @@ namespace BlackJackApplication
 
         }
 
+        /*
         private void plusButton_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(numPlayersLabel.Text) < 3)
@@ -121,5 +131,6 @@ namespace BlackJackApplication
             CreateProfileForm profileForm = new CreateProfileForm();
             profileForm.Show();
         }
+        */
     }
 }
