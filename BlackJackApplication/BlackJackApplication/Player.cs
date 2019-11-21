@@ -9,74 +9,76 @@ namespace BlackJackApplication
 {
     class Player
     {
+        private int playerFBID;
+        private string username;
+        private string password;
+        private string recovQ;
+        private string recovA;
+        private int creditC;
+        private string name;
+        private string address;
+        private int phone;
         private int currentValueOfHand;
         private int currentAmountofMoney;
         private int currentPlayerBet;
-        private List<Card> playerHand = new List<Card>();
+        public int playerWins { get; set; }
+        public int playerLosses { get; set; }
+        public bool hasSplit { get; set; }
+        private List<Card> currentPlayerHand = new List<Card>();
         private List<PictureBox> pictureBoxes = new List<PictureBox>();
 
-        enum playerChoiceValues
+        public Player(int phone = 0000000000, string address = "", string name = "test",
+            int creditC = 0000000000000000, string recovA = "", string recovQ = "",
+            string password = "", string username = "", int playerFBID = 0)
         {
-            Stand = 1,
-            Hit = 2,
-            Reset = 3
-        }
-        public int ValueOfHand
-        {
-            get { return currentValueOfHand; }
-            set { currentValueOfHand = value; }
-        }
-
-        public int AmountOfMoney
-        {
-            get { return currentAmountofMoney; }
-            set { currentAmountofMoney = value; }
+            Phone = phone;
+            Address = address;
+            Name = name;
+            CreditC = creditC;
+            RecovA = recovA;
+            RecovQ = recovQ;
+            Password = password;
+            Username = username;
+            PlayerFBID = playerFBID;
         }
 
-        public int PlayerBet
-        {
-            get { return currentPlayerBet; }
-            set { currentPlayerBet = value; }
-        }
-
-        public List<Card> currentPlayerHand
-        {
-            get { return playerHand; }
-            set { playerHand = value; }
-        }
-        public List<PictureBox> PictureBoxes
-        {
-            get { return pictureBoxes; }
-            set { pictureBoxes = value; }
-        }
-
-        public int playerChoice()
-        {
-            // return a value (possible enum) for player action
-            return ((int)playerChoiceValues.Stand);
-        }
+        public int Phone { get => phone; set => phone = value; }
+        public string Address { get => address; set => address = value; }
+        public string Name { get => name; set => name = value; }
+        public int CreditC { get => creditC; set => creditC = value; }
+        public string RecovA { get => recovA; set => recovA = value; }
+        public string RecovQ { get => recovQ; set => recovQ = value; }
+        public string Password { get => password; set => password = value; }
+        public string Username { get => username; set => username = value; }
+        public int PlayerFBID { get => playerFBID; set => playerFBID = value; }
+        public List<PictureBox> PictureBoxes { get => pictureBoxes; set => pictureBoxes = value; }
+        public int CurrentValueOfHand { get => currentValueOfHand; set => currentValueOfHand = value; }
+        public int CurrentAmountOfMoney { get => currentAmountofMoney; set => currentAmountofMoney = value; }
+        public int CurrentPlayerBet { get => currentPlayerBet; set => currentPlayerBet = value; }
+        internal List<Card> CurrentPlayerHand { get => currentPlayerHand; set => currentPlayerHand = value; }
+        public int CurrentInsuranceBet { get; set; }
 
         public void addCardToHand(Card card)
         {
             long cardNumericalValue;
-            playerHand.Add(card);
+            CurrentPlayerHand.Add(card);
             if (card.Value == "king" || card.Value == "queen" || card.Value == "jack")
             {
-                currentValueOfHand += 10;
+                CurrentValueOfHand += 10;
             }
             else if (Int64.TryParse(card.Value, out cardNumericalValue))
             {
-                currentValueOfHand += (int)cardNumericalValue;
+                CurrentValueOfHand += (int)cardNumericalValue;
             }
             else
             {
-                if (currentValueOfHand + 11 > 21)
+                if (CurrentValueOfHand + 11 > 21)
                 {
-                    currentValueOfHand += 1;
+                    CurrentValueOfHand += 1;
                 }
                 else
                 {
-                    currentValueOfHand += 11;
+                    CurrentValueOfHand += 11;
                 }
             }
             

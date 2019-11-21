@@ -30,7 +30,7 @@ namespace BlackJackApplication
             hitButton.Visible = false;
             standButton.Visible = false;
             continueButton.Visible = false;
-            player1.AmountOfMoney = Int32.Parse(currentMoneyLabel.Text);
+            player1.CurrentAmountOfMoney = Int32.Parse(currentMoneyLabel.Text);
         }
         private void hitButton_Click(object sender, EventArgs e)
         { 
@@ -140,6 +140,27 @@ namespace BlackJackApplication
             // Passes the subject (child form) and arguments to close 
             // Parent form as well
             gameOverFormInstance.FormClosed += (s, args) => this.Close();
+        }
+
+        private void insuranceBetTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            insuranceBetValueLabel.Text = insuranceBetTxtBox.Text;
+        }
+
+        private void insuranceBetTxtBox_Click(object sender, EventArgs e)
+        {
+            insuranceBetTxtBox.Text = "";
+        }
+
+        private void insuranceBetButton_Click(object sender, EventArgs e)
+        {
+            turn.insuranceButtonClick(Int32.Parse(insuranceBetTxtBox.Text));
+        }
+
+        private void splitButton_Click(object sender, EventArgs e)
+        {
+            splitButton.Enabled = false;
+            turn.splitButtonClick();
         }
     }
 }
