@@ -53,31 +53,5 @@ namespace BlackJackApplication
         public int CurrentAmountOfMoney { get => currentAmountofMoney; set => currentAmountofMoney = value; }
         public int CurrentPlayerBet { get => currentPlayerBet; set => currentPlayerBet = value; }
         internal List<Card> CurrentPlayerHand { get => currentPlayerHand; set => currentPlayerHand = value; }
-
-        public void addCardToHand(Card card)
-        {
-            long cardNumericalValue;
-            CurrentPlayerHand.Add(card);
-            if (card.Value == "king" || card.Value == "queen" || card.Value == "jack")
-            {
-                CurrentValueOfHand += 10;
-            }
-            else if (Int64.TryParse(card.Value, out cardNumericalValue))
-            {
-                CurrentValueOfHand += (int)cardNumericalValue;
-            }
-            else
-            {
-                if (CurrentValueOfHand + 11 > 21)
-                {
-                    CurrentValueOfHand += 1;
-                }
-                else
-                {
-                    CurrentValueOfHand += 11;
-                }
-            }
-            
-        }
     }
 }

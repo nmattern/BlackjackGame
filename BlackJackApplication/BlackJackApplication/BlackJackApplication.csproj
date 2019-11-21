@@ -92,6 +92,7 @@
     <Compile Include="frmMainMenu.Designer.cs">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="GamePlayer.cs" />
     <Compile Include="LocalGame.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>

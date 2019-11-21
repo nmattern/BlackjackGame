@@ -21,7 +21,7 @@ namespace BlackJackApplication
             {
                 Card temp = deck.Cards[0];
                 deck.Cards.RemoveAt(0);
-                player.addCardToHand(temp);
+                //player.addCardToHand(temp);
                 numOfCards--;
             }
         }

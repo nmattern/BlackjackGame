@@ -16,6 +16,7 @@ namespace BlackJackApplication
         private bool loginValid;
         private bool gameValid;
         private Player player;
+        private LocalGame localGame;
 
         public static IFirebaseConfig config = new FirebaseConfig
         {
@@ -29,6 +30,8 @@ namespace BlackJackApplication
         public bool LoginValid { get => this.loginValid; set => this.loginValid = value; }
         internal Player CurrentPlayer { get => this.player; set => this.player = value; }
         public bool GameValid { get => this.gameValid; set => this.gameValid = value; }
+
+        public LocalGame LocalGame { get => this.localGame; set => this.localGame = value; }
 
         public void testConnection()
         {
@@ -56,14 +59,19 @@ namespace BlackJackApplication
             Console.WriteLine("Player Modified " + player.Username);
         }
 
-        public async Task modifySpecficPlayerData(string playerUserName, string fieldToModify, string Value)
+        // TODO
+        /*public async Task modifySpecficPlayerData(string playerUserName, string fieldToModify, string Value)
         {
+            FirebaseResponse response = await client.GetAsync("Players/" + playerUserName + "/" + fieldToModify);
             // Check if the value is an integer and if it needs to be 64 bit
             if (Value.All(char.IsDigit) == true)
             {
                 if (Value.Length > 8)
                 {
                     Convert.ToInt64(Value);
+                    Int64 playerData = response.ResultAs<Int64>();
+                    typeof(MyType).GetMethod("CurrentPlayer." + fieldToModify).Invoke(null, new[] { arg1, arg2 });
+                    CurrentPlayer.fieldToModify
                 }
                 else
                 {
@@ -72,10 +80,9 @@ namespace BlackJackApplication
             }
 
             // Otherwise modify the value for that player with the passed in value
-            FirebaseResponse response = await client.GetAsync("Players/" + playerUserName + "/" + fieldToModify);
             Player databasePlayer = response.ResultAs<Player>();
             CurrentPlayer = databasePlayer;
-        }
+        }*/
 
         // Grabs the player class from the databased assigned to that username
         public async Task returnPlayer(string username)
@@ -115,6 +122,14 @@ namespace BlackJackApplication
             {
                 LoginValid = false;
             }
+        }
+
+        public async Task createLocalGame(string username, LocalGame localGame)
+        {
+            SetResponse response = await client.SetAsync<LocalGame>("Players/" + username + "/LocalGame/", localGame);
+            LocalGame result = response.ResultAs<LocalGame>();
+
+            Console.WriteLine("Local Game created for " + player.Username);
         }
 
         public async Task isGameValid(int gameID)
