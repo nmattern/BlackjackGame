@@ -30,6 +30,14 @@ namespace BlackJackApplication
         private async void startLocalGameButton_Click(object sender, EventArgs e)
         {
             await database.createLocalGame(playerList[0].Username, localGame);
+            startLocalGameButton.Text = "Load Previous Game";
+            deleteLocalGameButton.Visible = true;
+        }
+        private async void deleteLocalGameButton_Click(object sender, EventArgs e)
+        {
+            await database.deleteLocalGame(playerList[0].Username);
+            startLocalGameButton.Text = "Start Local Game";
+            deleteLocalGameButton.Visible = false;
         }
 
         private void setAmountTextBox_TextChanged(object sender, EventArgs e)
@@ -57,10 +65,12 @@ namespace BlackJackApplication
             if (database.LocalGameExists)
             {
                 startLocalGameButton.Text = "Load Previous Game";
+                deleteLocalGameButton.Visible = true;
             }
             else
             {
                 startLocalGameButton.Text = "Start Local Game";
+                deleteLocalGameButton.Visible = false;
             }
             currentAmountOfMoneyLabel.Text = playerList[0].CurrentAmountOfMoney.ToString();
             localUserPlayerListLabel.Text = playerList[0].Username;
@@ -141,5 +151,6 @@ namespace BlackJackApplication
         {
 
         }
+
     }
 }
