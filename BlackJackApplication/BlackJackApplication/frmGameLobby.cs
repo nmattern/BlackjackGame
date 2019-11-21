@@ -27,14 +27,9 @@ namespace BlackJackApplication
             database = db;
         }
 
-        private void startLocalGameButton_Click(object sender, EventArgs e)
+        private async void startLocalGameButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void joinOnlineGameButton_Click(object sender, EventArgs e)
-        {
-
+            await database.createLocalGame(playerList[0].Username, localGame);
         }
 
         private void setAmountTextBox_TextChanged(object sender, EventArgs e)
@@ -129,10 +124,9 @@ namespace BlackJackApplication
 
         }
 
-        private void joinOnlineGameButton_Click_1(object sender, EventArgs e)
+        private void joinOnlineGameButton_Click(object sender, EventArgs e)
         {
 
         }
-
     }
 }
