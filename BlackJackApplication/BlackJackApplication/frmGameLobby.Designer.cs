@@ -82,6 +82,7 @@
             this.Player2PlayerListLabel.TabIndex = 5;
             this.Player2PlayerListLabel.Text = "Player 2";
             this.Player2PlayerListLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Player2PlayerListLabel.Visible = false;
             // 
             // Player3PlayerListLabel
             // 
@@ -92,6 +93,7 @@
             this.Player3PlayerListLabel.TabIndex = 6;
             this.Player3PlayerListLabel.Text = "Player 3";
             this.Player3PlayerListLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Player3PlayerListLabel.Visible = false;
             // 
             // textBox1
             // 
