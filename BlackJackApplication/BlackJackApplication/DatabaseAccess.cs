@@ -13,6 +13,7 @@ namespace BlackJackApplication
     class DatabaseAccess
     {
         private bool playerExists = true;
+        private bool localPlayerExists;
         private bool loginValid;
         private bool localGameExists;
         private bool gameValid;
@@ -29,6 +30,7 @@ namespace BlackJackApplication
         IFirebaseClient client = new FireSharp.FirebaseClient(config);
 
         public bool PlayerExists { get => this.playerExists; set => this.playerExists = value; }
+        public bool LocalPlayerExists { get => this.localPlayerExists; set => this.localPlayerExists = value; }
         public bool LoginValid { get => this.loginValid; set => this.loginValid = value; }
         internal Player CurrentPlayer { get => this.player; set => this.player = value; }
         internal GamePlayer CurrentGamePlayer { get => this.gamePlayer; set => this.gamePlayer = value; }
@@ -172,6 +174,23 @@ namespace BlackJackApplication
 
         }
 
-        
+        public async Task doesLocalPlayerExist(string parentUsername, int playerNumber)
+        {
+            FirebaseResponse response = await client.GetAsync("Players/" + parentUsername + "/LocalGame/PlayerList/" + playerNumber);
+            GamePlayer localPlayer = response.ResultAs<GamePlayer>();
+            if (localPlayer != null)
+            {
+                LocalPlayerExists = true;
+                Console.WriteLine("Local Player Exists");
+            }
+            else
+            {
+                LocalPlayerExists = false;
+                Console.WriteLine("Local Player does not exist");
+            }
+
+        }
+
+
     }
 }

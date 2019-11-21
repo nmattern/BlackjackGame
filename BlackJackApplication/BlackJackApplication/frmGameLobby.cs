@@ -66,6 +66,20 @@ namespace BlackJackApplication
             {
                 startLocalGameButton.Text = "Load Previous Game";
                 deleteLocalGameButton.Visible = true;
+                // Check if guest1 exists
+                await database.doesLocalPlayerExist(playerList[0].Username, 1);
+                if (database.LocalPlayerExists == true)
+                {
+                    Player2PlayerListLabel.Text = "Guest1";
+                    Player2PlayerListLabel.Visible = true;
+                }
+                // Check if guest2 exists
+                await database.doesLocalPlayerExist(playerList[0].Username, 2);
+                if (database.LocalPlayerExists == true)
+                {
+                    Player3PlayerListLabel.Text = "Guest2";
+                    Player3PlayerListLabel.Visible = true;
+                }
             }
             else
             {
