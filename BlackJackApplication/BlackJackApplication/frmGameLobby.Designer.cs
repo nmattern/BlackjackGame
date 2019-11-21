@@ -113,7 +113,7 @@
             this.joinOnlineGameButton.TabIndex = 9;
             this.joinOnlineGameButton.Text = "Join Online Game";
             this.joinOnlineGameButton.UseVisualStyleBackColor = true;
-            this.joinOnlineGameButton.Click += new System.EventHandler(this.joinOnlineGameButton_Click_1);
+            this.joinOnlineGameButton.Click += new System.EventHandler(this.joinOnlineGameButton_Click);
             // 
             // startLocalGameButton
             // 
