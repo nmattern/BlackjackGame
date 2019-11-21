@@ -51,6 +51,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CurrentMoneyTitleLabel = new System.Windows.Forms.Label();
             this.currentAmountOfMoneyLabel = new System.Windows.Forms.Label();
+            this.deleteLocalGameButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lobbyLabel
@@ -270,12 +271,24 @@
             this.currentAmountOfMoneyLabel.TabIndex = 26;
             this.currentAmountOfMoneyLabel.Text = "0";
             // 
+            // deleteLocalGameButton
+            // 
+            this.deleteLocalGameButton.Location = new System.Drawing.Point(158, 299);
+            this.deleteLocalGameButton.Name = "deleteLocalGameButton";
+            this.deleteLocalGameButton.Size = new System.Drawing.Size(120, 23);
+            this.deleteLocalGameButton.TabIndex = 27;
+            this.deleteLocalGameButton.Text = "Delete Local Game";
+            this.deleteLocalGameButton.UseVisualStyleBackColor = true;
+            this.deleteLocalGameButton.Visible = false;
+            this.deleteLocalGameButton.Click += new System.EventHandler(this.deleteLocalGameButton_Click);
+            // 
             // frmGameLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.deleteLocalGameButton);
             this.Controls.Add(this.currentAmountOfMoneyLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CurrentMoneyTitleLabel);
@@ -332,5 +345,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label CurrentMoneyTitleLabel;
         private System.Windows.Forms.Label currentAmountOfMoneyLabel;
+        private System.Windows.Forms.Button deleteLocalGameButton;
     }
 }

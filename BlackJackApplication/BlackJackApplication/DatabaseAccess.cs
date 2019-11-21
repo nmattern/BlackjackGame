@@ -131,7 +131,13 @@ namespace BlackJackApplication
             SetResponse response = await client.SetAsync<LocalGame>("Players/" + username + "/LocalGame/", localGame);
             LocalGame result = response.ResultAs<LocalGame>();
 
-            Console.WriteLine("Local Game created for " + player.Username);
+            Console.WriteLine("Local Game created for " + username);
+        }
+
+        public async Task deleteLocalGame(string username)
+        {
+            FirebaseResponse response = await client.DeleteAsync("Players/" + username + "/LocalGame");
+            Console.WriteLine("Deleted Local Game for " + username);
         }
 
         public async Task isGameValid(int gameID)
