@@ -89,7 +89,7 @@ namespace BlackJackApplication
             }
         }
 
-        private void addLocalGuestButton_Click(object sender, EventArgs e)
+        private async void addLocalGuestButton_Click(object sender, EventArgs e)
         {
             GamePlayer newGuest;
             if (localGame.PlayerList.Count <= 3)
@@ -98,11 +98,13 @@ namespace BlackJackApplication
                 localGame.PlayerList.Add(newGuest);
                 if (localGame.PlayerList.Count == 2)
                 {
+                    await database.createLocalGamePlayer(playerList[0].Username, 1, localGame.PlayerList[1]);
                     Player2PlayerListLabel.Text = newGuest.Username;
                     Player2PlayerListLabel.Visible = true;
                 }
                 else if (localGame.PlayerList.Count == 3)
                 {
+                    await database.createLocalGamePlayer(playerList[0].Username, 2, localGame.PlayerList[2]);
                     Player3PlayerListLabel.Text = newGuest.Username;
                     Player3PlayerListLabel.Visible = true;
                 } 
@@ -124,7 +126,7 @@ namespace BlackJackApplication
             guestAccount.PlayerAmountOfMoney = 1500;
             return guestAccount;
         }
-        private void deleteLocalGuestButton_Click(object sender, EventArgs e)
+        private async void deleteLocalGuestButton_Click(object sender, EventArgs e)
         {
             if (localGame.PlayerList.Count > 1)
             {
@@ -133,11 +135,13 @@ namespace BlackJackApplication
                 {
                     Player3PlayerListLabel.Text = "";
                     Player3PlayerListLabel.Visible = false;
+                    await database.deleteLocalGamePlayer(playerList[0].Username, 2);
                 }
                 else if (localGame.PlayerList.Count == 1)
                 {
                     Player2PlayerListLabel.Text = "";
                     Player2PlayerListLabel.Visible = false;
+                    await database.deleteLocalGamePlayer(playerList[0].Username, 1);
                 }
             }
             else
