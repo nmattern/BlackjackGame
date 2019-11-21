@@ -51,8 +51,17 @@ namespace BlackJackApplication
             }
         }
 
-        private void frmGameLobby_Load(object sender, EventArgs e)
+        private async void frmGameLobby_Load(object sender, EventArgs e)
         {
+            await database.doesLocalGameExist(playerList[0].Username);
+            if (database.LocalGameExists)
+            {
+                startLocalGameButton.Text = "Load Previous Game";
+            }
+            else
+            {
+                startLocalGameButton.Text = "Start Local Game";
+            }
             currentAmountOfMoneyLabel.Text = playerList[0].CurrentAmountOfMoney.ToString();
             localUserPlayerListLabel.Text = playerList[0].Username;
             GamePlayer localPlayer = new GamePlayer();

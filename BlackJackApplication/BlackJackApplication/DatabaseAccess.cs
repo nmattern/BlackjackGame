@@ -14,6 +14,7 @@ namespace BlackJackApplication
     {
         private bool playerExists = true;
         private bool loginValid;
+        private bool localGameExists;
         private bool gameValid;
         private Player player;
         private LocalGame localGame;
@@ -29,9 +30,10 @@ namespace BlackJackApplication
         public bool PlayerExists { get => this.playerExists; set => this.playerExists = value; }
         public bool LoginValid { get => this.loginValid; set => this.loginValid = value; }
         internal Player CurrentPlayer { get => this.player; set => this.player = value; }
-        public bool GameValid { get => this.gameValid; set => this.gameValid = value; }
+        public bool GameValid { get => this.gameValid ; set => this.gameValid = value; }
 
         public LocalGame LocalGame { get => this.localGame; set => this.localGame = value; }
+        public bool LocalGameExists { get => localGameExists; set => localGameExists = value; }
 
         public void testConnection()
         {
@@ -144,6 +146,23 @@ namespace BlackJackApplication
             {
                 GameValid = false;
             }
+        }
+
+        public async Task doesLocalGameExist(string username)
+        {
+            FirebaseResponse response = await client.GetAsync("Players/" + username + "/LocalGame");
+            LocalGame localGame = response.ResultAs<LocalGame>();
+            if (localGame != null)
+            {
+                localGameExists = true;
+                Console.WriteLine("Local Game Exists");
+            }
+            else
+            {
+                localGameExists = false;
+                Console.WriteLine("Local Game does not exist");
+            }
+
         }
 
         
