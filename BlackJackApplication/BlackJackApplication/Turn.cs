@@ -333,6 +333,12 @@ namespace BlackJackApplication
                         } else if (valueOfFirstHand < turnDealer.CurrentValueOfHand && valueOfSecondHand < turnDealer.CurrentValueOfHand)
                         {
                             bothHandsLose();
+                        } else if (valueOfFirstHand < turnDealer.CurrentValueOfHand && valueOfSecondHand == turnDealer.CurrentValueOfHand)
+                        {
+                            secondHandTies();
+                        } else if (valueOfFirstHand == turnDealer.CurrentValueOfHand && valueOfSecondHand < turnDealer.CurrentValueOfHand)
+                        {
+                            firstHandTies();
                         }
                     }
                 } else if (valueOfFirstHand > 21 || valueOfSecondHand > 21)
