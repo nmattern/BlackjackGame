@@ -42,12 +42,15 @@
             this.PlayerListTitleLabel = new System.Windows.Forms.Label();
             this.addLocalGuestButton = new System.Windows.Forms.Button();
             this.localUserPlayerListLabel = new System.Windows.Forms.Label();
-            this.startingAmountValidLabel = new System.Windows.Forms.Label();
             this.setAmountLabel = new System.Windows.Forms.Label();
             this.setAmountTextBox = new System.Windows.Forms.TextBox();
-            this.AdjustMoneyErrorMessageLabel = new System.Windows.Forms.Label();
             this.adjustMoneyButton = new System.Windows.Forms.Button();
             this.deleteLocalGuestButton = new System.Windows.Forms.Button();
+            this.startingAmountValidLabel = new System.Windows.Forms.Label();
+            this.AdjustMoneyErrorMessageLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CurrentMoneyTitleLabel = new System.Windows.Forms.Label();
+            this.currentAmountOfMoneyLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lobbyLabel
@@ -185,15 +188,6 @@
             this.localUserPlayerListLabel.Text = "LocalUser";
             this.localUserPlayerListLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // startingAmountValidLabel
-            // 
-            this.startingAmountValidLabel.AutoSize = true;
-            this.startingAmountValidLabel.ForeColor = System.Drawing.Color.Red;
-            this.startingAmountValidLabel.Location = new System.Drawing.Point(234, 9);
-            this.startingAmountValidLabel.Name = "startingAmountValidLabel";
-            this.startingAmountValidLabel.Size = new System.Drawing.Size(0, 13);
-            this.startingAmountValidLabel.TabIndex = 19;
-            // 
             // setAmountLabel
             // 
             this.setAmountLabel.AutoSize = true;
@@ -210,15 +204,6 @@
             this.setAmountTextBox.Size = new System.Drawing.Size(102, 20);
             this.setAmountTextBox.TabIndex = 17;
             this.setAmountTextBox.TextChanged += new System.EventHandler(this.setAmountTextBox_TextChanged);
-            // 
-            // AdjustMoneyErrorMessageLabel
-            // 
-            this.AdjustMoneyErrorMessageLabel.AutoSize = true;
-            this.AdjustMoneyErrorMessageLabel.ForeColor = System.Drawing.Color.Red;
-            this.AdjustMoneyErrorMessageLabel.Location = new System.Drawing.Point(233, 10);
-            this.AdjustMoneyErrorMessageLabel.Name = "AdjustMoneyErrorMessageLabel";
-            this.AdjustMoneyErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
-            this.AdjustMoneyErrorMessageLabel.TabIndex = 20;
             // 
             // adjustMoneyButton
             // 
@@ -240,12 +225,60 @@
             this.deleteLocalGuestButton.UseVisualStyleBackColor = true;
             this.deleteLocalGuestButton.Click += new System.EventHandler(this.deleteLocalGuestButton_Click);
             // 
+            // startingAmountValidLabel
+            // 
+            this.startingAmountValidLabel.AutoSize = true;
+            this.startingAmountValidLabel.ForeColor = System.Drawing.Color.Red;
+            this.startingAmountValidLabel.Location = new System.Drawing.Point(133, 35);
+            this.startingAmountValidLabel.Name = "startingAmountValidLabel";
+            this.startingAmountValidLabel.Size = new System.Drawing.Size(0, 13);
+            this.startingAmountValidLabel.TabIndex = 19;
+            // 
+            // AdjustMoneyErrorMessageLabel
+            // 
+            this.AdjustMoneyErrorMessageLabel.AutoSize = true;
+            this.AdjustMoneyErrorMessageLabel.ForeColor = System.Drawing.Color.Red;
+            this.AdjustMoneyErrorMessageLabel.Location = new System.Drawing.Point(132, 36);
+            this.AdjustMoneyErrorMessageLabel.Name = "AdjustMoneyErrorMessageLabel";
+            this.AdjustMoneyErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.AdjustMoneyErrorMessageLabel.TabIndex = 20;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(803, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 25;
+            // 
+            // CurrentMoneyTitleLabel
+            // 
+            this.CurrentMoneyTitleLabel.AutoSize = true;
+            this.CurrentMoneyTitleLabel.Location = new System.Drawing.Point(659, 9);
+            this.CurrentMoneyTitleLabel.Name = "CurrentMoneyTitleLabel";
+            this.CurrentMoneyTitleLabel.Size = new System.Drawing.Size(129, 13);
+            this.CurrentMoneyTitleLabel.TabIndex = 24;
+            this.CurrentMoneyTitleLabel.Text = "Current Amount Of Money";
+            // 
+            // currentAmountOfMoneyLabel
+            // 
+            this.currentAmountOfMoneyLabel.AutoSize = true;
+            this.currentAmountOfMoneyLabel.Location = new System.Drawing.Point(659, 32);
+            this.currentAmountOfMoneyLabel.Name = "currentAmountOfMoneyLabel";
+            this.currentAmountOfMoneyLabel.Size = new System.Drawing.Size(13, 13);
+            this.currentAmountOfMoneyLabel.TabIndex = 26;
+            this.currentAmountOfMoneyLabel.Text = "0";
+            // 
             // frmGameLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.currentAmountOfMoneyLabel);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.CurrentMoneyTitleLabel);
             this.Controls.Add(this.deleteLocalGuestButton);
             this.Controls.Add(this.adjustMoneyButton);
             this.Controls.Add(this.AdjustMoneyErrorMessageLabel);
@@ -290,11 +323,14 @@
         private System.Windows.Forms.Label PlayerListTitleLabel;
         private System.Windows.Forms.Button addLocalGuestButton;
         private System.Windows.Forms.Label localUserPlayerListLabel;
-        private System.Windows.Forms.Label startingAmountValidLabel;
         private System.Windows.Forms.Label setAmountLabel;
         private System.Windows.Forms.TextBox setAmountTextBox;
-        private System.Windows.Forms.Label AdjustMoneyErrorMessageLabel;
         private System.Windows.Forms.Button adjustMoneyButton;
         private System.Windows.Forms.Button deleteLocalGuestButton;
+        private System.Windows.Forms.Label startingAmountValidLabel;
+        private System.Windows.Forms.Label AdjustMoneyErrorMessageLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label CurrentMoneyTitleLabel;
+        private System.Windows.Forms.Label currentAmountOfMoneyLabel;
     }
 }
