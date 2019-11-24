@@ -23,6 +23,7 @@ namespace BlackJackApplication
         private int currentPlayerBet;
         private List<Card> currentPlayerHand = new List<Card>();
         private List<PictureBox> pictureBoxes = new List<PictureBox>();
+        private LocalGame aLocalGame;
 
         public Player(long phone = 0000000000, string address = "", string name = "test",
             long creditC = 0000000000000000, string recovA = "", string recovQ = "",
@@ -53,5 +54,6 @@ namespace BlackJackApplication
         public int CurrentAmountOfMoney { get => currentAmountofMoney; set => currentAmountofMoney = value; }
         public int CurrentPlayerBet { get => currentPlayerBet; set => currentPlayerBet = value; }
         internal List<Card> CurrentPlayerHand { get => currentPlayerHand; set => currentPlayerHand = value; }
+        internal LocalGame ALocalGame { get => aLocalGame; set => aLocalGame = value; }
     }
 }

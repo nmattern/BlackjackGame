@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Drawing;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
@@ -56,6 +56,32 @@ namespace BlackJackApplication
             Player result = response.ResultAs<Player>();
 
             Console.WriteLine("Player Created " + player.Username);
+        }
+
+        public async Task setLocalPlayerLocation(List<Point> pointList, Player player)
+        {
+            int i;
+            for (i = 0; i < player.ALocalGame.PlayerList.Count; i++)
+            {
+                SetResponse response = await client.SetAsync<GamePlayer>("Players/" + player.Username + "/LocalGame/PlayerList/" + i, player.ALocalGame.PlayerList[i]);
+                GamePlayer result = response.ResultAs<GamePlayer>();
+
+                Console.WriteLine("Local Player " + i + " has location " + player.ALocalGame.PlayerList[i].Location);
+            }
+            
+        }
+        /*
+        public async Task updatePlayerList(Player player)
+        {
+            FirebaseResponse response = await client.GetAsync("Players/" + player.Username + "/LocalGame/PlayerList");
+            LocalGame aLocalGame = response.ResultAs<LocalGame>();
+        }
+        */
+        public async Task updateLocalGame(Player player)
+        {
+            FirebaseResponse response = await client.GetAsync("Players/" + player.Username + "/LocalGame");
+            LocalGame aLocalGame = response.ResultAs<LocalGame>();
+            LocalGame = aLocalGame;
         }
 
         public async Task modifyEntirePlayer(Player player)
