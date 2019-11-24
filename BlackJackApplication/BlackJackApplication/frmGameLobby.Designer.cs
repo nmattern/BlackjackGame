@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lobbyLabel = new System.Windows.Forms.Label();
             this.gameIDLabel = new System.Windows.Forms.Label();
             this.Player2PlayerListLabel = new System.Windows.Forms.Label();
@@ -52,6 +53,9 @@
             this.CurrentMoneyTitleLabel = new System.Windows.Forms.Label();
             this.currentAmountOfMoneyLabel = new System.Windows.Forms.Label();
             this.deleteLocalGameButton = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.startGameButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lobbyLabel
@@ -76,7 +80,7 @@
             // Player2PlayerListLabel
             // 
             this.Player2PlayerListLabel.AutoSize = true;
-            this.Player2PlayerListLabel.Location = new System.Drawing.Point(382, 238);
+            this.Player2PlayerListLabel.Location = new System.Drawing.Point(378, 238);
             this.Player2PlayerListLabel.Name = "Player2PlayerListLabel";
             this.Player2PlayerListLabel.Size = new System.Drawing.Size(45, 13);
             this.Player2PlayerListLabel.TabIndex = 5;
@@ -87,7 +91,7 @@
             // Player3PlayerListLabel
             // 
             this.Player3PlayerListLabel.AutoSize = true;
-            this.Player3PlayerListLabel.Location = new System.Drawing.Point(382, 262);
+            this.Player3PlayerListLabel.Location = new System.Drawing.Point(378, 262);
             this.Player3PlayerListLabel.Name = "Player3PlayerListLabel";
             this.Player3PlayerListLabel.Size = new System.Drawing.Size(45, 13);
             this.Player3PlayerListLabel.TabIndex = 6;
@@ -284,12 +288,23 @@
             this.deleteLocalGameButton.Visible = false;
             this.deleteLocalGameButton.Click += new System.EventHandler(this.deleteLocalGameButton_Click);
             // 
+            // startGameButton
+            // 
+            this.startGameButton.Location = new System.Drawing.Point(363, 363);
+            this.startGameButton.Name = "startGameButton";
+            this.startGameButton.Size = new System.Drawing.Size(75, 23);
+            this.startGameButton.TabIndex = 28;
+            this.startGameButton.Text = "Start Game";
+            this.startGameButton.UseVisualStyleBackColor = true;
+            this.startGameButton.Click += new System.EventHandler(this.startGameButton_Click);
+            // 
             // frmGameLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.startGameButton);
             this.Controls.Add(this.deleteLocalGameButton);
             this.Controls.Add(this.currentAmountOfMoneyLabel);
             this.Controls.Add(this.label2);
@@ -317,6 +332,7 @@
             this.Name = "frmGameLobby";
             this.Text = "frmGameLobby";
             this.Load += new System.EventHandler(this.frmGameLobby_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,5 +364,7 @@
         private System.Windows.Forms.Label CurrentMoneyTitleLabel;
         private System.Windows.Forms.Label currentAmountOfMoneyLabel;
         private System.Windows.Forms.Button deleteLocalGameButton;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Button startGameButton;
     }
 }

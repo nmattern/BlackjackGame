@@ -15,6 +15,7 @@ namespace BlackJackApplication
         List<Player> playerList = new List<Player>();
         DatabaseAccess database;
         LocalGame localGame = new LocalGame();
+        GamePlayer localPlayer;
 
         internal frmGameLobby(Player p, DatabaseAccess db)
         {
@@ -88,7 +89,7 @@ namespace BlackJackApplication
             }
             currentAmountOfMoneyLabel.Text = playerList[0].CurrentAmountOfMoney.ToString();
             localUserPlayerListLabel.Text = playerList[0].Username;
-            GamePlayer localPlayer = new GamePlayer();
+            localPlayer = new GamePlayer();
             localPlayer.Username = playerList[0].Username;
             localGame.GameID = 123;
             localGame.PlayerList.Add(localPlayer);
@@ -174,5 +175,16 @@ namespace BlackJackApplication
 
         }
 
+        private void startGameButton_Click(object sender, EventArgs e)
+        {
+            var gameBoardInstance = new frmGameBoard(playerList, database, localGame, localPlayer);
+            gameBoardInstance.Location = this.Location;
+            this.Hide();
+            // This is an event handler for the closing of a child form
+            // Passes the subject (child form) and arguments to close 
+            // Parent form as well
+            gameBoardInstance.Show();
+            gameBoardInstance.FormClosed += (s, args) => this.Close();
+        }
     }
 }

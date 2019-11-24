@@ -112,6 +112,7 @@
     <Compile Include="GameOverForm.Designer.cs">
       <DependentUpon>GameOverForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalTurn.cs" />
     <Compile Include="ProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
