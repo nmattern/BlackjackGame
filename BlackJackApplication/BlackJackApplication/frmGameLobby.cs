@@ -182,7 +182,7 @@ namespace BlackJackApplication
 
         private void createOnlineGameButton_Click(object sender, EventArgs e)
         {
-
+            database.GenerateOnlineID();
         }
 
         private void joinOnlineGameButton_Click(object sender, EventArgs e)
