@@ -54,7 +54,6 @@
             this.currentAmountOfMoneyLabel = new System.Windows.Forms.Label();
             this.deleteLocalGameButton = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.startGameButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +100,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(510, 271);
+            this.textBox1.Location = new System.Drawing.Point(510, 287);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(42, 20);
             this.textBox1.TabIndex = 7;
@@ -109,7 +108,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(507, 254);
+            this.label1.Location = new System.Drawing.Point(507, 270);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 8;
@@ -117,7 +116,7 @@
             // 
             // joinOnlineGameButton
             // 
-            this.joinOnlineGameButton.Location = new System.Drawing.Point(558, 270);
+            this.joinOnlineGameButton.Location = new System.Drawing.Point(558, 286);
             this.joinOnlineGameButton.Name = "joinOnlineGameButton";
             this.joinOnlineGameButton.Size = new System.Drawing.Size(105, 23);
             this.joinOnlineGameButton.TabIndex = 9;
@@ -157,7 +156,7 @@
             // 
             // createOnlineGameButton
             // 
-            this.createOnlineGameButton.Location = new System.Drawing.Point(526, 212);
+            this.createOnlineGameButton.Location = new System.Drawing.Point(526, 228);
             this.createOnlineGameButton.Name = "createOnlineGameButton";
             this.createOnlineGameButton.Size = new System.Drawing.Size(125, 23);
             this.createOnlineGameButton.TabIndex = 13;
@@ -288,23 +287,12 @@
             this.deleteLocalGameButton.Visible = false;
             this.deleteLocalGameButton.Click += new System.EventHandler(this.deleteLocalGameButton_Click);
             // 
-            // startGameButton
-            // 
-            this.startGameButton.Location = new System.Drawing.Point(363, 363);
-            this.startGameButton.Name = "startGameButton";
-            this.startGameButton.Size = new System.Drawing.Size(75, 23);
-            this.startGameButton.TabIndex = 28;
-            this.startGameButton.Text = "Start Game";
-            this.startGameButton.UseVisualStyleBackColor = true;
-            this.startGameButton.Click += new System.EventHandler(this.startGameButton_Click);
-            // 
             // frmGameLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.startGameButton);
             this.Controls.Add(this.deleteLocalGameButton);
             this.Controls.Add(this.currentAmountOfMoneyLabel);
             this.Controls.Add(this.label2);
@@ -365,6 +353,5 @@
         private System.Windows.Forms.Label currentAmountOfMoneyLabel;
         private System.Windows.Forms.Button deleteLocalGameButton;
         private System.Windows.Forms.BindingSource bindingSource1;
-        private System.Windows.Forms.Button startGameButton;
     }
 }

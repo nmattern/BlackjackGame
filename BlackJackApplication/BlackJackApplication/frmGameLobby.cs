@@ -12,16 +12,21 @@ namespace BlackJackApplication
 {
     public partial class frmGameLobby : Form
     {
+        List<GamePlayer> localPlayerList = new List<GamePlayer>();
         List<Player> playerList = new List<Player>();
         DatabaseAccess database;
         LocalGame localGame = new LocalGame();
-        GamePlayer localPlayer;
+        GamePlayer localPlayer = new GamePlayer();
+        Player player;
 
         internal frmGameLobby(Player p, DatabaseAccess db)
         {
             InitializeComponent();
-            playerList.Add(p);
-            foreach(Player user in playerList)
+            player = p;
+            localPlayer.Username = player.Username;
+            localPlayer.PlayerAmountOfMoney = player.CurrentAmountOfMoney;
+            localPlayerList.Add(localPlayer);
+            foreach(GamePlayer user in localPlayerList)
             {
                 Console.WriteLine("User: " + user.Username);
             }
@@ -30,14 +35,19 @@ namespace BlackJackApplication
 
         private async void startLocalGameButton_Click(object sender, EventArgs e)
         {
-            await database.createLocalGame(playerList[0].Username, localGame);
-            startLocalGameButton.Text = "Load Previous Game";
+            await database.createLocalGame(localPlayerList[0].Username, localGame);
+            startLocalGameButton.Text = "Play Previous Game";
             deleteLocalGameButton.Visible = true;
         }
         private async void deleteLocalGameButton_Click(object sender, EventArgs e)
         {
-            await database.deleteLocalGame(playerList[0].Username);
+            await database.deleteLocalGame(localPlayerList[0].Username);
             startLocalGameButton.Text = "Start Local Game";
+            Player2PlayerListLabel.Text = "";
+            Player3PlayerListLabel.Text = "";
+            localPlayerList.Clear();
+            localPlayerList.Add(localPlayer);
+            localUserPlayerListLabel.Text = localPlayer.Username;
             deleteLocalGameButton.Visible = false;
         }
 
@@ -47,7 +57,7 @@ namespace BlackJackApplication
             bool betContainsOnlyDigits = Int32.TryParse(this.setAmountTextBox.Text, out number);
             if (betContainsOnlyDigits && this.setAmountTextBox.Text != "")
             {
-                playerList[0].CurrentAmountOfMoney = Convert.ToInt32(setAmountTextBox.Text);
+                localPlayerList[0].PlayerAmountOfMoney = Convert.ToInt32(setAmountTextBox.Text);
                 AdjustMoneyErrorMessageLabel.Text = "";
             }
             else if (this.setAmountTextBox.Text == "")
@@ -62,22 +72,26 @@ namespace BlackJackApplication
 
         private async void frmGameLobby_Load(object sender, EventArgs e)
         {
-            await database.doesLocalGameExist(playerList[0].Username);
+            await database.doesLocalGameExist(localPlayerList[0].Username);
             if (database.LocalGameExists)
             {
                 startLocalGameButton.Text = "Load Previous Game";
                 deleteLocalGameButton.Visible = true;
                 // Check if guest1 exists
-                await database.doesLocalPlayerExist(playerList[0].Username, 1);
+                await database.doesLocalPlayerExist(localPlayerList[0].Username, 1);
                 if (database.LocalPlayerExists == true)
                 {
+                    await database.returnLocalPlayer(localPlayerList[0].Username, "1");
+                    localPlayerList.Add(database.CurrentGamePlayer);
                     Player2PlayerListLabel.Text = "Guest1";
                     Player2PlayerListLabel.Visible = true;
                 }
                 // Check if guest2 exists
-                await database.doesLocalPlayerExist(playerList[0].Username, 2);
+                await database.doesLocalPlayerExist(localPlayerList[0].Username, 2);
                 if (database.LocalPlayerExists == true)
                 {
+                    await database.returnLocalPlayer(localPlayerList[0].Username, "2");
+                    localPlayerList.Add(database.CurrentGamePlayer);
                     Player3PlayerListLabel.Text = "Guest2";
                     Player3PlayerListLabel.Visible = true;
                 }
@@ -87,10 +101,10 @@ namespace BlackJackApplication
                 startLocalGameButton.Text = "Start Local Game";
                 deleteLocalGameButton.Visible = false;
             }
-            currentAmountOfMoneyLabel.Text = playerList[0].CurrentAmountOfMoney.ToString();
-            localUserPlayerListLabel.Text = playerList[0].Username;
+            currentAmountOfMoneyLabel.Text = localPlayerList[0].PlayerAmountOfMoney.ToString();
+            localUserPlayerListLabel.Text = localPlayerList[0].Username;
             localPlayer = new GamePlayer();
-            localPlayer.Username = playerList[0].Username;
+            localPlayer.Username = localPlayerList[0].Username;
             localGame.GameID = 123;
             localGame.PlayerList.Add(localPlayer);
         }
@@ -99,27 +113,27 @@ namespace BlackJackApplication
         {
             if (setAmountTextBox.Text != "")
             {
-                await database.modifyEntirePlayer(playerList[0]);
-                currentAmountOfMoneyLabel.Text = playerList[0].CurrentAmountOfMoney.ToString();
+                await database.modifyEntirePlayer(player);
+                currentAmountOfMoneyLabel.Text = localPlayerList[0].PlayerAmountOfMoney.ToString();
             }
         }
 
         private async void addLocalGuestButton_Click(object sender, EventArgs e)
         {
             GamePlayer newGuest;
-            if (localGame.PlayerList.Count <= 3)
+            if (localGame.PlayerList.Count < 3)
             {
                 newGuest = generateGuest();
-                localGame.PlayerList.Add(newGuest);
-                if (localGame.PlayerList.Count == 2)
+                localPlayerList.Add(newGuest);
+                if (localPlayerList.Count == 2)
                 {
-                    await database.createLocalGamePlayer(playerList[0].Username, 1, localGame.PlayerList[1]);
+                    await database.createLocalGamePlayer(localPlayerList[0].Username, 1, localPlayerList[1]);
                     Player2PlayerListLabel.Text = newGuest.Username;
                     Player2PlayerListLabel.Visible = true;
                 }
-                else if (localGame.PlayerList.Count == 3)
+                else if (localPlayerList.Count == 3)
                 {
-                    await database.createLocalGamePlayer(playerList[0].Username, 2, localGame.PlayerList[2]);
+                    await database.createLocalGamePlayer(localPlayerList[0].Username, 2, localPlayerList[2]);
                     Player3PlayerListLabel.Text = newGuest.Username;
                     Player3PlayerListLabel.Visible = true;
                 } 
@@ -143,20 +157,21 @@ namespace BlackJackApplication
         }
         private async void deleteLocalGuestButton_Click(object sender, EventArgs e)
         {
-            if (localGame.PlayerList.Count > 1)
+            Console.WriteLine(localPlayerList.Count);
+            if (localPlayerList.Count > 1)
             {
-                localGame.PlayerList.RemoveAt(localGame.PlayerList.Count - 1);
-                if (localGame.PlayerList.Count == 2)
+                localPlayerList.RemoveAt(localPlayerList.Count - 1);
+                if (localPlayerList.Count == 2)
                 {
                     Player3PlayerListLabel.Text = "";
                     Player3PlayerListLabel.Visible = false;
-                    await database.deleteLocalGamePlayer(playerList[0].Username, 2);
+                    await database.deleteLocalGamePlayer(localPlayerList[0].Username, 2);
                 }
-                else if (localGame.PlayerList.Count == 1)
+                else if (localPlayerList.Count == 1)
                 {
                     Player2PlayerListLabel.Text = "";
                     Player2PlayerListLabel.Visible = false;
-                    await database.deleteLocalGamePlayer(playerList[0].Username, 1);
+                    await database.deleteLocalGamePlayer(localPlayerList[0].Username, 1);
                 }
             }
             else

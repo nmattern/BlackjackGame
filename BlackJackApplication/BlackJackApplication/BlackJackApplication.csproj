@@ -119,24 +119,11 @@
     <Compile Include="ProfileForm.Designer.cs">
       <DependentUpon>ProfileForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="startScreenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="startScreenForm.Designer.cs">
-      <DependentUpon>startScreenForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dealer.cs" />
     <Compile Include="Deck.cs" />
-    <Compile Include="TableForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TableForm.Designer.cs">
-      <DependentUpon>TableForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Turn.cs" />
     <EmbeddedResource Include="CreatePlayerForm.resx">
       <DependentUpon>CreatePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,9 +145,6 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TableForm.resx">
-      <DependentUpon>TableForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -171,9 +155,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="startScreenForm.resx">
-      <DependentUpon>startScreenForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
