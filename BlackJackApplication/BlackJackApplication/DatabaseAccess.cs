@@ -17,6 +17,7 @@ namespace BlackJackApplication
         private bool loginValid;
         private bool localGameExists;
         private bool gameValid;
+        private string gameID;
         private Player player;
         private GamePlayer gamePlayer;
         private LocalGame localGame;
@@ -35,6 +36,7 @@ namespace BlackJackApplication
         internal Player CurrentPlayer { get => this.player; set => this.player = value; }
         internal GamePlayer CurrentGamePlayer { get => this.gamePlayer; set => this.gamePlayer = value; }
         public bool GameValid { get => this.gameValid ; set => this.gameValid = value; }
+        public string GameID { get => this.gameID; set => this.gameID = value; }
 
         public LocalGame LocalGame { get => this.localGame; set => this.localGame = value; }
         public bool LocalGameExists { get => localGameExists; set => localGameExists = value; }
@@ -133,7 +135,7 @@ namespace BlackJackApplication
             }
         }
 
-
+        // Validate if a game exists which sets a boolean
         public async Task isGameValid(int gameID)
         {
             FirebaseResponse response = await client.GetAsync("Games/" + gameID);
@@ -217,6 +219,23 @@ namespace BlackJackApplication
 
         }
 
+        // Online Endpoints and functionality
 
+        public void GenerateOnlineID()
+        {
+            StringBuilder builder = new StringBuilder();
+            Enumerable
+               .Range(65, 26)
+                .Select(e => ((char)e).ToString())
+                .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
+                .Concat(Enumerable.Range(0, 10).Select(e => e.ToString()))
+                .OrderBy(e => Guid.NewGuid())
+                .Take(6)
+                .ToList().ForEach(e => builder.Append(e));
+            string returnValue = builder.ToString();
+            
+            gameID = returnValue;
+            Console.WriteLine(gameID);
+        }
     }
 }
