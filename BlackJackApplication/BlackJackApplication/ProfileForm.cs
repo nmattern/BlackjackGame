@@ -12,63 +12,75 @@ namespace BlackJackApplication
 {
     public partial class ProfileForm : Form
     {
-        public ProfileForm()
+        Player player;
+        bool Valid = false;
+        DatabaseAccess database;
+        internal ProfileForm(Player p, DatabaseAccess db)
         {
             InitializeComponent();
+            player = p;
+            database = db;
         }
 
-        private void profileNameLabel_Click(object sender, EventArgs e)
+        private async void confirmButton_Click(object sender, EventArgs e)
         {
-            profileNameTextBox.Visible = true;
-        }
-
-        private void nameFocusLost(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
+            if (this.profileNameTextBox.Text.All(char.IsLetter) == true || this.profileNameTextBox.Text == "")
             {
-                profileNameTextBox.Visible = false;
-                profileNameLabel.Text = profileNameTextBox.Text;
+                this.nameErrorLabel.Text = "";
+                if (this.profilePhoneNumberTextBox.Text.Length <= 11 
+                    && this.profilePhoneNumberTextBox.Text.Length > 9
+                    && this.profilePhoneNumberTextBox.Text.All(char.IsDigit)
+                    || this.profilePhoneNumberTextBox.Text == "")
+                {
+                    this.phoneErrorLabel.Text = "";
+                    if (this.profileCreditCardTextBox.Text.Length == 16
+                        && this.profileNameTextBox.Text.All(char.IsDigit)
+                        || this.profileCreditCardTextBox.Text == "")
+                    {
+                        this.creditCardErrorLabel.Text = "";
+                        Valid = true;
+                    }
+                    else
+                    {
+                        this.creditCardErrorLabel.Text = "Credit card must be 16 digit number";
+                    }
+                }
+                else 
+                {
+                    this.phoneErrorLabel.Text = "Phone number must be 10-11 digit number";
+                }
+            }
+            else
+            {
+                this.nameErrorLabel.Text = "Name must be only letters";
+            }
+            if (Valid == true)
+            {
+                if (this.profileNameTextBox.Text != "")
+                {
+                    player.Name = this.profileNameTextBox.Text;
+                }
+                if (this.profilePhoneNumberTextBox.Text != "")
+                {
+                    player.CreditC = Convert.ToInt64(this.profileCreditCardTextBox.Text);
+                }
+                if (this.profileAddressTextBox.Text != "")
+                {
+                    player.Address = this.profileAddressTextBox.Text;
+                }
+                if (this.profileCreditCardTextBox.Text != "")
+                {
+                    player.Phone = Convert.ToInt64(this.profilePhoneNumberTextBox.Text);
+                }
+
+
+                await database.modifyEntirePlayer(player);
+                this.Close();
             }
         }
 
-        private void profileAddressLabel_Click(object sender, EventArgs e)
+        private void ProfileForm_Load(object sender, EventArgs e)
         {
-            profileAddressTextBox.Visible = true;
-        }
-
-        private void addressFocusLost(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                profileAddressTextBox.Visible = false;
-                profileAddressLabel.Text = profileAddressTextBox.Text;
-            }
-        }
-
-        private void ProfilePhoneNumberLabel_Click(object sender, EventArgs e)
-        {
-            profilePhoneNumberTextBox.Visible = true;
-        }
-        private void phoneNumberFocusLost(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                profilePhoneNumberTextBox.Visible = false;
-                profilePhoneNumberLabel.Text = profilePhoneNumberTextBox.Text;
-            }
-        }
-        private void ProfileCreditCardLabel_Click(object sender, EventArgs e)
-        {
-            profileCreditCardTextBox.Visible = true;
-        }
-
-        private void creditCardFocusLost(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                profileCreditCardTextBox.Visible = false;
-                profileCreditCardLabel.Text = profileCreditCardTextBox.Text;
-            }
         }
     }
 }

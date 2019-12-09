@@ -1,6 +1,6 @@
 ﻿namespace BlackJackApplication
 {
-    partial class SignInForm
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,9 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
+            this.signInButton = new System.Windows.Forms.Button();
+            this.createProfileButton = new System.Windows.Forms.Button();
+            this.incorrectLoginLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // signInLabel
@@ -82,19 +85,54 @@
             this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
             this.passwordTextBox.TabIndex = 5;
             // 
-            // SignInForm
+            // signInButton
             // 
+            this.signInButton.Location = new System.Drawing.Point(384, 268);
+            this.signInButton.Name = "signInButton";
+            this.signInButton.Size = new System.Drawing.Size(100, 23);
+            this.signInButton.TabIndex = 6;
+            this.signInButton.Text = "Sign In";
+            this.signInButton.UseVisualStyleBackColor = true;
+            this.signInButton.Click += new System.EventHandler(this.signInButton_Click);
+            // 
+            // createProfileButton
+            // 
+            this.createProfileButton.Location = new System.Drawing.Point(384, 297);
+            this.createProfileButton.Name = "createProfileButton";
+            this.createProfileButton.Size = new System.Drawing.Size(100, 23);
+            this.createProfileButton.TabIndex = 7;
+            this.createProfileButton.Text = "Create Profile";
+            this.createProfileButton.UseVisualStyleBackColor = true;
+            this.createProfileButton.Click += new System.EventHandler(this.createProfileButton_Click);
+            // 
+            // incorrectLoginLabel
+            // 
+            this.incorrectLoginLabel.AutoSize = true;
+            this.incorrectLoginLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.incorrectLoginLabel.ForeColor = System.Drawing.Color.Red;
+            this.incorrectLoginLabel.Location = new System.Drawing.Point(507, 235);
+            this.incorrectLoginLabel.Name = "incorrectLoginLabel";
+            this.incorrectLoginLabel.Size = new System.Drawing.Size(0, 20);
+            this.incorrectLoginLabel.TabIndex = 8;
+            // 
+            // frmLogin
+            // 
+            this.AcceptButton = this.signInButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.incorrectLoginLabel);
+            this.Controls.Add(this.createProfileButton);
+            this.Controls.Add(this.signInButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.signInLabel);
-            this.Name = "SignInForm";
+            this.Name = "frmLogin";
             this.Text = "Sign In";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,5 +145,8 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.TextBox usernameTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
+        private System.Windows.Forms.Button signInButton;
+        private System.Windows.Forms.Button createProfileButton;
+        private System.Windows.Forms.Label incorrectLoginLabel;
     }
 }
