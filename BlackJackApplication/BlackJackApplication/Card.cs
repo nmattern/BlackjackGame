@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("BlackJackTests")]
 namespace BlackJackApplication
 {
     public class Card
