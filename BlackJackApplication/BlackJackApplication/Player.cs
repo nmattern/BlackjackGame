@@ -21,6 +21,9 @@ namespace BlackJackApplication
         private int currentValueOfHand;
         private int currentAmountofMoney;
         private int currentPlayerBet;
+        public int playerWins { get; set; }
+        public int playerLosses { get; set; }
+        public bool hasSplit { get; set; }
         private List<Card> currentPlayerHand = new List<Card>();
         private List<PictureBox> pictureBoxes = new List<PictureBox>();
         private LocalGame aLocalGame;
