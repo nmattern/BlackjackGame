@@ -167,21 +167,35 @@ namespace BlackJackTests
         }
 
         [TestMethod]
-        public void testTurnClassBetButtonClick()
+        public void invalidBetNotAccepted()
         {
             //Arrange
             tableForm tableForm = new tableForm();
-            Deck deck = new Deck();
-            Player player = new Player();
-            Dealer dealer = new Dealer();
-            var turn = new Turn(tableForm, deck, null, player, dealer);
-            tableForm.betTextBox.Text = "test";
+            var expectedOutput = "Invalid";
 
             //Act
-            turn.betButtonClick();
+            tableForm.betTextBox.Text = "Hi";
+            tableForm.lockBetButton.PerformClick();
 
             //Assert
+            Assert.IsFalse(tableForm.hitButton.Visible);
+            Assert.IsFalse(tableForm.standButton.Visible);
+            Assert.IsFalse(tableForm.continueButton.Visible);
+            Assert.AreEqual(expectedOutput, tableForm.betLabel.Text);
+        }
+        [TestMethod]
+        public void invalidChangeMoneyValueNotAccepted()
+        {
+            //Arrange
+            tableForm tableForm = new tableForm();
+            tableForm.currentMoneyLabel.Text = "100";
+            //Act
+            tableForm.adjustMoneyTextBox.Text = "Hi";
+            tableForm.adjustMoneyButton.PerformClick();
 
+            //Assert
+            Assert.AreEqual("100", tableForm.currentMoneyLabel.Text);
+            Assert.AreEqual("Not Valid", tableForm.adjustMoneyStatusLabel.Text);
         }
     }
 }

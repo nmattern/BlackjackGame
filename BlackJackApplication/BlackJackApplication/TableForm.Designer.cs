@@ -428,7 +428,7 @@
         internal System.Windows.Forms.Label dealerBetDescriptionLabel;
         internal System.Windows.Forms.TextBox adjustMoneyTextBox;
         internal System.Windows.Forms.Button adjustMoneyButton;
-        private System.Windows.Forms.Label adjustMoneyStatusLabel;
+        internal System.Windows.Forms.Label adjustMoneyStatusLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         internal System.Windows.Forms.TextBox insuranceBetTxtBox;
