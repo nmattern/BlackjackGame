@@ -19,14 +19,7 @@ namespace BlackJackApplication
 
         private void restartButton_Click(object sender, EventArgs e)
         {
-            var startScreenInstance = new startScreenForm();
-            startScreenInstance.Show();
-            startScreenInstance.Location = this.Location;
-            this.Hide();
-            // This is an event handler for the closing of a child form
-            // Passes the subject (child form) and arguments to close 
-            // Parent form as well
-            startScreenInstance.FormClosed += (s, args) => this.Close();
+            this.Close();
         }
 
         private void GameOverForm_Load(object sender, EventArgs e)

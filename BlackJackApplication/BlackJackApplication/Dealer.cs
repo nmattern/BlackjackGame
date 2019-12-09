@@ -15,13 +15,25 @@ namespace BlackJackApplication
             get { return currentVisibleValueOfHand; }
             set { currentVisibleValueOfHand = value; }
         }
-        public void dealCard(Player player, Deck deck, int numOfCards = 1)
+        public void dealCard(GamePlayer player, Deck deck, int numOfCards = 1)
         {
             while (numOfCards > 0)
             {
                 Card temp = deck.Cards[0];
                 deck.Cards.RemoveAt(0);
-                player.addCardToHand(temp);
+                //player.addCardToHand(temp);
+                player.PlayerHand.Add(temp);
+                numOfCards--;
+            }
+        }
+
+        public void dealSelf(Dealer dealer, Deck deck, int numOfCards = 1)
+        {
+            while (numOfCards > 0)
+            {
+                Card temp = deck.Cards[0];
+                deck.Cards.RemoveAt(0);
+                dealer.CurrentPlayerHand.Add(temp);
                 numOfCards--;
             }
         }

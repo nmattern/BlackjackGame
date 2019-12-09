@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace BlackJackApplication
 {
-    class Card
+    public class Card
     {
         private string cardValue;
         private string cardSuit;
