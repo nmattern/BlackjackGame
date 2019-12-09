@@ -33,16 +33,16 @@ namespace BlackJackApplication
             database = db;
         }
 
-        private async void startLocalGameButton_Click(object sender, EventArgs e)
+        private async void createLocalGameButton_Click(object sender, EventArgs e)
         {
             await database.createLocalGame(localPlayerList[0].Username, localGame);
-            startLocalGameButton.Text = "Play Previous Game";
+            createLocalGameButton.Text = "Play Previous Game";
             deleteLocalGameButton.Visible = true;
         }
         private async void deleteLocalGameButton_Click(object sender, EventArgs e)
         {
             await database.deleteLocalGame(localPlayerList[0].Username);
-            startLocalGameButton.Text = "Start Local Game";
+            createLocalGameButton.Text = "Create Local Game";
             Player2PlayerListLabel.Text = "";
             Player3PlayerListLabel.Text = "";
             localPlayerList.Clear();
@@ -75,7 +75,7 @@ namespace BlackJackApplication
             await database.doesLocalGameExist(localPlayerList[0].Username);
             if (database.LocalGameExists)
             {
-                startLocalGameButton.Text = "Load Previous Game";
+                createLocalGameButton.Text = "Load Previous Game";
                 deleteLocalGameButton.Visible = true;
                 // Check if guest1 exists
                 await database.doesLocalPlayerExist(localPlayerList[0].Username, 1);
@@ -98,7 +98,7 @@ namespace BlackJackApplication
             }
             else
             {
-                startLocalGameButton.Text = "Start Local Game";
+                createLocalGameButton.Text = "Start Local Game";
                 deleteLocalGameButton.Visible = false;
             }
             currentAmountOfMoneyLabel.Text = localPlayerList[0].PlayerAmountOfMoney.ToString();
@@ -190,7 +190,7 @@ namespace BlackJackApplication
 
         }
 
-        private void startGameButton_Click(object sender, EventArgs e)
+        private void playButton_Click(object sender, EventArgs e)
         {
             var gameBoardInstance = new frmGameBoard(playerList, database, localGame, localPlayer);
             gameBoardInstance.Location = this.Location;

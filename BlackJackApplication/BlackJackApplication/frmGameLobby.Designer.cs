@@ -36,7 +36,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.joinOnlineGameButton = new System.Windows.Forms.Button();
-            this.startLocalGameButton = new System.Windows.Forms.Button();
+            this.createLocalGameButton = new System.Windows.Forms.Button();
             this.SinglePlayerTitleLabel = new System.Windows.Forms.Label();
             this.MultiPlayerTitleLabel = new System.Windows.Forms.Label();
             this.createOnlineGameButton = new System.Windows.Forms.Button();
@@ -54,6 +54,7 @@
             this.currentAmountOfMoneyLabel = new System.Windows.Forms.Label();
             this.deleteLocalGameButton = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.playButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +80,7 @@
             // Player2PlayerListLabel
             // 
             this.Player2PlayerListLabel.AutoSize = true;
-            this.Player2PlayerListLabel.Location = new System.Drawing.Point(378, 238);
+            this.Player2PlayerListLabel.Location = new System.Drawing.Point(372, 248);
             this.Player2PlayerListLabel.Name = "Player2PlayerListLabel";
             this.Player2PlayerListLabel.Size = new System.Drawing.Size(45, 13);
             this.Player2PlayerListLabel.TabIndex = 5;
@@ -90,7 +91,7 @@
             // Player3PlayerListLabel
             // 
             this.Player3PlayerListLabel.AutoSize = true;
-            this.Player3PlayerListLabel.Location = new System.Drawing.Point(378, 262);
+            this.Player3PlayerListLabel.Location = new System.Drawing.Point(372, 272);
             this.Player3PlayerListLabel.Name = "Player3PlayerListLabel";
             this.Player3PlayerListLabel.Size = new System.Drawing.Size(45, 13);
             this.Player3PlayerListLabel.TabIndex = 6;
@@ -124,15 +125,15 @@
             this.joinOnlineGameButton.UseVisualStyleBackColor = true;
             this.joinOnlineGameButton.Click += new System.EventHandler(this.joinOnlineGameButton_Click);
             // 
-            // startLocalGameButton
+            // createLocalGameButton
             // 
-            this.startLocalGameButton.Location = new System.Drawing.Point(158, 270);
-            this.startLocalGameButton.Name = "startLocalGameButton";
-            this.startLocalGameButton.Size = new System.Drawing.Size(120, 23);
-            this.startLocalGameButton.TabIndex = 10;
-            this.startLocalGameButton.Text = "Start Local Game";
-            this.startLocalGameButton.UseVisualStyleBackColor = true;
-            this.startLocalGameButton.Click += new System.EventHandler(this.startLocalGameButton_Click);
+            this.createLocalGameButton.Location = new System.Drawing.Point(158, 270);
+            this.createLocalGameButton.Name = "createLocalGameButton";
+            this.createLocalGameButton.Size = new System.Drawing.Size(120, 23);
+            this.createLocalGameButton.TabIndex = 10;
+            this.createLocalGameButton.Text = "Create Local Game";
+            this.createLocalGameButton.UseVisualStyleBackColor = true;
+            this.createLocalGameButton.Click += new System.EventHandler(this.createLocalGameButton_Click);
             // 
             // SinglePlayerTitleLabel
             // 
@@ -168,7 +169,7 @@
             // 
             this.PlayerListTitleLabel.AutoSize = true;
             this.PlayerListTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayerListTitleLabel.Location = new System.Drawing.Point(358, 181);
+            this.PlayerListTitleLabel.Location = new System.Drawing.Point(353, 181);
             this.PlayerListTitleLabel.Name = "PlayerListTitleLabel";
             this.PlayerListTitleLabel.Size = new System.Drawing.Size(92, 20);
             this.PlayerListTitleLabel.TabIndex = 14;
@@ -187,7 +188,7 @@
             // localUserPlayerListLabel
             // 
             this.localUserPlayerListLabel.AutoSize = true;
-            this.localUserPlayerListLabel.Location = new System.Drawing.Point(377, 212);
+            this.localUserPlayerListLabel.Location = new System.Drawing.Point(371, 222);
             this.localUserPlayerListLabel.Name = "localUserPlayerListLabel";
             this.localUserPlayerListLabel.Size = new System.Drawing.Size(55, 13);
             this.localUserPlayerListLabel.TabIndex = 16;
@@ -207,7 +208,7 @@
             // 
             this.setAmountTextBox.Location = new System.Drawing.Point(11, 29);
             this.setAmountTextBox.Name = "setAmountTextBox";
-            this.setAmountTextBox.Size = new System.Drawing.Size(102, 20);
+            this.setAmountTextBox.Size = new System.Drawing.Size(107, 20);
             this.setAmountTextBox.TabIndex = 17;
             this.setAmountTextBox.TextChanged += new System.EventHandler(this.setAmountTextBox_TextChanged);
             // 
@@ -287,12 +288,24 @@
             this.deleteLocalGameButton.Visible = false;
             this.deleteLocalGameButton.Click += new System.EventHandler(this.deleteLocalGameButton_Click);
             // 
+            // playButton
+            // 
+            this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playButton.Location = new System.Drawing.Point(322, 392);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(164, 46);
+            this.playButton.TabIndex = 28;
+            this.playButton.Text = "Play";
+            this.playButton.UseVisualStyleBackColor = true;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            // 
             // frmGameLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.playButton);
             this.Controls.Add(this.deleteLocalGameButton);
             this.Controls.Add(this.currentAmountOfMoneyLabel);
             this.Controls.Add(this.label2);
@@ -309,7 +322,7 @@
             this.Controls.Add(this.createOnlineGameButton);
             this.Controls.Add(this.MultiPlayerTitleLabel);
             this.Controls.Add(this.SinglePlayerTitleLabel);
-            this.Controls.Add(this.startLocalGameButton);
+            this.Controls.Add(this.createLocalGameButton);
             this.Controls.Add(this.joinOnlineGameButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -335,7 +348,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button joinOnlineGameButton;
-        private System.Windows.Forms.Button startLocalGameButton;
+        private System.Windows.Forms.Button createLocalGameButton;
         private System.Windows.Forms.Label SinglePlayerTitleLabel;
         private System.Windows.Forms.Label MultiPlayerTitleLabel;
         private System.Windows.Forms.Button createOnlineGameButton;
@@ -353,5 +366,6 @@
         private System.Windows.Forms.Label currentAmountOfMoneyLabel;
         private System.Windows.Forms.Button deleteLocalGameButton;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Button playButton;
     }
 }
