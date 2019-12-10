@@ -17,18 +17,16 @@ namespace BlackJackApplication
         internal DatabaseAccess database;
         private LocalTurn localTurn;
         internal LocalGame localGame;
-        internal GamePlayer gamePlayer;
         public List<Label> currentMoneyLabels = new List<Label>();
         public List<Label> currentBetLabels = new List<Label>();
         public List<Label> currentTotalLabels = new List<Label>();
 
-        internal frmGameBoard(List<Player> pList, DatabaseAccess db, LocalGame aLocalGame, GamePlayer gplayer)
+        internal frmGameBoard(List<Player> pList, DatabaseAccess db, LocalGame aLocalGame)
         {
             InitializeComponent();
             playerList = pList;
             database = db;
             localGame = aLocalGame;
-            gamePlayer = gplayer;
         }
 
         private async void frmGameBoard_Load(object sender, EventArgs e)

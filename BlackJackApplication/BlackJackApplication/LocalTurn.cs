@@ -302,13 +302,12 @@ namespace BlackJackApplication
 
         public void dealerWins()
         {
-            // Define multiplayer actions
             gameBoard.resultLabel.Text = "Dealer Wins";
         }
 
         public void playerBusts(GamePlayer play)
         {
-
+            gameBoard.resultLabel.Text = play.Username + " Busted";
         }
 
         

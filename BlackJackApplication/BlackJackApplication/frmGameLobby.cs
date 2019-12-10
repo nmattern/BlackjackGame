@@ -199,7 +199,7 @@ namespace BlackJackApplication
             await database.createLocalGame(localPlayerList[0].Username, localGame);
             await database.returnPlayer(localPlayerList[0].Username);
             playerList.Add(database.CurrentPlayer);
-            var gameBoardInstance = new frmGameBoard(playerList, database, localGame, localPlayer);
+            var gameBoardInstance = new frmGameBoard(playerList, database, localGame);
             gameBoardInstance.Location = this.Location;
             this.Hide();
             // This is an event handler for the closing of a child form
