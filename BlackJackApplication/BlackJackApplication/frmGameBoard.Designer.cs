@@ -117,21 +117,21 @@
             this.adjustMoneyTextBox.Location = new System.Drawing.Point(7, 21);
             this.adjustMoneyTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.adjustMoneyTextBox.Name = "adjustMoneyTextBox";
-            this.adjustMoneyTextBox.Size = new System.Drawing.Size(176, 23);
+            this.adjustMoneyTextBox.Size = new System.Drawing.Size(135, 23);
             this.adjustMoneyTextBox.TabIndex = 28;
-            this.adjustMoneyTextBox.Text = "Enter New Current Money: ";
+            this.adjustMoneyTextBox.Text = "New Current Money: ";
             this.adjustMoneyTextBox.Click += new System.EventHandler(this.adjustMoneyTextBox_Click);
             // 
             // adjustMoneyButton
             // 
             this.adjustMoneyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
             this.adjustMoneyButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.adjustMoneyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjustMoneyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjustMoneyButton.ForeColor = System.Drawing.SystemColors.Control;
             this.adjustMoneyButton.Location = new System.Drawing.Point(7, 55);
             this.adjustMoneyButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.adjustMoneyButton.Name = "adjustMoneyButton";
-            this.adjustMoneyButton.Size = new System.Drawing.Size(179, 66);
+            this.adjustMoneyButton.Size = new System.Drawing.Size(135, 66);
             this.adjustMoneyButton.TabIndex = 29;
             this.adjustMoneyButton.Text = "Adjust Current Money";
             this.adjustMoneyButton.UseVisualStyleBackColor = false;
@@ -146,7 +146,7 @@
             this.betButton.Location = new System.Drawing.Point(8, 166);
             this.betButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.betButton.Name = "betButton";
-            this.betButton.Size = new System.Drawing.Size(177, 48);
+            this.betButton.Size = new System.Drawing.Size(134, 48);
             this.betButton.TabIndex = 32;
             this.betButton.Text = "Bet";
             this.betButton.UseVisualStyleBackColor = false;
@@ -163,7 +163,7 @@
             this.hitButton.Location = new System.Drawing.Point(7, 224);
             this.hitButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.hitButton.Name = "hitButton";
-            this.hitButton.Size = new System.Drawing.Size(177, 48);
+            this.hitButton.Size = new System.Drawing.Size(135, 48);
             this.hitButton.TabIndex = 33;
             this.hitButton.Text = "Hit";
             this.hitButton.UseVisualStyleBackColor = false;
@@ -178,7 +178,7 @@
             this.standButton.Location = new System.Drawing.Point(8, 282);
             this.standButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.standButton.Name = "standButton";
-            this.standButton.Size = new System.Drawing.Size(177, 48);
+            this.standButton.Size = new System.Drawing.Size(134, 48);
             this.standButton.TabIndex = 34;
             this.standButton.Text = "Stand";
             this.standButton.UseVisualStyleBackColor = false;
@@ -193,7 +193,7 @@
             this.continueButton.Location = new System.Drawing.Point(8, 340);
             this.continueButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.continueButton.Name = "continueButton";
-            this.continueButton.Size = new System.Drawing.Size(177, 48);
+            this.continueButton.Size = new System.Drawing.Size(134, 48);
             this.continueButton.TabIndex = 35;
             this.continueButton.Text = "New Hand";
             this.continueButton.UseVisualStyleBackColor = false;
@@ -215,7 +215,7 @@
             this.controlsGroupBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.controlsGroupBox.Name = "controlsGroupBox";
             this.controlsGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.controlsGroupBox.Size = new System.Drawing.Size(197, 402);
+            this.controlsGroupBox.Size = new System.Drawing.Size(150, 402);
             this.controlsGroupBox.TabIndex = 36;
             this.controlsGroupBox.TabStop = false;
             this.controlsGroupBox.Text = "Controls";
@@ -248,12 +248,12 @@
             // 
             // betTextBox
             // 
-            this.betTextBox.Location = new System.Drawing.Point(5, 107);
+            this.betTextBox.Location = new System.Drawing.Point(7, 138);
             this.betTextBox.Mask = "$99999";
             this.betTextBox.Name = "betTextBox";
             this.betTextBox.PromptChar = ' ';
             this.betTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.betTextBox.Size = new System.Drawing.Size(132, 23);
+            this.betTextBox.Size = new System.Drawing.Size(135, 23);
             this.betTextBox.TabIndex = 49;
             this.betTextBox.Click += new System.EventHandler(this.betTextBox_Click);
             // 
@@ -451,7 +451,6 @@
         internal System.Windows.Forms.Button hitButton;
         internal System.Windows.Forms.Button standButton;
         internal System.Windows.Forms.Button continueButton;
-        private System.Windows.Forms.Label player1CurrentTotal;
         private System.Windows.Forms.Label player2CurrentTotal;
         private System.Windows.Forms.Label player3CurrentTotal;
         private System.Windows.Forms.Label player1CurrentMoneyLabel;
@@ -471,5 +470,6 @@
         internal System.Windows.Forms.Button insuranceButton;
         internal System.Windows.Forms.TextBox insuranceBetTextBox;
         internal System.Windows.Forms.Label errorLabel;
+        internal System.Windows.Forms.Label player1CurrentTotal;
     }
 }

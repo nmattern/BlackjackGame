@@ -211,6 +211,8 @@ namespace BlackJackApplication
                     gameBoard.betTextBox.ReadOnly = true;
                     gameBoard.hitButton.Visible = true;
                     gameBoard.standButton.Visible = true;
+                    gameBoard.hitButton.Enabled = true;
+                    gameBoard.standButton.Enabled = true;
                     // update db with new player bet info
                     await database.createLocalGamePlayer(player.Username, turnCounter, player.ALocalGame.PlayerList[turnCounter]);
                     beginPlayerTurn();
@@ -520,7 +522,7 @@ namespace BlackJackApplication
             }
 
             // display total card hand value for player
-            gameBoard.currentTotalLabels[turnCounter].Text = "Current Total: " + (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue).ToString();
+            gameBoard.player1CurrentTotal.Text = "Current Total: " + (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue).ToString();
             if (!player.ALocalGame.PlayerList[turnCounter].hasSplit)
             {
                 if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue > 21)
@@ -545,7 +547,7 @@ namespace BlackJackApplication
         {
             int j;
             GamePlayer winner = null;
-            if (turnCounter < player.ALocalGame.PlayerList.Count())
+            if (turnCounter == player.ALocalGame.PlayerList.Count()-1)
             {
                 while (dealer.CurrentValueOfHand < 17)
                 {
@@ -582,6 +584,7 @@ namespace BlackJackApplication
                 {
                     playerWins(winner);
                 }
+                gameBoard.continueButton.Visible = true;
             }
             else if (player.ALocalGame.PlayerList[turnCounter].hasSplit)
             {
@@ -616,7 +619,7 @@ namespace BlackJackApplication
             }
             else
             {
-                turnCounter = (turnCounter + 1) % player.ALocalGame.PlayerList.Count;
+                turnCounter++;
             }
         }
 
