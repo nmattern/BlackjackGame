@@ -20,7 +20,7 @@ namespace BlackJackApplication
         public List<Label> currentMoneyLabels = new List<Label>();
         public List<Label> currentBetLabels = new List<Label>();
         public List<Label> currentTotalLabels = new List<Label>();
-        private Dealer dealer;
+        public List<Point> playerLabels = new List<Point>();
 
         internal frmGameBoard(List<Player> pList, DatabaseAccess db, LocalGame aLocalGame)
         {
@@ -28,21 +28,21 @@ namespace BlackJackApplication
             playerList = pList;
             database = db;
             localGame = aLocalGame;
+            playerList[0].ALocalGame = localGame;
         }
 
         private async void frmGameBoard_Load(object sender, EventArgs e)
         {
             // Generate Deck and Dealer for game
             Deck myDeck = new Deck();
-            dealer = new Dealer();
-            
+            Dealer dealer = new Dealer();
+
 
             // pull current Local game from db into local
             await database.updateLocalGame(playerList[0]);
             playerList[0].ALocalGame = database.LocalGame;
 
             // locally set the location for each player label
-            List<Point> playerLabels = new List<Point>();
             int i;
             playerLabels.Add(this.player1Label.Location);
             playerLabels.Add(this.player2Label.Location);
@@ -162,18 +162,6 @@ namespace BlackJackApplication
                 endGame();
             }
 
-            foreach(Player player in playerList)
-            {
-                foreach(PictureBox picture in player.PictureBoxes)
-                {
-                    Controls.Remove(picture);
-                }
-            }
-            foreach(PictureBox picture in dealer.PictureBoxes)
-            {
-                Controls.Remove(picture);
-            }
-
             // change button state
             this.continueButton.Visible = false;
             this.standButton.Visible = true;
@@ -221,9 +209,22 @@ namespace BlackJackApplication
             
         }
 
-        private void adjustMoneyButton_Click(object sender, EventArgs e)
+        private async void adjustMoneyButton_Click(object sender, EventArgs e)
         {
-            localTurn.adjustMoneyClick();
+            // error checking for the adjust money functionality
+            int number;
+            bool adjustMoneyContainsOnlyDigits = Int32.TryParse(this.adjustMoneyTextBox.Text, out number);
+            if (!adjustMoneyContainsOnlyDigits)
+            {
+                this.adjustMoneyTextBox.Text = "";
+                errorLabel.Text = "Please enter only numbers";
+            }
+            else
+            {
+                errorLabel.Text = "";
+                currentMoneyLabels[localTurn.turnCounter].Text = "Current Money: " + adjustMoneyTextBox.Text;
+                await database.createLocalGamePlayer(localGame.PlayerList[0].Username, localTurn.turnCounter, localGame.PlayerList[localTurn.turnCounter]);
+            }
         }
 
         public void endGame()
@@ -255,23 +256,6 @@ namespace BlackJackApplication
         private void betTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
-        }
-        private void splitButton_Click(object sender, EventArgs e)
-        {
-            localTurn.splitButtonClick();
-        }
-
-        private void insuranceButton_Click(object sender, EventArgs e)
-        {
-            if (insuranceButton.Text == "Insurance")
-            {
-                insuranceButton.Text = "Bet";
-                insuranceBetTextBox.Visible = true;
-            } else
-            {
-                insuranceButton.Text = "Insurance";
-                localTurn.insuranceBet(int.Parse(insuranceBetTextBox.Text));
-            }
         }
     }
 }

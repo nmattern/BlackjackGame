@@ -15,8 +15,8 @@ namespace BlackJackApplication
         private int playerHandValue;
         private Point location;
         private List<Card> playerHand = new List<Card>();
-        public int insuranceBet { get; set; }
-        public bool hasSplit { get; set; }
+        
+
         public string Username { get => username; set => username = value; }
         public int PlayerAmountOfMoney { get => playerAmountOfMoney; set => playerAmountOfMoney = value; }
         public int PlayerBet { get => playerBet; set => playerBet = value; }

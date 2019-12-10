@@ -22,29 +22,19 @@ namespace BlackJackApplication
         }
         public string Value
         {
-            get { return cardValue; }
-            set { cardValue = value; }
+            get { return cardValue;  }
+            set { cardValue = value;  }
         }
         public string Suit
         {
             get { return cardSuit; }
             set { cardSuit = value; }
         }
-
+        
         public bool Hidden
         {
-            get { return hidden; }
+            get { return hidden;}
             set { hidden = value; }
-        }
-
-        public int NumericValue()
-        {
-            if (cardValue == "king" || cardValue == "queen" || cardValue == "jack")
-                return 10;
-            else if (cardValue == "ace")
-                return 11;
-            else
-                return Int32.Parse(cardValue);
         }
     }
 }

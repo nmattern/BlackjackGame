@@ -63,6 +63,16 @@ namespace BlackJackApplication
             usernameTextBox.Select();
         }
 
-
+        private void forgotPasswordButton_Click(object sender, EventArgs e)
+        {
+            var forgotPasswordInstance = new frmForgotPassword(database);
+            forgotPasswordInstance.Location = this.Location;
+            this.Hide();
+            // This is an event handler for the closing of a child form
+            // Passes the subject (child form) and arguments to close 
+            // Parent form as well
+            forgotPasswordInstance.Show();
+            forgotPasswordInstance.FormClosed += (s, args) => this.Show();
+        }
     }
 }
