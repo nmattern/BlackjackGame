@@ -21,7 +21,7 @@ namespace BlackJackApplication
         public int turnCounter = 0;
         public DatabaseAccess database;
         public bool roundFinished = false;
-        //public bool[] bustedArray = new bool[]  ([false, false, false]) ;
+        public bool[] bustedArray = new bool[] {false, false, false};
 
         public LocalTurn(Player aPlayer, Dealer deal, Deck deckarg, frmGameBoard game, DatabaseAccess data)
         {
