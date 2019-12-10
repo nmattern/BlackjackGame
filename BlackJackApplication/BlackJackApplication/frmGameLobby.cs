@@ -181,8 +181,10 @@ namespace BlackJackApplication
             {
                 playerList.Add(database.CurrentPlayer);
             }
-            var gameBoardInstance = new frmGameBoard(playerList, database, localGame, localPlayer);
-            gameBoardInstance.Location = this.Location;
+            frmGameBoard gameBoardInstance = new frmGameBoard(playerList, database, localGame)
+            {
+                Location = this.Location
+            };
             this.Hide();
             // This is an event handler for the closing of a child form
             // Passes the subject (child form) and arguments to close 
