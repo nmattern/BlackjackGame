@@ -13,19 +13,17 @@ namespace BlackJackApplication
     {
         private string cardValue;
         private string cardSuit;
-        private Image cardImage;
         private bool hidden;
 
-        public Card(string suit, string value, Image image)
+        public Card(string suit, string value)
         {
             cardValue = value;
             cardSuit = suit;
-            cardImage = image;
         }
         public string Value
         {
-            get { return cardValue;  }
-            set { cardValue = value;  }
+            get { return cardValue; }
+            set { cardValue = value; }
         }
         public string Suit
         {
@@ -33,16 +31,20 @@ namespace BlackJackApplication
             set { cardSuit = value; }
         }
 
-        public Image CardImage
-        {
-            get { return cardImage; }
-            set { cardImage = value; }
-        }
-        
         public bool Hidden
         {
-            get { return hidden;}
+            get { return hidden; }
             set { hidden = value; }
+        }
+
+        public int NumericValue()
+        {
+            if (cardValue == "king" || cardValue == "queen" || cardValue == "jack")
+                return 10;
+            else if (cardValue == "ace")
+                return 11;
+            else
+                return Int32.Parse(cardValue);
         }
     }
 }

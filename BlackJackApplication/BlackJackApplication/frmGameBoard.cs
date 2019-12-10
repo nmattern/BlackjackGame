@@ -17,25 +17,24 @@ namespace BlackJackApplication
         internal DatabaseAccess database;
         private LocalTurn localTurn;
         internal LocalGame localGame;
-        internal GamePlayer gamePlayer;
         public List<Label> currentMoneyLabels = new List<Label>();
         public List<Label> currentBetLabels = new List<Label>();
         public List<Label> currentTotalLabels = new List<Label>();
+        private Dealer dealer;
 
-        internal frmGameBoard(List<Player> pList, DatabaseAccess db, LocalGame aLocalGame, GamePlayer gplayer)
+        internal frmGameBoard(List<Player> pList, DatabaseAccess db, LocalGame aLocalGame)
         {
             InitializeComponent();
             playerList = pList;
             database = db;
             localGame = aLocalGame;
-            gamePlayer = gplayer;
         }
 
         private async void frmGameBoard_Load(object sender, EventArgs e)
         {
             // Generate Deck and Dealer for game
             Deck myDeck = new Deck();
-            Dealer dealer = new Dealer();
+            dealer = new Dealer();
             
 
             // pull current Local game from db into local
@@ -50,7 +49,6 @@ namespace BlackJackApplication
             playerLabels.Add(this.player3Label.Location);
             for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
             {
-                Console.WriteLine(playerLabels[i]);
                 playerList[0].ALocalGame.PlayerList[i].Location = playerLabels[i];
             }
 
@@ -62,29 +60,84 @@ namespace BlackJackApplication
             standButton.Visible = false;
             continueButton.Visible = false;
 
+            // create list of money labels
+            switch (playerList[0].ALocalGame.PlayerList.Count)
+            {
+                case 3:
+                    currentMoneyLabels.Add(player1CurrentMoneyLabel);
+                    currentMoneyLabels.Add(player2CurrentMoneyLabel);
+                    currentMoneyLabels.Add(player3CurrentMoneyLabel);
+                    break;
+                case 2:
+                    currentMoneyLabels.Add(player1CurrentMoneyLabel);
+                    currentMoneyLabels.Add(player2CurrentMoneyLabel);
+                    break;
+                case 1:
+                    currentMoneyLabels.Add(player1CurrentMoneyLabel);
+                    break;
+            }
+
             // set money labels
-            player1CurrentMoneyLabel.Text = Convert.ToString(playerList[0].ALocalGame.PlayerList[0].PlayerAmountOfMoney);
-            player2CurrentMoneyLabel.Text = Convert.ToString(playerList[0].ALocalGame.PlayerList[1].PlayerAmountOfMoney);
-            player3CurrentMoneyLabel.Text = Convert.ToString(playerList[0].ALocalGame.PlayerList[2].PlayerAmountOfMoney);
+            for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
+            {
+                currentMoneyLabels[i].Text = "Current Money: " + Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerAmountOfMoney);
+            }
+
+            // create list of bet labels
+            switch (playerList[0].ALocalGame.PlayerList.Count)
+            {
+                case 3:
+                    currentBetLabels.Add(player1BetLabel);
+                    currentBetLabels.Add(player2BetLabel);
+                    currentBetLabels.Add(player3BetLabel);
+                    break;
+                case 2:
+                    currentBetLabels.Add(player1BetLabel);
+                    currentBetLabels.Add(player2BetLabel);
+                    break;
+                case 1:
+                    currentBetLabels.Add(player1BetLabel);
+                    break;
+            }
 
             // set bet labels
-            currentBetLabels.Add(player1BetLabel);
-            currentBetLabels.Add(player2BetLabel);
-            currentBetLabels.Add(player3BetLabel);
+            for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
+            {
+                currentBetLabels[i].Text = "Current Bet: " + Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerBet);
+            }
 
-            // set money labels
-            currentMoneyLabels.Add(player1CurrentMoneyLabel);
-            currentMoneyLabels.Add(player2CurrentMoneyLabel);
-            currentMoneyLabels.Add(player3CurrentMoneyLabel);
+            // create list of total labels
+            switch (playerList[0].ALocalGame.PlayerList.Count)
+            {
+                case 3:
+                    currentTotalLabels.Add(player1CurrentTotal);
+                    currentTotalLabels.Add(player2CurrentTotal);
+                    currentTotalLabels.Add(player3CurrentTotal);
+                    break;
+                case 2:
+                    currentTotalLabels.Add(player1CurrentTotal);
+                    currentTotalLabels.Add(player2CurrentTotal);
+                    break;
+                case 1:
+                    currentTotalLabels.Add(player1CurrentTotal);
+                    break;
+            }
 
             // set total labels
-            currentTotalLabels.Add(player1CurrentTotal);
-            currentTotalLabels.Add(player2CurrentTotal);
-            currentTotalLabels.Add(player3CurrentTotal);
+            for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
+            {
+                currentTotalLabels[i].Text = "Current Total: " + Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerHandValue);
+            }
 
             // generate turn instance
-            localTurn = new LocalTurn(playerList[0], dealer, myDeck, this);
+            localTurn = new LocalTurn(playerList[0], dealer, myDeck, this, database);
 
+            // set focus to the bet text box
+            betTextBox.SelectionStart = 1;
+            betTextBox.Select();
+
+            // Display turn counter
+            turnLabel.Text = localTurn.turnCounter.ToString();
         }
 
         private void hitButton_Click(object sender, EventArgs e)
@@ -109,6 +162,18 @@ namespace BlackJackApplication
                 endGame();
             }
 
+            foreach(Player player in playerList)
+            {
+                foreach(PictureBox picture in player.PictureBoxes)
+                {
+                    Controls.Remove(picture);
+                }
+            }
+            foreach(PictureBox picture in dealer.PictureBoxes)
+            {
+                Controls.Remove(picture);
+            }
+
             // change button state
             this.continueButton.Visible = false;
             this.standButton.Visible = true;
@@ -118,15 +183,6 @@ namespace BlackJackApplication
             localTurn.continueButtonClick();
         }
 
-        private void betTextBox_MouseClick(object sender, MouseEventArgs e)
-        {
-            // clear out unneccesary characters from bet textbox
-            bool betContainsOnlyDigits = Int32.TryParse(this.betTextBox.Text, out int number);
-            if (!betContainsOnlyDigits)
-            {
-                this.betTextBox.Text = "";
-            }
-        }
 
         private void betButton_EnabledChanged(object sender, EventArgs e)
         {
@@ -167,19 +223,7 @@ namespace BlackJackApplication
 
         private void adjustMoneyButton_Click(object sender, EventArgs e)
         {
-            // error checking for the adjust money functionality
-            int number;
-            bool adjustMoneyContainsOnlyDigits = Int32.TryParse(this.adjustMoneyTextBox.Text, out number);
-            if (!adjustMoneyContainsOnlyDigits)
-            {
-                this.adjustMoneyTextBox.Text = "";
-                errorLabel.Text = "Please enter only numbers";
-            }
-            else
-            {
-                errorLabel.Text = "";
-                currentMoneyLabels[localTurn.turnCounter].Text = "Current Money: " + adjustMoneyTextBox.Text;
-            }
+            localTurn.adjustMoneyClick();
         }
 
         public void endGame()
@@ -194,6 +238,40 @@ namespace BlackJackApplication
             gameOverFormInstance.FormClosed += (s, args) => this.Close();
         }
 
-        
+        private void adjustMoneyTextBox_Click(object sender, EventArgs e)
+        {
+            if (adjustMoneyTextBox.Text != "")
+            {
+                adjustMoneyTextBox.Text = "";
+            }
+        }
+
+        private void betTextBox_Click(object sender, EventArgs e)
+        {
+            betTextBox.Text = "$";
+            betTextBox.SelectionStart = 1;
+        }
+
+        private void betTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+        private void splitButton_Click(object sender, EventArgs e)
+        {
+            localTurn.splitButtonClick();
+        }
+
+        private void insuranceButton_Click(object sender, EventArgs e)
+        {
+            if (insuranceButton.Text == "Insurance")
+            {
+                insuranceButton.Text = "Bet";
+                insuranceBetTextBox.Visible = true;
+            } else
+            {
+                insuranceButton.Text = "Insurance";
+                localTurn.insuranceBet(int.Parse(insuranceBetTextBox.Text.Remove(0, 10)));
+            }
+        }
     }
 }
