@@ -175,6 +175,7 @@
             this.standButton.TabIndex = 34;
             this.standButton.Text = "Stand";
             this.standButton.UseVisualStyleBackColor = false;
+            this.standButton.Click += new System.EventHandler(this.standButton_Click);
             // 
             // continueButton
             // 

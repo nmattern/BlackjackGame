@@ -182,6 +182,7 @@ namespace BlackJackApplication
         public void beginPlayerTurn()
         {
             //deal cards to this player
+            player.ALocalGame.PlayerList[turnCounter].PlayerHand.Clear();
             dealer.dealCard(player.ALocalGame.PlayerList[turnCounter], deck, 2);
             updatingPlayerHand();
 
@@ -198,7 +199,8 @@ namespace BlackJackApplication
             }
 
             // Generate players cards onto game board
-            foreach (Card card in player.ALocalGame.PlayerList[turnCounter].PlayerHand)
+            GamePlayer currentPlayer = player.ALocalGame.PlayerList[turnCounter];
+            foreach (Card card in currentPlayer.PlayerHand)
             {
                 addPlayerCard(card, player.ALocalGame.PlayerList[turnCounter]);
             }
