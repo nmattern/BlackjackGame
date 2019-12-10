@@ -20,6 +20,7 @@ namespace BlackJackApplication
         public Point dealerLocation = new Point(16, 54);
         public int turnCounter = 0;
         public DatabaseAccess database;
+        public bool roundFinished = false;
 
         public LocalTurn(Player aPlayer, Dealer deal, Deck deckarg, frmGameBoard game, DatabaseAccess data)
         {
@@ -111,7 +112,7 @@ namespace BlackJackApplication
                     gameBoard.standButton.Visible = true;
                     // update db with new player bet info
                     await database.createLocalGamePlayer(player.Username, turnCounter, player.ALocalGame.PlayerList[turnCounter]);
-                    beginTurn();
+                    beginPlayerTurn();
                 }
                 else
                 {
@@ -130,19 +131,148 @@ namespace BlackJackApplication
             gameBoard.currentMoneyLabels[turnCounter].Text = gameBoard.adjustMoneyTextBox.Text;
         }
 
+        //------------------------------------------------------------------------------------
+        public void beginPlayerTurn()
+        {
+            int j;
+
+            //deal cards to this player
+            dealer.dealCard(player.ALocalGame.PlayerList[turnCounter], deck, 2);
+
+            // If it is the first player's turn, deal to the dealer and display dealer cards
+            if (turnCounter == 0)
+            {
+                dealer.dealSelf(dealer, deck, 2);
+                dealer.CurrentPlayerHand[0].Hidden = true;
+
+                foreach (Card card in dealer.CurrentPlayerHand)
+                {
+                    addDealerCard(card, dealer);
+                }
+            }
+
+            // Generate players cards onto game board
+            foreach (Card card in player.ALocalGame.PlayerList[turnCounter].PlayerHand)
+            {
+                addPlayerCard(card, player.ALocalGame.PlayerList[turnCounter]);
+            }
+
+            // if first player's turn, calculate dealers hand value
+            int valueOfFirstCard = 0;
+            if (turnCounter == 0)
+            {
+                // Set the intial values of the player and dealer total labels
+                // First we have to validate the value of the hidden card in case it is a string
+                
+
+                // set value of dealers first card
+                string firstCardValue = (dealer.CurrentPlayerHand[0].Value);
+                if (firstCardValue == "king" || firstCardValue == "queen" || firstCardValue == "jack")
+                {
+                    valueOfFirstCard = 10;
+                }
+                else if (dealer.CurrentPlayerHand[0].Value == "ace")
+                {
+                    valueOfFirstCard = 11;
+                }
+                else
+                {
+                    valueOfFirstCard = Convert.ToInt32(firstCardValue);
+                }
+
+                // set inital value of dealers hand
+                if (dealer.CurrentPlayerHand[1].Value == "king" || dealer.CurrentPlayerHand[1].Value == "queen" || dealer.CurrentPlayerHand[1].Value == "jack")
+                {
+                    dealer.CurrentValueOfHand = valueOfFirstCard + 10;
+                }
+                else if (dealer.CurrentPlayerHand[1].Value == "ace")
+                {
+                    dealer.CurrentValueOfHand = valueOfFirstCard + 11;
+                }
+                else
+                {
+                    dealer.CurrentValueOfHand = valueOfFirstCard + Convert.ToInt32(dealer.CurrentPlayerHand[1].Value);
+                }
+            }
+
+            // calculate players hand value
+
+            // first card
+            string pFirstCard = player.ALocalGame.PlayerList[turnCounter].PlayerHand[0].Value;
+            string pSecondCard = player.ALocalGame.PlayerList[turnCounter].PlayerHand[1].Value;
+            if (pFirstCard == "king" || pFirstCard == "queen" || pFirstCard == "jack")
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue = 10;
+            }
+            else if (pFirstCard == "ace")
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue = 11;
+            }
+            else
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue = Convert.ToInt32(pFirstCard);
+            }
+
+            // second card
+            if (pSecondCard == "king" || pSecondCard == "queen" || pSecondCard == "jack")
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue += 10;
+            }
+            else if (pSecondCard == "ace")
+            {
+                // if two aces, switch one to a one
+                if (pFirstCard == "ace")
+                {
+                    player.ALocalGame.PlayerList[turnCounter].PlayerHandValue = 12;
+                }
+                else
+                {
+                    player.ALocalGame.PlayerList[turnCounter].PlayerHandValue += 11;
+                }
+
+            }
+            else
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue += Convert.ToInt32(pSecondCard);
+            }
+
+            // if first player's turn, display dealers new visual total
+            if (turnCounter == 0)
+            {
+                gameBoard.dealerVisableTotalLabel.Text = "Current Visable Total: " + (dealer.CurrentValueOfHand - valueOfFirstCard).ToString();
+            }
+
+            // update player hand value
+            gameBoard.currentTotalLabels[turnCounter].Text = "Current Total: " + player.ALocalGame.PlayerList[turnCounter].PlayerHandValue.ToString();
+
+            // handle cases of instant win
+            if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue == 21)
+            {
+                if (dealer.CurrentValueOfHand != 21)
+                {
+                    playerBlackjack(player.ALocalGame.PlayerList[turnCounter]);
+                }
+            }
+        }
+        //------------------------------------------------------------------------------------
+
         // Handles initialization of table state
         public async void beginTurn()
         {
             int j;
+
+            // deal players cards
             for(j = 0; j < player.ALocalGame.PlayerList.Count; j++)
             {
                 dealer.dealCard(player.ALocalGame.PlayerList[j], deck, 2);
                 await database.updatePlayerHand(player.ALocalGame.PlayerList[0].Username, j, player.ALocalGame.PlayerList[j].PlayerHand);
             }
+
+            // dealer deals to self
             dealer.dealSelf(dealer, deck, 2);
             dealer.CurrentPlayerHand[0].Hidden = true;
 
-            // Generates the hand for the players
+            // Generates the hand for the players visually
             for (j = 0; j < player.ALocalGame.PlayerList.Count; j++)
             {
                 foreach(Card card in player.ALocalGame.PlayerList[j].PlayerHand)
@@ -151,7 +281,7 @@ namespace BlackJackApplication
                 }
             }
 
-            // Generates the hand for the dealer
+            // Generates the hand for the dealer visually
             foreach (Card card in dealer.CurrentPlayerHand)
             {
                 addDealerCard(card, dealer);
@@ -160,23 +290,84 @@ namespace BlackJackApplication
             // Set the intial values of the player and dealer total labels
             // First we have to validate the value of the hidden card in case it is a string
             int valueOfFirstCard = 0;
-            int number;
 
+            // set value of dealers first card
             string firstCardValue = (dealer.CurrentPlayerHand[0].Value);
             if (firstCardValue == "king" || firstCardValue == "queen" || firstCardValue == "jack")
             {
                 valueOfFirstCard = 10;
             }
-            else if (Int32.TryParse(firstCardValue, out number))
+            else if (dealer.CurrentPlayerHand[0].Value == "ace")
             {
-                valueOfFirstCard = (int)number;
+                valueOfFirstCard = 11;
+            }
+            else
+            {
+                valueOfFirstCard = Convert.ToInt32(firstCardValue);
+            }
+
+            // set inital value of dealers hand
+            if (dealer.CurrentPlayerHand[1].Value == "king" || dealer.CurrentPlayerHand[1].Value == "queen" || dealer.CurrentPlayerHand[1].Value == "jack")
+            {
+                dealer.CurrentValueOfHand = valueOfFirstCard + 10;
+            }
+            else if (dealer.CurrentPlayerHand[1].Value == "ace")
+            {
+                dealer.CurrentValueOfHand = valueOfFirstCard + 11;
+            }
+            else
+            {
+                dealer.CurrentValueOfHand = valueOfFirstCard + Convert.ToInt32(dealer.CurrentPlayerHand[1].Value);
+            }
+
+            // calculate players hand values
+            for (j = 0; j < player.ALocalGame.PlayerList.Count; j++)
+            {
+                string pFirstCard = player.ALocalGame.PlayerList[j].PlayerHand[0].Value;
+                string pSecondCard = player.ALocalGame.PlayerList[j].PlayerHand[1].Value;
+                if (pFirstCard == "king" || pFirstCard == "queen" || pFirstCard == "jack")
+                {
+                    player.ALocalGame.PlayerList[j].PlayerHandValue = 10;
+                }
+                else if (pFirstCard == "ace")
+                {
+                    player.ALocalGame.PlayerList[j].PlayerHandValue = 11;
+                }
+                else
+                {
+                    player.ALocalGame.PlayerList[j].PlayerHandValue = Convert.ToInt32(pFirstCard);
+                }
+
+                if (pSecondCard == "king" || pSecondCard == "queen" || pSecondCard == "jack")
+                {
+                    player.ALocalGame.PlayerList[j].PlayerHandValue += 10;
+                }
+                else if (pSecondCard == "ace")
+                {
+                    // if two aces, switch one to a one
+                    if (pFirstCard == "ace")
+                    {
+                        player.ALocalGame.PlayerList[j].PlayerHandValue = 12;
+                    }
+                    else
+                    {
+                        player.ALocalGame.PlayerList[j].PlayerHandValue += 11;
+                    }
+                    
+                }
+                else
+                {
+                    player.ALocalGame.PlayerList[j].PlayerHandValue += Convert.ToInt32(pSecondCard);
+                }
             }
 
             // set the new labels for the dealer and each player
-            gameBoard.dealerVisableTotalLabel.Text = (dealer.CurrentValueOfHand - valueOfFirstCard).ToString();
+            gameBoard.dealerVisableTotalLabel.Text = "Current Visable Total: " + (dealer.CurrentValueOfHand - valueOfFirstCard).ToString();
+
+            // update player hand value to screen
             for (j = 0; j < player.ALocalGame.PlayerList.Count; j++)
             {
-                gameBoard.currentTotalLabels[j].Text = player.ALocalGame.PlayerList[j].PlayerHandValue.ToString();
+                gameBoard.currentTotalLabels[j].Text = "Current Total: " + player.ALocalGame.PlayerList[j].PlayerHandValue.ToString();
             }
 
             // Handle cases where the player or dealer immeditately wins the game
@@ -189,7 +380,10 @@ namespace BlackJackApplication
                         playerBlackjack(player.ALocalGame.PlayerList[j]);
                     }
                 }
-                else if (dealer.CurrentValueOfHand == 21)
+            }
+            if (dealer.CurrentValueOfHand == 21)
+            {
+                for (int u = 0; u < player.ALocalGame.PlayerList.Count; u++)
                 {
                     if (player.ALocalGame.PlayerList[j].PlayerHandValue != 21)
                     {
@@ -198,6 +392,7 @@ namespace BlackJackApplication
                 }
             }
         }
+        */
 
         public void hitButtonClick()
         {
@@ -269,13 +464,22 @@ namespace BlackJackApplication
             }
             else
             {
-                turnCounter++;
+                turnCounter = (turnCounter + 1) % player.ALocalGame.PlayerList.Count;
             }
         }
 
         public void continueButtonClick()
         {
-            resetTableTurn();
+            if (roundFinished == true)
+            {
+                resetTableTurn();
+            }
+            else
+            {
+                turnCounter = (turnCounter + 1) % player.ALocalGame.PlayerList.Count;
+                gameBoard.betButton.Enabled = true;
+            }
+            
         }
 
         public void resetTableTurn()
@@ -304,22 +508,40 @@ namespace BlackJackApplication
         {
             winner.PlayerAmountOfMoney += winner.PlayerBet*2;
             gameBoard.resultLabel.Text = winner.Username + " Wins";
+            roundFinished = true;
         }
 
         public void playerBlackjack(GamePlayer winner)
         {
             winner.PlayerAmountOfMoney += winner.PlayerBet * 2;
             gameBoard.resultLabel.Text = "Blackjack! " + winner.Username + " Wins!";
+            gameBoard.continueButton.Visible = true;
+            gameBoard.continueButton.Enabled = true;
+            gameBoard.hitButton.Enabled = false;
+            gameBoard.standButton.Enabled = false;
+            gameBoard.betButton.Enabled = false;
+            roundFinished = true;
         }
 
         public void dealerWins()
         {
             gameBoard.resultLabel.Text = "Dealer Wins";
+            gameBoard.continueButton.Visible = true;
+            gameBoard.continueButton.Enabled = true;
+            gameBoard.hitButton.Enabled = false;
+            gameBoard.standButton.Enabled = false;
+            gameBoard.betButton.Enabled = false;
+            roundFinished = true;
         }
 
         public void playerBusts(GamePlayer play)
         {
             gameBoard.resultLabel.Text = play.Username + " Busted";
+            gameBoard.continueButton.Visible = true;
+            gameBoard.continueButton.Enabled = true;
+            gameBoard.hitButton.Enabled = false;
+            gameBoard.standButton.Enabled = false;
+            gameBoard.betButton.Enabled = false;
         }
 
         

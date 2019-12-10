@@ -134,6 +134,9 @@ namespace BlackJackApplication
             // set focus to the bet text box
             betTextBox.SelectionStart = 1;
             betTextBox.Select();
+
+            // Display turn counter
+            turnLabel.Text = localTurn.turnCounter.ToString();
         }
 
         private void hitButton_Click(object sender, EventArgs e)
