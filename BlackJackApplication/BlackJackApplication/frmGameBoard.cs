@@ -63,19 +63,35 @@ namespace BlackJackApplication
             continueButton.Visible = false;
 
             // set money labels
-            player1CurrentMoneyLabel.Text = Convert.ToString(playerList[0].ALocalGame.PlayerList[0].PlayerAmountOfMoney);
-            player2CurrentMoneyLabel.Text = Convert.ToString(playerList[0].ALocalGame.PlayerList[1].PlayerAmountOfMoney);
-            player3CurrentMoneyLabel.Text = Convert.ToString(playerList[0].ALocalGame.PlayerList[2].PlayerAmountOfMoney);
+            switch (playerList[0].ALocalGame.PlayerList.Count)
+            {
+                case 3:
+                    currentMoneyLabels.Add(player1CurrentMoneyLabel);
+                    currentMoneyLabels.Add(player2CurrentMoneyLabel);
+                    currentMoneyLabels.Add(player3CurrentMoneyLabel);
+                    break;
+                case 2:
+                    currentMoneyLabels.Add(player1CurrentMoneyLabel);
+                    currentMoneyLabels.Add(player2CurrentMoneyLabel);
+                    break;
+                case 1:
+                    currentMoneyLabels.Add(player1CurrentMoneyLabel);
+                    break;
+            }
+
+            // set money labels
+            for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
+            {
+                currentMoneyLabels[i].Text = Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerAmountOfMoney);
+            }
+
 
             // set bet labels
             currentBetLabels.Add(player1BetLabel);
             currentBetLabels.Add(player2BetLabel);
             currentBetLabels.Add(player3BetLabel);
 
-            // set money labels
-            currentMoneyLabels.Add(player1CurrentMoneyLabel);
-            currentMoneyLabels.Add(player2CurrentMoneyLabel);
-            currentMoneyLabels.Add(player3CurrentMoneyLabel);
+            
 
             // set total labels
             currentTotalLabels.Add(player1CurrentTotal);

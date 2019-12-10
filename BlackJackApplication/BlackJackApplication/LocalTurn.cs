@@ -294,14 +294,16 @@ namespace BlackJackApplication
             gameBoard.resultLabel.Text = winner.Username + " Wins";
         }
 
-        public void playerBlackjack(GamePlayer play)
+        public void playerBlackjack(GamePlayer winner)
         {
-
+            winner.PlayerAmountOfMoney += winner.PlayerBet * 2;
+            gameBoard.resultLabel.Text = "Blackjack! " + winner.Username + " Wins!";
         }
 
         public void dealerWins()
         {
-
+            // Define multiplayer actions
+            gameBoard.resultLabel.Text = "Dealer Wins";
         }
 
         public void playerBusts(GamePlayer play)
