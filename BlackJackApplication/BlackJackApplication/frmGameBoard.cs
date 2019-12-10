@@ -208,7 +208,7 @@ namespace BlackJackApplication
             
         }
 
-        private async void adjustMoneyButton_Click(object sender, EventArgs e)
+        private void adjustMoneyButton_Click(object sender, EventArgs e)
         {
             localTurn.adjustMoneyClick();
         }
