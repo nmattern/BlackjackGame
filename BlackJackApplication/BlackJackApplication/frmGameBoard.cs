@@ -270,7 +270,7 @@ namespace BlackJackApplication
             } else
             {
                 insuranceButton.Text = "Insurance";
-                localTurn.insuranceBet(int.Parse(insuranceBetTextBox.Text));
+                localTurn.insuranceBet(int.Parse(insuranceBetTextBox.Text.Remove(0, 10)));
             }
         }
     }
