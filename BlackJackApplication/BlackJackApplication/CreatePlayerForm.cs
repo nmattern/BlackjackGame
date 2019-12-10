@@ -7,11 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace BlackJackApplication
 {
     public partial class CreateProfileForm : Form
     {
+        bool nameErrorVerified = true;
+        bool creditErrorVerified = true;
+        bool phoneErrorVerified = true;
+        bool usernameErrorVerified = true;
+        bool confirmPasswordErrorVerified = true;
+
         DatabaseAccess database = new DatabaseAccess();
         public CreateProfileForm()
         {
@@ -24,6 +31,7 @@ namespace BlackJackApplication
             creditCardErrorLabel.Text = "";
             phoneErrorLabel.Text = "";
             usernameNotValidLabel.Text = "";
+            confPasswordErrorLabel.Text = "";
         }
 
         private void clearTextBoxes()
@@ -45,29 +53,58 @@ namespace BlackJackApplication
 
         private async void submitButton_Click(object sender, EventArgs e)
         {
+            string creditBox = Regex.Replace(creditCardTextBox.Text, "[^0-9]", "");
+            string phoneBox = Regex.Replace(phoneTextBox.Text, "[^0-9]", "");
             bool verified = true;
             if (!this.nameTextBox.Text.All(char.IsLetter))
             {
                 nameErrorLabel.Text = "Name must only contain letters";
                 verified = false;
+                nameErrorVerified = false;
             }
-            if (!this.creditCardTextBox.Text.All(char.IsDigit))
+            else
             {
-                creditCardErrorLabel.Text = "Credit card number must only contain numbers";
-                if(this.creditCardTextBox.Text.Length != 16)
-                {
-                    creditCardErrorLabel.Text = "Credit card number must be in format '1234123412341234'";
-                }
-                verified = false;
+                nameErrorVerified = true;
+                nameErrorLabel.Text = "";
             }
-            if(!this.phoneTextBox.Text.All(char.IsDigit))
+
+            if (creditBox.Length != 16)
             {
-                phoneErrorLabel.Text = "Phone number must only contain numbers";
-                if (this.phoneTextBox.Text.Length > 11 || this.phoneTextBox.Text.Length < 10)
-                {
-                    phoneErrorLabel.Text = "Phone number must be 10-11 characters long";
-                }
+                creditCardErrorLabel.Text = "Credit card number must be 16 digits long";
                 verified = false;
+                creditErrorVerified = false;
+            }
+            else
+            {
+                creditErrorVerified = true;
+                creditCardErrorLabel.Text = "";
+                Console.WriteLine(creditBox);
+            }
+            
+            if (phoneBox.Length == 10 || phoneBox.Length == 7)
+            {
+                Console.WriteLine(phoneBox);
+                phoneErrorVerified = true;
+                phoneErrorLabel.Text = "";
+            }
+            else
+            {
+                phoneErrorLabel.Text = "Please enter a valid phone number";
+                Console.WriteLine(phoneBox);
+                verified = false;
+                phoneErrorVerified = false;
+            }
+            
+            if (passwordTextBox.Text != confirmPasswordTextBox.Text)
+            {
+                confPasswordErrorLabel.Text = "Passwords do not match";
+                verified = false;
+                confirmPasswordErrorVerified = false;
+            }
+            else
+            {
+                confirmPasswordErrorVerified = true;
+                confPasswordErrorLabel.Text = "";
             }
 
             await database.doesPlayerExist(this.usernameTextBox.Text);
@@ -75,8 +112,8 @@ namespace BlackJackApplication
             {
                 
                 Player newplayer = new Player(
-                Convert.ToInt64(phoneTextBox.Text), this.addressTextBox.Text, this.nameTextBox.Text,
-                Convert.ToInt64(creditCardTextBox.Text), this.recovQTextBox.Text, this.recovATextBox.Text,
+                Convert.ToInt64(phoneBox), this.addressTextBox.Text, this.nameTextBox.Text,
+                Convert.ToInt64(creditBox), this.recovQTextBox.Text, this.recovATextBox.Text,
                 this.passwordTextBox.Text, this.usernameTextBox.Text, 34);
                 await database.createPlayer(newplayer);
                 clearTextBoxes();
