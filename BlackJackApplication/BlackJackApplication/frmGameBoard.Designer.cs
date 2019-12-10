@@ -40,6 +40,7 @@
             this.standButton = new System.Windows.Forms.Button();
             this.continueButton = new System.Windows.Forms.Button();
             this.controlsGroupBox = new System.Windows.Forms.GroupBox();
+            this.betTextBox = new System.Windows.Forms.MaskedTextBox();
             this.player1CurrentTotal = new System.Windows.Forms.Label();
             this.player2CurrentTotal = new System.Windows.Forms.Label();
             this.player3CurrentTotal = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
-            this.betTextBox = new System.Windows.Forms.MaskedTextBox();
             this.controlsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -141,6 +141,7 @@
             this.betButton.TabIndex = 32;
             this.betButton.Text = "Bet";
             this.betButton.UseVisualStyleBackColor = false;
+            this.betButton.Click += new System.EventHandler(this.betButton_Click);
             // 
             // hitButton
             // 
@@ -205,6 +206,16 @@
             this.controlsGroupBox.TabIndex = 36;
             this.controlsGroupBox.TabStop = false;
             this.controlsGroupBox.Text = "Controls";
+            // 
+            // betTextBox
+            // 
+            this.betTextBox.Location = new System.Drawing.Point(5, 107);
+            this.betTextBox.Mask = "$99999";
+            this.betTextBox.Name = "betTextBox";
+            this.betTextBox.PromptChar = ' ';
+            this.betTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.betTextBox.Size = new System.Drawing.Size(132, 20);
+            this.betTextBox.TabIndex = 49;
             // 
             // player1CurrentTotal
             // 
@@ -314,16 +325,6 @@
             this.resultLabel.Name = "resultLabel";
             this.resultLabel.Size = new System.Drawing.Size(0, 39);
             this.resultLabel.TabIndex = 48;
-            // 
-            // betTextBox
-            // 
-            this.betTextBox.Location = new System.Drawing.Point(5, 107);
-            this.betTextBox.Mask = "$99999";
-            this.betTextBox.Name = "betTextBox";
-            this.betTextBox.PromptChar = ' ';
-            this.betTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.betTextBox.Size = new System.Drawing.Size(132, 20);
-            this.betTextBox.TabIndex = 49;
             // 
             // frmGameBoard
             // 
