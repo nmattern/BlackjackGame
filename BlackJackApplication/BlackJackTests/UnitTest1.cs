@@ -59,7 +59,7 @@ namespace BlackJackTests
             var expectedSuit = "unitTest";
 
             //Act
-            Card card = new Card(expectedSuit, expectedValue, null);
+            Card card = new Card(expectedSuit, expectedValue);
 
             //Assert
             Assert.AreEqual(expectedSuit, card.Suit);
@@ -70,7 +70,7 @@ namespace BlackJackTests
         public void validateDealerDealsCorrectCards()
         {
             //Arrange
-            var player = new Player();
+            var player = new GamePlayer();
             var dealer = new Dealer();
             var deck = new Deck();
             Card[] cards = new Card[52];
@@ -81,11 +81,11 @@ namespace BlackJackTests
             dealer.dealCard(player, deck, cardsToDeal);
 
             //Assert
-            Assert.AreEqual(cardsToDeal, player.CurrentPlayerHand.Count);
+            Assert.AreEqual(cardsToDeal, player.PlayerHand.Count);
 
             for (int i = 0; i < cardsToDeal; i++)
             {
-                Assert.AreEqual(cards[i], player.CurrentPlayerHand[i]);
+                Assert.AreEqual(cards[i], player.PlayerHand[i]);
             }
         }
         [TestMethod]
@@ -154,48 +154,31 @@ namespace BlackJackTests
         public void verifyPlayerAddCardToHand()
         {
             //Arrange
-            Card card = new Card("test", "11", null);
+            Card card = new Card("test", "11");
             Player player = new Player();
 
             //Act
-            player.addCardToHand(card);
+            player.CurrentPlayerHand.Add(card);
 
             //Assert
             Assert.IsTrue(player.CurrentPlayerHand.Any(c => c.Suit == "test" &&
-                                                       c.Value == "11" &&
-                                                       c.CardImage == null));
+                                                       c.Value == "11"));
         }
 
         [TestMethod]
-        public void invalidBetNotAccepted()
+        public void invalidAdjustMoneyNotAccepted()
         {
             //Arrange
-            tableForm tableForm = new tableForm();
-            var expectedOutput = "Invalid";
+            frmGameBoard tableForm = new frmGameBoard(null, null, null);
+            var expectedOutput = "Please enter only numbers";
+            LocalTurn localTurn = new LocalTurn(null, null, null, tableForm, null);
 
-            //Act
-            tableForm.betTextBox.Text = "Hi";
-            tableForm.lockBetButton.PerformClick();
-
-            //Assert
-            Assert.IsFalse(tableForm.hitButton.Visible);
-            Assert.IsFalse(tableForm.standButton.Visible);
-            Assert.IsFalse(tableForm.continueButton.Visible);
-            Assert.AreEqual(expectedOutput, tableForm.betLabel.Text);
-        }
-        [TestMethod]
-        public void invalidChangeMoneyValueNotAccepted()
-        {
-            //Arrange
-            tableForm tableForm = new tableForm();
-            tableForm.currentMoneyLabel.Text = "100";
             //Act
             tableForm.adjustMoneyTextBox.Text = "Hi";
-            tableForm.adjustMoneyButton.PerformClick();
+            localTurn.adjustMoneyClick();
 
             //Assert
-            Assert.AreEqual("100", tableForm.currentMoneyLabel.Text);
-            Assert.AreEqual("Not Valid", tableForm.adjustMoneyStatusLabel.Text);
+            Assert.AreEqual(expectedOutput, tableForm.errorLabel.Text);
         }
     }
 }
