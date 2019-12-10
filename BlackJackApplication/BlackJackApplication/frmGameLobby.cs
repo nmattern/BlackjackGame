@@ -177,7 +177,7 @@ namespace BlackJackApplication
             await database.createLocalGame(localGame.PlayerList[0].Username, localGame);
             await database.returnPlayer(localGame.PlayerList[0].Username);
             await database.doesLocalPlayerExist(localGame.PlayerList[0].Username, 0);
-            if (!database.LocalPlayerExists)
+            if (database.LocalPlayerExists)
             {
                 playerList.Add(database.CurrentPlayer);
             }

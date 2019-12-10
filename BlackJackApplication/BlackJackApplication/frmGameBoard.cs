@@ -79,7 +79,7 @@ namespace BlackJackApplication
             // set money labels
             for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
             {
-                currentMoneyLabels[i].Text = Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerAmountOfMoney);
+                currentMoneyLabels[i].Text = "Current Money: " + Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerAmountOfMoney);
             }
 
 
