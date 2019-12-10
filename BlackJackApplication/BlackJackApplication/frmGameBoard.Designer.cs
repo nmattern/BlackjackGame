@@ -112,6 +112,7 @@
             this.adjustMoneyTextBox.Size = new System.Drawing.Size(133, 20);
             this.adjustMoneyTextBox.TabIndex = 28;
             this.adjustMoneyTextBox.Text = "Enter New Current Money: ";
+            this.adjustMoneyTextBox.Click += new System.EventHandler(this.adjustMoneyTextBox_Click);
             // 
             // adjustMoneyButton
             // 
@@ -134,6 +135,7 @@
             this.betTextBox.Size = new System.Drawing.Size(133, 20);
             this.betTextBox.TabIndex = 31;
             this.betTextBox.Text = "Enter Bet: ";
+            this.betTextBox.Click += new System.EventHandler(this.betTextBox_Click);
             // 
             // betButton
             // 
