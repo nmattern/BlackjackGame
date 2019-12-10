@@ -32,7 +32,6 @@
             this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.confirmPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.creditCardTextBox = new System.Windows.Forms.TextBox();
             this.recovATextBox = new System.Windows.Forms.TextBox();
             this.recovQTextBox = new System.Windows.Forms.TextBox();
             this.usernameLabel = new System.Windows.Forms.Label();
@@ -44,7 +43,6 @@
             this.addressLabel = new System.Windows.Forms.Label();
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.phoneLabel = new System.Windows.Forms.Label();
-            this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.submitButton = new System.Windows.Forms.Button();
@@ -59,6 +57,8 @@
             this.phoneErrorLabel = new System.Windows.Forms.Label();
             this.usernameNotValidLabel = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
+            this.creditCardTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.phoneTextBox = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -88,6 +88,7 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
             this.passwordTextBox.TabIndex = 3;
+            this.passwordTextBox.UseSystemPasswordChar = true;
             // 
             // confirmPasswordTextBox
             // 
@@ -96,14 +97,7 @@
             this.confirmPasswordTextBox.Name = "confirmPasswordTextBox";
             this.confirmPasswordTextBox.Size = new System.Drawing.Size(100, 20);
             this.confirmPasswordTextBox.TabIndex = 4;
-            // 
-            // creditCardTextBox
-            // 
-            this.creditCardTextBox.Location = new System.Drawing.Point(381, 302);
-            this.creditCardTextBox.MaxLength = 16;
-            this.creditCardTextBox.Name = "creditCardTextBox";
-            this.creditCardTextBox.Size = new System.Drawing.Size(100, 20);
-            this.creditCardTextBox.TabIndex = 7;
+            this.confirmPasswordTextBox.UseSystemPasswordChar = true;
             // 
             // recovATextBox
             // 
@@ -200,14 +194,6 @@
             this.phoneLabel.Size = new System.Drawing.Size(54, 13);
             this.phoneLabel.TabIndex = 17;
             this.phoneLabel.Text = "Phone #: ";
-            // 
-            // phoneTextBox
-            // 
-            this.phoneTextBox.Location = new System.Drawing.Point(381, 354);
-            this.phoneTextBox.MaxLength = 11;
-            this.phoneTextBox.Name = "phoneTextBox";
-            this.phoneTextBox.Size = new System.Drawing.Size(100, 20);
-            this.phoneTextBox.TabIndex = 9;
             // 
             // label2
             // 
@@ -326,12 +312,31 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // creditCardTextBox
+            // 
+            this.creditCardTextBox.Location = new System.Drawing.Point(381, 301);
+            this.creditCardTextBox.Mask = "0000-0000-0000-0000";
+            this.creditCardTextBox.Name = "creditCardTextBox";
+            this.creditCardTextBox.Size = new System.Drawing.Size(100, 20);
+            this.creditCardTextBox.TabIndex = 7;
+            // 
+            // phoneTextBox
+            // 
+            this.phoneTextBox.Location = new System.Drawing.Point(381, 354);
+            this.phoneTextBox.Mask = "(999) 000-0000";
+            this.phoneTextBox.Name = "phoneTextBox";
+            this.phoneTextBox.Size = new System.Drawing.Size(100, 20);
+            this.phoneTextBox.TabIndex = 9;
+            // 
             // CreateProfileForm
             // 
+            this.AcceptButton = this.submitButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.phoneTextBox);
+            this.Controls.Add(this.creditCardTextBox);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.usernameNotValidLabel);
             this.Controls.Add(this.phoneErrorLabel);
@@ -347,7 +352,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.phoneLabel);
-            this.Controls.Add(this.phoneTextBox);
             this.Controls.Add(this.addressLabel);
             this.Controls.Add(this.addressTextBox);
             this.Controls.Add(this.creditCardLabel);
@@ -356,7 +360,6 @@
             this.Controls.Add(this.confirmPasswordLabel);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
-            this.Controls.Add(this.creditCardTextBox);
             this.Controls.Add(this.recovATextBox);
             this.Controls.Add(this.recovQTextBox);
             this.Controls.Add(this.confirmPasswordTextBox);
@@ -376,7 +379,6 @@
         private System.Windows.Forms.TextBox usernameTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox confirmPasswordTextBox;
-        private System.Windows.Forms.TextBox creditCardTextBox;
         private System.Windows.Forms.TextBox recovATextBox;
         private System.Windows.Forms.TextBox recovQTextBox;
         private System.Windows.Forms.Label usernameLabel;
@@ -388,7 +390,6 @@
         private System.Windows.Forms.Label addressLabel;
         private System.Windows.Forms.TextBox addressTextBox;
         private System.Windows.Forms.Label phoneLabel;
-        private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Button submitButton;
@@ -403,5 +404,7 @@
         private System.Windows.Forms.Label phoneErrorLabel;
         private System.Windows.Forms.Label usernameNotValidLabel;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.MaskedTextBox creditCardTextBox;
+        private System.Windows.Forms.MaskedTextBox phoneTextBox;
     }
 }
