@@ -291,7 +291,7 @@
             // playButton
             // 
             this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.Location = new System.Drawing.Point(322, 392);
+            this.playButton.Location = new System.Drawing.Point(313, 392);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(164, 46);
             this.playButton.TabIndex = 28;
