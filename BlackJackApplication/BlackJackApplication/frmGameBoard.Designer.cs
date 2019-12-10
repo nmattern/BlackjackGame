@@ -53,6 +53,8 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
+            this.turnLabelPart1 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.controlsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -311,12 +313,11 @@
             // turnLabel
             // 
             this.turnLabel.AutoSize = true;
-            this.turnLabel.Location = new System.Drawing.Point(851, 17);
+            this.turnLabel.Location = new System.Drawing.Point(777, 20);
             this.turnLabel.Name = "turnLabel";
             this.turnLabel.Size = new System.Drawing.Size(13, 13);
             this.turnLabel.TabIndex = 47;
             this.turnLabel.Text = "0";
-            this.turnLabel.Visible = false;
             // 
             // resultLabel
             // 
@@ -327,12 +328,33 @@
             this.resultLabel.Size = new System.Drawing.Size(0, 39);
             this.resultLabel.TabIndex = 48;
             // 
+            // turnLabelPart1
+            // 
+            this.turnLabelPart1.AutoSize = true;
+            this.turnLabelPart1.Location = new System.Drawing.Point(740, 20);
+            this.turnLabelPart1.Name = "turnLabelPart1";
+            this.turnLabelPart1.Size = new System.Drawing.Size(36, 13);
+            this.turnLabelPart1.TabIndex = 49;
+            this.turnLabelPart1.Text = "Player";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(787, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "\'s Turn";
+            // 
             // frmGameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(1042, 588);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.turnLabelPart1);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.turnLabel);
             this.Controls.Add(this.errorLabel);
@@ -388,5 +410,7 @@
         internal System.Windows.Forms.Label dealerVisableTotalLabel;
         internal System.Windows.Forms.Label resultLabel;
         internal System.Windows.Forms.MaskedTextBox betTextBox;
+        private System.Windows.Forms.Label turnLabelPart1;
+        private System.Windows.Forms.Label label1;
     }
 }

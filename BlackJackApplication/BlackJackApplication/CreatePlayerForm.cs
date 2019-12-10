@@ -13,11 +13,11 @@ namespace BlackJackApplication
 {
     public partial class CreateProfileForm : Form
     {
-        bool nameErrorVerified = true;
-        bool creditErrorVerified = true;
-        bool phoneErrorVerified = true;
-        bool usernameErrorVerified = true;
-        bool confirmPasswordErrorVerified = true;
+        private bool nameErrorVerified = true;
+        private bool creditErrorVerified = true;
+        private bool phoneErrorVerified = true;
+        private bool usernameErrorVerified = true;
+        private bool confirmPasswordErrorVerified = true;
 
         DatabaseAccess database = new DatabaseAccess();
         public CreateProfileForm()
