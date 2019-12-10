@@ -36,6 +36,7 @@
             this.signInButton = new System.Windows.Forms.Button();
             this.createProfileButton = new System.Windows.Forms.Button();
             this.incorrectLoginLabel = new System.Windows.Forms.Label();
+            this.forgotPasswordButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // signInLabel
@@ -115,6 +116,16 @@
             this.incorrectLoginLabel.Size = new System.Drawing.Size(0, 20);
             this.incorrectLoginLabel.TabIndex = 8;
             // 
+            // forgotPasswordButton
+            // 
+            this.forgotPasswordButton.Location = new System.Drawing.Point(384, 326);
+            this.forgotPasswordButton.Name = "forgotPasswordButton";
+            this.forgotPasswordButton.Size = new System.Drawing.Size(100, 23);
+            this.forgotPasswordButton.TabIndex = 9;
+            this.forgotPasswordButton.Text = "Forgot Password";
+            this.forgotPasswordButton.UseVisualStyleBackColor = true;
+            this.forgotPasswordButton.Click += new System.EventHandler(this.forgotPasswordButton_Click);
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.signInButton;
@@ -122,6 +133,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.forgotPasswordButton);
             this.Controls.Add(this.incorrectLoginLabel);
             this.Controls.Add(this.createProfileButton);
             this.Controls.Add(this.signInButton);
@@ -148,5 +160,6 @@
         private System.Windows.Forms.Button signInButton;
         private System.Windows.Forms.Button createProfileButton;
         private System.Windows.Forms.Label incorrectLoginLabel;
+        private System.Windows.Forms.Button forgotPasswordButton;
     }
 }

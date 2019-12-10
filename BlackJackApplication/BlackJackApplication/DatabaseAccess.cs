@@ -59,6 +59,13 @@ namespace BlackJackApplication
             Player result = response.ResultAs<Player>();
         }
 
+        public async Task changePassword(Player player, string newPass)
+        {
+            int i;
+            SetResponse response = await client.SetAsync<String>("Players/" + player.Username + "/Password", newPass);
+            String result = response.ResultAs<String>();
+        }
+
         public async Task setLocalPlayerLocation(List<Point> pointList, Player player)
         {
             int i;
