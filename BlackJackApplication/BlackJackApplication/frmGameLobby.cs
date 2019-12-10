@@ -200,8 +200,10 @@ namespace BlackJackApplication
 
         }
 
-        private void playButton_Click(object sender, EventArgs e)
+        private async void playButton_Click(object sender, EventArgs e)
         {
+            await database.returnPlayer(localPlayerList[0].Username);
+            playerList.Add(database.CurrentPlayer);
             var gameBoardInstance = new frmGameBoard(playerList, database, localGame, localPlayer);
             gameBoardInstance.Location = this.Location;
             this.Hide();
