@@ -33,16 +33,32 @@ namespace BlackJackApplication
                     || this.profilePhoneNumberTextBox.Text == "")
                 {
                     this.phoneErrorLabel.Text = "";
-                    if (this.profileCreditCardTextBox.Text.Length == 16
-                        && this.profileNameTextBox.Text.All(char.IsDigit)
-                        || this.profileCreditCardTextBox.Text == "")
+                    if (this.currentPasswordTextBox.Text == player.Password || this.currentPasswordTextBox.Text == "")
                     {
-                        this.creditCardErrorLabel.Text = "";
-                        Valid = true;
+                        this.currentPasswordErrorLabel.Text = "";
+                        if (this.confirmPasswordTextBox.Text == this.newPasswordTextBox.Text)
+                        {
+                            this.confirmPasswordErrorLabel.Text = "";
+                            if (this.profileCreditCardTextBox.Text.Length == 16
+                                && this.profileNameTextBox.Text.All(char.IsDigit)
+                                || this.profileCreditCardTextBox.Text == "")
+                            {
+                                this.creditCardErrorLabel.Text = "";
+                                Valid = true;
+                            }
+                            else
+                            {
+                                this.creditCardErrorLabel.Text = "Credit card must be 16 digit number";
+                            }
+                        } 
+                        else
+                        {
+                            this.confirmPasswordErrorLabel.Text = "Passwords do not match";
+                        }
                     }
                     else
                     {
-                        this.creditCardErrorLabel.Text = "Credit card must be 16 digit number";
+                        this.currentPasswordErrorLabel.Text = "Incorrect Password";
                     }
                 }
                 else 
@@ -60,9 +76,17 @@ namespace BlackJackApplication
                 {
                     player.Name = this.profileNameTextBox.Text;
                 }
+                if (this.usernameTextBox.Text != "")
+                {
+                    player.Username = this.usernameTextBox.Text;
+                }
+                if (this.newPasswordTextBox.Text != "")
+                {
+                    player.Password = this.newPasswordTextBox.Text;
+                }
                 if (this.profilePhoneNumberTextBox.Text != "")
                 {
-                    player.CreditC = Convert.ToInt64(this.profileCreditCardTextBox.Text);
+                    player.Phone = Convert.ToInt64(this.profileCreditCardTextBox.Text);
                 }
                 if (this.profileAddressTextBox.Text != "")
                 {
@@ -70,7 +94,7 @@ namespace BlackJackApplication
                 }
                 if (this.profileCreditCardTextBox.Text != "")
                 {
-                    player.Phone = Convert.ToInt64(this.profilePhoneNumberTextBox.Text);
+                    player.CreditC = Convert.ToInt64(this.profilePhoneNumberTextBox.Text);
                 }
 
 
