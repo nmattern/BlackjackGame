@@ -85,6 +85,7 @@ namespace BlackJackApplication
             // generate turn instance
             localTurn = new LocalTurn(playerList[0], dealer, myDeck, this);
 
+            // test
         }
 
         private void hitButton_Click(object sender, EventArgs e)
