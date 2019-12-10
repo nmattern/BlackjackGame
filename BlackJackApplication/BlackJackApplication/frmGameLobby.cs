@@ -36,18 +36,22 @@ namespace BlackJackApplication
         private async void createLocalGameButton_Click(object sender, EventArgs e)
         {
             await database.createLocalGame(localPlayerList[0].Username, localGame);
-            createLocalGameButton.Text = "Play Previous Game";
+            playButton.Text = "Play Local Game";
+            playButton.Enabled = true;
+            createLocalGameButton.Visible = false;
             deleteLocalGameButton.Visible = true;
         }
         private async void deleteLocalGameButton_Click(object sender, EventArgs e)
         {
             await database.deleteLocalGame(localPlayerList[0].Username);
             createLocalGameButton.Text = "Create Local Game";
+            createLocalGameButton.Visible = true;
+            playButton.Text = "Play Solo";
             Player2PlayerListLabel.Text = "";
             Player3PlayerListLabel.Text = "";
             localPlayerList.Clear();
             localPlayerList.Add(localPlayer);
-            localUserPlayerListLabel.Text = localPlayer.Username;
+            localUserPlayerListLabel.Text = localPlayer.Username + " " + player.CurrentAmountOfMoney.ToString();
             deleteLocalGameButton.Visible = false;
         }
 
@@ -75,7 +79,15 @@ namespace BlackJackApplication
             await database.doesLocalGameExist(localPlayerList[0].Username);
             if (database.LocalGameExists)
             {
-                createLocalGameButton.Text = "Load Previous Game";
+                createLocalGameButton.Visible = false;
+                if (localPlayerList.Count() <= 1)
+                {
+                    playButton.Text = "Play Solo";
+                }
+                else
+                {
+                    playButton.Text = "Play Local Game";
+                }
                 deleteLocalGameButton.Visible = true;
                 // Check if guest1 exists
                 await database.doesLocalPlayerExist(localPlayerList[0].Username, 1);
@@ -83,7 +95,7 @@ namespace BlackJackApplication
                 {
                     await database.returnLocalPlayer(localPlayerList[0].Username, "1");
                     localPlayerList.Add(database.CurrentGamePlayer);
-                    Player2PlayerListLabel.Text = "Guest1";
+                    Player2PlayerListLabel.Text = "Guest1" + " " + database.CurrentGamePlayer.PlayerAmountOfMoney.ToString();
                     Player2PlayerListLabel.Visible = true;
                 }
                 // Check if guest2 exists
@@ -92,17 +104,18 @@ namespace BlackJackApplication
                 {
                     await database.returnLocalPlayer(localPlayerList[0].Username, "2");
                     localPlayerList.Add(database.CurrentGamePlayer);
-                    Player3PlayerListLabel.Text = "Guest2";
+                    Player3PlayerListLabel.Text = "Guest2" + " " + database.CurrentGamePlayer.PlayerAmountOfMoney.ToString();
                     Player3PlayerListLabel.Visible = true;
                 }
             }
             else
             {
-                createLocalGameButton.Text = "Start Local Game";
+                playButton.Text = "Play Solo";
+                createLocalGameButton.Text = "Create Local Game";
                 deleteLocalGameButton.Visible = false;
             }
             currentAmountOfMoneyLabel.Text = localPlayerList[0].PlayerAmountOfMoney.ToString();
-            localUserPlayerListLabel.Text = localPlayerList[0].Username;
+            localUserPlayerListLabel.Text = localPlayerList[0].Username + " " + localPlayerList[0].PlayerAmountOfMoney.ToString();
             localPlayer = new GamePlayer();
             localPlayer.Username = localPlayerList[0].Username;
             localGame.GameID = 123;
@@ -121,6 +134,7 @@ namespace BlackJackApplication
         private async void addLocalGuestButton_Click(object sender, EventArgs e)
         {
             GamePlayer newGuest;
+            playButton.Enabled = false;
             if (localGame.PlayerList.Count < 3)
             {
                 newGuest = generateGuest();
@@ -128,13 +142,13 @@ namespace BlackJackApplication
                 if (localPlayerList.Count == 2)
                 {
                     await database.createLocalGamePlayer(localPlayerList[0].Username, 1, localPlayerList[1]);
-                    Player2PlayerListLabel.Text = newGuest.Username;
+                    Player2PlayerListLabel.Text = database.CurrentGamePlayer.Username + " " + database.CurrentGamePlayer.PlayerAmountOfMoney.ToString();
                     Player2PlayerListLabel.Visible = true;
                 }
                 else if (localPlayerList.Count == 3)
                 {
                     await database.createLocalGamePlayer(localPlayerList[0].Username, 2, localPlayerList[2]);
-                    Player3PlayerListLabel.Text = newGuest.Username;
+                    Player3PlayerListLabel.Text = database.CurrentGamePlayer.Username + " " + database.CurrentGamePlayer.PlayerAmountOfMoney.ToString();
                     Player3PlayerListLabel.Visible = true;
                 } 
             }
@@ -142,16 +156,12 @@ namespace BlackJackApplication
             {
                 Console.WriteLine("Already at max players");
             }
-            foreach(GamePlayer player in localGame.PlayerList)
-            {
-                Console.WriteLine(player.Username);
-            }
         }
 
         private GamePlayer generateGuest()
         {
             GamePlayer guestAccount = new GamePlayer();
-            guestAccount.Username = "Guest" + localGame.PlayerList.Count();
+            guestAccount.Username = "Guest" + localPlayerList.Count();
             guestAccount.PlayerAmountOfMoney = 1500;
             return guestAccount;
         }
