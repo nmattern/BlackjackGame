@@ -20,7 +20,7 @@ namespace BlackJackApplication
         private string gameID;
         private Player player;
         private GamePlayer gamePlayer;
-        private LocalGame localGame;
+        private List<Card> playerHand;
 
         public static IFirebaseConfig config = new FirebaseConfig
         {
@@ -38,8 +38,9 @@ namespace BlackJackApplication
         public bool GameValid { get => this.gameValid ; set => this.gameValid = value; }
         public string GameID { get => this.gameID; set => this.gameID = value; }
 
-        public LocalGame LocalGame { get => this.localGame; set => this.localGame = value; }
+        public LocalGame LocalGame { get; set; }
         public bool LocalGameExists { get => localGameExists; set => localGameExists = value; }
+        public List<Card> CurrentPlayerHand { get => this.playerHand; set => this.playerHand = value; }
 
         public void testConnection()
         {
@@ -56,8 +57,6 @@ namespace BlackJackApplication
         {
             SetResponse response = await client.SetAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
-
-            Console.WriteLine("Player Created " + player.Username);
         }
 
         public async Task setLocalPlayerLocation(List<Point> pointList, Player player)
@@ -90,8 +89,6 @@ namespace BlackJackApplication
         {
             FirebaseResponse response = await client.UpdateAsync<Player>("Players/" + player.Username, player);
             Player result = response.ResultAs<Player>();
-
-            Console.WriteLine("Player Modified " + player.Username);
         }
 
         // Grabs the player class from the databased assigned to that username
@@ -111,12 +108,10 @@ namespace BlackJackApplication
             if (player != null)
             {
                 playerExists = true;
-                Console.WriteLine("Player Exists");
             }
             else
             {
                 playerExists = false;
-                Console.WriteLine("Player does not exist");
             }
         }
 
@@ -153,7 +148,7 @@ namespace BlackJackApplication
         // Local Endpoints
         public async Task returnLocalPlayer(string parentUsername, string playerNumber)
         {
-            FirebaseResponse response = await client.GetAsync("Players/" + parentUsername + "/LocalGame/PlayerList" + playerNumber);
+            FirebaseResponse response = await client.GetAsync("Players/" + parentUsername + "/LocalGame/PlayerList/" + playerNumber);
             GamePlayer databasePlayer = response.ResultAs<GamePlayer>();
             CurrentGamePlayer = databasePlayer;
         }
@@ -162,27 +157,30 @@ namespace BlackJackApplication
         {
             SetResponse response = await client.SetAsync<LocalGame>("Players/" + username + "/LocalGame/", localGame);
             LocalGame result = response.ResultAs<LocalGame>();
-
-            Console.WriteLine("Local Game created for " + username);
         }
 
         public async Task deleteLocalGame(string username)
         {
             FirebaseResponse response = await client.DeleteAsync("Players/" + username + "/LocalGame");
-            Console.WriteLine("Deleted Local Game for " + username);
         }
 
         public async Task createLocalGamePlayer(string parentUsername, int playerNumber, GamePlayer gamePlayer)
         {
             SetResponse response = await client.SetAsync<GamePlayer>("Players/" + parentUsername + "/LocalGame/PlayerList/" + playerNumber, gamePlayer);
             GamePlayer result = response.ResultAs<GamePlayer>();
-            Console.WriteLine("Player Created " + player.Username);
+            CurrentGamePlayer = result;
         }
 
         public async Task deleteLocalGamePlayer(string parentUsername, int playerNumber)
         {
             FirebaseResponse response = await client.DeleteAsync("Players/" + parentUsername + "/LocalGame/PlayerList/" + playerNumber);
-            Console.WriteLine("Deleted Local Game Player");
+        }
+
+        public async Task updatePlayerHand(string parentUsername, int playerNumber, List<Card> playerHand)
+        {
+            SetResponse response = await client.SetAsync<List<Card>>("Players/" + parentUsername + "/LocalGame/PlayerList/" + playerNumber + "/PlayerHand/", playerHand);
+            List<Card> result = response.ResultAs<List<Card>>();
+            playerHand = result;
         }
 
         public async Task doesLocalGameExist(string username)
@@ -192,12 +190,10 @@ namespace BlackJackApplication
             if (localGame != null)
             {
                 localGameExists = true;
-                Console.WriteLine("Local Game Exists");
             }
             else
             {
                 localGameExists = false;
-                Console.WriteLine("Local Game does not exist");
             }
 
         }
@@ -209,12 +205,10 @@ namespace BlackJackApplication
             if (localPlayer != null)
             {
                 LocalPlayerExists = true;
-                Console.WriteLine("Local Player Exists");
             }
             else
             {
                 LocalPlayerExists = false;
-                Console.WriteLine("Local Player does not exist");
             }
 
         }

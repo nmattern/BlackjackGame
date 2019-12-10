@@ -35,12 +35,12 @@
             this.player3Label = new System.Windows.Forms.Label();
             this.adjustMoneyTextBox = new System.Windows.Forms.TextBox();
             this.adjustMoneyButton = new System.Windows.Forms.Button();
-            this.betTextBox = new System.Windows.Forms.TextBox();
             this.betButton = new System.Windows.Forms.Button();
             this.hitButton = new System.Windows.Forms.Button();
             this.standButton = new System.Windows.Forms.Button();
             this.continueButton = new System.Windows.Forms.Button();
             this.controlsGroupBox = new System.Windows.Forms.GroupBox();
+            this.betTextBox = new System.Windows.Forms.MaskedTextBox();
             this.splitButton = new System.Windows.Forms.Button();
             this.player1CurrentTotal = new System.Windows.Forms.Label();
             this.player2CurrentTotal = new System.Windows.Forms.Label();
@@ -54,6 +54,8 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
+            this.turnLabelPart1 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.insuranceButton = new System.Windows.Forms.Button();
             this.insuranceBetTextBox = new System.Windows.Forms.TextBox();
             this.controlsGroupBox.SuspendLayout();
@@ -84,8 +86,7 @@
             // 
             this.player1Label.AutoSize = true;
             this.player1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.player1Label.Location = new System.Drawing.Point(20, 326);
-            this.player1Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player1Label.Location = new System.Drawing.Point(15, 325);
             this.player1Label.Name = "player1Label";
             this.player1Label.Size = new System.Drawing.Size(89, 29);
             this.player1Label.TabIndex = 2;
@@ -95,8 +96,7 @@
             // 
             this.player2Label.AutoSize = true;
             this.player2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.player2Label.Location = new System.Drawing.Point(377, 326);
-            this.player2Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player2Label.Location = new System.Drawing.Point(283, 325);
             this.player2Label.Name = "player2Label";
             this.player2Label.Size = new System.Drawing.Size(89, 29);
             this.player2Label.TabIndex = 3;
@@ -106,8 +106,7 @@
             // 
             this.player3Label.AutoSize = true;
             this.player3Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.player3Label.Location = new System.Drawing.Point(745, 326);
-            this.player3Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player3Label.Location = new System.Drawing.Point(559, 325);
             this.player3Label.Name = "player3Label";
             this.player3Label.Size = new System.Drawing.Size(89, 29);
             this.player3Label.TabIndex = 4;
@@ -121,6 +120,7 @@
             this.adjustMoneyTextBox.Size = new System.Drawing.Size(176, 23);
             this.adjustMoneyTextBox.TabIndex = 28;
             this.adjustMoneyTextBox.Text = "Enter New Current Money: ";
+            this.adjustMoneyTextBox.Click += new System.EventHandler(this.adjustMoneyTextBox_Click);
             // 
             // adjustMoneyButton
             // 
@@ -136,15 +136,6 @@
             this.adjustMoneyButton.Text = "Adjust Current Money";
             this.adjustMoneyButton.UseVisualStyleBackColor = false;
             // 
-            // betTextBox
-            // 
-            this.betTextBox.Location = new System.Drawing.Point(8, 132);
-            this.betTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.betTextBox.Name = "betTextBox";
-            this.betTextBox.Size = new System.Drawing.Size(176, 23);
-            this.betTextBox.TabIndex = 31;
-            this.betTextBox.Text = "Enter Bet: ";
-            // 
             // betButton
             // 
             this.betButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
@@ -158,6 +149,7 @@
             this.betButton.TabIndex = 32;
             this.betButton.Text = "Bet";
             this.betButton.UseVisualStyleBackColor = false;
+            this.betButton.Click += new System.EventHandler(this.betButton_Click);
             // 
             // hitButton
             // 
@@ -209,16 +201,16 @@
             // 
             this.controlsGroupBox.Controls.Add(this.insuranceBetTextBox);
             this.controlsGroupBox.Controls.Add(this.splitButton);
+            this.controlsGroupBox.Controls.Add(this.betTextBox);
             this.controlsGroupBox.Controls.Add(this.adjustMoneyTextBox);
             this.controlsGroupBox.Controls.Add(this.continueButton);
             this.controlsGroupBox.Controls.Add(this.adjustMoneyButton);
             this.controlsGroupBox.Controls.Add(this.standButton);
-            this.controlsGroupBox.Controls.Add(this.betTextBox);
             this.controlsGroupBox.Controls.Add(this.hitButton);
             this.controlsGroupBox.Controls.Add(this.betButton);
             this.controlsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.controlsGroupBox.Location = new System.Drawing.Point(1075, 11);
-            this.controlsGroupBox.Margin = new System.Windows.Forms.Padding(0, 4, 4, 4);
+            this.controlsGroupBox.Location = new System.Drawing.Point(880, 9);
+            this.controlsGroupBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.controlsGroupBox.Name = "controlsGroupBox";
             this.controlsGroupBox.Padding = new System.Windows.Forms.Padding(4);
             this.controlsGroupBox.Size = new System.Drawing.Size(197, 402);
@@ -242,11 +234,21 @@
             this.splitButton.Visible = false;
             this.splitButton.Click += new System.EventHandler(this.splitButton_Click);
             // 
+            // betTextBox
+            // 
+            this.betTextBox.Location = new System.Drawing.Point(5, 107);
+            this.betTextBox.Mask = "$99999";
+            this.betTextBox.Name = "betTextBox";
+            this.betTextBox.PromptChar = ' ';
+            this.betTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.betTextBox.Size = new System.Drawing.Size(132, 20);
+            this.betTextBox.TabIndex = 49;
+            this.betTextBox.Click += new System.EventHandler(this.betTextBox_Click);
+            // 
             // player1CurrentTotal
             // 
             this.player1CurrentTotal.AutoSize = true;
-            this.player1CurrentTotal.Location = new System.Drawing.Point(21, 287);
-            this.player1CurrentTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player1CurrentTotal.Location = new System.Drawing.Point(16, 293);
             this.player1CurrentTotal.Name = "player1CurrentTotal";
             this.player1CurrentTotal.Size = new System.Drawing.Size(99, 17);
             this.player1CurrentTotal.TabIndex = 37;
@@ -255,8 +257,7 @@
             // player2CurrentTotal
             // 
             this.player2CurrentTotal.AutoSize = true;
-            this.player2CurrentTotal.Location = new System.Drawing.Point(379, 287);
-            this.player2CurrentTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player2CurrentTotal.Location = new System.Drawing.Point(284, 293);
             this.player2CurrentTotal.Name = "player2CurrentTotal";
             this.player2CurrentTotal.Size = new System.Drawing.Size(99, 17);
             this.player2CurrentTotal.TabIndex = 38;
@@ -265,8 +266,7 @@
             // player3CurrentTotal
             // 
             this.player3CurrentTotal.AutoSize = true;
-            this.player3CurrentTotal.Location = new System.Drawing.Point(747, 287);
-            this.player3CurrentTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player3CurrentTotal.Location = new System.Drawing.Point(560, 293);
             this.player3CurrentTotal.Name = "player3CurrentTotal";
             this.player3CurrentTotal.Size = new System.Drawing.Size(99, 17);
             this.player3CurrentTotal.TabIndex = 39;
@@ -275,8 +275,7 @@
             // player1CurrentMoneyLabel
             // 
             this.player1CurrentMoneyLabel.AutoSize = true;
-            this.player1CurrentMoneyLabel.Location = new System.Drawing.Point(21, 306);
-            this.player1CurrentMoneyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player1CurrentMoneyLabel.Location = new System.Drawing.Point(16, 309);
             this.player1CurrentMoneyLabel.Name = "player1CurrentMoneyLabel";
             this.player1CurrentMoneyLabel.Size = new System.Drawing.Size(105, 17);
             this.player1CurrentMoneyLabel.TabIndex = 40;
@@ -285,8 +284,7 @@
             // player2CurrentMoneyLabel
             // 
             this.player2CurrentMoneyLabel.AutoSize = true;
-            this.player2CurrentMoneyLabel.Location = new System.Drawing.Point(379, 306);
-            this.player2CurrentMoneyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player2CurrentMoneyLabel.Location = new System.Drawing.Point(284, 309);
             this.player2CurrentMoneyLabel.Name = "player2CurrentMoneyLabel";
             this.player2CurrentMoneyLabel.Size = new System.Drawing.Size(105, 17);
             this.player2CurrentMoneyLabel.TabIndex = 41;
@@ -295,8 +293,7 @@
             // player3CurrentMoneyLabel
             // 
             this.player3CurrentMoneyLabel.AutoSize = true;
-            this.player3CurrentMoneyLabel.Location = new System.Drawing.Point(747, 306);
-            this.player3CurrentMoneyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player3CurrentMoneyLabel.Location = new System.Drawing.Point(560, 309);
             this.player3CurrentMoneyLabel.Name = "player3CurrentMoneyLabel";
             this.player3CurrentMoneyLabel.Size = new System.Drawing.Size(105, 17);
             this.player3CurrentMoneyLabel.TabIndex = 42;
@@ -305,8 +302,7 @@
             // player1BetLabel
             // 
             this.player1BetLabel.AutoSize = true;
-            this.player1BetLabel.Location = new System.Drawing.Point(21, 267);
-            this.player1BetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player1BetLabel.Location = new System.Drawing.Point(16, 277);
             this.player1BetLabel.Name = "player1BetLabel";
             this.player1BetLabel.Size = new System.Drawing.Size(84, 17);
             this.player1BetLabel.TabIndex = 43;
@@ -315,8 +311,7 @@
             // player2BetLabel
             // 
             this.player2BetLabel.AutoSize = true;
-            this.player2BetLabel.Location = new System.Drawing.Point(379, 267);
-            this.player2BetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player2BetLabel.Location = new System.Drawing.Point(284, 277);
             this.player2BetLabel.Name = "player2BetLabel";
             this.player2BetLabel.Size = new System.Drawing.Size(84, 17);
             this.player2BetLabel.TabIndex = 44;
@@ -325,8 +320,7 @@
             // player3BetLabel
             // 
             this.player3BetLabel.AutoSize = true;
-            this.player3BetLabel.Location = new System.Drawing.Point(747, 267);
-            this.player3BetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.player3BetLabel.Location = new System.Drawing.Point(560, 277);
             this.player3BetLabel.Name = "player3BetLabel";
             this.player3BetLabel.Size = new System.Drawing.Size(84, 17);
             this.player3BetLabel.TabIndex = 45;
@@ -335,8 +329,7 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(1075, 417);
-            this.errorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.errorLabel.Location = new System.Drawing.Point(880, 339);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.errorLabel.Size = new System.Drawing.Size(0, 17);
@@ -345,13 +338,11 @@
             // turnLabel
             // 
             this.turnLabel.AutoSize = true;
-            this.turnLabel.Location = new System.Drawing.Point(941, 16);
-            this.turnLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.turnLabel.Location = new System.Drawing.Point(777, 20);
             this.turnLabel.Name = "turnLabel";
             this.turnLabel.Size = new System.Drawing.Size(16, 17);
             this.turnLabel.TabIndex = 47;
             this.turnLabel.Text = "0";
-            this.turnLabel.Visible = false;
             // 
             // resultLabel
             // 
@@ -389,12 +380,33 @@
             this.insuranceBetTextBox.Text = "Enter Bet: ";
             this.insuranceBetTextBox.Visible = false;
             // 
+            // turnLabelPart1
+            // 
+            this.turnLabelPart1.AutoSize = true;
+            this.turnLabelPart1.Location = new System.Drawing.Point(740, 20);
+            this.turnLabelPart1.Name = "turnLabelPart1";
+            this.turnLabelPart1.Size = new System.Drawing.Size(36, 13);
+            this.turnLabelPart1.TabIndex = 49;
+            this.turnLabelPart1.Text = "Player";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(787, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "\'s Turn";
+            // 
             // frmGameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
-            this.ClientSize = new System.Drawing.Size(1288, 578);
+            this.ClientSize = new System.Drawing.Size(1042, 588);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.turnLabelPart1);
             this.Controls.Add(this.insuranceButton);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.turnLabel);
@@ -433,7 +445,6 @@
         private System.Windows.Forms.Label player3Label;
         internal System.Windows.Forms.TextBox adjustMoneyTextBox;
         internal System.Windows.Forms.Button adjustMoneyButton;
-        internal System.Windows.Forms.TextBox betTextBox;
         internal System.Windows.Forms.Button betButton;
         internal System.Windows.Forms.Button hitButton;
         internal System.Windows.Forms.Button standButton;
@@ -451,6 +462,9 @@
         private System.Windows.Forms.Label turnLabel;
         internal System.Windows.Forms.Label dealerVisableTotalLabel;
         internal System.Windows.Forms.Label resultLabel;
+        internal System.Windows.Forms.MaskedTextBox betTextBox;
+        private System.Windows.Forms.Label turnLabelPart1;
+        private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.GroupBox controlsGroupBox;
         internal System.Windows.Forms.Button splitButton;
         internal System.Windows.Forms.Button insuranceButton;
