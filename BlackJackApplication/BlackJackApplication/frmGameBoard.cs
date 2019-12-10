@@ -131,7 +131,8 @@ namespace BlackJackApplication
             // generate turn instance
             localTurn = new LocalTurn(playerList[0], dealer, myDeck, this);
 
-            // test
+            // set focus to the bet text box
+            betTextBox.Select();
         }
 
         private void hitButton_Click(object sender, EventArgs e)
@@ -207,7 +208,7 @@ namespace BlackJackApplication
             
         }
 
-        private void adjustMoneyButton_Click(object sender, EventArgs e)
+        private async void adjustMoneyButton_Click(object sender, EventArgs e)
         {
             // error checking for the adjust money functionality
             int number;
@@ -221,6 +222,7 @@ namespace BlackJackApplication
             {
                 errorLabel.Text = "";
                 currentMoneyLabels[localTurn.turnCounter].Text = "Current Money: " + adjustMoneyTextBox.Text;
+                await database.createLocalGamePlayer(localGame.PlayerList[0].Username, localTurn.turnCounter, localGame.PlayerList[localTurn.turnCounter]);
             }
         }
 
@@ -236,6 +238,20 @@ namespace BlackJackApplication
             gameOverFormInstance.FormClosed += (s, args) => this.Close();
         }
 
-        
+        private void adjustMoneyTextBox_Click(object sender, EventArgs e)
+        {
+            if (adjustMoneyTextBox.Text != "")
+            {
+                adjustMoneyTextBox.Text = "";
+            }
+        }
+
+        private void betTextBox_Click(object sender, EventArgs e)
+        {
+            if (betTextBox.Text != "")
+            {
+                betTextBox.Text = "";
+            }
+        }
     }
 }

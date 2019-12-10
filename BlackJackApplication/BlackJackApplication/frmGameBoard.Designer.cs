@@ -112,6 +112,7 @@
             this.adjustMoneyTextBox.Size = new System.Drawing.Size(133, 20);
             this.adjustMoneyTextBox.TabIndex = 28;
             this.adjustMoneyTextBox.Text = "Enter New Current Money: ";
+            this.adjustMoneyTextBox.Click += new System.EventHandler(this.adjustMoneyTextBox_Click);
             // 
             // adjustMoneyButton
             // 
