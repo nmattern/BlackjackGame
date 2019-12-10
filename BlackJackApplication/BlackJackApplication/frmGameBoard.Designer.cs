@@ -203,6 +203,7 @@
             // 
             this.controlsGroupBox.Controls.Add(this.insuranceBetTextBox);
             this.controlsGroupBox.Controls.Add(this.splitButton);
+            this.controlsGroupBox.Controls.Add(this.insuranceButton);
             this.controlsGroupBox.Controls.Add(this.betTextBox);
             this.controlsGroupBox.Controls.Add(this.adjustMoneyTextBox);
             this.controlsGroupBox.Controls.Add(this.continueButton);
@@ -215,7 +216,7 @@
             this.controlsGroupBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.controlsGroupBox.Name = "controlsGroupBox";
             this.controlsGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.controlsGroupBox.Size = new System.Drawing.Size(197, 402);
+            this.controlsGroupBox.Size = new System.Drawing.Size(197, 515);
             this.controlsGroupBox.TabIndex = 36;
             this.controlsGroupBox.TabStop = false;
             this.controlsGroupBox.Text = "Controls";
@@ -391,7 +392,7 @@
             this.insuranceButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.insuranceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.insuranceButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.insuranceButton.Location = new System.Drawing.Point(1082, 476);
+            this.insuranceButton.Location = new System.Drawing.Point(9, 452);
             this.insuranceButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.insuranceButton.Name = "insuranceButton";
             this.insuranceButton.Size = new System.Drawing.Size(177, 48);
@@ -409,7 +410,6 @@
             this.ClientSize = new System.Drawing.Size(1095, 588);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.turnLabelPart1);
-            this.Controls.Add(this.insuranceButton);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.turnLabel);
             this.Controls.Add(this.errorLabel);
@@ -451,16 +451,16 @@
         internal System.Windows.Forms.Button hitButton;
         internal System.Windows.Forms.Button standButton;
         internal System.Windows.Forms.Button continueButton;
-        private System.Windows.Forms.Label player1CurrentTotal;
-        private System.Windows.Forms.Label player2CurrentTotal;
-        private System.Windows.Forms.Label player3CurrentTotal;
-        private System.Windows.Forms.Label player1CurrentMoneyLabel;
-        private System.Windows.Forms.Label player2CurrentMoneyLabel;
-        private System.Windows.Forms.Label player3CurrentMoneyLabel;
-        private System.Windows.Forms.Label player1BetLabel;
-        private System.Windows.Forms.Label player2BetLabel;
-        private System.Windows.Forms.Label player3BetLabel;
-        private System.Windows.Forms.Label turnLabel;
+        internal System.Windows.Forms.Label player1CurrentTotal;
+        internal System.Windows.Forms.Label player2CurrentTotal;
+        internal System.Windows.Forms.Label player3CurrentTotal;
+        internal System.Windows.Forms.Label player1CurrentMoneyLabel;
+        internal System.Windows.Forms.Label player2CurrentMoneyLabel;
+        internal System.Windows.Forms.Label player3CurrentMoneyLabel;
+        internal System.Windows.Forms.Label player1BetLabel;
+        internal System.Windows.Forms.Label player2BetLabel;
+        internal System.Windows.Forms.Label player3BetLabel;
+        internal System.Windows.Forms.Label turnLabel;
         internal System.Windows.Forms.Label dealerVisableTotalLabel;
         internal System.Windows.Forms.Label resultLabel;
         internal System.Windows.Forms.MaskedTextBox betTextBox;

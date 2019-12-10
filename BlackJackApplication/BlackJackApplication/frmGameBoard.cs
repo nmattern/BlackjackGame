@@ -20,6 +20,7 @@ namespace BlackJackApplication
         public List<Label> currentMoneyLabels = new List<Label>();
         public List<Label> currentBetLabels = new List<Label>();
         public List<Label> currentTotalLabels = new List<Label>();
+        private Dealer dealer;
 
         internal frmGameBoard(List<Player> pList, DatabaseAccess db, LocalGame aLocalGame)
         {
@@ -33,7 +34,7 @@ namespace BlackJackApplication
         {
             // Generate Deck and Dealer for game
             Deck myDeck = new Deck();
-            Dealer dealer = new Dealer();
+            dealer = new Dealer();
             
 
             // pull current Local game from db into local
@@ -159,6 +160,18 @@ namespace BlackJackApplication
                 && player3CurrentMoneyLabel.Text == "0")
             {
                 endGame();
+            }
+
+            foreach(Player player in playerList)
+            {
+                foreach(PictureBox picture in player.PictureBoxes)
+                {
+                    Controls.Remove(picture);
+                }
+            }
+            foreach(PictureBox picture in dealer.PictureBoxes)
+            {
+                Controls.Remove(picture);
             }
 
             // change button state
