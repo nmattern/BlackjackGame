@@ -36,7 +36,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.joinOnlineGameButton = new System.Windows.Forms.Button();
-            this.createLocalGameButton = new System.Windows.Forms.Button();
             this.SinglePlayerTitleLabel = new System.Windows.Forms.Label();
             this.MultiPlayerTitleLabel = new System.Windows.Forms.Label();
             this.createOnlineGameButton = new System.Windows.Forms.Button();
@@ -52,7 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CurrentMoneyTitleLabel = new System.Windows.Forms.Label();
             this.currentAmountOfMoneyLabel = new System.Windows.Forms.Label();
-            this.deleteLocalGameButton = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.playButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -124,16 +122,6 @@
             this.joinOnlineGameButton.Text = "Join Online Game";
             this.joinOnlineGameButton.UseVisualStyleBackColor = true;
             this.joinOnlineGameButton.Click += new System.EventHandler(this.joinOnlineGameButton_Click);
-            // 
-            // createLocalGameButton
-            // 
-            this.createLocalGameButton.Location = new System.Drawing.Point(158, 270);
-            this.createLocalGameButton.Name = "createLocalGameButton";
-            this.createLocalGameButton.Size = new System.Drawing.Size(120, 23);
-            this.createLocalGameButton.TabIndex = 10;
-            this.createLocalGameButton.Text = "Create Local Game";
-            this.createLocalGameButton.UseVisualStyleBackColor = true;
-            this.createLocalGameButton.Click += new System.EventHandler(this.createLocalGameButton_Click);
             // 
             // SinglePlayerTitleLabel
             // 
@@ -277,17 +265,6 @@
             this.currentAmountOfMoneyLabel.TabIndex = 26;
             this.currentAmountOfMoneyLabel.Text = "0";
             // 
-            // deleteLocalGameButton
-            // 
-            this.deleteLocalGameButton.Location = new System.Drawing.Point(158, 299);
-            this.deleteLocalGameButton.Name = "deleteLocalGameButton";
-            this.deleteLocalGameButton.Size = new System.Drawing.Size(120, 23);
-            this.deleteLocalGameButton.TabIndex = 27;
-            this.deleteLocalGameButton.Text = "Delete Local Game";
-            this.deleteLocalGameButton.UseVisualStyleBackColor = true;
-            this.deleteLocalGameButton.Visible = false;
-            this.deleteLocalGameButton.Click += new System.EventHandler(this.deleteLocalGameButton_Click);
-            // 
             // playButton
             // 
             this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -306,7 +283,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.playButton);
-            this.Controls.Add(this.deleteLocalGameButton);
             this.Controls.Add(this.currentAmountOfMoneyLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CurrentMoneyTitleLabel);
@@ -322,7 +298,6 @@
             this.Controls.Add(this.createOnlineGameButton);
             this.Controls.Add(this.MultiPlayerTitleLabel);
             this.Controls.Add(this.SinglePlayerTitleLabel);
-            this.Controls.Add(this.createLocalGameButton);
             this.Controls.Add(this.joinOnlineGameButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -348,7 +323,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button joinOnlineGameButton;
-        private System.Windows.Forms.Button createLocalGameButton;
         private System.Windows.Forms.Label SinglePlayerTitleLabel;
         private System.Windows.Forms.Label MultiPlayerTitleLabel;
         private System.Windows.Forms.Button createOnlineGameButton;
@@ -364,7 +338,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label CurrentMoneyTitleLabel;
         private System.Windows.Forms.Label currentAmountOfMoneyLabel;
-        private System.Windows.Forms.Button deleteLocalGameButton;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Button playButton;
     }
