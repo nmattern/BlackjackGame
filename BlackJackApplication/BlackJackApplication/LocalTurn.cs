@@ -21,6 +21,7 @@ namespace BlackJackApplication
         public int turnCounter = 0;
         public DatabaseAccess database;
         public bool roundFinished = false;
+        //public bool[] bustedArray = new bool[]  ([false, false, false]) ;
 
         public LocalTurn(Player aPlayer, Dealer deal, Deck deckarg, frmGameBoard game, DatabaseAccess data)
         {
@@ -126,12 +127,11 @@ namespace BlackJackApplication
         }
 
         //------------------------------------------------------------------------------------
-        public void beginPlayerTurn()
+        public async void beginPlayerTurn()
         {
-            int j;
-
             //deal cards to this player
             dealer.dealCard(player.ALocalGame.PlayerList[turnCounter], deck, 2);
+            await database.updatePlayerHand(player.ALocalGame.PlayerList[0].Username, turnCounter, player.ALocalGame.PlayerList[turnCounter].PlayerHand);
 
             // If it is the first player's turn, deal to the dealer and display dealer cards
             if (turnCounter == 0)
@@ -236,7 +236,7 @@ namespace BlackJackApplication
                 gameBoard.dealerVisableTotalLabel.Text = "Current Visable Total: " + (dealer.CurrentValueOfHand - valueOfFirstCard).ToString();
             }
 
-            // update player hand value
+            // update player hand value on game board
             gameBoard.currentTotalLabels[turnCounter].Text = "Current Total: " + player.ALocalGame.PlayerList[turnCounter].PlayerHandValue.ToString();
 
             // handle cases of instant win
@@ -249,7 +249,7 @@ namespace BlackJackApplication
             }
         }
         //------------------------------------------------------------------------------------
-
+        /*
         // Handles initialization of table state
         public async void beginTurn()
         {
@@ -354,7 +354,7 @@ namespace BlackJackApplication
                     player.ALocalGame.PlayerList[j].PlayerHandValue += Convert.ToInt32(pSecondCard);
                 }
             }
-
+            
             // set the new labels for the dealer and each player
             gameBoard.dealerVisableTotalLabel.Text = "Current Visable Total: " + (dealer.CurrentValueOfHand - valueOfFirstCard).ToString();
 
@@ -390,7 +390,7 @@ namespace BlackJackApplication
 
         public void hitButtonClick()
         {
-            
+            // Deal new card to player
             dealer.dealCard(player.ALocalGame.PlayerList[turnCounter], deck);
 
             Card card = player.ALocalGame.PlayerList[turnCounter].PlayerHand[player.ALocalGame.PlayerList[turnCounter].PlayerHand.Count - 1];
