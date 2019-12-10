@@ -8,7 +8,7 @@ namespace BlackJackApplication
 {
     public static class Credentials
     {
-        public const string ApiKey = "YOUR_API_KEY";
+        public const string ApiKey = "";
         // Do not commit with API key
     }
 }

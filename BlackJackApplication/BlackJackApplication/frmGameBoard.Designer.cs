@@ -248,12 +248,12 @@
             // 
             // betTextBox
             // 
-            this.betTextBox.Location = new System.Drawing.Point(5, 107);
+            this.betTextBox.Location = new System.Drawing.Point(8, 126);
             this.betTextBox.Mask = "$99999";
             this.betTextBox.Name = "betTextBox";
             this.betTextBox.PromptChar = ' ';
             this.betTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.betTextBox.Size = new System.Drawing.Size(132, 23);
+            this.betTextBox.Size = new System.Drawing.Size(178, 23);
             this.betTextBox.TabIndex = 49;
             this.betTextBox.Click += new System.EventHandler(this.betTextBox_Click);
             // 
@@ -406,7 +406,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
-            this.ClientSize = new System.Drawing.Size(1042, 588);
+            this.ClientSize = new System.Drawing.Size(1095, 588);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.turnLabelPart1);
             this.Controls.Add(this.insuranceButton);

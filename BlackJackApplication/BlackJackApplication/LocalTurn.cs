@@ -192,37 +192,44 @@ namespace BlackJackApplication
 
         public async void betButtonClick()
         {
-            int betNumber = Convert.ToInt32(Regex.Replace(gameBoard.betTextBox.Text, "[$]", ""));
-
-            // Validate if the user bet greater than 0 and less than what they have
-            if (betNumber > 0)
+            try
             {
-                // save players bet into gamePlayer instance
-                player.ALocalGame.PlayerList[turnCounter].PlayerBet = betNumber;
-                
-                if (player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney - player.ALocalGame.PlayerList[turnCounter].PlayerBet >= 0)
+                int betNumber = Convert.ToInt32(Regex.Replace(gameBoard.betTextBox.Text, "[$]", ""));
+
+                // Validate if the user bet greater than 0 and less than what they have
+                if (betNumber > 0)
                 {
-                    // take bet amount away from player
-                    player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney -= betNumber;
-                    // update the game players current money label
-                    gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + (player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney).ToString();
-                    // enable and disable buttons for end of betting
-                    gameBoard.betButton.Enabled = false;
-                    gameBoard.betTextBox.ReadOnly = true;
-                    gameBoard.hitButton.Visible = true;
-                    gameBoard.standButton.Visible = true;
-                    // update db with new player bet info
-                    await database.createLocalGamePlayer(player.Username, turnCounter, player.ALocalGame.PlayerList[turnCounter]);
-                    beginPlayerTurn();
+                    // save players bet into gamePlayer instance
+                    player.ALocalGame.PlayerList[turnCounter].PlayerBet = betNumber;
+
+                    if (player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney - player.ALocalGame.PlayerList[turnCounter].PlayerBet >= 0)
+                    {
+                        // take bet amount away from player
+                        player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney -= betNumber;
+                        // update the game players current money label
+                        gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + (player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney).ToString();
+                        // enable and disable buttons for end of betting
+                        gameBoard.betButton.Enabled = false;
+                        gameBoard.betTextBox.ReadOnly = true;
+                        gameBoard.hitButton.Visible = true;
+                        gameBoard.standButton.Visible = true;
+                        // update db with new player bet info
+                        await database.createLocalGamePlayer(player.Username, turnCounter, player.ALocalGame.PlayerList[turnCounter]);
+                        beginPlayerTurn();
+                    }
+                    else
+                    {
+                        gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Bet must be less than you have";
+                    }
                 }
                 else
                 {
-                    gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Bet must be less than you have";
+                    gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Bet must be greater than 0";
                 }
             }
-            else 
+            catch
             {
-                gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Bet must be greater than 0";
+                gameBoard.errorLabel.Text = "Improper Bet";
             }
         }
 
