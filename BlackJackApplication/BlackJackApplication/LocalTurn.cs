@@ -654,6 +654,7 @@ namespace BlackJackApplication
         public void splitButtonClick()
         {
             player.ALocalGame.PlayerList[turnCounter].hasSplit = true;
+            player.ALocalGame.PlayerList[turnCounter].insuranceBet *= 2;
             foreach (PictureBox picture in player.PictureBoxes)
             {
                 gameBoard.Controls.Remove(picture);
@@ -740,6 +741,7 @@ namespace BlackJackApplication
             gameBoard.controlsGroupBox.Size = new Size(197, 402);
             gameBoard.splitButton.Visible = false;
             hand = 0;
+            turnCounter = 0;
         }
         
 
