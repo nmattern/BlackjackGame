@@ -194,6 +194,9 @@ namespace BlackJackApplication
             gameOverFormInstance.FormClosed += (s, args) => this.Close();
         }
 
-        
+        private void splitButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -181,6 +181,10 @@ namespace BlackJackApplication
                     {
                         dealerWins();
                     }
+                } else if (player.ALocalGame.PlayerList[j].PlayerHand[0].Value == player.ALocalGame.PlayerList[j].PlayerHand[1].Value)
+                {
+                    gameBoard.controlsGroupBox.Size = new Size(197, 460);
+                    gameBoard.splitButton.Visible = true;
                 }
             }
         }
