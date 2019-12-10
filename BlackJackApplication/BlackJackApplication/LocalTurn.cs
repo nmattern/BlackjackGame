@@ -131,8 +131,7 @@ namespace BlackJackApplication
             for(j = 0; j < player.ALocalGame.PlayerList.Count; j++)
             {
                 dealer.dealCard(player.ALocalGame.PlayerList[j], deck, 2);
-                await database.addCardToHand(player.ALocalGame.PlayerList[0].Username, j, player.ALocalGame.PlayerList[j].PlayerHand[player.ALocalGame.PlayerList[j].PlayerHand.Count - 2]);
-                await database.addCardToHand(player.ALocalGame.PlayerList[0].Username, j, player.ALocalGame.PlayerList[j].PlayerHand[player.ALocalGame.PlayerList[j].PlayerHand.Count - 1]);
+                await database.updatePlayerHand(player.ALocalGame.PlayerList[0].Username, j, player.ALocalGame.PlayerList[j].PlayerHand);
             }
             dealer.dealSelf(dealer, deck, 2);
             dealer.CurrentPlayerHand[0].Hidden = true;

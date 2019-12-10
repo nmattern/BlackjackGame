@@ -21,7 +21,6 @@ namespace BlackJackApplication
         private Player player;
         private GamePlayer gamePlayer;
         private List<Card> playerHand;
-        private Card playerCard;
 
         public static IFirebaseConfig config = new FirebaseConfig
         {
@@ -41,9 +40,7 @@ namespace BlackJackApplication
 
         public LocalGame LocalGame { get; set; }
         public bool LocalGameExists { get => localGameExists; set => localGameExists = value; }
-        public List<Card> PlayerHand { get => this.playerHand; set => this.playerHand = value; }
-
-        public Card PlayerCard { get => this.playerCard; set => this.playerCard = value; }
+        public List<Card> CurrentPlayerHand { get => this.playerHand; set => this.playerHand = value; }
 
         public void testConnection()
         {
@@ -179,11 +176,11 @@ namespace BlackJackApplication
             FirebaseResponse response = await client.DeleteAsync("Players/" + parentUsername + "/LocalGame/PlayerList/" + playerNumber);
         }
 
-        public async Task addCardToHand(string parentUsername, int playerNumber, Card card)
+        public async Task updatePlayerHand(string parentUsername, int playerNumber, List<Card> playerHand)
         {
-            SetResponse response = await client.SetAsync<Card>("Players/" + parentUsername + "/LocalGame/PlayerList/" + playerNumber + "/PlayerHand/" + card.Value + card.Suit , card);
-            Card result = response.ResultAs<Card>();
-            playerCard = result;
+            SetResponse response = await client.SetAsync<List<Card>>("Players/" + parentUsername + "/LocalGame/PlayerList/" + playerNumber + "/PlayerHand/", playerHand);
+            List<Card> result = response.ResultAs<List<Card>>();
+            playerHand = result;
         }
 
         public async Task doesLocalGameExist(string username)
