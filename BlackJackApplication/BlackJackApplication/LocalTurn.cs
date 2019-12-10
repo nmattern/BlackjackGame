@@ -83,13 +83,13 @@ namespace BlackJackApplication
 
         public void betButtonClick()
         {
-            int betNumber = Convert.ToInt32(Regex.Replace(gameBoard.betTextBox.Text, "$", ""));
+            int betNumber = Convert.ToInt32(Regex.Replace(gameBoard.betTextBox.Text, "[$]", ""));
 
             // Validate if the user bet greater than 0 and less than what they have
             if (betNumber > 0)
             {
                 // save players bet into gamePlayer instance
-                player.ALocalGame.PlayerList[turnCounter].PlayerBet = Convert.ToInt32(gameBoard.betTextBox.Text);
+                player.ALocalGame.PlayerList[turnCounter].PlayerBet = betNumber;
                 
                 if (player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney - player.ALocalGame.PlayerList[turnCounter].PlayerBet >= 0)
                 {
