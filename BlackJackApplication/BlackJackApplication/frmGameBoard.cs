@@ -257,5 +257,22 @@ namespace BlackJackApplication
         {
 
         }
+        private void splitButton_Click(object sender, EventArgs e)
+        {
+            localTurn.splitButtonClick();
+        }
+
+        private void insuranceButton_Click(object sender, EventArgs e)
+        {
+            if (insuranceButton.Text == "Insurance")
+            {
+                insuranceButton.Text = "Bet";
+                insuranceBetTextBox.Visible = true;
+            } else
+            {
+                insuranceButton.Text = "Insurance";
+                localTurn.insuranceBet(int.Parse(insuranceBetTextBox.Text.Remove(0, 10)));
+            }
+        }
     }
 }

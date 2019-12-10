@@ -40,6 +40,9 @@
             this.standButton = new System.Windows.Forms.Button();
             this.continueButton = new System.Windows.Forms.Button();
             this.controlsGroupBox = new System.Windows.Forms.GroupBox();
+            this.insuranceBetTextBox = new System.Windows.Forms.TextBox();
+            this.splitButton = new System.Windows.Forms.Button();
+            this.insuranceButton = new System.Windows.Forms.Button();
             this.betTextBox = new System.Windows.Forms.MaskedTextBox();
             this.player1CurrentTotal = new System.Windows.Forms.Label();
             this.player2CurrentTotal = new System.Windows.Forms.Label();
@@ -205,10 +208,53 @@
             this.controlsGroupBox.Location = new System.Drawing.Point(880, 9);
             this.controlsGroupBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.controlsGroupBox.Name = "controlsGroupBox";
-            this.controlsGroupBox.Size = new System.Drawing.Size(148, 327);
+            this.controlsGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.controlsGroupBox.Size = new System.Drawing.Size(197, 567);
             this.controlsGroupBox.TabIndex = 36;
             this.controlsGroupBox.TabStop = false;
             this.controlsGroupBox.Text = "Controls";
+            // 
+            // insuranceBetTextBox
+            // 
+            this.insuranceBetTextBox.Location = new System.Drawing.Point(8, 454);
+            this.insuranceBetTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.insuranceBetTextBox.Name = "insuranceBetTextBox";
+            this.insuranceBetTextBox.Size = new System.Drawing.Size(176, 23);
+            this.insuranceBetTextBox.TabIndex = 37;
+            this.insuranceBetTextBox.Text = "Enter Bet: ";
+            this.insuranceBetTextBox.Visible = false;
+            // 
+            // splitButton
+            // 
+            this.splitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
+            this.splitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.splitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.splitButton.Location = new System.Drawing.Point(8, 411);
+            this.splitButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitButton.Name = "splitButton";
+            this.splitButton.Size = new System.Drawing.Size(177, 48);
+            this.splitButton.TabIndex = 36;
+            this.splitButton.Text = "Split";
+            this.splitButton.UseVisualStyleBackColor = false;
+            this.splitButton.Visible = false;
+            this.splitButton.Click += new System.EventHandler(this.splitButton_Click);
+            // 
+            // insuranceButton
+            // 
+            this.insuranceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
+            this.insuranceButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.insuranceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.insuranceButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.insuranceButton.Location = new System.Drawing.Point(7, 400);
+            this.insuranceButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.insuranceButton.Name = "insuranceButton";
+            this.insuranceButton.Size = new System.Drawing.Size(177, 48);
+            this.insuranceButton.TabIndex = 37;
+            this.insuranceButton.Text = "Insurance";
+            this.insuranceButton.UseVisualStyleBackColor = false;
+            this.insuranceButton.Visible = false;
+            this.insuranceButton.Click += new System.EventHandler(this.insuranceButton_Click);
             // 
             // betTextBox
             // 

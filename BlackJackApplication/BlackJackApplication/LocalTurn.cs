@@ -109,6 +109,10 @@ namespace BlackJackApplication
                 Point newPosition = new Point(dealerLocation.X + IMAGE_DISTANCE_X * cardNum, dealerLocation.Y + IMAGE_DISTANCE_Y * cardNum);
                 if (dealer.CurrentPlayerHand[cardNum].Value == card.Value)
                 {
+                    if (dealer.CurrentPlayerHand[cardNum].Hidden)
+                    {
+                        cardImage = Properties.Resources.back;
+                    }
                     PictureBox pictureBox = new PictureBox()
                     {
                         Image = cardImage,
@@ -287,6 +291,7 @@ namespace BlackJackApplication
             // if first player's turn, display dealers new visual total
             if (turnCounter == 0)
             {
+                dealer.VisibleValueOfHand = dealer.CurrentValueOfHand - valueOfFirstCard;
                 gameBoard.dealerVisableTotalLabel.Text = "Current Visable Total: " + (dealer.CurrentValueOfHand - valueOfFirstCard).ToString();
             }
 
@@ -300,6 +305,15 @@ namespace BlackJackApplication
                 {
                     playerBlackjack(player.ALocalGame.PlayerList[turnCounter]);
                 }
+            }
+
+            else if (dealer.VisibleValueOfHand == 11)
+            {
+                gameBoard.insuranceButton.Visible = true;
+            }
+            else if (player.ALocalGame.PlayerList[turnCounter].PlayerHand[0].Value == player.ALocalGame.PlayerList[turnCounter].PlayerHand[1].Value)
+            {
+                gameBoard.splitButton.Visible = true;
             }
         }
         //------------------------------------------------------------------------------------
@@ -588,6 +602,71 @@ namespace BlackJackApplication
             
         }
 
+        public void splitButtonClick()
+        {
+            player.ALocalGame.PlayerList[turnCounter].hasSplit = true;
+            player.ALocalGame.PlayerList[turnCounter].insuranceBet *= 2;
+            foreach (PictureBox picture in player.PictureBoxes)
+            {
+                gameBoard.Controls.Remove(picture);
+            }
+
+            for (int j = 0; j < player.ALocalGame.PlayerList.Count; j++)
+            {
+                if (player.ALocalGame.PlayerList[j].hasSplit)
+                {
+                    addPlayerCard(player.ALocalGame.PlayerList[j].PlayerHand[0], player.ALocalGame.PlayerList[j], 0);
+                    addPlayerCard(player.ALocalGame.PlayerList[j].PlayerHand[1], player.ALocalGame.PlayerList[j], 1);
+                }
+                else
+                {
+                    addPlayerCard(player.ALocalGame.PlayerList[j].PlayerHand[0], player.ALocalGame.PlayerList[j]);
+                    addPlayerCard(player.ALocalGame.PlayerList[j].PlayerHand[1], player.ALocalGame.PlayerList[j]);
+                }
+            }
+
+            // Generates the hand for the dealer
+            foreach (Card card in dealer.CurrentPlayerHand)
+            {
+                addDealerCard(card, dealer);
+            }
+
+            if (player.ALocalGame.PlayerList[turnCounter].PlayerHand[0].Value == "ace")
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue = 11;
+            }
+            else
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue /= 2;
+            }
+
+            secondHand = player.ALocalGame.PlayerList[turnCounter].PlayerHand[1];
+
+            hand = 0;
+        }
+
+        public void insuranceBet(int bet)
+        {
+            if (bet <= player.ALocalGame.PlayerList[turnCounter].PlayerBet / 2)
+            {
+                player.ALocalGame.PlayerList[turnCounter].insuranceBet = bet;
+                player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney -= bet;
+                if (dealer.CurrentValueOfHand == 21)
+                {
+                    player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney += (bet * 2);
+                    insuranceWin();
+                }
+                else
+                {
+                    insuranceLoss();
+                }
+            }
+            else
+            {
+                //turnForm.insuranceBetValueLabel.Text = "Invalid";
+            }
+        }
+
         public void resetTableTurn()
         {
             int j;
@@ -607,6 +686,12 @@ namespace BlackJackApplication
             gameBoard.standButton.Visible = false;
             gameBoard.betButton.Enabled = true;
             gameBoard.betTextBox.ReadOnly = false;
+            gameBoard.insuranceButton.Visible = false;
+            gameBoard.insuranceBetTextBox.Visible = false;
+            gameBoard.controlsGroupBox.Size = new Size(197, 402);
+            gameBoard.splitButton.Visible = false;
+            hand = 0;
+            turnCounter = 0;
 
             roundFinished = false;
             bustedArray = new bool[] { false, false, false };
@@ -623,6 +708,18 @@ namespace BlackJackApplication
             roundFinished = true;
         }
         */
+
+        public void insuranceWin()
+        {
+            gameBoard.resultLabel.Text = "Insurance Win";
+            gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney.ToString();
+        }
+
+        public void insuranceLoss()
+        {
+            gameBoard.resultLabel.Text = "Insurance loss";
+            gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney.ToString();
+        }
 
         public void playerBlackjack(GamePlayer winner)
         {
