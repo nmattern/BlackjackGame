@@ -19,13 +19,15 @@ namespace BlackJackApplication
         const int IMAGE_DISTANCE_X = 20;
         public Point dealerLocation = new Point(16, 54);
         public int turnCounter = 0;
+        public DatabaseAccess database;
 
-        public LocalTurn(Player aPlayer, Dealer deal, Deck deckarg, frmGameBoard game)
+        public LocalTurn(Player aPlayer, Dealer deal, Deck deckarg, frmGameBoard game, DatabaseAccess data)
         {
             player = aPlayer;
             dealer = deal;
             deck = deckarg;
             gameBoard = game;
+            database = data;
         }
 
         public void addImage(Image image, string player)
@@ -81,7 +83,7 @@ namespace BlackJackApplication
             }
         }
 
-        public void betButtonClick()
+        public async void betButtonClick()
         {
             int betNumber = Convert.ToInt32(Regex.Replace(gameBoard.betTextBox.Text, "[$]", ""));
 
@@ -102,6 +104,8 @@ namespace BlackJackApplication
                     gameBoard.betTextBox.ReadOnly = true;
                     gameBoard.hitButton.Visible = true;
                     gameBoard.standButton.Visible = true;
+                    // update db with new player bet info
+                    await database.createLocalGamePlayer(player.Username, turnCounter, player.ALocalGame.PlayerList[turnCounter]);
                     beginTurn();
                 }
                 else
