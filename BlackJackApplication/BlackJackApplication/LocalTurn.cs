@@ -38,6 +38,7 @@ namespace BlackJackApplication
             // add picture box
             for (int cardNum = 0; cardNum < aplayer.PlayerHand.Count; cardNum++)
             {
+                // Specific locations need to be calculated
                 Point newPosition = new Point(aplayer.Location.X + IMAGE_DISTANCE_X * cardNum, aplayer.Location.Y + IMAGE_DISTANCE_Y * cardNum);
                 if (aplayer.PlayerHand[cardNum].CardImage == card.CardImage)
                 {
@@ -61,6 +62,7 @@ namespace BlackJackApplication
             dealer = deal;
             for (int cardNum = 0; cardNum < dealer.CurrentPlayerHand.Count; cardNum++)
             {
+                // Specific location needs calculation
                 Point newPosition = new Point(dealerLocation.X + IMAGE_DISTANCE_X * cardNum, dealerLocation.Y + IMAGE_DISTANCE_Y * cardNum);
                 if (dealer.CurrentPlayerHand[cardNum].CardImage == card.CardImage)
                 {
@@ -286,9 +288,10 @@ namespace BlackJackApplication
         }
         
 
-        public void playerWins(GamePlayer play)
+        public void playerWins(GamePlayer winner)
         {
-
+            winner.PlayerAmountOfMoney += winner.PlayerBet*2;
+            gameBoard.resultLabel.Text = winner.Username + " Wins";
         }
 
         public void playerBlackjack(GamePlayer play)
