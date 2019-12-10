@@ -753,13 +753,13 @@ namespace BlackJackApplication
         public void insuranceWin()
         {
             gameBoard.resultLabel.Text = "Insurance Win";
-            gameBoard.currentMoneyLabels[turnCounter].Text = player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney.ToString();
+            gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney.ToString();
         }
 
         public void insuranceLoss()
         {
             gameBoard.resultLabel.Text = "Insurance loss";
-            gameBoard.currentMoneyLabels[turnCounter].Text = player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney.ToString();
+            gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney.ToString();
         }
 
         public void playerBlackjack(GamePlayer winner)
