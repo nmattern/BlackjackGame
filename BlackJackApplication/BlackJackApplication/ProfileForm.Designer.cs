@@ -58,16 +58,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Stencil", 70.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 23);
+            this.label1.Location = new System.Drawing.Point(107, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(531, 138);
+            this.label1.Size = new System.Drawing.Size(428, 111);
             this.label1.TabIndex = 0;
             this.label1.Text = "Profile";
             // 
             // confirmButton
             // 
             this.confirmButton.Location = new System.Drawing.Point(253, 462);
-            this.confirmButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.confirmButton.Margin = new System.Windows.Forms.Padding(4);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(100, 28);
             this.confirmButton.TabIndex = 13;
@@ -81,7 +81,7 @@
             this.nameErrorLabel.Location = new System.Drawing.Point(428, 185);
             this.nameErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameErrorLabel.Name = "nameErrorLabel";
-            this.nameErrorLabel.Size = new System.Drawing.Size(0, 17);
+            this.nameErrorLabel.Size = new System.Drawing.Size(0, 13);
             this.nameErrorLabel.TabIndex = 14;
             // 
             // addressErrorLabel
@@ -90,7 +90,7 @@
             this.addressErrorLabel.Location = new System.Drawing.Point(428, 381);
             this.addressErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.addressErrorLabel.Name = "addressErrorLabel";
-            this.addressErrorLabel.Size = new System.Drawing.Size(0, 17);
+            this.addressErrorLabel.Size = new System.Drawing.Size(0, 13);
             this.addressErrorLabel.TabIndex = 15;
             // 
             // phoneErrorLabel
@@ -99,7 +99,7 @@
             this.phoneErrorLabel.Location = new System.Drawing.Point(428, 413);
             this.phoneErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.phoneErrorLabel.Name = "phoneErrorLabel";
-            this.phoneErrorLabel.Size = new System.Drawing.Size(0, 17);
+            this.phoneErrorLabel.Size = new System.Drawing.Size(0, 13);
             this.phoneErrorLabel.TabIndex = 16;
             // 
             // creditCardErrorLabel
@@ -108,16 +108,16 @@
             this.creditCardErrorLabel.Location = new System.Drawing.Point(428, 349);
             this.creditCardErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.creditCardErrorLabel.Name = "creditCardErrorLabel";
-            this.creditCardErrorLabel.Size = new System.Drawing.Size(0, 17);
+            this.creditCardErrorLabel.Size = new System.Drawing.Size(0, 13);
             this.creditCardErrorLabel.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(231, 185);
+            this.label6.Location = new System.Drawing.Point(233, 185);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 17);
+            this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 35;
             this.label6.Text = "Name:";
             // 
@@ -127,16 +127,16 @@
             this.profileNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.profileNameTextBox.MaxLength = 30;
             this.profileNameTextBox.Name = "profileNameTextBox";
-            this.profileNameTextBox.Size = new System.Drawing.Size(132, 22);
+            this.profileNameTextBox.Size = new System.Drawing.Size(132, 20);
             this.profileNameTextBox.TabIndex = 20;
             // 
             // phoneLabel
             // 
             this.phoneLabel.AutoSize = true;
-            this.phoneLabel.Location = new System.Drawing.Point(208, 413);
+            this.phoneLabel.Location = new System.Drawing.Point(217, 413);
             this.phoneLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.phoneLabel.Name = "phoneLabel";
-            this.phoneLabel.Size = new System.Drawing.Size(69, 17);
+            this.phoneLabel.Size = new System.Drawing.Size(54, 13);
             this.phoneLabel.TabIndex = 34;
             this.phoneLabel.Text = "Phone #: ";
             // 
@@ -146,16 +146,16 @@
             this.profilePhoneNumberTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.profilePhoneNumberTextBox.MaxLength = 11;
             this.profilePhoneNumberTextBox.Name = "profilePhoneNumberTextBox";
-            this.profilePhoneNumberTextBox.Size = new System.Drawing.Size(132, 22);
+            this.profilePhoneNumberTextBox.Size = new System.Drawing.Size(132, 20);
             this.profilePhoneNumberTextBox.TabIndex = 28;
             // 
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(212, 381);
+            this.addressLabel.Location = new System.Drawing.Point(220, 381);
             this.addressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.addressLabel.Name = "addressLabel";
-            this.addressLabel.Size = new System.Drawing.Size(68, 17);
+            this.addressLabel.Size = new System.Drawing.Size(51, 13);
             this.addressLabel.TabIndex = 33;
             this.addressLabel.Text = "Address: ";
             // 
@@ -165,56 +165,56 @@
             this.profileAddressTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.profileAddressTextBox.MaxLength = 50;
             this.profileAddressTextBox.Name = "profileAddressTextBox";
-            this.profileAddressTextBox.Size = new System.Drawing.Size(132, 22);
+            this.profileAddressTextBox.Size = new System.Drawing.Size(132, 20);
             this.profileAddressTextBox.TabIndex = 26;
             // 
             // creditCardLabel
             // 
             this.creditCardLabel.AutoSize = true;
-            this.creditCardLabel.Location = new System.Drawing.Point(180, 349);
+            this.creditCardLabel.Location = new System.Drawing.Point(196, 349);
             this.creditCardLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.creditCardLabel.Name = "creditCardLabel";
-            this.creditCardLabel.Size = new System.Drawing.Size(99, 17);
+            this.creditCardLabel.Size = new System.Drawing.Size(75, 13);
             this.creditCardLabel.TabIndex = 32;
             this.creditCardLabel.Text = "Credit Card #: ";
             // 
             // recovQLabel
             // 
             this.recovQLabel.AutoSize = true;
-            this.recovQLabel.Location = new System.Drawing.Point(159, 315);
+            this.recovQLabel.Location = new System.Drawing.Point(180, 315);
             this.recovQLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.recovQLabel.Name = "recovQLabel";
-            this.recovQLabel.Size = new System.Drawing.Size(121, 17);
+            this.recovQLabel.Size = new System.Drawing.Size(91, 13);
             this.recovQLabel.TabIndex = 31;
             this.recovQLabel.Text = "ConfirmPassword:";
             // 
             // confirmPasswordLabel
             // 
             this.confirmPasswordLabel.AutoSize = true;
-            this.confirmPasswordLabel.Location = new System.Drawing.Point(176, 283);
+            this.confirmPasswordLabel.Location = new System.Drawing.Point(190, 283);
             this.confirmPasswordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.confirmPasswordLabel.Name = "confirmPasswordLabel";
-            this.confirmPasswordLabel.Size = new System.Drawing.Size(104, 17);
+            this.confirmPasswordLabel.Size = new System.Drawing.Size(81, 13);
             this.confirmPasswordLabel.TabIndex = 30;
             this.confirmPasswordLabel.Text = "New Password:";
             // 
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(156, 250);
+            this.passwordLabel.Location = new System.Drawing.Point(178, 250);
             this.passwordLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(124, 17);
+            this.passwordLabel.Size = new System.Drawing.Size(93, 13);
             this.passwordLabel.TabIndex = 29;
             this.passwordLabel.Text = "Current Password:";
             // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(203, 219);
+            this.usernameLabel.Location = new System.Drawing.Point(213, 219);
             this.usernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(77, 17);
+            this.usernameLabel.Size = new System.Drawing.Size(58, 13);
             this.usernameLabel.TabIndex = 27;
             this.usernameLabel.Text = "Username:";
             // 
@@ -224,7 +224,7 @@
             this.profileCreditCardTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.profileCreditCardTextBox.MaxLength = 16;
             this.profileCreditCardTextBox.Name = "profileCreditCardTextBox";
-            this.profileCreditCardTextBox.Size = new System.Drawing.Size(132, 22);
+            this.profileCreditCardTextBox.Size = new System.Drawing.Size(132, 20);
             this.profileCreditCardTextBox.TabIndex = 25;
             // 
             // confirmPasswordTextBox
@@ -233,7 +233,7 @@
             this.confirmPasswordTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.confirmPasswordTextBox.MaxLength = 50;
             this.confirmPasswordTextBox.Name = "confirmPasswordTextBox";
-            this.confirmPasswordTextBox.Size = new System.Drawing.Size(132, 22);
+            this.confirmPasswordTextBox.Size = new System.Drawing.Size(132, 20);
             this.confirmPasswordTextBox.TabIndex = 24;
             // 
             // newPasswordTextBox
@@ -242,7 +242,7 @@
             this.newPasswordTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.newPasswordTextBox.MaxLength = 20;
             this.newPasswordTextBox.Name = "newPasswordTextBox";
-            this.newPasswordTextBox.Size = new System.Drawing.Size(132, 22);
+            this.newPasswordTextBox.Size = new System.Drawing.Size(132, 20);
             this.newPasswordTextBox.TabIndex = 23;
             // 
             // currentPasswordTextBox
@@ -251,7 +251,7 @@
             this.currentPasswordTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.currentPasswordTextBox.MaxLength = 20;
             this.currentPasswordTextBox.Name = "currentPasswordTextBox";
-            this.currentPasswordTextBox.Size = new System.Drawing.Size(132, 22);
+            this.currentPasswordTextBox.Size = new System.Drawing.Size(132, 20);
             this.currentPasswordTextBox.TabIndex = 22;
             // 
             // usernameTextBox
@@ -260,7 +260,7 @@
             this.usernameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.usernameTextBox.MaxLength = 20;
             this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(132, 22);
+            this.usernameTextBox.Size = new System.Drawing.Size(132, 20);
             this.usernameTextBox.TabIndex = 21;
             // 
             // currentPasswordErrorLabel
@@ -269,7 +269,7 @@
             this.currentPasswordErrorLabel.Location = new System.Drawing.Point(428, 250);
             this.currentPasswordErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.currentPasswordErrorLabel.Name = "currentPasswordErrorLabel";
-            this.currentPasswordErrorLabel.Size = new System.Drawing.Size(0, 17);
+            this.currentPasswordErrorLabel.Size = new System.Drawing.Size(0, 13);
             this.currentPasswordErrorLabel.TabIndex = 36;
             // 
             // confirmPasswordErrorLabel
@@ -278,7 +278,7 @@
             this.confirmPasswordErrorLabel.Location = new System.Drawing.Point(428, 315);
             this.confirmPasswordErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.confirmPasswordErrorLabel.Name = "confirmPasswordErrorLabel";
-            this.confirmPasswordErrorLabel.Size = new System.Drawing.Size(0, 17);
+            this.confirmPasswordErrorLabel.Size = new System.Drawing.Size(0, 13);
             this.confirmPasswordErrorLabel.TabIndex = 37;
             // 
             // ProfileForm
