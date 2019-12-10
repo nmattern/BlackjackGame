@@ -216,6 +216,7 @@
             this.betTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.betTextBox.Size = new System.Drawing.Size(132, 20);
             this.betTextBox.TabIndex = 49;
+            this.betTextBox.Click += new System.EventHandler(this.betTextBox_Click);
             // 
             // player1CurrentTotal
             // 
