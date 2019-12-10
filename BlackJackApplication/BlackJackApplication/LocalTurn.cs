@@ -511,7 +511,7 @@ namespace BlackJackApplication
             int j;
 
             // check if all players are done
-            if (turnCounter == player.ALocalGame.PlayerList.Count)
+            if (turnCounter == player.ALocalGame.PlayerList.Count - 1)
             {
                 while (dealer.CurrentValueOfHand < 17)
                 {
