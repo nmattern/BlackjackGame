@@ -70,6 +70,7 @@ namespace BlackJackApplication
             {
                 if (localPlayerList.Count() <= 1)
                 {
+                    localGame.PlayerList.Add(localPlayer);
                     playButton.Text = "Play Solo";
                 }
                 else

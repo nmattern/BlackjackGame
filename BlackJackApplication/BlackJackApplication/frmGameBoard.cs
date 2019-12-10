@@ -50,7 +50,6 @@ namespace BlackJackApplication
             playerLabels.Add(this.player3Label.Location);
             for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
             {
-                Console.WriteLine(playerLabels[i]);
                 playerList[0].ALocalGame.PlayerList[i].Location = playerLabels[i];
             }
 
