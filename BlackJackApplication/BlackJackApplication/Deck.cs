@@ -57,7 +57,7 @@ namespace BlackJackApplication
                     // Set the image by grabbing the image type from the object
                     Image image = imgResource as Image;
 
-                    addCardToDeck(new Card(suit, value, image));
+                    addCardToDeck(new Card(suit, value));
                 }
             }
             shuffleCards();
