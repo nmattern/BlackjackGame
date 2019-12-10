@@ -35,7 +35,6 @@
             this.player3Label = new System.Windows.Forms.Label();
             this.adjustMoneyTextBox = new System.Windows.Forms.TextBox();
             this.adjustMoneyButton = new System.Windows.Forms.Button();
-            this.betTextBox = new System.Windows.Forms.TextBox();
             this.betButton = new System.Windows.Forms.Button();
             this.hitButton = new System.Windows.Forms.Button();
             this.standButton = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
+            this.betTextBox = new System.Windows.Forms.MaskedTextBox();
             this.controlsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,14 +127,6 @@
             this.adjustMoneyButton.Text = "Adjust Current Money";
             this.adjustMoneyButton.UseVisualStyleBackColor = false;
             // 
-            // betTextBox
-            // 
-            this.betTextBox.Location = new System.Drawing.Point(6, 107);
-            this.betTextBox.Name = "betTextBox";
-            this.betTextBox.Size = new System.Drawing.Size(133, 20);
-            this.betTextBox.TabIndex = 31;
-            this.betTextBox.Text = "Enter Bet: ";
-            // 
             // betButton
             // 
             this.betButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
@@ -197,11 +189,11 @@
             // 
             // controlsGroupBox
             // 
+            this.controlsGroupBox.Controls.Add(this.betTextBox);
             this.controlsGroupBox.Controls.Add(this.adjustMoneyTextBox);
             this.controlsGroupBox.Controls.Add(this.continueButton);
             this.controlsGroupBox.Controls.Add(this.adjustMoneyButton);
             this.controlsGroupBox.Controls.Add(this.standButton);
-            this.controlsGroupBox.Controls.Add(this.betTextBox);
             this.controlsGroupBox.Controls.Add(this.hitButton);
             this.controlsGroupBox.Controls.Add(this.betButton);
             this.controlsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -322,6 +314,16 @@
             this.resultLabel.Size = new System.Drawing.Size(0, 39);
             this.resultLabel.TabIndex = 48;
             // 
+            // betTextBox
+            // 
+            this.betTextBox.Location = new System.Drawing.Point(5, 107);
+            this.betTextBox.Mask = "$99999";
+            this.betTextBox.Name = "betTextBox";
+            this.betTextBox.PromptChar = ' ';
+            this.betTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.betTextBox.Size = new System.Drawing.Size(132, 20);
+            this.betTextBox.TabIndex = 49;
+            // 
             // frmGameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,7 +366,6 @@
         private System.Windows.Forms.Label player3Label;
         internal System.Windows.Forms.TextBox adjustMoneyTextBox;
         internal System.Windows.Forms.Button adjustMoneyButton;
-        internal System.Windows.Forms.TextBox betTextBox;
         internal System.Windows.Forms.Button betButton;
         internal System.Windows.Forms.Button hitButton;
         internal System.Windows.Forms.Button standButton;
@@ -383,5 +384,6 @@
         private System.Windows.Forms.Label turnLabel;
         internal System.Windows.Forms.Label dealerVisableTotalLabel;
         internal System.Windows.Forms.Label resultLabel;
+        internal System.Windows.Forms.MaskedTextBox betTextBox;
     }
 }

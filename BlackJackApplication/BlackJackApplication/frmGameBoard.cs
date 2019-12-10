@@ -167,12 +167,7 @@ namespace BlackJackApplication
 
         private void betTextBox_MouseClick(object sender, MouseEventArgs e)
         {
-            // clear out unneccesary characters from bet textbox
-            bool betContainsOnlyDigits = Int32.TryParse(this.betTextBox.Text, out int number);
-            if (!betContainsOnlyDigits)
-            {
-                this.betTextBox.Text = "";
-            }
+            
         }
 
         private void betButton_EnabledChanged(object sender, EventArgs e)

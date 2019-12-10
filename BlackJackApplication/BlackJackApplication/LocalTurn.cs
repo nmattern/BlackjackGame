@@ -83,19 +83,21 @@ namespace BlackJackApplication
 
         public void betButtonClick()
         {
-            int number;
-            bool betContainsOnlyDigits = Int32.TryParse(Regex.Replace(gameBoard.betTextBox.Text, "[A-Za-z :]", ""), out number);
-            // Validate if the user bet an integer, if not loop until they enter one
-            if (betContainsOnlyDigits)
-            {
+            int betNumber = Convert.ToInt32(Regex.Replace(gameBoard.betTextBox.Text, "$", ""));
 
-                player.ALocalGame.PlayerList[turnCounter].PlayerBet = Convert.ToInt32(Regex.Replace(gameBoard.betTextBox.Text, "[A-Za-z :]", ""));
-                player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney = Convert.ToInt32(Regex.Replace(gameBoard.currentMoneyLabels[turnCounter].Text, "[A-Za-z :]", ""));
+            // Validate if the user bet greater than 0 and less than what they have
+            if (betNumber > 0)
+            {
+                // save players bet into gamePlayer instance
+                player.ALocalGame.PlayerList[turnCounter].PlayerBet = Convert.ToInt32(gameBoard.betTextBox.Text);
+                
                 if (player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney - player.ALocalGame.PlayerList[turnCounter].PlayerBet >= 0)
                 {
-                    gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + (player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney
-                        - player.ALocalGame.PlayerList[turnCounter].PlayerBet).ToString();
-                    player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney = Convert.ToInt32(Regex.Replace(gameBoard.currentMoneyLabels[turnCounter].Text, "[A-Za-z :]", ""));
+                    // take bet amount away from player
+                    player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney -= betNumber;
+                    // update the game players current money label
+                    gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + (player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney).ToString();
+                    // enable and disable buttons for end of betting
                     gameBoard.betButton.Enabled = false;
                     gameBoard.betTextBox.ReadOnly = true;
                     gameBoard.hitButton.Visible = true;
@@ -104,12 +106,12 @@ namespace BlackJackApplication
                 }
                 else
                 {
-                    gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Bet too large";
+                    gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Bet must be less than you have";
                 }
             }
-            else
+            else 
             {
-                gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Enter a Value";
+                gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Bet must be greater than 0";
             }
         }
 
