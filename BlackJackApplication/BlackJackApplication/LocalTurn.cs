@@ -22,6 +22,7 @@ namespace BlackJackApplication
         public DatabaseAccess database;
         public bool roundFinished = false;
         public bool[] bustedArray = new bool[] {false, false, false};
+        public bool[] blackjackArray = new bool[] {false, false, false };
 
         public LocalTurn(Player aPlayer, Dealer deal, Deck deckarg, frmGameBoard game, DatabaseAccess data)
         {
@@ -418,8 +419,11 @@ namespace BlackJackApplication
             // Deal new card to player
             dealer.dealCard(player.ALocalGame.PlayerList[turnCounter], deck);
 
+            // add card to player
             Card card = player.ALocalGame.PlayerList[turnCounter].PlayerHand[player.ALocalGame.PlayerList[turnCounter].PlayerHand.Count - 1];
             addPlayerCard(card, player.ALocalGame.PlayerList[turnCounter]);
+
+            // check if ace needs to be reduced to 1
             if (player.ALocalGame.PlayerList[turnCounter].PlayerHand[player.ALocalGame.PlayerList[turnCounter].PlayerHand.Count - 1].Value == "ace")
             {
                 if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue > 21)
@@ -427,11 +431,17 @@ namespace BlackJackApplication
                     player.ALocalGame.PlayerList[turnCounter].PlayerHandValue -= 10;
                 }
             }
+
+            // display total card hand value for player
             gameBoard.currentTotalLabels[turnCounter].Text = "Current Total: " + (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue).ToString();
+
+            // check if player busts
             if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue > 21)
             {
                 playerBusts(player.ALocalGame.PlayerList[turnCounter]);
             }
+
+            // check for player blackjack
             else if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue == 21)
             {
                 standButtonClick();
@@ -532,14 +542,15 @@ namespace BlackJackApplication
 
         public void playerBlackjack(GamePlayer winner)
         {
-            winner.PlayerAmountOfMoney += winner.PlayerBet * 2;
-            gameBoard.resultLabel.Text = "Blackjack! " + winner.Username + " Wins!";
+            //winner.PlayerAmountOfMoney += winner.PlayerBet * 2;
+            gameBoard.resultLabel.Text = "Blackjack! " + winner.Username;
             gameBoard.continueButton.Visible = true;
             gameBoard.continueButton.Enabled = true;
             gameBoard.hitButton.Enabled = false;
             gameBoard.standButton.Enabled = false;
             gameBoard.betButton.Enabled = false;
             roundFinished = true;
+            blackjackArray[turnCounter] = true;
         }
 
         public void dealerWins()
@@ -561,6 +572,7 @@ namespace BlackJackApplication
             gameBoard.hitButton.Enabled = false;
             gameBoard.standButton.Enabled = false;
             gameBoard.betButton.Enabled = false;
+            bustedArray[turnCounter] = true;
         }
 
         
