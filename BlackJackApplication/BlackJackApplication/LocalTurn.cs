@@ -47,6 +47,8 @@ namespace BlackJackApplication
             {
                 // Specific locations need to be calculated
                 Point newPosition = new Point(aplayer.Location.X + IMAGE_DISTANCE_X * cardNum, aplayer.Location.Y + IMAGE_DISTANCE_Y * cardNum);
+                if (aplayer.PlayerHand[cardNum].Value == card.Value)
+                {
                     PictureBox pictureBox = new PictureBox()
                     {
                         Image = cardImage,
@@ -58,6 +60,7 @@ namespace BlackJackApplication
                     gameBoard.Controls.Add(pictureBox);
                     player.PictureBoxes.Add(pictureBox);
                     pictureBox.BringToFront();
+                }
             }
         }
 
@@ -70,6 +73,8 @@ namespace BlackJackApplication
             {
                 // Specific location needs calculation
                 Point newPosition = new Point(dealerLocation.X + IMAGE_DISTANCE_X * cardNum, dealerLocation.Y + IMAGE_DISTANCE_Y * cardNum);
+                if (dealer.CurrentPlayerHand[cardNum].Value == card.Value)
+                {
                     PictureBox pictureBox = new PictureBox()
                     {
                         Image = cardImage,
@@ -81,6 +86,7 @@ namespace BlackJackApplication
                     gameBoard.Controls.Add(pictureBox);
                     dealer.PictureBoxes.Add(pictureBox);
                     pictureBox.BringToFront();
+                }
             }
         }
 
