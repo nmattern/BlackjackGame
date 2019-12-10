@@ -236,6 +236,10 @@ namespace BlackJackApplication
                 {
                     gameBoard.controlsGroupBox.Size = new Size(197, 460);
                     gameBoard.splitButton.Visible = true;
+                } else if (dealer.VisibleValueOfHand == 11)
+                {
+                    gameBoard.insuranceButton.Visible = true;
+                    gameBoard.controlsGroupBox.Size = new Size(197, 550);
                 }
             }
         }
@@ -409,6 +413,26 @@ namespace BlackJackApplication
             hand = 0;
         }
 
+        public void insuranceBet(int bet)
+        {
+            if (bet <= player.ALocalGame.PlayerList[turnCounter].PlayerBet / 2)
+            {
+                player.ALocalGame.PlayerList[turnCounter].insuranceBet = bet;
+                if (dealer.CurrentValueOfHand == 21)
+                {
+                    //insuranceWin();
+                }
+                else
+                {
+                    //insuranceLoss();
+                }
+            }
+            else
+            {
+                //turnForm.insuranceBetValueLabel.Text = "Invalid";
+            }
+        }
+
         public void resetTableTurn()
         {
             int j;
@@ -418,6 +442,7 @@ namespace BlackJackApplication
                 player.ALocalGame.PlayerList[j].PlayerHandValue = 0;
                 gameBoard.currentBetLabels[j].Text = "Current Bet: ";
                 gameBoard.currentTotalLabels[j].Text = "Current Total: ";
+                player.ALocalGame.PlayerList[j].hasSplit = false;
             }
             dealer.CurrentPlayerHand.Clear();
             dealer.CurrentValueOfHand = 0;
@@ -428,6 +453,11 @@ namespace BlackJackApplication
             gameBoard.standButton.Visible = false;
             gameBoard.betButton.Enabled = true;
             gameBoard.betTextBox.ReadOnly = false;
+            gameBoard.insuranceButton.Visible = false;
+            gameBoard.insuranceBetTextBox.Visible = false;
+            gameBoard.controlsGroupBox.Size = new Size(197, 402);
+            gameBoard.splitButton.Visible = false;
+            hand = 0;
         }
         
 

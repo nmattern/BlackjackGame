@@ -54,6 +54,8 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
+            this.insuranceButton = new System.Windows.Forms.Button();
+            this.insuranceBetTextBox = new System.Windows.Forms.TextBox();
             this.controlsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,6 +207,7 @@
             // 
             // controlsGroupBox
             // 
+            this.controlsGroupBox.Controls.Add(this.insuranceBetTextBox);
             this.controlsGroupBox.Controls.Add(this.splitButton);
             this.controlsGroupBox.Controls.Add(this.adjustMoneyTextBox);
             this.controlsGroupBox.Controls.Add(this.continueButton);
@@ -360,12 +363,39 @@
             this.resultLabel.Size = new System.Drawing.Size(0, 52);
             this.resultLabel.TabIndex = 48;
             // 
+            // insuranceButton
+            // 
+            this.insuranceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
+            this.insuranceButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.insuranceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.insuranceButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.insuranceButton.Location = new System.Drawing.Point(1082, 476);
+            this.insuranceButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.insuranceButton.Name = "insuranceButton";
+            this.insuranceButton.Size = new System.Drawing.Size(177, 48);
+            this.insuranceButton.TabIndex = 37;
+            this.insuranceButton.Text = "Insurance";
+            this.insuranceButton.UseVisualStyleBackColor = false;
+            this.insuranceButton.Visible = false;
+            this.insuranceButton.Click += new System.EventHandler(this.insuranceButton_Click);
+            // 
+            // insuranceBetTextBox
+            // 
+            this.insuranceBetTextBox.Location = new System.Drawing.Point(8, 520);
+            this.insuranceBetTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.insuranceBetTextBox.Name = "insuranceBetTextBox";
+            this.insuranceBetTextBox.Size = new System.Drawing.Size(176, 23);
+            this.insuranceBetTextBox.TabIndex = 37;
+            this.insuranceBetTextBox.Text = "Enter Bet: ";
+            this.insuranceBetTextBox.Visible = false;
+            // 
             // frmGameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
             this.ClientSize = new System.Drawing.Size(1288, 578);
+            this.Controls.Add(this.insuranceButton);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.turnLabel);
             this.Controls.Add(this.errorLabel);
@@ -423,5 +453,7 @@
         internal System.Windows.Forms.Label resultLabel;
         internal System.Windows.Forms.GroupBox controlsGroupBox;
         internal System.Windows.Forms.Button splitButton;
+        internal System.Windows.Forms.Button insuranceButton;
+        internal System.Windows.Forms.TextBox insuranceBetTextBox;
     }
 }
