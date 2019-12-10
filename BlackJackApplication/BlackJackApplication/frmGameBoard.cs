@@ -210,20 +210,7 @@ namespace BlackJackApplication
 
         private async void adjustMoneyButton_Click(object sender, EventArgs e)
         {
-            // error checking for the adjust money functionality
-            int number;
-            bool adjustMoneyContainsOnlyDigits = Int32.TryParse(this.adjustMoneyTextBox.Text, out number);
-            if (!adjustMoneyContainsOnlyDigits)
-            {
-                this.adjustMoneyTextBox.Text = "";
-                errorLabel.Text = "Please enter only numbers";
-            }
-            else
-            {
-                errorLabel.Text = "";
-                currentMoneyLabels[localTurn.turnCounter].Text = "Current Money: " + adjustMoneyTextBox.Text;
-                await database.createLocalGamePlayer(localGame.PlayerList[0].Username, localTurn.turnCounter, localGame.PlayerList[localTurn.turnCounter]);
-            }
+            localTurn.adjustMoneyClick();
         }
 
         public void endGame()

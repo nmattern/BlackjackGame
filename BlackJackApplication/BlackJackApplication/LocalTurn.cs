@@ -171,6 +171,25 @@ namespace BlackJackApplication
             }
         }
 
+        public async void adjustMoneyClick()
+        {
+            // error checking for the adjust money functionality
+            int number;
+            bool adjustMoneyContainsOnlyDigits = Int32.TryParse(gameBoard.adjustMoneyTextBox.Text, out number);
+            if (!adjustMoneyContainsOnlyDigits)
+            {
+                gameBoard.adjustMoneyTextBox.Text = "";
+                gameBoard.errorLabel.Text = "Please enter only numbers";
+            }
+            else
+            {
+                gameBoard.errorLabel.Text = "";
+                gameBoard.currentMoneyLabels[turnCounter].Text = "Current Money: " + gameBoard.adjustMoneyTextBox.Text;
+                player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney = number;
+                await database.createLocalGamePlayer(player.ALocalGame.PlayerList[0].Username, turnCounter, player.ALocalGame.PlayerList[turnCounter]);
+            }
+        }
+
         public async void betButtonClick()
         {
             int betNumber = Convert.ToInt32(Regex.Replace(gameBoard.betTextBox.Text, "[$]", ""));
@@ -205,12 +224,6 @@ namespace BlackJackApplication
             {
                 gameBoard.currentBetLabels[turnCounter].Text = "Current Bet: Bet must be greater than 0";
             }
-        }
-
-        public void adjustMoneyButtonClick()
-        {
-            player.ALocalGame.PlayerList[turnCounter].PlayerAmountOfMoney = Convert.ToInt32(gameBoard.adjustMoneyTextBox.Text);
-            gameBoard.currentMoneyLabels[turnCounter].Text = gameBoard.adjustMoneyTextBox.Text;
         }
 
         //------------------------------------------------------------------------------------
@@ -532,7 +545,7 @@ namespace BlackJackApplication
         {
             int j;
             GamePlayer winner = null;
-            if (turnCounter == 3)
+            if (turnCounter < player.ALocalGame.PlayerList.Count())
             {
                 while (dealer.CurrentValueOfHand < 17)
                 {

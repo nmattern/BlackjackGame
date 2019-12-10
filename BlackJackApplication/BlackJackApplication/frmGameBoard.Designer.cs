@@ -40,8 +40,9 @@
             this.standButton = new System.Windows.Forms.Button();
             this.continueButton = new System.Windows.Forms.Button();
             this.controlsGroupBox = new System.Windows.Forms.GroupBox();
-            this.betTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.insuranceBetTextBox = new System.Windows.Forms.TextBox();
             this.splitButton = new System.Windows.Forms.Button();
+            this.betTextBox = new System.Windows.Forms.MaskedTextBox();
             this.player1CurrentTotal = new System.Windows.Forms.Label();
             this.player2CurrentTotal = new System.Windows.Forms.Label();
             this.player3CurrentTotal = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.turnLabelPart1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.insuranceButton = new System.Windows.Forms.Button();
-            this.insuranceBetTextBox = new System.Windows.Forms.TextBox();
             this.controlsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -135,6 +135,7 @@
             this.adjustMoneyButton.TabIndex = 29;
             this.adjustMoneyButton.Text = "Adjust Current Money";
             this.adjustMoneyButton.UseVisualStyleBackColor = false;
+            this.adjustMoneyButton.Click += new System.EventHandler(this.adjustMoneyButton_Click);
             // 
             // betButton
             // 
@@ -181,6 +182,7 @@
             this.standButton.TabIndex = 34;
             this.standButton.Text = "Stand";
             this.standButton.UseVisualStyleBackColor = false;
+            this.standButton.Click += new System.EventHandler(this.standButton_Click);
             // 
             // continueButton
             // 
@@ -218,6 +220,16 @@
             this.controlsGroupBox.TabStop = false;
             this.controlsGroupBox.Text = "Controls";
             // 
+            // insuranceBetTextBox
+            // 
+            this.insuranceBetTextBox.Location = new System.Drawing.Point(8, 520);
+            this.insuranceBetTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.insuranceBetTextBox.Name = "insuranceBetTextBox";
+            this.insuranceBetTextBox.Size = new System.Drawing.Size(176, 23);
+            this.insuranceBetTextBox.TabIndex = 37;
+            this.insuranceBetTextBox.Text = "Enter Bet: ";
+            this.insuranceBetTextBox.Visible = false;
+            // 
             // splitButton
             // 
             this.splitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
@@ -241,7 +253,7 @@
             this.betTextBox.Name = "betTextBox";
             this.betTextBox.PromptChar = ' ';
             this.betTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.betTextBox.Size = new System.Drawing.Size(132, 20);
+            this.betTextBox.Size = new System.Drawing.Size(132, 23);
             this.betTextBox.TabIndex = 49;
             this.betTextBox.Click += new System.EventHandler(this.betTextBox_Click);
             // 
@@ -329,7 +341,7 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(880, 339);
+            this.errorLabel.Location = new System.Drawing.Point(751, 64);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.errorLabel.Size = new System.Drawing.Size(0, 17);
@@ -354,6 +366,25 @@
             this.resultLabel.Size = new System.Drawing.Size(0, 52);
             this.resultLabel.TabIndex = 48;
             // 
+            // turnLabelPart1
+            // 
+            this.turnLabelPart1.AutoSize = true;
+            this.turnLabelPart1.Location = new System.Drawing.Point(740, 20);
+            this.turnLabelPart1.Name = "turnLabelPart1";
+            this.turnLabelPart1.Size = new System.Drawing.Size(48, 17);
+            this.turnLabelPart1.TabIndex = 49;
+            this.turnLabelPart1.Text = "Player";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(787, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 17);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "\'s Turn";
+            // 
             // insuranceButton
             // 
             this.insuranceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
@@ -369,35 +400,6 @@
             this.insuranceButton.UseVisualStyleBackColor = false;
             this.insuranceButton.Visible = false;
             this.insuranceButton.Click += new System.EventHandler(this.insuranceButton_Click);
-            // 
-            // insuranceBetTextBox
-            // 
-            this.insuranceBetTextBox.Location = new System.Drawing.Point(8, 520);
-            this.insuranceBetTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.insuranceBetTextBox.Name = "insuranceBetTextBox";
-            this.insuranceBetTextBox.Size = new System.Drawing.Size(176, 23);
-            this.insuranceBetTextBox.TabIndex = 37;
-            this.insuranceBetTextBox.Text = "Enter Bet: ";
-            this.insuranceBetTextBox.Visible = false;
-            // 
-            // turnLabelPart1
-            // 
-            this.turnLabelPart1.AutoSize = true;
-            this.turnLabelPart1.Location = new System.Drawing.Point(740, 20);
-            this.turnLabelPart1.Name = "turnLabelPart1";
-            this.turnLabelPart1.Size = new System.Drawing.Size(36, 13);
-            this.turnLabelPart1.TabIndex = 49;
-            this.turnLabelPart1.Text = "Player";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(787, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
-            this.label1.TabIndex = 50;
-            this.label1.Text = "\'s Turn";
             // 
             // frmGameBoard
             // 
@@ -458,7 +460,6 @@
         private System.Windows.Forms.Label player1BetLabel;
         private System.Windows.Forms.Label player2BetLabel;
         private System.Windows.Forms.Label player3BetLabel;
-        private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.Label turnLabel;
         internal System.Windows.Forms.Label dealerVisableTotalLabel;
         internal System.Windows.Forms.Label resultLabel;
@@ -469,5 +470,6 @@
         internal System.Windows.Forms.Button splitButton;
         internal System.Windows.Forms.Button insuranceButton;
         internal System.Windows.Forms.TextBox insuranceBetTextBox;
+        internal System.Windows.Forms.Label errorLabel;
     }
 }
