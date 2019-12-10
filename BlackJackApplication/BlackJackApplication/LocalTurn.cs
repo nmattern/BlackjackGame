@@ -156,6 +156,10 @@ namespace BlackJackApplication
                 Point newPosition = new Point(dealerLocation.X + IMAGE_DISTANCE_X * cardNum, dealerLocation.Y + IMAGE_DISTANCE_Y * cardNum);
                 if (dealer.CurrentPlayerHand[cardNum].Value == card.Value)
                 {
+                    if (dealer.CurrentPlayerHand[cardNum].Hidden)
+                    {
+                        cardImage = Properties.Resources.back;
+                    }
                     PictureBox pictureBox = new PictureBox()
                     {
                         Image = cardImage,
