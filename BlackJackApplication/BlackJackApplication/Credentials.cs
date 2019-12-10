@@ -8,6 +8,6 @@ namespace BlackJackApplication
 {
     public static class Credentials
     {
-        public const string ApiKey = "Your_API_Key";
+        public const string ApiKey = "YOUR_API_KEY";
     }
 }
