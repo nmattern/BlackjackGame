@@ -79,7 +79,7 @@
             // 
             this.player1Label.AutoSize = true;
             this.player1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.player1Label.Location = new System.Drawing.Point(15, 265);
+            this.player1Label.Location = new System.Drawing.Point(15, 325);
             this.player1Label.Name = "player1Label";
             this.player1Label.Size = new System.Drawing.Size(70, 24);
             this.player1Label.TabIndex = 2;
@@ -89,7 +89,7 @@
             // 
             this.player2Label.AutoSize = true;
             this.player2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.player2Label.Location = new System.Drawing.Point(283, 265);
+            this.player2Label.Location = new System.Drawing.Point(283, 325);
             this.player2Label.Name = "player2Label";
             this.player2Label.Size = new System.Drawing.Size(70, 24);
             this.player2Label.TabIndex = 3;
@@ -99,7 +99,7 @@
             // 
             this.player3Label.AutoSize = true;
             this.player3Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.player3Label.Location = new System.Drawing.Point(559, 265);
+            this.player3Label.Location = new System.Drawing.Point(559, 325);
             this.player3Label.Name = "player3Label";
             this.player3Label.Size = new System.Drawing.Size(70, 24);
             this.player3Label.TabIndex = 4;
@@ -199,7 +199,7 @@
             this.controlsGroupBox.Controls.Add(this.hitButton);
             this.controlsGroupBox.Controls.Add(this.betButton);
             this.controlsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.controlsGroupBox.Location = new System.Drawing.Point(806, 9);
+            this.controlsGroupBox.Location = new System.Drawing.Point(880, 9);
             this.controlsGroupBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.controlsGroupBox.Name = "controlsGroupBox";
             this.controlsGroupBox.Size = new System.Drawing.Size(148, 327);
@@ -220,7 +220,7 @@
             // player1CurrentTotal
             // 
             this.player1CurrentTotal.AutoSize = true;
-            this.player1CurrentTotal.Location = new System.Drawing.Point(16, 233);
+            this.player1CurrentTotal.Location = new System.Drawing.Point(16, 293);
             this.player1CurrentTotal.Name = "player1CurrentTotal";
             this.player1CurrentTotal.Size = new System.Drawing.Size(74, 13);
             this.player1CurrentTotal.TabIndex = 37;
@@ -229,7 +229,7 @@
             // player2CurrentTotal
             // 
             this.player2CurrentTotal.AutoSize = true;
-            this.player2CurrentTotal.Location = new System.Drawing.Point(284, 233);
+            this.player2CurrentTotal.Location = new System.Drawing.Point(284, 293);
             this.player2CurrentTotal.Name = "player2CurrentTotal";
             this.player2CurrentTotal.Size = new System.Drawing.Size(74, 13);
             this.player2CurrentTotal.TabIndex = 38;
@@ -238,7 +238,7 @@
             // player3CurrentTotal
             // 
             this.player3CurrentTotal.AutoSize = true;
-            this.player3CurrentTotal.Location = new System.Drawing.Point(560, 233);
+            this.player3CurrentTotal.Location = new System.Drawing.Point(560, 293);
             this.player3CurrentTotal.Name = "player3CurrentTotal";
             this.player3CurrentTotal.Size = new System.Drawing.Size(74, 13);
             this.player3CurrentTotal.TabIndex = 39;
@@ -247,7 +247,7 @@
             // player1CurrentMoneyLabel
             // 
             this.player1CurrentMoneyLabel.AutoSize = true;
-            this.player1CurrentMoneyLabel.Location = new System.Drawing.Point(16, 249);
+            this.player1CurrentMoneyLabel.Location = new System.Drawing.Point(16, 309);
             this.player1CurrentMoneyLabel.Name = "player1CurrentMoneyLabel";
             this.player1CurrentMoneyLabel.Size = new System.Drawing.Size(79, 13);
             this.player1CurrentMoneyLabel.TabIndex = 40;
@@ -256,7 +256,7 @@
             // player2CurrentMoneyLabel
             // 
             this.player2CurrentMoneyLabel.AutoSize = true;
-            this.player2CurrentMoneyLabel.Location = new System.Drawing.Point(284, 249);
+            this.player2CurrentMoneyLabel.Location = new System.Drawing.Point(284, 309);
             this.player2CurrentMoneyLabel.Name = "player2CurrentMoneyLabel";
             this.player2CurrentMoneyLabel.Size = new System.Drawing.Size(79, 13);
             this.player2CurrentMoneyLabel.TabIndex = 41;
@@ -265,7 +265,7 @@
             // player3CurrentMoneyLabel
             // 
             this.player3CurrentMoneyLabel.AutoSize = true;
-            this.player3CurrentMoneyLabel.Location = new System.Drawing.Point(560, 249);
+            this.player3CurrentMoneyLabel.Location = new System.Drawing.Point(560, 309);
             this.player3CurrentMoneyLabel.Name = "player3CurrentMoneyLabel";
             this.player3CurrentMoneyLabel.Size = new System.Drawing.Size(79, 13);
             this.player3CurrentMoneyLabel.TabIndex = 42;
@@ -274,7 +274,7 @@
             // player1BetLabel
             // 
             this.player1BetLabel.AutoSize = true;
-            this.player1BetLabel.Location = new System.Drawing.Point(16, 217);
+            this.player1BetLabel.Location = new System.Drawing.Point(16, 277);
             this.player1BetLabel.Name = "player1BetLabel";
             this.player1BetLabel.Size = new System.Drawing.Size(63, 13);
             this.player1BetLabel.TabIndex = 43;
@@ -283,7 +283,7 @@
             // player2BetLabel
             // 
             this.player2BetLabel.AutoSize = true;
-            this.player2BetLabel.Location = new System.Drawing.Point(284, 217);
+            this.player2BetLabel.Location = new System.Drawing.Point(284, 277);
             this.player2BetLabel.Name = "player2BetLabel";
             this.player2BetLabel.Size = new System.Drawing.Size(63, 13);
             this.player2BetLabel.TabIndex = 44;
@@ -292,7 +292,7 @@
             // player3BetLabel
             // 
             this.player3BetLabel.AutoSize = true;
-            this.player3BetLabel.Location = new System.Drawing.Point(560, 217);
+            this.player3BetLabel.Location = new System.Drawing.Point(560, 277);
             this.player3BetLabel.Name = "player3BetLabel";
             this.player3BetLabel.Size = new System.Drawing.Size(63, 13);
             this.player3BetLabel.TabIndex = 45;
@@ -301,7 +301,7 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(806, 339);
+            this.errorLabel.Location = new System.Drawing.Point(880, 339);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.errorLabel.Size = new System.Drawing.Size(0, 13);
@@ -310,7 +310,7 @@
             // turnLabel
             // 
             this.turnLabel.AutoSize = true;
-            this.turnLabel.Location = new System.Drawing.Point(706, 13);
+            this.turnLabel.Location = new System.Drawing.Point(851, 17);
             this.turnLabel.Name = "turnLabel";
             this.turnLabel.Size = new System.Drawing.Size(13, 13);
             this.turnLabel.TabIndex = 47;
@@ -331,7 +331,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
-            this.ClientSize = new System.Drawing.Size(966, 470);
+            this.ClientSize = new System.Drawing.Size(1042, 588);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.turnLabel);
             this.Controls.Add(this.errorLabel);
