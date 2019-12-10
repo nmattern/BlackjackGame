@@ -19,6 +19,10 @@ namespace BlackJackApplication
         const int IMAGE_DISTANCE_X = 20;
         public Point dealerLocation = new Point(16, 54);
         public int turnCounter = 0;
+        public int hand = 0;
+        public int valueOfFirstHand = 0;
+        public int valueOfSecondHand = 0;
+        Card secondHand;
 
         public LocalTurn(Player aPlayer, Dealer deal, Deck deckarg, frmGameBoard game)
         {
@@ -241,7 +245,14 @@ namespace BlackJackApplication
             dealer.dealCard(player.ALocalGame.PlayerList[turnCounter], deck);
 
             Card card = player.ALocalGame.PlayerList[turnCounter].PlayerHand[player.ALocalGame.PlayerList[turnCounter].PlayerHand.Count - 1];
-            addPlayerCard(card, player.ALocalGame.PlayerList[turnCounter]);
+            if (player.ALocalGame.PlayerList[turnCounter].hasSplit)
+            {
+                addPlayerCard(card, player.ALocalGame.PlayerList[turnCounter], hand);
+            }
+            else
+            {
+                addPlayerCard(card, player.ALocalGame.PlayerList[turnCounter]);
+            }
             if (player.ALocalGame.PlayerList[turnCounter].PlayerHand[player.ALocalGame.PlayerList[turnCounter].PlayerHand.Count - 1].Value == "ace")
             {
                 if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue > 21)
@@ -250,13 +261,22 @@ namespace BlackJackApplication
                 }
             }
             gameBoard.currentTotalLabels[turnCounter].Text = "Current Total: " + (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue).ToString();
-            if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue > 21)
+            if (!player.ALocalGame.PlayerList[turnCounter].hasSplit)
             {
-                playerBusts(player.ALocalGame.PlayerList[turnCounter]);
-            }
-            else if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue == 21)
+                if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue > 21)
+                {
+                    playerBusts(player.ALocalGame.PlayerList[turnCounter]);
+                }
+                else if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue == 21)
+                {
+                    standButtonClick();
+                }
+            } else
             {
-                standButtonClick();
+                if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue > 21 || player.ALocalGame.PlayerList[turnCounter].PlayerHandValue == 21)
+                {
+                    standButtonClick();
+                }
             }
             
         }
@@ -265,47 +285,65 @@ namespace BlackJackApplication
         {
             int j;
             GamePlayer winner = null;
-            if (turnCounter == 3)
+            if (!player.ALocalGame.PlayerList[turnCounter].hasSplit)
             {
-                while (dealer.CurrentValueOfHand < 17)
+                if (turnCounter == 3)
                 {
-                    dealer.dealSelf(dealer, deck);
-                    Card card = dealer.CurrentPlayerHand[dealer.CurrentPlayerHand.Count - 1];
-                    addDealerCard(card, dealer);
-                    gameBoard.dealerVisableTotalLabel.Text = (dealer.CurrentValueOfHand).ToString();
-                }
-                
-                int currTop = 0;
-                int loses = 0;
-                for(j = 0; j < player.ALocalGame.PlayerList.Count; j++)
-                {
-                    if (player.ALocalGame.PlayerList[j].PlayerHandValue == 21)
+                    while (dealer.CurrentValueOfHand < 17)
                     {
-                        winner = player.ALocalGame.PlayerList[j];
-                        break;
+                        dealer.dealSelf(dealer, deck);
+                        Card card = dealer.CurrentPlayerHand[dealer.CurrentPlayerHand.Count - 1];
+                        addDealerCard(card, dealer);
+                        gameBoard.dealerVisableTotalLabel.Text = (dealer.CurrentValueOfHand).ToString();
                     }
-                    else if(player.ALocalGame.PlayerList[j].PlayerHandValue < 21 && player.ALocalGame.PlayerList[j].PlayerHandValue > currTop)
+
+                    int currTop = 0;
+                    int loses = 0;
+                    for (j = 0; j < player.ALocalGame.PlayerList.Count; j++)
                     {
-                        currTop = player.ALocalGame.PlayerList[j].PlayerHandValue;
-                        winner = player.ALocalGame.PlayerList[j];
-                    }
-                    else
-                    {
-                        loses++;
-                        if(loses > 2)
+                        if (player.ALocalGame.PlayerList[j].PlayerHandValue == 21)
                         {
-                            dealerWins();
+                            winner = player.ALocalGame.PlayerList[j];
+                            break;
+                        }
+                        else if (player.ALocalGame.PlayerList[j].PlayerHandValue < 21 && player.ALocalGame.PlayerList[j].PlayerHandValue > currTop)
+                        {
+                            currTop = player.ALocalGame.PlayerList[j].PlayerHandValue;
+                            winner = player.ALocalGame.PlayerList[j];
+                        }
+                        else
+                        {
+                            loses++;
+                            if (loses > 2)
+                            {
+                                dealerWins();
+                            }
                         }
                     }
+                    if (loses < 3)
+                    {
+                        playerWins(winner);
+                    }
                 }
-                if (loses < 3)
+                else
                 {
-                    playerWins(winner);
+                    turnCounter++;
                 }
-            }
-            else
+            } else if (hand == 0)
             {
-                turnCounter++;
+                if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue == 21)
+                {
+                    // Blackjack!
+                }
+                else if (player.ALocalGame.PlayerList[turnCounter].PlayerHandValue > 21)
+                {
+                    // Bust!
+                }
+                valueOfFirstHand = player.ALocalGame.PlayerList[turnCounter].PlayerHandValue;
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue = 0;
+                player.ALocalGame.PlayerList[turnCounter].PlayerHand.Clear();
+                player.ALocalGame.PlayerList[turnCounter].PlayerHand.Add(secondHand);
+                hand = 1;
             }
         }
 
@@ -343,7 +381,18 @@ namespace BlackJackApplication
                 addDealerCard(card, dealer);
             }
 
-            player.ALocalGame.PlayerList[turnCounter].hand = 0;
+            if (player.ALocalGame.PlayerList[turnCounter].PlayerHand[0].Value == "ace")
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue = 11;
+            }
+            else
+            {
+                player.ALocalGame.PlayerList[turnCounter].PlayerHandValue /= 2;
+            }
+
+            secondHand = player.ALocalGame.PlayerList[turnCounter].PlayerHand[1];
+
+            hand = 0;
         }
 
         public void resetTableTurn()

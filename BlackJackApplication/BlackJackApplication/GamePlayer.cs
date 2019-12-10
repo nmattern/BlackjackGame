@@ -17,7 +17,6 @@ namespace BlackJackApplication
         private List<Card> playerHand = new List<Card>();
         
         public bool hasSplit { get; set; }
-        public int hand { get; set; }
         public string Username { get => username; set => username = value; }
         public int PlayerAmountOfMoney { get => playerAmountOfMoney; set => playerAmountOfMoney = value; }
         public int PlayerBet { get => playerBet; set => playerBet = value; }
