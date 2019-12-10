@@ -59,7 +59,7 @@ namespace BlackJackApplication
             standButton.Visible = false;
             continueButton.Visible = false;
 
-            // set money labels
+            // create list of money labels
             switch (playerList[0].ALocalGame.PlayerList.Count)
             {
                 case 3:
@@ -82,18 +82,51 @@ namespace BlackJackApplication
                 currentMoneyLabels[i].Text = "Current Money: " + Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerAmountOfMoney);
             }
 
+            // create list of bet labels
+            switch (playerList[0].ALocalGame.PlayerList.Count)
+            {
+                case 3:
+                    currentBetLabels.Add(player1BetLabel);
+                    currentBetLabels.Add(player2BetLabel);
+                    currentBetLabels.Add(player3BetLabel);
+                    break;
+                case 2:
+                    currentBetLabels.Add(player1BetLabel);
+                    currentBetLabels.Add(player2BetLabel);
+                    break;
+                case 1:
+                    currentBetLabels.Add(player1BetLabel);
+                    break;
+            }
 
             // set bet labels
-            currentBetLabels.Add(player1BetLabel);
-            currentBetLabels.Add(player2BetLabel);
-            currentBetLabels.Add(player3BetLabel);
+            for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
+            {
+                currentBetLabels[i].Text = "Current Bet: " + Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerBet);
+            }
 
-            
+            // create list of total labels
+            switch (playerList[0].ALocalGame.PlayerList.Count)
+            {
+                case 3:
+                    currentTotalLabels.Add(player1CurrentTotal);
+                    currentTotalLabels.Add(player2CurrentTotal);
+                    currentTotalLabels.Add(player3CurrentTotal);
+                    break;
+                case 2:
+                    currentTotalLabels.Add(player1CurrentTotal);
+                    currentTotalLabels.Add(player2CurrentTotal);
+                    break;
+                case 1:
+                    currentTotalLabels.Add(player1CurrentTotal);
+                    break;
+            }
 
             // set total labels
-            currentTotalLabels.Add(player1CurrentTotal);
-            currentTotalLabels.Add(player2CurrentTotal);
-            currentTotalLabels.Add(player3CurrentTotal);
+            for (i = 0; i < playerList[0].ALocalGame.PlayerList.Count; i++)
+            {
+                currentTotalLabels[i].Text = "Current Total: " + Convert.ToString(playerList[0].ALocalGame.PlayerList[i].PlayerHandValue);
+            }
 
             // generate turn instance
             localTurn = new LocalTurn(playerList[0], dealer, myDeck, this);
