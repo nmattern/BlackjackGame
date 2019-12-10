@@ -80,16 +80,28 @@ namespace BlackJackApplication
 
         public void addPlayerCard(Card card, GamePlayer aplayer, int numHand)
         {
+            int number;
+            string cardImageString;
+            bool cardIsDigit = Int32.TryParse(card.Value, out number);
+            if (cardIsDigit)
+            {
+                cardImageString = ("_" + card.Value + "_of_" + card.Suit);
+            }
+            else
+            {
+                cardImageString = (card.Value + "_of_" + card.Suit);
+            }
+            Image cardImage = (Bitmap)Properties.Resources.ResourceManager.GetObject(cardImageString);
             if (numHand == 0)
             {
                 for (int cardNum = 0; cardNum < aplayer.PlayerHand.Count; cardNum++)
                 {
                     Point newPosition = new Point(aplayer.Location.X + IMAGE_DISTANCE_X * cardNum, aplayer.Location.Y + IMAGE_DISTANCE_Y * cardNum);
-                    if (aplayer.PlayerHand[cardNum].CardImage == card.CardImage)
+                    if (aplayer.PlayerHand[cardNum].Value == card.Value)
                     {
                         PictureBox pictureBox = new PictureBox()
                         {
-                            Image = card.CardImage,
+                            Image = cardImage,
                             BackColor = Color.White,
                             SizeMode = PictureBoxSizeMode.StretchImage,
                             Size = new Size(120, 150),
@@ -105,11 +117,11 @@ namespace BlackJackApplication
                 for (int cardNum = 0; cardNum < aplayer.PlayerHand.Count; cardNum++)
                 {
                     Point newPosition = new Point(30 + aplayer.Location.X + IMAGE_DISTANCE_X * cardNum, aplayer.Location.Y + IMAGE_DISTANCE_Y * cardNum);
-                    if (aplayer.PlayerHand[cardNum].CardImage == card.CardImage)
+                    if (aplayer.PlayerHand[cardNum].Value == card.Value)
                     {
                         PictureBox pictureBox = new PictureBox()
                         {
-                            Image = card.CardImage,
+                            Image = cardImage,
                             BackColor = Color.White,
                             SizeMode = PictureBoxSizeMode.StretchImage,
                             Size = new Size(120, 150),
