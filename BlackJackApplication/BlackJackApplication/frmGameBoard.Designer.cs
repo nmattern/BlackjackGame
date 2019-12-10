@@ -187,7 +187,7 @@
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(133, 39);
             this.continueButton.TabIndex = 35;
-            this.continueButton.Text = "New Hand";
+            this.continueButton.Text = "Continue";
             this.continueButton.UseVisualStyleBackColor = false;
             this.continueButton.Click += new System.EventHandler(this.continueButton_Click);
             // 
@@ -406,11 +406,11 @@
         private System.Windows.Forms.Label player2BetLabel;
         private System.Windows.Forms.Label player3BetLabel;
         private System.Windows.Forms.Label errorLabel;
-        private System.Windows.Forms.Label turnLabel;
         internal System.Windows.Forms.Label dealerVisableTotalLabel;
         internal System.Windows.Forms.Label resultLabel;
         internal System.Windows.Forms.MaskedTextBox betTextBox;
         private System.Windows.Forms.Label turnLabelPart1;
         private System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.Label turnLabel;
     }
 }

@@ -20,6 +20,7 @@ namespace BlackJackApplication
         public List<Label> currentMoneyLabels = new List<Label>();
         public List<Label> currentBetLabels = new List<Label>();
         public List<Label> currentTotalLabels = new List<Label>();
+        public List<Point> playerLabels = new List<Point>();
 
         internal frmGameBoard(List<Player> pList, DatabaseAccess db, LocalGame aLocalGame)
         {
@@ -27,6 +28,7 @@ namespace BlackJackApplication
             playerList = pList;
             database = db;
             localGame = aLocalGame;
+            playerList[0].ALocalGame = localGame;
         }
 
         private async void frmGameBoard_Load(object sender, EventArgs e)
@@ -34,14 +36,13 @@ namespace BlackJackApplication
             // Generate Deck and Dealer for game
             Deck myDeck = new Deck();
             Dealer dealer = new Dealer();
-            
+
 
             // pull current Local game from db into local
             await database.updateLocalGame(playerList[0]);
             playerList[0].ALocalGame = database.LocalGame;
 
             // locally set the location for each player label
-            List<Point> playerLabels = new List<Point>();
             int i;
             playerLabels.Add(this.player1Label.Location);
             playerLabels.Add(this.player2Label.Location);
