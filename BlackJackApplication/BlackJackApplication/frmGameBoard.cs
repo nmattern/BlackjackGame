@@ -132,6 +132,7 @@ namespace BlackJackApplication
             localTurn = new LocalTurn(playerList[0], dealer, myDeck, this, database);
 
             // set focus to the bet text box
+            betTextBox.SelectionStart = 1;
             betTextBox.Select();
         }
 
@@ -244,10 +245,8 @@ namespace BlackJackApplication
 
         private void betTextBox_Click(object sender, EventArgs e)
         {
-            if (betTextBox.Text != "")
-            {
-                betTextBox.Text = "";
-            }
+            betTextBox.Text = "$";
+            betTextBox.SelectionStart = 1;
         }
 
         private void betTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
