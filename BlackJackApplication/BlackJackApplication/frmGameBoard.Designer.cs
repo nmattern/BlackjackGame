@@ -41,6 +41,7 @@
             this.standButton = new System.Windows.Forms.Button();
             this.continueButton = new System.Windows.Forms.Button();
             this.controlsGroupBox = new System.Windows.Forms.GroupBox();
+            this.splitButton = new System.Windows.Forms.Button();
             this.player1CurrentTotal = new System.Windows.Forms.Label();
             this.player2CurrentTotal = new System.Windows.Forms.Label();
             this.player3CurrentTotal = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
-            this.splitButton = new System.Windows.Forms.Button();
             this.controlsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +114,7 @@
             // adjustMoneyTextBox
             // 
             this.adjustMoneyTextBox.Location = new System.Drawing.Point(7, 21);
-            this.adjustMoneyTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.adjustMoneyTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.adjustMoneyTextBox.Name = "adjustMoneyTextBox";
             this.adjustMoneyTextBox.Size = new System.Drawing.Size(176, 23);
             this.adjustMoneyTextBox.TabIndex = 28;
@@ -137,7 +137,7 @@
             // betTextBox
             // 
             this.betTextBox.Location = new System.Drawing.Point(8, 132);
-            this.betTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.betTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.betTextBox.Name = "betTextBox";
             this.betTextBox.Size = new System.Drawing.Size(176, 23);
             this.betTextBox.TabIndex = 31;
@@ -217,11 +217,27 @@
             this.controlsGroupBox.Location = new System.Drawing.Point(1075, 11);
             this.controlsGroupBox.Margin = new System.Windows.Forms.Padding(0, 4, 4, 4);
             this.controlsGroupBox.Name = "controlsGroupBox";
-            this.controlsGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.controlsGroupBox.Padding = new System.Windows.Forms.Padding(4);
             this.controlsGroupBox.Size = new System.Drawing.Size(197, 402);
             this.controlsGroupBox.TabIndex = 36;
             this.controlsGroupBox.TabStop = false;
             this.controlsGroupBox.Text = "Controls";
+            // 
+            // splitButton
+            // 
+            this.splitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
+            this.splitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.splitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.splitButton.Location = new System.Drawing.Point(8, 400);
+            this.splitButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitButton.Name = "splitButton";
+            this.splitButton.Size = new System.Drawing.Size(177, 48);
+            this.splitButton.TabIndex = 36;
+            this.splitButton.Text = "Split";
+            this.splitButton.UseVisualStyleBackColor = false;
+            this.splitButton.Visible = false;
+            this.splitButton.Click += new System.EventHandler(this.splitButton_Click);
             // 
             // player1CurrentTotal
             // 
@@ -344,22 +360,6 @@
             this.resultLabel.Size = new System.Drawing.Size(0, 52);
             this.resultLabel.TabIndex = 48;
             // 
-            // splitButton
-            // 
-            this.splitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(67)))), ((int)(((byte)(157)))));
-            this.splitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.splitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.splitButton.Location = new System.Drawing.Point(8, 400);
-            this.splitButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.splitButton.Name = "splitButton";
-            this.splitButton.Size = new System.Drawing.Size(177, 48);
-            this.splitButton.TabIndex = 36;
-            this.splitButton.Text = "Split";
-            this.splitButton.UseVisualStyleBackColor = false;
-            this.splitButton.Visible = false;
-            this.splitButton.Click += new System.EventHandler(this.splitButton_Click);
-            // 
             // frmGameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -384,7 +384,7 @@
             this.Controls.Add(this.player1Label);
             this.Controls.Add(this.dealerVisableTotalLabel);
             this.Controls.Add(this.dealerCardLabel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmGameBoard";
             this.Text = "frmGameBoard";
             this.Load += new System.EventHandler(this.frmGameBoard_Load);

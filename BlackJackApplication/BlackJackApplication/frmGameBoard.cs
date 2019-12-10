@@ -196,7 +196,7 @@ namespace BlackJackApplication
 
         private void splitButton_Click(object sender, EventArgs e)
         {
-
+            localTurn.splitButtonClick();
         }
     }
 }

@@ -26,6 +26,7 @@ namespace BlackJackApplication
             dealer = deal;
             deck = deckarg;
             gameBoard = game;
+            player.ALocalGame.PlayerList[turnCounter].hasSplit = false;
         }
 
         public void addImage(Image image, string player)
@@ -52,6 +53,51 @@ namespace BlackJackApplication
                     gameBoard.Controls.Add(pictureBox);
                     player.PictureBoxes.Add(pictureBox);
                     pictureBox.BringToFront();
+                }
+            }
+        }
+
+        public void addPlayerCard(Card card, GamePlayer aplayer, int numHand)
+        {
+            if (numHand == 0)
+            {
+                for (int cardNum = 0; cardNum < aplayer.PlayerHand.Count; cardNum++)
+                {
+                    Point newPosition = new Point(aplayer.Location.X + IMAGE_DISTANCE_X * cardNum, aplayer.Location.Y + IMAGE_DISTANCE_Y * cardNum);
+                    if (aplayer.PlayerHand[cardNum].CardImage == card.CardImage)
+                    {
+                        PictureBox pictureBox = new PictureBox()
+                        {
+                            Image = card.CardImage,
+                            BackColor = Color.White,
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Size = new Size(120, 150),
+                            Location = newPosition
+                        };
+                        gameBoard.Controls.Add(pictureBox);
+                        player.PictureBoxes.Add(pictureBox);
+                        pictureBox.BringToFront();
+                    }
+                }
+            } else
+            {
+                for (int cardNum = 0; cardNum < aplayer.PlayerHand.Count; cardNum++)
+                {
+                    Point newPosition = new Point(30 + aplayer.Location.X + IMAGE_DISTANCE_X * cardNum, aplayer.Location.Y + IMAGE_DISTANCE_Y * cardNum);
+                    if (aplayer.PlayerHand[cardNum].CardImage == card.CardImage)
+                    {
+                        PictureBox pictureBox = new PictureBox()
+                        {
+                            Image = card.CardImage,
+                            BackColor = Color.White,
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Size = new Size(120, 150),
+                            Location = newPosition
+                        };
+                        gameBoard.Controls.Add(pictureBox);
+                        player.PictureBoxes.Add(pictureBox);
+                        pictureBox.BringToFront();
+                    }
                 }
             }
         }
@@ -266,6 +312,38 @@ namespace BlackJackApplication
         public void continueButtonClick()
         {
             resetTableTurn();
+        }
+
+        public void splitButtonClick()
+        {
+            player.ALocalGame.PlayerList[turnCounter].hasSplit = true;
+            foreach (PictureBox picture in gameBoard.Controls)
+            {
+                gameBoard.Controls.Remove(picture);
+            }
+
+            for (int j = 0; j < player.ALocalGame.PlayerList.Count; j++)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    if (player.ALocalGame.PlayerList[j].hasSplit)
+                    {
+                        addPlayerCard(player.ALocalGame.PlayerList[j].PlayerHand[i], player.ALocalGame.PlayerList[j], i);
+                    }
+                    else
+                    {
+                        addPlayerCard(player.ALocalGame.PlayerList[j].PlayerHand[i], player.ALocalGame.PlayerList[j]);
+                    }
+                }
+            }
+
+            // Generates the hand for the dealer
+            foreach (Card card in dealer.CurrentPlayerHand)
+            {
+                addDealerCard(card, dealer);
+            }
+
+            player.ALocalGame.PlayerList[turnCounter].hand = 0;
         }
 
         public void resetTableTurn()
