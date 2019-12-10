@@ -39,8 +39,17 @@ namespace BlackJackApplication
 
         public void addPlayerCard(Card card, GamePlayer aplayer)
         {
-            string cardImageString = (card.Value + "_of_" + card.Suit);
-            Console.WriteLine(cardImageString);
+            int number;
+            string cardImageString;
+            bool cardIsDigit = Int32.TryParse(card.Value, out number);
+            if (cardIsDigit)
+            {
+                cardImageString = ("_" + card.Value + "_of_" + card.Suit);
+            }
+            else
+            {
+                cardImageString = (card.Value + "_of_" + card.Suit);
+            }
             Image cardImage = (Bitmap)Properties.Resources.ResourceManager.GetObject(cardImageString);
             // add picture box
             for (int cardNum = 0; cardNum < aplayer.PlayerHand.Count; cardNum++)
@@ -66,7 +75,17 @@ namespace BlackJackApplication
 
         public void addDealerCard(Card card, Dealer deal)
         {
-            string cardImageString = (card.Value + "_of_" + card.Suit);
+            int number;
+            string cardImageString;
+            bool cardIsDigit = Int32.TryParse(card.Value, out number);
+            if (cardIsDigit)
+            {
+                cardImageString = ("_" + card.Value + "_of_" + card.Suit);
+            }
+            else
+            {
+                cardImageString = (card.Value + "_of_" + card.Suit);
+            }
             Image cardImage = (Bitmap)Properties.Resources.ResourceManager.GetObject(cardImageString);
             dealer = deal;
             for (int cardNum = 0; cardNum < dealer.CurrentPlayerHand.Count; cardNum++)
